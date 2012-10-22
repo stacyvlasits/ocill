@@ -12,7 +12,6 @@ Ocill::Application.configure do
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
@@ -34,4 +33,16 @@ Ocill::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  #  Helpful for active_admin/devise
+  
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  silence_warnings do
+    begin
+      require 'pry'
+      IRB = Pry
+    rescue LoadError
+  end
+end
 end
