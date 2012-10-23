@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  weight: 9.99
+  prompt: MyText
+  column_names: MyText
+  order: 1
+
+two:
+  title: MyString
+  weight: 9.99
+  prompt: MyText
+  column_names: MyText
+  order: 1

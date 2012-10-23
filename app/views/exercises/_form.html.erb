@@ -1,0 +1,38 @@
+<%= form_for @exercise, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :weight, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :weight, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :prompt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :prompt, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :column_names, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :column_names, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :order, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :order, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                exercises_path, :class => 'btn' %>
+  </div>
+<% end %>
