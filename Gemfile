@@ -17,6 +17,8 @@ gem 'activeadmin'
 group :development do
   gem 'pry'
   gem 'pry-rails'
+  gem 'foreigner'
+  gem 'immigrant'
 end
 
 group :assets do
