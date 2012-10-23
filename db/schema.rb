@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023201701) do
+ActiveRecord::Schema.define(:version => 20121023213158) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -62,14 +62,15 @@ ActiveRecord::Schema.define(:version => 20121023201701) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "lesson_id"
+    t.integer  "template_id"
   end
 
   create_table "exercise_items", :force => true do |t|
     t.string   "text"
     t.boolean  "scored"
-    t.string   "type"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "exercise_item_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "exercise_id"
   end
 
@@ -95,7 +96,7 @@ ActiveRecord::Schema.define(:version => 20121023201701) do
   create_table "media_items", :force => true do |t|
     t.string   "name"
     t.string   "url"
-    t.string   "type"
+    t.string   "media_item_type"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "exercise_item_id"
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20121023201701) do
   end
 
   add_foreign_key "drills", "lessons", :name => "drills_lesson_id_fk"
+  add_foreign_key "drills", "templates", :name => "drills_template_id_fk"
 
   add_foreign_key "exercise_items", "exercises", :name => "exercise_items_exercise_id_fk"
 
