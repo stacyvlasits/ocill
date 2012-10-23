@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023181813) do
+ActiveRecord::Schema.define(:version => 20121023201701) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(:version => 20121023181813) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "courses", :force => true do |t|
+    t.string   "title"
+    t.integer  "order"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "drills", :force => true do |t|
     t.string   "title"
     t.text     "prompt"
@@ -54,14 +61,16 @@ ActiveRecord::Schema.define(:version => 20121023181813) do
     t.integer  "responses"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "lesson_id"
   end
 
   create_table "exercise_items", :force => true do |t|
     t.string   "text"
     t.boolean  "scored"
     t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "exercise_id"
   end
 
   create_table "exercises", :force => true do |t|
@@ -72,14 +81,41 @@ ActiveRecord::Schema.define(:version => 20121023181813) do
     t.integer  "order"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "drill_id"
+  end
+
+  create_table "lessons", :force => true do |t|
+    t.string   "title"
+    t.integer  "order"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "course_id"
   end
 
   create_table "media_items", :force => true do |t|
     t.string   "name"
     t.string   "url"
     t.string   "type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "exercise_item_id"
+  end
+
+  create_table "templates", :force => true do |t|
+    t.string   "name"
+    t.text     "desc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_foreign_key "drills", "lessons", :name => "drills_lesson_id_fk"
+
+  add_foreign_key "exercise_items", "exercises", :name => "exercise_items_exercise_id_fk"
+
+  add_foreign_key "exercises", "drills", :name => "exercises_drill_id_fk"
+
+  add_foreign_key "lessons", "courses", :name => "lessons_course_id_fk"
+
+  add_foreign_key "media_items", "exercise_items", :name => "media_items_exercise_item_id_fk"
 
 end
