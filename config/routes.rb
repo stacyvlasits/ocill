@@ -1,8 +1,12 @@
 Ocill::Application.routes.draw do
+  resources :exercises
+
+  resources :drills
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  root :to => "home#index"
+  root :to => "drills#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

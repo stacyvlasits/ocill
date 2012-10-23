@@ -1,0 +1,44 @@
+<%- model_class = Drill -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:prompt) %></th>
+      <th><%= model_class.human_attribute_name(:instructions) %></th>
+      <th><%= model_class.human_attribute_name(:order) %></th>
+      <th><%= model_class.human_attribute_name(:responses) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @drills.each do |drill| %>
+      <tr>
+        <td><%= link_to drill.id, drill_path(drill) %></td>
+        <td><%= drill.title %></td>
+        <td><%= drill.prompt %></td>
+        <td><%= drill.instructions %></td>
+        <td><%= drill.order %></td>
+        <td><%= drill.responses %></td>
+        <td><%=l drill.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_drill_path(drill), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      drill_path(drill),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_drill_path,
+            :class => 'btn btn-primary' %>

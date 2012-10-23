@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  prompt: MyText
+  instructions: MyText
+  order: 1
+  responses: 1
+
+two:
+  title: MyString
+  prompt: MyText
+  instructions: MyText
+  order: 1
+  responses: 1
