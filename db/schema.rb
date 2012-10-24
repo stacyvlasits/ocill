@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023213158) do
+ActiveRecord::Schema.define(:version => 20121024212927) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20121023213158) do
     t.datetime "updated_at",   :null => false
     t.integer  "lesson_id"
     t.integer  "template_id"
+    t.text     "column_names"
   end
 
   create_table "exercise_items", :force => true do |t|
@@ -72,16 +73,16 @@ ActiveRecord::Schema.define(:version => 20121023213158) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "exercise_id"
+    t.integer  "order"
   end
 
   create_table "exercises", :force => true do |t|
     t.string   "title"
     t.decimal  "weight"
     t.text     "prompt"
-    t.text     "column_names"
     t.integer  "order"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "drill_id"
   end
 

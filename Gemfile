@@ -19,6 +19,7 @@ group :development do
   gem 'pry-rails'
   gem 'foreigner'
   gem 'immigrant'
+  gem 'debugger'
 end
 
 group :assets do
