@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024212927) do
+ActiveRecord::Schema.define(:version => 20121025205517) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20121024212927) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
-    t.integer  "order"
+    t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20121024212927) do
     t.string   "title"
     t.text     "prompt"
     t.text     "instructions"
-    t.integer  "order"
+    t.integer  "position"
     t.integer  "responses"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -73,14 +73,14 @@ ActiveRecord::Schema.define(:version => 20121024212927) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "exercise_id"
-    t.integer  "order"
+    t.integer  "position"
   end
 
   create_table "exercises", :force => true do |t|
     t.string   "title"
     t.decimal  "weight"
     t.text     "prompt"
-    t.integer  "order"
+    t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "drill_id"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20121024212927) do
 
   create_table "lessons", :force => true do |t|
     t.string   "title"
-    t.integer  "order"
+    t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "course_id"

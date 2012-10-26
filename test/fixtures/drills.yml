@@ -4,12 +4,12 @@ one:
   title: MyString
   prompt: MyText
   instructions: MyText
-  order: 1
+  position: 1
   responses: 1
 
 two:
   title: MyString
   prompt: MyText
   instructions: MyText
-  order: 1
+  position: 1
   responses: 1

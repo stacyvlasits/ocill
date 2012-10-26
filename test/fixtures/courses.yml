@@ -2,8 +2,8 @@
 
 one:
   title: MyString
-  order: 1
+  position: 1
 
 two:
   title: MyString
-  order: 1
+  position: 1

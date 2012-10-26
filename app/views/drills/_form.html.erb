@@ -1,4 +1,5 @@
 <%= form_for @drill, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= render :partial => "course_and_lesson" %>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
@@ -8,19 +9,19 @@
   <div class="control-group">
     <%= f.label :prompt, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :prompt, :class => 'text_area' %>
+      <%= f.text_area :prompt, :size => "20x3", :class => 'text_area' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :instructions, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :instructions, :class => 'text_area' %>
+      <%= f.text_area :instructions, :size => "20x3", :class => 'text_area' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :order, :class => 'control-label' %>
+    <%= f.label :position, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :order, :class => 'number_field' %>
+      <%= f.number_field :position, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">

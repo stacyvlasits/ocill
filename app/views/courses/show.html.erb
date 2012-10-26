@@ -1,28 +1,22 @@
-<%- model_class = Drill -%>
+<%- model_class = Course -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @drill.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:prompt) %>:</strong></dt>
-  <dd><%= @drill.prompt %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:instructions) %>:</strong></dt>
-  <dd><%= @drill.instructions %></dd>
+  <dd><%= @course.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:position) %>:</strong></dt>
-  <dd><%= @drill.position %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:responses) %>:</strong></dt>
-  <dd><%= @drill.responses %></dd>
+  <dd><%= @course.position %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              drills_path, :class => 'btn'  %>
+              courses_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_drill_path(@drill), :class => 'btn' %>
+              edit_course_path(@course), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              drill_path(@drill),
+              course_path(@course),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
