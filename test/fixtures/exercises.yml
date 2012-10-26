@@ -5,11 +5,11 @@ one:
   weight: 9.99
   prompt: MyText
   column_names: MyText
-  order: 1
+  position: 1
 
 two:
   title: MyString
   weight: 9.99
   prompt: MyText
   column_names: MyText
-  order: 1
+  position: 1

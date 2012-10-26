@@ -5,26 +5,19 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:prompt) %></th>
-      <th><%= model_class.human_attribute_name(:instructions) %></th>
-      <th><%= model_class.human_attribute_name(:order) %></th>
-      <th><%= model_class.human_attribute_name(:responses) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>Course ( Lessons ) </th>
+      <th>Lesson ( Drills )</th>
+       <th>Drill Title </th>
+     <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @drills.each do |drill| %>
       <tr>
-        <td><%= link_to drill.id, drill_path(drill) %></td>
-        <td><%= drill.title %></td>
-        <td><%= drill.prompt %></td>
-        <td><%= drill.instructions %></td>
-        <td><%= drill.order %></td>
-        <td><%= drill.responses %></td>
-        <td><%=l drill.created_at %></td>
+        <td><%= link_to drill.lesson.course.title, course_path(drill.lesson.course) %> ( <%= drill.lesson.course.lessons.count %> ) </td>
+        <td><%= link_to drill.lesson.title, lesson_path(drill.lesson) %> ( <%= drill.lesson.drills.count %> ) </td>
+        <td><%= link_to drill.title, drill_path(drill) %></td>
+
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_drill_path(drill), :class => 'btn btn-mini' %>

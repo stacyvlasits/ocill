@@ -1,4 +1,8 @@
 Ocill::Application.routes.draw do
+  resources :lessons
+
+  resources :courses
+
   resources :exercises
 
   resources :drills

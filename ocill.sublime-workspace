@@ -1,0 +1,1012 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"side",
+				"sidebar-content-sidebar"
+			],
+			[
+				"med",
+				"media_item_type"
+			],
+			[
+				"h",
+				"h1	Tag"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"display",
+				"display_title"
+			],
+			[
+				"displ",
+				"display_name"
+			],
+			[
+				"con",
+				"contact_label"
+			],
+			[
+				"te",
+				"text-decoration"
+			],
+			[
+				"Facult",
+				"faculty_detail"
+			],
+			[
+				"wid",
+				"widget-title"
+			],
+			[
+				"sideb",
+				"sidebar-content-sidebar"
+			],
+			[
+				"p",
+				"previous"
+			],
+			[
+				"prev",
+				"previous_faculty"
+			],
+			[
+				"next",
+				"next_faculty"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"app",
+				"app_path"
+			],
+			[
+				"web",
+				"web_serv_url"
+			],
+			[
+				"max",
+				"maxDivWidth"
+			],
+			[
+				"the",
+				"the_html"
+			],
+			[
+				"ma",
+				"maxDivWidth"
+			],
+			[
+				"templ",
+				"templated_person"
+			],
+			[
+				"__",
+				"__FILE__"
+			],
+			[
+				"add",
+				"add_members"
+			],
+			[
+				"new",
+				"new_card"
+			],
+			[
+				"list",
+				"list_id"
+			],
+			[
+				"Acc",
+				"ACCESS_TOKEN_KEY"
+			],
+			[
+				"Pu",
+				"PUBLIC_KEY"
+			],
+			[
+				"mysql_err",
+				"mysql_error"
+			],
+			[
+				"func",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/views/drills/new.html.erb",
+			"settings":
+			{
+				"buffer_size": 283,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/drills/index.html.erb",
+			"settings":
+			{
+				"buffer_size": 1455,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/template.rb",
+			"settings":
+			{
+				"buffer_size": 90,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 449,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/sgv287/.bash_profile",
+			"settings":
+			{
+				"buffer_size": 169,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "rails generate scaffold Drill title:string prompt:text instructions:text order:integer responses:integer\n\nrails generate scaffold Exercise title:string weight:decimal prompt:text column_names:text order:integer\n\nrails generate model ExerciseItem text:string scored:boolean type:string\n\nrails generate model MediaItem name:string url:string type:string\n\nrails generate model Course title:string order:integer\n\nrails generate model Lesson title:string order:integer\n\nrails generate migration AddLessonIDToDrills lesson_id:integer\n\nrails generate migration AddCourseIDToLessons course_id:integer\n\nrails generate migration AddDrillIDToExercises drill_id:integer\n\nrails generate migration AddExerciseIDToExerciseItems exercise_id:integer\n\nrails generate migration AddExerciseItemIDToMediaItems exercise_item_id:integer\n\nrails generate model Template name:string desc:text \n\nrails generate migration RenameTypeToExerciseItemTypeInExerciseItems\n\nrails g migration RemoveColumnNamesFromExercises column_names:text\n\nrails g scaffold Course --migration=false --skip\n\nrails g scaffold Course --migration=false --skip\n\nrails g bootstrap:themed lessons -f\n\nrails g bootstrap:themed courses -f\n\nrails g migration RenameOrderToPositionInDrills",
+			"file": "doc/command.log",
+			"file_size": 1179,
+			"file_write_time": 1351182560000000,
+			"settings":
+			{
+				"buffer_size": 1228,
+				"line_ending": "Unix",
+				"name": "rails generate scaffold Drill title:string prompt:"
+			}
+		},
+		{
+			"file": "db/migrate/20121025205021_rename_order_to_position_in_drills.rb",
+			"settings":
+			{
+				"buffer_size": 130,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/migrate/20121025205517_rename_order_to_position.rb",
+			"settings":
+			{
+				"buffer_size": 286,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 530.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/sgv287/Sites/rails/ocill/app/models/course.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/drill.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/exercise.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/exercise_item.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/layouts/application.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/drills/_course_and_lesson.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/lesson.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/courses/_form.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/drills/_form.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/exercises/_form.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/lessons/_form.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/courses/index.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/courses/show.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/drills/show.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/exercises/index.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/exercises/show.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/lessons/index.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/lessons/show.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/test/fixtures/courses.yml",
+		"/Users/sgv287/Sites/rails/ocill/test/fixtures/drills.yml",
+		"/Users/sgv287/Sites/rails/ocill/test/fixtures/exercises.yml",
+		"/Users/sgv287/Sites/rails/ocill/test/fixtures/lessons.yml",
+		"/Users/sgv287/Sites/rails/ocill/test/functional/drills_controller_test.rb",
+		"/Users/sgv287/Sites/rails/ocill/test/functional/exercises_controller_test.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/layouts/drills.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/doc/del.css",
+		"/Users/sgv287/Sites/rails/ocill/app/assets/stylesheets/scaffolds.css.scss",
+		"/Users/sgv287/Sites/rails/ocill/app/models/admin_user.rb",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023194241_add_exercise_id_to_exercise_items.rb",
+		"/Users/sgv287/Sites/rails/ocill/Gemfile",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023180259_create_exercises.rb",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121024212657_add_column_names_to_drills.rb",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121024211923_remove_column_names_from_exercises.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/template.rb",
+		"/Users/sgv287/Sites/rails/ocill/README.rdoc",
+		"/etc/hosts",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023202458_rename_type_to_exercise_item_type_in_exercise_items.rb",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023202524_rename_type_to_media_item_type_in_media_items.rb",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1351027055/file-laits/mnt/wp-content/themes/genes/genesis_child/style.css",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023194317_add_keys.rb",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023193538_add_lesson_id_to_drills.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/media_item.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/admin/exercises.rb",
+		"/Users/sgv287/Sites/rails/ocill/test/unit/media_item_test.rb",
+		"/Users/sgv287/Sites/rails/ocill/test/fixtures/media_items.yml",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023181813_create_media_items.rb",
+		"/Users/sgv287/Sites/rails/ocill/config/routes.rb",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121022212011_create_drills.rb",
+		"/Users/sgv287/Sites/dase/practice/untitled.html",
+		"/Users/sgv287/Sites/dase/practice/daseframework/bin/config.php",
+		"/Users/sgv287/Desktop/standard.css",
+		"/Users/sgv287/Desktop/standard_960.css",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1349184830/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/standard.css",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1348518971/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/profile.php",
+		"/Users/sgv287/code/cola sftp/sftp-config.json",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1348260395/file-laits/mnt/wp-content/themes/genes/genesis_child/style.css",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1348086753/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/profile.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1348257765/file-laits/mnt/wp-content/themes/genes/genesis_child/style.css",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1348087666/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/profileb.php",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1348084083/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/profile.php",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1348086628/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/profileb.php",
+		"/Volumes/wordpress/themes/genesis/lib/structure/post.php",
+		"/Volumes/wordpress/themes/genes/genesis_child/chapters_and_arcticles.html",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347375506/cola/export/httpd/vhosts/wwwtest/data/cola/_db/app/views/scripts/header.phtml",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347377753/cola/export/httpd/vhosts/wwwtest/data/cola/_library/tinymce/jscripts/tiny_mce/plugins/filemanager/config.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347894964/file-laits/mnt/wp-content/themes/genes/twentyten/style.css",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347631926/file-laits/mnt/wp-content/themes/corpus-to-classroom/corpus-to-classroom_twenty-eleven/style.css",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347386992/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/delete.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347396785/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/old_profile.php",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347386992/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/profile.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347394731/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/a_profile.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347387518/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/jquery-Mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347392276/cola/export/httpd/vhosts/wwwtest/data/cola/_library/jquery-Mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347392130/cola/export/httpd/vhosts/wwwtest/data/cola/_library/mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347387326/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/jquery-Mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347387304/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347387389/cola/export/httpd/vhosts/wwwtest/data/cola/test/stacy/mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347387368/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347387341/cola/export/httpd/vhosts/wwwtest/data/cola/test/stacy/jquery-Mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347387100/cola/export/httpd/vhosts/wwwtest/data/cola/test/stacy/stache_profile.html",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347386961/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/test_profile.php",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347386904/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/old_profile.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346959797/file-laits/mnt/wp-content/plugins/laits-header-bar/style.css",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346956857/file-laits/mnt/wp-content/plugins/laits-header-bar/plugin.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347385797/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/new_profile.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347377903/cola/export/httpd/vhosts/wwwtest/data/cola/_library/tinymce/jscripts/tiny_mce/plugins/imagemanager/config.php",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347385509/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/test_profile.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347039277/file-laits/mnt/wp-content/themes/spanishtx/thematic/functions.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347039370/file-laits/mnt/wp-content/themes/spanishtx/thematic/functions.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1347039245/file-laits/mnt/wp-content/themes/spanishtx/thematic/header.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346959625/file-laits/mnt/wp-content/themes/ailcfh/ailcfh-new/footer.php",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346956857/file-laits/mnt/wp-content/plugins/laits-header-bar/testjscript.js",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346956857/file-laits/mnt/wp-content/plugins/laits-header-bar/test.php",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346946723/cola/export/httpd/vhosts/wwwtest/data/cola/test/stacy/new_profile.html",
+		"/Users/sgv287/Library/Application Support/Sublime Text 2/Packages/User/SFTP.sublime-settings",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346944963/cola/export/httpd/vhosts/wwwtest/data/cola/test/stacy/jquery-Mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346877711/cola/export/httpd/vhosts/wwwtest/data/cola/test/stacy/stache_profile.html",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346879526/cola/export/httpd/vhosts/wwwtest/data/cola/test/stacy/mustache.js",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346863989/cola/export/httpd/vhosts/wwwtest/data/cola/_scripts/faculty/profile.php",
+		"/private/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1346866037/cola/export/httpd/vhosts/wwwtest/data/cola/stache_profile.html",
+		"/export/httpd/vhosts/wwwtest/data/cola/_scripts/dase/southasia-video.php",
+		"/Users/sgv287/code/cola sftp/list.php",
+		"/Users/sgv287/code/cola sftp/profile.php",
+		"/Users/sgv287/Library/Application Support/Sublime Text 2/Packages/User/sftp_servers/cola",
+		"/Users/sgv287/Downloads/ruby.rb",
+		"/Users/sgv287/code/ruby/ruby-trello/spec/card_spec.rb",
+		"/Users/sgv287/code/ruby/ruby-trello/lib/trello/card.rb",
+		"/Users/sgv287/code/ruby/import_to_trello/import.rb",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/plugins/laits-header-bar/plugin.php",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/plugins/laits-header-bar/style.css",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/plugins/laits-header-bar/wp_admin.css",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/index.php",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/psychlabs/functions.php",
+		"/Users/sgv287/Downloads/pluginlist.html",
+		"/Users/sgv287/code/ruby/import_to_trello/consolidated_project_list.csv",
+		"/Users/sgv287/code/ruby/import_to_trello/config.yml",
+		"/Users/sgv287/code/ruby/import_to_trello/TRELLO ID",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/genesis/lib/framework.php",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/.gitignore",
+		"/Users/sgv287/Sites/wp/LabsTemplate/.gitignore",
+		"/Users/sgv287/.bash_profile",
+		"/Users/sgv287/clip",
+		"/Users/sgv287/Desktop/Vita.html",
+		"/Users/sgv287/Desktop/Vita.txt",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/education/style.css",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/child/style.css",
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/education/ut-header.php",
+		"/Users/sgv287/Documents/genesis/genesis_hook_reference.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"-*2012*.rb,-*.log",
+			"-*2012*.rb",
+			"-*2012*.txt",
+			"",
+			"<open folders>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			" order",
+			" order:",
+			":order",
+			"order",
+			"\\.order",
+			".order",
+			"order",
+			"\\:order",
+			"order",
+			":order",
+			"\\:order",
+			":order",
+			"\\border",
+			"order",
+			"-item",
+			"header-item",
+			"inner",
+			"container",
+			"  <",
+			"initModule",
+			"_initDir",
+			"fil",
+			"logRequest",
+			"getModule",
+			"setModule",
+			"initPlugin",
+			"initau",
+			"initUser",
+			"Request",
+			"$module",
+			"$this->module",
+			"initPlugin",
+			"initAuth",
+			"initAu",
+			"initCookie",
+			"initAuth",
+			"initCookie",
+			"setCookie",
+			"initCookie",
+			"cookiemap",
+			"DASE_MAX_ITEMS",
+			"display_cookiename",
+			"DASE_DISPLAY_FORMAT",
+			"initCookie",
+			"initCache",
+			"initUser",
+			"initDefaultHandler",
+			"initUser",
+			"__construct",
+			"initUser",
+			"initDefaultHandler",
+			"initCache",
+			"initDefaultHandler",
+			"initAuth",
+			"initCac",
+			"initUser",
+			"initDefaultHandler",
+			"getTargetUrl",
+			"redirectres",
+			"renderRed",
+			"renderResponse",
+			"getHandle",
+			"getHandler",
+			"getDbh",
+			"index",
+			"finding",
+			"height",
+			"tabs",
+			"#\"",
+			"must",
+			"display_t",
+			"thum",
+			"img",
+			"sidebar",
+			"h5",
+			".conta",
+			"img",
+			"contact_",
+			"h5",
+			"home",
+			"get_id",
+			"</li",
+			"<span ",
+			"</span><br>",
+			"/span",
+			"cv",
+			"titl",
+			"clear",
+			"style",
+			"both",
+			"img",
+			" person ",
+			"person ",
+			"person",
+			"grid_8",
+			"tabs",
+			"name",
+			"p>",
+			"}}",
+			"{{",
+			"\"",
+			" \"",
+			"\"",
+			"course",
+			"hide_t",
+			"post_ti",
+			"genesis_post_title",
+			"function genesis_post_title",
+			"genesis_post_title",
+			"post_title",
+			"sidebar",
+			":(\\S)",
+			"inner",
+			"absol",
+			"sidebar",
+			"left",
+			"conten",
+			"tit",
+			"banner",
+			"ul#nav",
+			"prc_l",
+			"banner",
+			".png",
+			"$tab ",
+			"fac",
+			"cola",
+			"htt",
+			"app_path"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			" position:",
+			".position",
+			"\\:position",
+			"li>",
+			"}}</p>",
+			"<p>{{",
+			"}}",
+			" {{",
+			"",
+			": \\1",
+			":\\s\\1",
+			"#nav",
+			"+--",
+			"",
+			"}}",
+			"{{",
+			"\", \"",
+			"\\n\\}\\n",
+			" {\\n\\t",
+			";\\n",
+			"laits_hb_",
+			"LAITS ",
+			"LAITS",
+			"\",",
+			",\" ",
+			", ",
+			"laulandn",
+			"pkeane",
+			"emilyballcicchini",
+			"Ph.D.",
+			"R.J.",
+			"J.W.",
+			".,",
+			".",
+			" ",
+			"PERIOD",
+			"h2",
+			"<br />",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/views/drills/new.html.erb",
+					"settings":
+					{
+						"buffer_size": 283,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								283,
+								283
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/drills/index.html.erb",
+					"settings":
+					{
+						"buffer_size": 1455,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								220,
+								220
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/models/template.rb",
+					"settings":
+					{
+						"buffer_size": 90,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								90,
+								90
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": ".gitignore",
+					"settings":
+					{
+						"buffer_size": 449,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								449,
+								449
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/sgv287/.bash_profile",
+					"settings":
+					{
+						"buffer_size": 169,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								169,
+								169
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "doc/command.log",
+					"settings":
+					{
+						"buffer_size": 1228,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1181,
+								1228
+							]
+						],
+						"settings":
+						{
+							"auto_name": "rails generate scaffold Drill title:string prompt:",
+							"incomplete_sync": null,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "db/migrate/20121025205021_rename_order_to_position_in_drills.rb",
+					"settings":
+					{
+						"buffer_size": 130,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								119,
+								75
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "db/migrate/20121025205517_rename_order_to_position.rb",
+					"settings":
+					{
+						"buffer_size": 286,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								247,
+								247
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.489701423774,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.sftp":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"cours",
+				"app/models/course.rb"
+			],
+			[
+				"exercise",
+				"app/models/exercise_item.rb"
+			],
+			[
+				"e",
+				"app/models/exercise.rb"
+			],
+			[
+				"drill",
+				"app/models/drill.rb"
+			],
+			[
+				"temp",
+				"app/models/template.rb"
+			],
+			[
+				"rename",
+				"db/migrate/20121025205517_rename_order_to_position.rb"
+			],
+			[
+				"layout",
+				"app/views/layouts/drill.html.erb"
+			],
+			[
+				"scaffolds.css",
+				"app/assets/stylesheets/scaffolds.css.scss"
+			],
+			[
+				"view",
+				"app/views/drills/new.html.erb"
+			],
+			[
+				"addcolu",
+				"db/migrate/20121024212657_add_column_names_to_drills.rb"
+			],
+			[
+				"column_nam",
+				"db/migrate/20121024211923_remove_column_names_from_exercises.rb"
+			],
+			[
+				"migrateremo",
+				"db/migrate/20121024211923_remove_column_names_from_exercises.rb"
+			],
+			[
+				"migrati",
+				"db/migrate/20121023180259_create_exercises.rb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"dril",
+				"app/models/drill.rb"
+			],
+			[
+				"migra",
+				"db/migrate/20121023194241_add_exercise_id_to_exercise_items.rb"
+			],
+			[
+				"medi",
+				"db/migrate/20121023202524_rename_type_to_media_item_type_in_media_items.rb"
+			],
+			[
+				"lesson_id",
+				"db/migrate/20121023193538_add_lesson_id_to_drills.rb"
+			],
+			[
+				"add",
+				"db/migrate/20121023184017_add_keys.rb"
+			],
+			[
+				"exer",
+				"app/models/exercise.rb"
+			],
+			[
+				"less",
+				"app/models/lesson.rb"
+			],
+			[
+				"model",
+				"app/models/exercise_item.rb"
+			],
+			[
+				"g",
+				"Gemfile"
+			],
+			[
+				"meda",
+				"test/unit/media_item_test.rb"
+			],
+			[
+				"med",
+				"test/fixtures/media_items.yml"
+			],
+			[
+				"create_m",
+				"db/migrate/20121023181813_create_media_items.rb"
+			],
+			[
+				"routes",
+				"config/routes.rb"
+			],
+			[
+				"rou",
+				"config/routes.rb"
+			],
+			[
+				"migr",
+				"db/migrate/20121022212011_create_drills.rb"
+			],
+			[
+				"",
+				"bin/config.php"
+			],
+			[
+				"plugin",
+				"plugins/ut-header-bar/plugin.php"
+			],
+			[
+				"he",
+				"ruby-trello/spec/spec_helper.rb"
+			],
+			[
+				"simp-men",
+				"plugins/genesis-simple-menus/readme.txt"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 222.0,
+	"status_bar_visible": true
+}

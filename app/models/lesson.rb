@@ -1,5 +1,5 @@
 class Lesson < ActiveRecord::Base
-  attr_accessible :order, :title
+  attr_accessible :position, :title
   belongs_to :course
   has_many :drills
 end
