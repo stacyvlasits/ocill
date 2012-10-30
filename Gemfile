@@ -12,6 +12,9 @@ gem 'thin'
 
 gem 'activeadmin'
 
+# WYSIWYG provided by tinymce
+gem 'tinymce-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do
