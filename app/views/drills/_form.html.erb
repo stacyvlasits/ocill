@@ -30,7 +30,12 @@
       <%= f.number_field :responses, :class => 'number_field' %>
     </div>
   </div>
-
+  <div class="control-group">
+    <%= f.fields_for :exercises do |builder| %>
+      <%= render 'exercise_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields "Add Exercise", f, :exercises %>
+  </div>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
