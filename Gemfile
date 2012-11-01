@@ -24,6 +24,7 @@ group :development do
   gem 'foreigner'
   gem 'immigrant'
   gem 'debugger'
+  gem 'hirb'
 end
 
 group :assets do

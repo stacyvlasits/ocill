@@ -1,11 +1,13 @@
 Ocill::Application.routes.draw do
+  resources :courses
+
   resources :lessons
 
-  resources :courses
+  resources :drills
 
   resources :exercises
 
-  resources :drills
+  resources :exercise_items
 
   ActiveAdmin.routes(self)
 
