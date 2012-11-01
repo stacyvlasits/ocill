@@ -5,11 +5,11 @@ one:
   prompt: MyText
   instructions: MyText
   position: 1
-  responses: 1
+  exercise_items_per_exercise: 1
 
 two:
   title: MyString
   prompt: MyText
   instructions: MyText
   position: 1
-  responses: 1
+  exercise_items_per_exercise: 1

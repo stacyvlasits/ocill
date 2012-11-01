@@ -19,6 +19,7 @@ gem 'tinymce-rails'
 # in production environments by default.
 group :development do
   gem 'pry'
+  gem 'pry-doc'
   gem 'pry-rails'
   gem 'foreigner'
   gem 'immigrant'

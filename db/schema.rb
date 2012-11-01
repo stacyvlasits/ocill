@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121025205517) do
+ActiveRecord::Schema.define(:version => 20121031174654) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(:version => 20121025205517) do
     t.text     "prompt"
     t.text     "instructions"
     t.integer  "position"
-    t.integer  "responses"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "exercise_items_per_exercise"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "lesson_id"
     t.integer  "template_id"
     t.text     "column_names"
@@ -68,12 +68,14 @@ ActiveRecord::Schema.define(:version => 20121025205517) do
 
   create_table "exercise_items", :force => true do |t|
     t.string   "text"
-    t.boolean  "scored"
+    t.boolean  "graded"
     t.string   "exercise_item_type"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "exercise_id"
     t.integer  "position"
+    t.string   "column"
+    t.string   "answer"
   end
 
   create_table "exercises", :force => true do |t|
