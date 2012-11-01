@@ -35,3 +35,5 @@ rails g bootstrap:themed lessons -f
 rails g bootstrap:themed courses -f
 
 rails g migration RenameOrderToPositionInDrills
+
+rails g migration RenameResponsesToExerciseItemsPerExerciseInDrills

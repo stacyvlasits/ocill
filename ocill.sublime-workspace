@@ -128,55 +128,75 @@
 	"buffers":
 	[
 		{
-			"file": "app/views/drills/new.html.erb",
+			"file": "app/views/drills/_exercise_fields.html.erb",
 			"settings":
 			{
-				"buffer_size": 283,
+				"buffer_size": 485,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/drills/index.html.erb",
+			"file": "app/views/drills/_exercise_item_fields.html.erb",
 			"settings":
 			{
-				"buffer_size": 1455,
+				"buffer_size": 318,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/models/template.rb",
+			"file": "app/views/drills/_media_item_fields.html.erb",
 			"settings":
 			{
-				"buffer_size": 90,
+				"buffer_size": 338,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": ".gitignore",
+			"file": "app/models/course.rb",
 			"settings":
 			{
-				"buffer_size": 449,
+				"buffer_size": 384,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/sgv287/.bash_profile",
+			"file": "app/models/lesson.rb",
 			"settings":
 			{
-				"buffer_size": 169,
+				"buffer_size": 332,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "rails generate scaffold Drill title:string prompt:text instructions:text order:integer responses:integer\n\nrails generate scaffold Exercise title:string weight:decimal prompt:text column_names:text order:integer\n\nrails generate model ExerciseItem text:string scored:boolean type:string\n\nrails generate model MediaItem name:string url:string type:string\n\nrails generate model Course title:string order:integer\n\nrails generate model Lesson title:string order:integer\n\nrails generate migration AddLessonIDToDrills lesson_id:integer\n\nrails generate migration AddCourseIDToLessons course_id:integer\n\nrails generate migration AddDrillIDToExercises drill_id:integer\n\nrails generate migration AddExerciseIDToExerciseItems exercise_id:integer\n\nrails generate migration AddExerciseItemIDToMediaItems exercise_item_id:integer\n\nrails generate model Template name:string desc:text \n\nrails generate migration RenameTypeToExerciseItemTypeInExerciseItems\n\nrails g migration RemoveColumnNamesFromExercises column_names:text\n\nrails g scaffold Course --migration=false --skip\n\nrails g scaffold Course --migration=false --skip\n\nrails g bootstrap:themed lessons -f\n\nrails g bootstrap:themed courses -f\n\nrails g migration RenameOrderToPositionInDrills",
-			"file": "doc/command.log",
-			"file_size": 1179,
-			"file_write_time": 1351182560000000,
+			"file": "app/models/drill.rb",
 			"settings":
 			{
-				"buffer_size": 1228,
-				"line_ending": "Unix",
-				"name": "rails generate scaffold Drill title:string prompt:"
+				"buffer_size": 437,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/exercise.rb",
+			"settings":
+			{
+				"buffer_size": 386,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/drills.js.coffee",
+			"settings":
+			{
+				"buffer_size": 631,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/layouts/application.html.erb",
+			"settings":
+			{
+				"buffer_size": 1913,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -192,6 +212,25 @@
 			"settings":
 			{
 				"buffer_size": 286,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "rails generate scaffold Drill title:string prompt:text instructions:text order:integer responses:integer\n\nrails generate scaffold Exercise title:string weight:decimal prompt:text column_names:text order:integer\n\nrails generate model ExerciseItem text:string scored:boolean type:string\n\nrails generate model MediaItem name:string url:string type:string\n\nrails generate model Course title:string order:integer\n\nrails generate model Lesson title:string order:integer\n\nrails generate migration AddLessonIDToDrills lesson_id:integer\n\nrails generate migration AddCourseIDToLessons course_id:integer\n\nrails generate migration AddDrillIDToExercises drill_id:integer\n\nrails generate migration AddExerciseIDToExerciseItems exercise_id:integer\n\nrails generate migration AddExerciseItemIDToMediaItems exercise_item_id:integer\n\nrails generate model Template name:string desc:text \n\nrails generate migration RenameTypeToExerciseItemTypeInExerciseItems\n\nrails g migration RemoveColumnNamesFromExercises column_names:text\n\nrails g scaffold Course --migration=false --skip\n\nrails g scaffold Course --migration=false --skip\n\nrails g bootstrap:themed lessons -f\n\nrails g bootstrap:themed courses -f\n\nrails g migration RenameOrderToPositionInDrills\n\nrails g migration RenameResponsesToExerciseItemsPerExerciseInDrills\n\nrails g migration RenameAndCreateColumnsInExerciseItems",
+			"file": "doc/command.log",
+			"file_size": 1298,
+			"file_write_time": 1351702403000000,
+			"settings":
+			{
+				"buffer_size": 1354,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/migrate/20121031174654_rename_and_create_columns_in_exercise_items.rb",
+			"settings":
+			{
+				"buffer_size": 413,
 				"line_ending": "Unix"
 			}
 		}
@@ -228,43 +267,59 @@
 	},
 	"file_history":
 	[
-		"/Users/sgv287/Sites/rails/ocill/app/models/course.rb",
-		"/Users/sgv287/Sites/rails/ocill/app/models/drill.rb",
-		"/Users/sgv287/Sites/rails/ocill/app/models/exercise.rb",
-		"/Users/sgv287/Sites/rails/ocill/app/models/exercise_item.rb",
-		"/Users/sgv287/Sites/rails/ocill/app/views/layouts/application.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/assets/javascripts/drills.js.coffee",
+		"/Users/sgv287/Sites/rails/ocill/app/assets/javascripts/application.js",
 		"/Users/sgv287/Sites/rails/ocill/app/views/drills/_course_and_lesson.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/Gemfile",
+		"/Users/sgv287/Sites/rails/ocill/doc/command.log",
+		"/Users/sgv287/Sites/rails/ocill/app/admin/dashboard.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/drills/show.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/drills/_form.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/test/fixtures/drills.yml",
+		"/Users/sgv287/Sites/rails/ocill/test/functional/drills_controller_test.rb",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121031141003_rename_responses_to_exercise_items_per_exercise_in_drills.rb",
+		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1351696360/lifeandletters/mnt/wp/engfacultycommons.la.utexas.edu/wordpress/wp-content/themes/platform/functions.php",
+		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023202458_rename_type_to_exercise_item_type_in_exercise_items.rb",
+		"/Users/sgv287/Sites/rails/ocill/ocill.sublime-project",
+		"/Users/sgv287/Sites/rails/ocill/app/assets/stylesheets/bootstrap_and_overrides.css.less",
+		"/Users/sgv287/Sites/rails/ocill/app/helpers/application_helper.rb",
+		"/Users/sgv287/Sites/rails/ocill/config/tinymce.yml",
+		"/Users/sgv287/Sites/rails/ocill/app/views/drills/index.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/views/drills/new.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/.gitignore",
+		"/Users/sgv287/Sites/rails/ocill/app/assets/javascripts/tiny_mce/plugins/spellchecker/editor_plugin_src.js_dontuse",
+		"/Users/sgv287/Sites/rails/ocill/app/views/layouts/application.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/course.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/assets/javascripts/tiny_mce/plugins/spellchecker/editor_plugin.js",
+		"/Users/sgv287/Sites/rails/ocill/app/views/layouts/drills.html.erb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/template.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/drill.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/exercise_item.rb",
+		"/Users/sgv287/Sites/rails/ocill/app/models/exercise.rb",
+		"/Users/sgv287/.bash_profile",
 		"/Users/sgv287/Sites/rails/ocill/app/models/lesson.rb",
 		"/Users/sgv287/Sites/rails/ocill/app/views/courses/_form.html.erb",
-		"/Users/sgv287/Sites/rails/ocill/app/views/drills/_form.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/app/views/exercises/_form.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/app/views/lessons/_form.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/app/views/courses/index.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/app/views/courses/show.html.erb",
-		"/Users/sgv287/Sites/rails/ocill/app/views/drills/show.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/app/views/exercises/index.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/app/views/exercises/show.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/app/views/lessons/index.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/app/views/lessons/show.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/test/fixtures/courses.yml",
-		"/Users/sgv287/Sites/rails/ocill/test/fixtures/drills.yml",
 		"/Users/sgv287/Sites/rails/ocill/test/fixtures/exercises.yml",
 		"/Users/sgv287/Sites/rails/ocill/test/fixtures/lessons.yml",
-		"/Users/sgv287/Sites/rails/ocill/test/functional/drills_controller_test.rb",
 		"/Users/sgv287/Sites/rails/ocill/test/functional/exercises_controller_test.rb",
-		"/Users/sgv287/Sites/rails/ocill/app/views/layouts/drills.html.erb",
 		"/Users/sgv287/Sites/rails/ocill/doc/del.css",
 		"/Users/sgv287/Sites/rails/ocill/app/assets/stylesheets/scaffolds.css.scss",
 		"/Users/sgv287/Sites/rails/ocill/app/models/admin_user.rb",
 		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023194241_add_exercise_id_to_exercise_items.rb",
-		"/Users/sgv287/Sites/rails/ocill/Gemfile",
 		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023180259_create_exercises.rb",
 		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121024212657_add_column_names_to_drills.rb",
 		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121024211923_remove_column_names_from_exercises.rb",
-		"/Users/sgv287/Sites/rails/ocill/app/models/template.rb",
 		"/Users/sgv287/Sites/rails/ocill/README.rdoc",
 		"/etc/hosts",
-		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023202458_rename_type_to_exercise_item_type_in_exercise_items.rb",
 		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023202524_rename_type_to_media_item_type_in_media_items.rb",
 		"/var/folders/r6/fhw9t0xj3r53cdmz60_96v810st3j7/T/sublime-sftp-browse-1351027055/file-laits/mnt/wp-content/themes/genes/genesis_child/style.css",
 		"/Users/sgv287/Sites/rails/ocill/db/migrate/20121023194317_add_keys.rb",
@@ -339,23 +394,7 @@
 		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/plugins/laits-header-bar/plugin.php",
 		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/plugins/laits-header-bar/style.css",
 		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/plugins/laits-header-bar/wp_admin.css",
-		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/index.php",
-		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/psychlabs/functions.php",
-		"/Users/sgv287/Downloads/pluginlist.html",
-		"/Users/sgv287/code/ruby/import_to_trello/consolidated_project_list.csv",
-		"/Users/sgv287/code/ruby/import_to_trello/config.yml",
-		"/Users/sgv287/code/ruby/import_to_trello/TRELLO ID",
-		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/genesis/lib/framework.php",
-		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/.gitignore",
-		"/Users/sgv287/Sites/wp/LabsTemplate/.gitignore",
-		"/Users/sgv287/.bash_profile",
-		"/Users/sgv287/clip",
-		"/Users/sgv287/Desktop/Vita.html",
-		"/Users/sgv287/Desktop/Vita.txt",
-		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/education/style.css",
-		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/child/style.css",
-		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/themes/education/ut-header.php",
-		"/Users/sgv287/Documents/genesis/genesis_hook_reference.html"
+		"/Users/sgv287/Sites/wp/LabsTemplate/wp-content/index.php"
 	],
 	"find":
 	{
@@ -366,6 +405,10 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"-*201210*,-*.log",
+			"-*201210*",
+			"-/migrate/*",
+			"-*tinymce*.js",
 			"-*2012*.rb,-*.log",
 			"-*2012*.rb",
 			"-*2012*.txt",
@@ -379,6 +422,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"responses",
+			"206",
+			"tinymce",
+			"text_area_tag",
+			"tinymce.js",
+			"tinymce",
 			" order",
 			" order:",
 			":order",
@@ -500,13 +549,7 @@
 			"banner",
 			"ul#nav",
 			"prc_l",
-			"banner",
-			".png",
-			"$tab ",
-			"fac",
-			"cola",
-			"htt",
-			"app_path"
+			"banner"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -514,6 +557,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"exercise_items_per_exercise",
 			" position:",
 			".position",
 			"\\:position",
@@ -563,23 +607,85 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 7,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/views/drills/new.html.erb",
+					"file": "app/views/drills/_exercise_fields.html.erb",
 					"settings":
 					{
-						"buffer_size": 283,
+						"buffer_size": 485,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								283,
-								283
+								485,
+								485
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/drills/_exercise_item_fields.html.erb",
+					"settings":
+					{
+						"buffer_size": 318,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								217,
+								217
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/drills/_media_item_fields.html.erb",
+					"settings":
+					{
+						"buffer_size": 338,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								338,
+								338
 							]
 						],
 						"settings":
@@ -596,19 +702,170 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "app/views/drills/index.html.erb",
+					"buffer": 3,
+					"file": "app/models/course.rb",
 					"settings":
 					{
-						"buffer_size": 1455,
+						"buffer_size": 384,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								220,
-								220
+								132,
+								132
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/models/lesson.rb",
+					"settings":
+					{
+						"buffer_size": 332,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								78,
+								78
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/models/drill.rb",
+					"settings":
+					{
+						"buffer_size": 437,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								437,
+								437
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 412.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/models/exercise.rb",
+					"settings":
+					{
+						"buffer_size": 386,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								313,
+								313
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 257.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/assets/javascripts/drills.js.coffee",
+					"settings":
+					{
+						"buffer_size": 631,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 8,
+					"file": "app/views/layouts/application.html.erb",
+					"settings":
+					{
+						"buffer_size": 1913,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								772,
+								772
 							]
 						],
 						"settings":
@@ -627,128 +884,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "app/models/template.rb",
-					"settings":
-					{
-						"buffer_size": 90,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								90,
-								90
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 4,
-			"sheets":
-			[
-				{
-					"buffer": 3,
-					"file": ".gitignore",
-					"settings":
-					{
-						"buffer_size": 449,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								449,
-								449
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/sgv287/.bash_profile",
-					"settings":
-					{
-						"buffer_size": 169,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								169,
-								169
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "doc/command.log",
-					"settings":
-					{
-						"buffer_size": 1228,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1181,
-								1228
-							]
-						],
-						"settings":
-						{
-							"auto_name": "rails generate scaffold Drill title:string prompt:",
-							"incomplete_sync": null,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
+					"buffer": 9,
 					"file": "db/migrate/20121025205021_rename_order_to_position_in_drills.rb",
 					"settings":
 					{
@@ -777,7 +913,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 10,
 					"file": "db/migrate/20121025205517_rename_order_to_position.rb",
 					"settings":
 					{
@@ -788,8 +924,66 @@
 						"selection":
 						[
 							[
-								247,
-								247
+								219,
+								276
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "doc/command.log",
+					"settings":
+					{
+						"buffer_size": 1354,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1299,
+								1354
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "db/migrate/20121031174654_rename_and_create_columns_in_exercise_items.rb",
+					"settings":
+					{
+						"buffer_size": 413,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								402,
+								402
 							]
 						],
 						"settings":
@@ -836,7 +1030,7 @@
 		"cols":
 		[
 			0.0,
-			0.489701423774,
+			0.546118900217,
 			1.0
 		],
 		"rows":
@@ -861,20 +1055,100 @@
 		"selected_items":
 		[
 			[
-				"cours",
+				"renameandcrea",
+				"db/migrate/20121031174654_rename_and_create_columns_in_exercise_items.rb"
+			],
+			[
+				"command.lo",
+				"doc/command.log"
+			],
+			[
+				"modell",
+				"app/models/lesson.rb"
+			],
+			[
+				"course",
 				"app/models/course.rb"
+			],
+			[
+				"gemfi",
+				"Gemfile"
+			],
+			[
+				"viewdrill",
+				"app/views/drills/show.html.erb"
+			],
+			[
+				"renam",
+				"db/migrate/20121025205517_rename_order_to_position.rb"
+			],
+			[
+				"renameexercisedrill",
+				"db/migrate/20121031141003_rename_responses_to_exercise_items_per_exercise_in_drills.rb"
+			],
+			[
+				"renameex",
+				"db/migrate/20121023202458_rename_type_to_exercise_item_type_in_exercise_items.rb"
+			],
+			[
+				"drill",
+				"app/models/drill.rb"
+			],
+			[
+				"l",
+				"app/models/lesson.rb"
+			],
+			[
+				"cour",
+				"app/models/course.rb"
+			],
+			[
+				"igno",
+				".gitignore"
+			],
+			[
+				"overr",
+				"app/assets/stylesheets/bootstrap_and_overrides.css.less"
+			],
+			[
+				"editor",
+				"app/assets/javascripts/tiny_mce/plugins/spellchecker/editor_plugin.js"
+			],
+			[
+				"gemf",
+				"Gemfile"
+			],
+			[
+				"js",
+				"app/assets/javascripts/application.js"
 			],
 			[
 				"exercise",
 				"app/models/exercise_item.rb"
 			],
 			[
-				"e",
+				"exerci",
 				"app/models/exercise.rb"
 			],
 			[
-				"drill",
-				"app/models/drill.rb"
+				"gem",
+				"Gemfile"
+			],
+			[
+				"coffee",
+				"app/assets/javascripts/drills.js.coffee"
+			],
+			[
+				"applicationhel",
+				"app/helpers/application_helper.rb"
+			],
+			[
+				"cours",
+				"app/models/course.rb"
+			],
+			[
+				"e",
+				"app/models/exercise.rb"
 			],
 			[
 				"temp",
@@ -911,10 +1185,6 @@
 			[
 				"migrati",
 				"db/migrate/20121023180259_create_exercises.rb"
-			],
-			[
-				"gem",
-				"Gemfile"
 			],
 			[
 				"dril",
@@ -1007,6 +1277,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 222.0,
+	"side_bar_width": 304.0,
 	"status_bar_visible": true
 }
