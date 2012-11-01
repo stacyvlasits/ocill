@@ -1,0 +1,50 @@
+<%= form_for @exercise_item, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :text, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :text, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :graded, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :graded, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :exercise_item_type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :exercise_item_type, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :exercise_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :exercise_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :position, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :position, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :column, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :column, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :answer, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :answer, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                exercise_items_path, :class => 'btn' %>
+  </div>
+<% end %>
