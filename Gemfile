@@ -14,7 +14,8 @@ gem 'activeadmin'
 
 # WYSIWYG provided by tinymce
 gem 'tinymce-rails'
-
+gem 'foreigner'
+gem 'immigrant'
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do
