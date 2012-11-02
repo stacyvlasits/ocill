@@ -1,5 +1,5 @@
 class Drill < ActiveRecord::Base
-  attr_accessible :instructions, :position, :prompt, :column_names, :exercise_items_per_exercise, :title, :exercises_attributes
+  attr_accessible :instructions, :lesson_id, :position, :prompt, :column_names, :exercise_items_per_exercise, :title, :exercises_attributes
   belongs_to :lesson
   belongs_to :template
   has_many :exercises, :dependent => :destroy
