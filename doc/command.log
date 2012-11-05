@@ -39,3 +39,7 @@ rails g migration RenameOrderToPositionInDrills
 rails g migration RenameResponsesToExerciseItemsPerExerciseInDrills
 
 rails g bootstrap:themed lessons -f
+
+GET READY FOR CARRIER WAVE:
+
+rails g migration AddTypeToDrills type:string

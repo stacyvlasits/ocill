@@ -5,17 +5,27 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+#postgresql
 gem 'pg'
 gem 'thin'
 
 # interface provided by activeadmin
-
 gem 'activeadmin'
 
 # WYSIWYG provided by tinymce
 gem 'tinymce-rails'
+
+# adding foreign keys
 gem 'foreigner'
 gem 'immigrant'
+
+#gems for file upload and storage
+gem 'carrierwave'
+gem 'rmagick'
+gem 'fog'
+gem 'carrierwave_direct'
+gem 'sidekiq'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do

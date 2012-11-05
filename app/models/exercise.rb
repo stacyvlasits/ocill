@@ -6,6 +6,10 @@ class Exercise < ActiveRecord::Base
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   after_initialize :set_default_position
   
+  def lesson
+    self.drill.lesson
+  end
+
 private
   def set_default_position
     self.position ||= 1
