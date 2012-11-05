@@ -1,7 +1,6 @@
  <fieldset class="exercise_item">
   <%= f.label :text, "Exercise Item" %>
   <%= f.text_field :text %>
-  HIHIHIH
   <%= f.fields_for :media_items do |builder| %>
     <%= render 'media_item_fields', f: builder %>
   <% end %>
