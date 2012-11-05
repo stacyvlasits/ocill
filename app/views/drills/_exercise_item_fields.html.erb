@@ -1,9 +1,10 @@
  <fieldset class="exercise_item">
   <%= f.label :text, "Exercise Item" %>
   <%= f.text_field :text %>
-    <%= f.fields_for :media_items do |builder| %>
-      <%= render 'media_item_fields', f: builder %>
-    <% end %>
+  HIHIHIH
+  <%= f.fields_for :media_items do |builder| %>
+    <%= render 'media_item_fields', f: builder %>
+  <% end %>
   <%= f.hidden_field :_destroy %>
   <%= link_to "remove", '#', class: "remove_fields" %>
 </fieldset>
