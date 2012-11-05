@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031174654) do
+ActiveRecord::Schema.define(:version => 20121105142014) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20121031174654) do
     t.integer  "lesson_id"
     t.integer  "template_id"
     t.text     "column_names"
+    t.string   "type"
   end
 
   create_table "exercise_items", :force => true do |t|
