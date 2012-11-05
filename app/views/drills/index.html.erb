@@ -14,7 +14,7 @@
   <tbody>
     <% @drills.each do |drill| %>
       <tr>
-        <td><%= link_to drill.lesson.course.title, course_path(drill.lesson.course) %> ( <%= drill.lesson.course.lessons.count %> ) </td>
+        <td><%= link_to drill.course.title, course_path(drill.course) %> ( <%= drill.course.lessons.count %> ) </td>
         <td><%= link_to drill.lesson.title, lesson_path(drill.lesson) %> ( <%= drill.lesson.drills.count %> ) </td>
         <td><%= link_to drill.title, drill_path(drill) %></td>
 
