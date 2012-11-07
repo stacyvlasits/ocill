@@ -2,19 +2,15 @@
     <label class="control-label" for="drill_lesson">Lesson</label>
     <div class="controls">    
       <select name="lesson">
-        <option value="<%= @drill.lesson.title if @drill.lesson %>">
-          <%= @drill.lesson ? @drill.lesson.title : "" %>
-        </option>
-        <% if @drill.lesson %>
-          <% @drill.lesson.course.lessons.each do |l| %>
-            <option value="<%= l.title %>">
-              <%= l.title %>
-            </option>
-          <% end %>
+        <% Lesson.all.sort_by(&:position).each do |l| %>
+          <option value="<%= l.title %>" <%= (@drill.lesson && (l.title == @drill.lesson.title)) ? 'selected=selected' : '' %> >
+            <%= l.title %>
+          </option>
         <% end %>
-<!--         <option value="Create new lesson">
-          Create new lesson
-        </option>   -->      
+        <% unless @drill.lesson %>
+          <option value="" selected="selected">
+          </option>
+        <% end %>       
       </select>
     </div>
   </div>

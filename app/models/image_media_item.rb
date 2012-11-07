@@ -1,3 +1,3 @@
 class ImageMediaItem < MediaItem
-  mount_uploader :url, ImageUploader
+  mount_uploader :image, ImageUploader
 end

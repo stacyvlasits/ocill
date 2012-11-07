@@ -19,3 +19,5 @@
 *.sublime-project
 # Ignore mac files
 .DS_Store
+
+/config/application.yml
