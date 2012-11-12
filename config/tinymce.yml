@@ -5,6 +5,12 @@ theme_advanced_buttons3_add:
   - tablecontrols
   - fullscreen
   - fullscreen
+skin: default
 plugins:
   - table
   - fullscreen
+style_formats:
+  - title: R-to-L
+    block: div
+    classes: rtl
+content_css : /assets/tinymce/themes/advanced/skins/default/content.css
