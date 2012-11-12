@@ -14,13 +14,13 @@
   <div class="control-group">
     <%= f.label :prompt, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :prompt, :size => "20x3", :class => 'text_area' %>
+      <%= f.text_area :prompt, :size => "20x3", :class => 'text_area tinymce' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :instructions, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :instructions, :size => "20x3", :class => 'text_area' %>
+      <%= f.text_area :instructions, :size => "20x3", :class => 'text_area tinymce' %>
     </div>
   </div>
   <div class="control-group">
@@ -46,4 +46,5 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 drills_path, :class => 'btn' %>
   </div>
+  <%= tinymce %>
 <% end %>
