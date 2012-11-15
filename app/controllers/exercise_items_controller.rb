@@ -2,7 +2,7 @@ class ExerciseItemsController < InheritedResources::Base
 
   def edit
     @exercise_item = ExerciseItem.find(params[:id])
-    @uploader = @xercise_item.image
+    @uploader = @exercise_item.image
   end
 
   # def new

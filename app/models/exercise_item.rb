@@ -4,4 +4,11 @@ class ExerciseItem < ActiveRecord::Base
   has_many :media_items, :dependent => :destroy
   accepts_nested_attributes_for :media_items, allow_destroy: true
   mount_uploader :file, FileUploader  
+  scope :by_column, order("column")
+
+  def content
+    # implement in sub classes or return nothing
+    raise MethodNotOverriddenError < StandardError
+  end
+
 end
