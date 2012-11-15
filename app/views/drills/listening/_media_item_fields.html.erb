@@ -1,0 +1,7 @@
+ <fieldset class="media_item">
+  <%= f.label :name, "Media Item" %>
+  <%= f.text_field :name %>
+  <%= f.file_field :image %><br />
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "remove", '#', class: "remove_fields" %>
+</fieldset>

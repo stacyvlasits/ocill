@@ -1,0 +1,12 @@
+<fieldset>
+  <%= f.label :title, "Exercise Prompt", :class => "control-label" %>
+  <div class="controls">
+    <%= f.text_area :prompt, :class => "tinymce", :rows => 10, :cols => 120  %>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to "remove", '#', class: "remove_exercises" %>
+    <%= f.fields_for :exercise_items do |builder| %>
+      <%= render 'drills/listening/exercise_item_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields "Add Exercise Item", f, :exercise_items, File.dirname(__FILE__) %>
+  </div>
+</fieldset>
