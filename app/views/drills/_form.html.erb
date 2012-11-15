@@ -14,32 +14,20 @@
   <div class="control-group">
     <%= f.label :prompt, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :prompt, :size => "20x3", :class => 'text_area tinymce' %>
+      <%= f.text_area :prompt, :size => "20x2", :class => 'tinymce' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :instructions, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :instructions, :size => "20x3", :class => 'text_area tinymce' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :position, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :position, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :exercise_items_per_exercise, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :exercise_items_per_exercise, :class => 'number_field' %>
+      <%= f.text_area :instructions, :size => "20x2", :class => 'text_area tinymce' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.fields_for :exercises do |builder| %>
-      <%= render 'exercise_fields', f: builder %>
+      <%= render "drills/listening/exercise_fields", f: builder %>
     <% end %>
-    <%= link_to_add_fields "Add Exercise", f, :exercises %>
+    <%= link_to_add_fields "Add Exercise", f, :exercises, "drills/listening" %>
   </div>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

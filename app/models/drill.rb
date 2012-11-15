@@ -9,8 +9,6 @@ class Drill < ActiveRecord::Base
   after_initialize :set_default_position
   serialize :column_names
 
-
-
   def course
     self.lesson.course
   end

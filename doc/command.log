@@ -44,4 +44,12 @@ GET READY FOR CARRIER WAVE:
 
 rails g migration AddTypeToDrills type:string
 
+rails g uploader image
+
+rails g uploader sound
+
+rails g migration RenameExerciseItemTypeToTypeInExerciseItems
+
 rails g migration AddFileToExerciseItems file:string
+
+rails g uploader file
