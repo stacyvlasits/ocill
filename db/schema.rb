@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113222539) do
+ActiveRecord::Schema.define(:version => 20121116153429) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -58,11 +58,9 @@ ActiveRecord::Schema.define(:version => 20121113222539) do
     t.text     "prompt"
     t.text     "instructions"
     t.integer  "position"
-    t.integer  "exercise_items_per_exercise"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "lesson_id"
-    t.integer  "template_id"
     t.text     "column_names"
     t.string   "type"
   end
@@ -116,7 +114,6 @@ ActiveRecord::Schema.define(:version => 20121113222539) do
   end
 
   add_foreign_key "drills", "lessons", :name => "drills_lesson_id_fk"
-  add_foreign_key "drills", "templates", :name => "drills_template_id_fk"
 
   add_foreign_key "exercise_items", "exercises", :name => "exercise_items_exercise_id_fk"
 

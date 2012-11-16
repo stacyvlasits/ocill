@@ -59,3 +59,7 @@ rails g controller ListeningDrill
 rails d controller ListeningDrill
 
 rails g controller ListeningDrills new edit create
+
+rails g migration RemoveExerciseItemsPerExerciseFromDrills
+
+rails g migration RemoveTemplateIdFromDrills template_id:integer
