@@ -53,3 +53,9 @@ rails g migration RenameExerciseItemTypeToTypeInExerciseItems
 rails g migration AddFileToExerciseItems file:string
 
 rails g uploader file
+
+rails g controller ListeningDrill
+
+rails d controller ListeningDrill
+
+rails g controller ListeningDrills new edit create
