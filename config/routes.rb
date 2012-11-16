@@ -12,8 +12,6 @@ Ocill::Application.routes.draw do
 
   resources :exercise_items
 
-  ActiveAdmin.routes(self)
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   root :to => "drills#index"
