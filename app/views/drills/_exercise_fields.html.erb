@@ -1,9 +1,10 @@
+
 <fieldset>
   <%= f.label :title, "Exercise Prompt", :class => "control-label" %>
   <div class="controls">
-    <%= f.text_area :prompt, :class => "tinymce", :rows => 10, :cols => 120  %><br />
-    <%= f.check_box :_destroy %>
-    <%= f.label :_destroy, "Remove Exercise" %>
+    <%= f.text_area :prompt, :class => "tinymce", :rows => 10, :cols => 120  %>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to "remove", '#', class: "remove_exercises" %>
     <%= f.fields_for :exercise_items do |builder| %>
       <%= render 'exercise_item_fields', f: builder %>
     <% end %>

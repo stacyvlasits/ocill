@@ -13,11 +13,15 @@
    <dt><strong><%= model_class.human_attribute_name(:prompt) %>:</strong></dt>
    <dd><%= @drill.prompt.to_s.html_safe %></dd>
 </dl>
-<table width="200" border="1" summary="A set of exercises for this <%= @drill.type.to_s.titleize %>">
+<table width="400" border="1" summary="A set of exercises for this <%= @drill.type.to_s.titleize %>">
   <caption>
-    Exercises
+    <%= @drill.title.to_s %>
   </caption>
-  <%= header_row(@drill.column_names, :editable => false).to_s.html_safe %>
+  <tr>
+    <% @drill.column_names.each do |k, v| %>
+      <th scope="col"><%= p v || "&nbsp;" %></th>
+    <% end %>
+  </tr>
   <%= render :partial => 'show_exercises', :collection => @drill.exercises, :as => :exercise %>
 </table>
 <div class="form-actions">

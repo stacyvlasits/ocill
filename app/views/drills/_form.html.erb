@@ -24,15 +24,18 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.fields_for :exercises do |builder| %>
-      <%= render "drills/listening/exercise_fields", f: builder %>
-    <% end %>
-    <%= link_to_add_fields "Add Exercise", f, :exercises, "drills/listening" %>
+    <%= f.label :exercises, :class => 'control-label' %>
+    <table summary="<%= @drill.title.to_s.parameterize.underscore %> ">
+      <%= header_row(@drill.column_names, f => f, editable => :true).to_s.html_safe %>
+      <%= f.fields_for :exercises do |builder| %>
+        <%= render "table", f: builder %>
+      <% end %>
+      <%= link_to_add_fields "Add Row", f, :exercises %>
+    </table>
   </div>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                drills_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), drills_path, :class => 'btn' %>
   </div>
   <%= tinymce %>
 <% end %>
