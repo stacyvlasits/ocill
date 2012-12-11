@@ -11,12 +11,15 @@ module ApplicationHelper
   def header_row(column_names, options = {})
     html = "<tr>"
     column_names.each do |k, v| 
-      html += '<th scope="col">' 
-      html += options[:f].text_field :column_names, :class => 'text_area' if options[:editable]
+      html += '<th scope="col">'
+      # binding.pry
+      html += options[:f].text_field :column_names, :class => "separate_fields text_area" if options[:editable]
       html += (v || "&nbsp;") + '</th>' unless options[:editable]
     end
+    html += '<input id="submit-column-names" type="text_field" name="drill[column_names]" value="' + column_names.to_s + '" />' 
     html += '</tr>'
   end
+
 #delete this
   def path_aware_link_to_add_fields(name, f, association, path)
     new_object = f.object.send(association).klass.new

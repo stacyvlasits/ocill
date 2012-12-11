@@ -1,6 +1,6 @@
 class Drill < ActiveRecord::Base
   attr_accessible :instructions, :lesson_id, :position, :prompt, :column_names, :title, :exercises_attributes, :type
-  serialize :column_names, Hash
+  serialize :column_names, Array
   
   belongs_to :lesson
   has_many :exercises, :dependent => :destroy
@@ -23,7 +23,7 @@ class Drill < ActiveRecord::Base
 private
 
   def set_default_column_names
-    self.column_names ||= {:first => "Header"}
+    self.column_names ||= ["Header"]
   end
 
   def set_default_position
