@@ -8,18 +8,7 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
-  def show_headers(header_row)
-    html = "<tr>"
-
-    header_row.each do |k, v| 
-      html += '<th scope="col">'
-      html += ( v.to_s || "&nbsp;") + '</th>'
-    end
-
-    html += '</tr>'
-  end
-
-  def edit_headers(header_row, f)
+  def edit_headers(header_row)
     html = "<tr>"
 
     header_row.each do |k, v| 
@@ -30,6 +19,16 @@ module ApplicationHelper
 
     html += '</tr>'
   end
+
+  def show_headers(header_row)
+    html = "<tr>"
+    header_row.each do |k, v| 
+      html += '<th scope="col">'
+      html += ( v.to_s || "&nbsp;") + '</th>'
+    end
+    html += '</tr>'
+  end
+
 
 #delete this
   def path_aware_link_to_add_fields(name, f, association, path)
