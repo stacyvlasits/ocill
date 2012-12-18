@@ -8,15 +8,26 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
-  def header_row(column_names, options = {})
+  def show_headers(header_row)
     html = "<tr>"
-    column_names.each do |k, v| 
+
+    header_row.each do |k, v| 
       html += '<th scope="col">'
-      # binding.pry
-      html += options[:f].text_field :column_names, :class => "separate_fields text_area" if options[:editable]
-      html += (v || "&nbsp;") + '</th>' unless options[:editable]
+      html += ( v.to_s || "&nbsp;") + '</th>'
     end
-    html += '<input id="submit-column-names" type="text_field" name="drill[column_names]" value="' + column_names.to_s + '" />' 
+
+    html += '</tr>'
+  end
+
+  def edit_headers(header_row, f)
+    html = "<tr>"
+
+    header_row.each do |k, v| 
+      html += '<th scope="col">'
+      html += '<input id="header_' + k.to_s + '" type="text_field" name="drill[header_row][' + k.to_s + ']" value="' + v.to_s + '" />' 
+      html+= '</th>'
+    end
+
     html += '</tr>'
   end
 

@@ -1,5 +1,5 @@
 class ListeningDrill < Drill
-  validates_presence_of :column_names  
+  validates_presence_of :header_row  
 
 #this code makes sti routing and pathing work
   def self.model_name

@@ -17,7 +17,7 @@
   <caption>
     Exercises
   </caption>
-  <%= header_row(@drill.column_names, :editable => false).to_s.html_safe %>
+  <%= show_headers(@drill.header_row).to_s.html_safe %>
   <%= render :partial => 'show_exercises', :collection => @drill.exercises, :as => :exercise %>
 </table>
 <div class="form-actions">

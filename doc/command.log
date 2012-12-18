@@ -63,3 +63,5 @@ rails g controller ListeningDrills new edit create
 rails g migration RemoveExerciseItemsPerExerciseFromDrills
 
 rails g migration RemoveTemplateIdFromDrills template_id:integer
+
+rails g migration RenameColumnNamesToHeaderRow
