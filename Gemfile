@@ -8,9 +8,10 @@ gem 'rails', '3.2.8'
 #postgresql
 gem 'pg'
 gem 'thin'
+gem 'devise'
 
 # interface provided by activeadmin keep this global
-gem 'activeadmin'
+# gem 'activeadmin'
 
 # WYSIWYG provided by tinymce
 gem 'tinymce-rails'

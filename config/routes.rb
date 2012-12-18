@@ -12,7 +12,6 @@ Ocill::Application.routes.draw do
 
   resources :exercise_items
 
- 
   root :to => "drills#index"
 
   

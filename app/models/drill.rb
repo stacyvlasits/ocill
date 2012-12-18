@@ -1,7 +1,8 @@
 class Drill < ActiveRecord::Base
   attr_accessible :instructions, :lesson_id, :position, :prompt, :column_names, :title, :exercises_attributes, :type
-  serialize :column_names, Array
-  
+
+  serialize :column_names, Hash
+
   belongs_to :lesson
   has_many :exercises, :dependent => :destroy
   has_many :exercise_items, :through => :exercises
@@ -11,7 +12,9 @@ class Drill < ActiveRecord::Base
   validates_presence_of :type, :title
 
   after_initialize :set_default_position, :set_default_column_names, :set_default_title
-
+  
+  binding.pry
+  
   def exercise_items_per_exercise
     self.column_names.size
   end
