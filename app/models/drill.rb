@@ -1,7 +1,7 @@
 class Drill < ActiveRecord::Base
   attr_accessible :instructions, :lesson_id, :position, :prompt, :header_row, :title, :exercises_attributes, :type
 
-  serialize :header_row
+  serialize :header_row, Hash
 
   belongs_to :lesson
   has_many :exercises, :dependent => :destroy
@@ -12,28 +12,31 @@ class Drill < ActiveRecord::Base
   validates_presence_of :type, :title
 
   after_initialize :set_default_position, :set_default_header_row, :set_default_title
-    
-  def exercise_items_per_exercise
-    self.header_row.size
+
+
+  def columns
+    header_row.size
   end
 
   def course
     self.lesson.course
+  end
+    
+  def exercise_items_per_exercise
+    self.header_row.size
   end
 
   def rows
     self.exercises.size
   end
 
-  def columns
-    header_row.size
-  end
+
 
 
 private
 
   def set_default_header_row
-    self.header_row ||= [ "Header" ]
+    self.header_row ||= { "0" => "Header" }
   end
 
   def set_default_position
