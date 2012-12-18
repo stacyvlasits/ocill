@@ -18,7 +18,7 @@
     <%= @drill.title.to_s %>
   </caption>
   <tr>
-    <% @drill.column_names.each do |k, v| %>
+    <% @drill.header_row.each do |k, v| %>
       <th scope="col"><%= p v || "&nbsp;" %></th>
     <% end %>
   </tr>
