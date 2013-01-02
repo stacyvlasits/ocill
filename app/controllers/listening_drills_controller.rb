@@ -1,4 +1,4 @@
-class ListeningDrillsController < ApplicationController
+class ListeningDrillsController < InheritedResources::Base
   def index
     @drills = ListeningDrill.all
   end

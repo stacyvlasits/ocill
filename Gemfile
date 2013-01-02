@@ -27,6 +27,11 @@ gem 'fog'
 gem 'carrierwave_direct'
 gem 'sidekiq'
 
+
+
+gem 'inherited_resources'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do
