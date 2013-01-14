@@ -18,7 +18,7 @@ class DrillsControllerTest < ActionController::TestCase
 
   test "should create drill" do
     assert_difference('Drill.count') do
-      post :create, drill: { instructions: @drill.instructions, position: @drill.position, prompt: @drill.prompt, exercise_items_per_exercise: @drill.exercise_items_per_exercise, title: @drill.title }
+      post :create, drill: { instructions: @drill.instructions, position: @drill.position, prompt: @drill.prompt, title: @drill.title }
     end
 
     assert_redirected_to drill_path(assigns(:drill))
@@ -30,12 +30,14 @@ class DrillsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    binding.pry
     get :edit, id: @drill
+
     assert_response :success
   end
 
   test "should update drill" do
-    put :update, id: @drill, drill: { instructions: @drill.instructions, position: @drill.position, prompt: @drill.prompt, exercise_items_per_exercise: @drill.exercise_items_per_exercise, title: @drill.title }
+    put :update, id: @drill, drill: { instructions: @drill.instructions, position: @drill.position, prompt: @drill.prompt,  title: @drill.title }
     assert_redirected_to drill_path(assigns(:drill))
   end
 

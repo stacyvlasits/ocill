@@ -11,9 +11,7 @@ class Drill < ActiveRecord::Base
   has_many :media_items, :through => :exercises
   accepts_nested_attributes_for :exercises, allow_destroy: true
 
-
-
-  validates_presence_of :type, :title
+  validates_presence_of :title
 
   after_initialize :set_default_position, :set_default_header_row, :set_default_title
 
@@ -29,7 +27,7 @@ class Drill < ActiveRecord::Base
   end
 
   def course
-    self.lesson.course
+    self.lesson.course unless self.lesson.nil?
   end
     
   def exercise_items_per_exercise
