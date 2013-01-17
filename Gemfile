@@ -38,17 +38,21 @@ group :development do
   gem 'immigrant'
   gem 'debugger'
   gem 'hirb'
+  gem 'jist'
 end
 
 group :test do
-
-
+  gem "factory_girl_rails", "~> 4.0"
+  gem "capybara"
+  gem "guard-rspec"
 end
 
 group :development, :test do
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-rails'
+  gem 'rspec-rails' 
+  gem 'rb-fsevent', '~> 0.9.1'
 end
 
 group :assets do
@@ -56,9 +60,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'twitter-bootstrap-rails'
   gem 'less-rails'
-  gem 'therubyracer'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
