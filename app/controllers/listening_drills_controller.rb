@@ -1,4 +1,4 @@
-class ListeningDrillsController < InheritedResources::Base
+class ListeningDrillsController < DrillsController
 
 
 end

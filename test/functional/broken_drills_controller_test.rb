@@ -30,7 +30,6 @@ class DrillsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    binding.pry
     get :edit, id: @drill
 
     assert_response :success

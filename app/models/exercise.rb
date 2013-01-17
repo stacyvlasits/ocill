@@ -3,23 +3,30 @@ class Exercise < ActiveRecord::Base
   belongs_to :drill
   alias :parent :drill
   
-  has_many :exercise_items, :dependent => :destroy
+  has_many :exercise_items, :dependent => :destroy, :autosave => true
   alias :children :exercise_items
 
-  has_many :media_items, :through => :exercise_items
+  has_many :media_items, :through => :exercise_items, :autosave => true
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
  
-  after_initialize :set_default_position 
+  before_save :set_default_position 
 
   validates :prompt, :title, :presence => true
 
+  def make_cells_for_row
+    (drill.columns-1).times do |num|
+      binding.pry
+      col = header_row((num+1).to_s)
+      self.exercise_items.create(:column => col)
+    end
+  end
+  
   def lesson
     self.drill.lesson
   end
 
 private
   def set_default_position
-    # self.position ||= self.parent.children.count * 100  
-    self.position ||=  100
+    self.position ||= self.parent.children.count * 100  
   end
 end

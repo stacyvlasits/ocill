@@ -6,10 +6,11 @@ class Lesson < ActiveRecord::Base
   alias :children :drills
   has_many :exercises, :through => :drills
   has_many :exercise_items, :through => :drills
-  after_initialize :set_default_position
+  before_save :set_default_values
 
 private
-  def set_default_position
-    self.position ||= 1
+  def set_default_values
+    number_of_siblings = Lesson.where(:course_id => self.course_id).count
+    self.position ||= (number_of_siblings + 1) * 100
   end
 end
