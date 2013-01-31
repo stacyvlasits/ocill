@@ -17,6 +17,7 @@ class Drill < ActiveRecord::Base
   # this might need to be moved to the ListeningDrill sublass
   def add_column(header_name='Header')
     self.header_row[header_row.size.to_s] = header_name
+    self.save
     if self.exercises.empty?
       self.exercises.create(:title => "Title", :prompt => "Prompt")
     end 
@@ -30,7 +31,10 @@ class Drill < ActiveRecord::Base
     exercise.make_cells_for_row
   end
   
-  # this might need to be moved to the ListeningDrill sublass
+  def add_header
+    self.header_row[header_row.size.to_s]= "--"
+  end
+
   def columns
     header_row.size
   end
@@ -43,19 +47,20 @@ class Drill < ActiveRecord::Base
     self.exercises.size
   end
   
-private
+
   def set_default_values
     set_default_position
     set_default_header_row
     set_default_title    
   end
 
+private
   def set_default_header_row
-    self.header_row = { "0" => "Header" } unless self.header_row.size > 0
+    self.header_row = { "0" => "Exercises", "1" => "First Column" } unless self.header_row.size > 0
   end
 
   def set_default_position
-    number_of_siblings = Drill.where(:lesson_id => self.lesson_id).count
+    number_of_siblings = Drill.where(:lesson_id => self.lesson_id).count || 0
     self.position ||= (number_of_siblings + 1) * 100
    end
 

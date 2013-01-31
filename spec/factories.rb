@@ -56,6 +56,8 @@ FactoryGirl.define do
   factory :listening_drill do 
     title "Title of Listening Drill"
 
+    lesson
+
     factory :listening_drill_with_exercises do
       ignore do
         exercises_count 5
@@ -99,6 +101,14 @@ FactoryGirl.define do
     exercise
 
     sequence(:column) {|n| "#{n.to_s}"}
+
+    factory :exercise_item_with_type_defined do
+      type "Type Defined"
+    end
+
+    factory :exercise_item_with_column_defined do
+      column "Column Defined"
+    end    
 
     factory :exercise_item_with_five_siblings do
       association :exercise, factory: :exercise_with_exercise_items

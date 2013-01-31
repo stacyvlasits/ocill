@@ -38,7 +38,6 @@ describe Drill do
       it "adds the header name to header_row" do
         drill = FactoryGirl.create(:drill)
         drill.add_column("Specified")
-
         drill.header_row[(drill.header_row.size-1).to_s] == "Specified"
       end
 
@@ -53,7 +52,7 @@ describe Drill do
     it "should increase the number of exercises by one" do
       drill = FactoryGirl.create(:drill)
       initial_num = drill.exercises.size
-      drill.add_row
+      drill.add_row("Add Row Prompt")
       drill.exercises.size.should be == initial_num + 1
     end
 
@@ -103,7 +102,6 @@ describe Drill do
       drill = FactoryGirl.create(:drill)
       drill.rows.should == drill.exercises.size
     end
-
   end
 
 end
