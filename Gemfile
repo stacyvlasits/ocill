@@ -27,30 +27,40 @@ gem 'fog'
 gem 'carrierwave_direct'
 gem 'sidekiq'
 
-
-
 gem 'inherited_resources'
+
 
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'pry-rails'
   gem 'foreigner'
   gem 'immigrant'
   gem 'debugger'
   gem 'hirb'
+  gem 'jist'
+end
+
+group :test do
+  gem "factory_girl_rails", "~> 4.0"
+  gem "capybara"
+  gem "guard-rspec"
+end
+
+group :development, :test do
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'rspec-rails' 
+  gem 'rb-fsevent', '~> 0.9.1'
 end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'twitter-bootstrap-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'less-rails'
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end

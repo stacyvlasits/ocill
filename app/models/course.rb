@@ -5,13 +5,11 @@ class Course < ActiveRecord::Base
   has_many :drills, :through => :lessons
   accepts_nested_attributes_for :lessons, allow_destroy: true
 
-  after_initialize :set_default_position
+  before_save :set_default_values
 
-  def set_default_position
-    self.position ||= 1
+private
+  def set_default_values
+    number_of_siblings = Course.count
+    self.position ||= (number_of_siblings + 1) * 100
   end
-
-  # def drills
-  #   self.lessons.collect {|l| l.drills}
-  # end
 end

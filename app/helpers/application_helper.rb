@@ -8,25 +8,22 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
-
-
   def edit_headers(header_row)
-    html = "<tr>"
+    html = "<thead><tr>"
     header_row.each do |k, v| 
       html += '<th scope="col">'
       html += '<input id="header_' + k.to_s + '" type="text_field" name="drill[header_row][' + k.to_s + ']" value="' + v.to_s + '" />' 
       html+= '</th>'
     end
-    html += '</tr>'
+    html += '</tr></thead>'
   end
 
   def show_headers(header_row)
-    html = "<tr>"
+    html = "<thead><tr>"
     header_row.each do |k, v| 
       html += '<th scope="col">'
       html += ( v.to_s || "&nbsp;") + '</th>'
     end
-    html += '</tr>'
+    html += '</tr></thead>'
   end
-
 end

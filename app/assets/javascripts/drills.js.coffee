@@ -15,14 +15,3 @@ jQuery ->
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
 
-#  headers = $("form .separate_fields").first().val()
-#  $("form .separate_fields").each (i) ->
-#    @value = headers.slice(1, -1).split(", ")[i]
-#
-#  $("form .separate_fields").change ->
-#    col_n = []
-#    $("form .separate_fields").each (i) ->
-#      col_n.push @value
-#
-#    $("form #submit-column-names").val col_n
-
