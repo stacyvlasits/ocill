@@ -4,12 +4,10 @@ one:
   title: MyString
   weight: 9.99
   prompt: MyText
-  header_row: MyText
   position: 1
 
 two:
   title: MyString
   weight: 9.99
   prompt: MyText
-  header_row: MyText
   position: 1

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require tinymce-jquery
+//=
 //= require_tree .
 $('form .separate_fields').change(function(){
   col_n =[];

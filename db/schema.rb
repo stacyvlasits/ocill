@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130131200759) do
 
+
   create_table "courses", :force => true do |t|
     t.string   "title"
     t.integer  "position"

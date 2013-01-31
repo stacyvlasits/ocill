@@ -20,4 +20,5 @@
 # Ignore mac files
 .DS_Store
 
+/config/database.yml
 /config/application.yml

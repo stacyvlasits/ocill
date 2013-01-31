@@ -1,6 +1,6 @@
 class TextExerciseItem < ExerciseItem
 
   def content
-    self.text
+    self.text    
   end
 end
