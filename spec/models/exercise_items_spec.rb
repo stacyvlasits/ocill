@@ -59,11 +59,5 @@ describe ExerciseItem do
       header_row.include?(exercise_item.column).should be_true
     end
   end
-  describe ".content" do
-    it "should raise an error" do
-      exercise_item = FactoryGirl.create(:exercise_item)  
-      expect {exercise_item.content}.to raise_error(StandardError)
-    end
-  end
 
 end

@@ -28,10 +28,6 @@ class ExerciseItem < ActiveRecord::Base
     siblings
   end
   
-  # def content
-  #   # implement in sub classes or return nothing
-  #   raise StandardError, "The .content method must be overridden by subclasses"
-  # end
   
 private
   def set_default_type
