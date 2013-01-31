@@ -15,9 +15,8 @@ class Exercise < ActiveRecord::Base
 
   def make_cells_for_row
     (drill.columns-1).times do |num|
-      binding.pry
-      col = header_row((num+1).to_s)
-      self.exercise_items.create(:column => col)
+      column = drill.header_row[(num+1).to_s]
+      self.exercise_items.create(:column => column)
     end
   end
   

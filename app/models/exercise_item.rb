@@ -9,7 +9,7 @@ class ExerciseItem < ActiveRecord::Base
   mount_uploader :file, FileUploader  
   scope :by_column, order("column")
 
-  before_save :set_default_column
+  before_save :set_default_column, :set_default_type
 
   validates :column, :uniqueness => {:scope => :exercise_id}
 
@@ -23,12 +23,20 @@ class ExerciseItem < ActiveRecord::Base
     siblings
   end
   
-  def content
-    # implement in sub classes or return nothing
-    raise StandardError, "The .content method must be overridden by subclasses"
+  # def content
+  #   # implement in sub classes or return nothing
+  #   raise StandardError, "The .content method must be overridden by subclasses"
+  # end
+  
+private
+  def set_default_type
+    self.type = "TextExerciseItem" unless self.type
   end
 
   def set_default_column
+    (drill.header_row.size-self.siblings.size).times do |n|
+      drill.add_header
+    end
     self.column = drill.header_row(self.siblings.size.to_s) unless self.column
   end
 end

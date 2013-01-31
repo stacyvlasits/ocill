@@ -1,6 +1,32 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ExerciseItem do
+  describe ".set_default_type" do
+    it "doesn't get set when the exericise item hasn't been saved" do
+      exercise_item = FactoryGirl.build(:exercise_item)
+      exercise_item.type.should be_nil
+    end
+    it "assigns a default type when the exercise item is saved" do
+      exercise_item = FactoryGirl.create(:exercise_item)
+      exercise_item.type.should_not be_nil    
+    end
+    it "should not set a type if one is already set" do
+      exercise_item = FactoryGirl.build(:exercise_item_with_type_defined)
+      previously_defined_type = exercise_item.type
+      exercise_item.save
+      exercise_item.type.should == previously_defined_type
+    end 
+  end
+
+  describe ".set_default_column" do
+    it "should not set a column if the column is already set" do
+      exercise_item = FactoryGirl.build(:exercise_item_with_column_defined)
+      previously_defined_column = exercise_item.column
+      exercise_item.save
+      exercise_item.column.should == previously_defined_column      
+    end
+  end
+
   describe ".siblings" do
     it "retrieves all of the exercise_item's siblings" do
       exercise_item = FactoryGirl.create(:exercise_item_with_five_siblings)
@@ -28,7 +54,7 @@ describe ExerciseItem do
     end
 
     it "must match one of the values in its drill's header_row" do
-      exercise_item = FactoryGirl.create(:exercise_item)
+      exercise_item = FactoryGirl.create(:exercise_item_with_five_siblings)
       header_row = exercise_item.drill.header_row
       header_row.include?(exercise_item.column).should be_true
     end

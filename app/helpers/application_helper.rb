@@ -26,5 +26,4 @@ module ApplicationHelper
     end
     html += '</tr></thead>'
   end
-
 end
