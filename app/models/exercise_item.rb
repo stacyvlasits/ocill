@@ -6,8 +6,6 @@ class ExerciseItem < ActiveRecord::Base
   has_many :media_items, :dependent => :destroy, :autosave => true
   alias :children :media_items
   accepts_nested_attributes_for :media_items, allow_destroy: true
-  mount_uploader :file, FileUploader 
-  mount_uploader :image, ImageUploader 
   scope :by_column, order("column")
 
   before_save :set_default_column, :set_default_type
@@ -35,9 +33,13 @@ private
   end
 
   def set_default_column
-    (drill.header_row.size-self.siblings.size).times do |n|
-      drill.add_header
+    headers_needed=self.siblings.size-drill.header_row.size
+    if headers_needed > 0
+      headers_needed.times do |n|
+        drill.add_header
+      end
     end
+    drill.save
     self.column = drill.header_row(self.siblings.size.to_s) unless self.column
   end
 end

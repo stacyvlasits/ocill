@@ -25,6 +25,12 @@ describe ExerciseItem do
       exercise_item.save
       exercise_item.column.should == previously_defined_column      
     end
+    it "should update the drill so that it has one header_row for each new exercise_item" do
+      exercise_item = FactoryGirl.create(:exercise_item_with_five_siblings)
+      drill = exercise_item.drill
+      drill.header_row.size.should == drill.exercise_items.size
+    end
+
   end
 
   describe ".siblings" do
@@ -59,5 +65,4 @@ describe ExerciseItem do
       header_row.include?(exercise_item.column).should be_true
     end
   end
-
 end
