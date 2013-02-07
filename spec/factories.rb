@@ -15,15 +15,6 @@ FactoryGirl.define do
     end
   end
 
-  factory :header do
-    title "Title of Header"
-
-    position
-
-    grid_drill
-    exercise_item   
-  end
-
   factory :lesson do
     title "Title of Lesson"
 
@@ -60,18 +51,24 @@ FactoryGirl.define do
     end
   end
 
-  factory :grid_drill, parent: :drill do
+  factory :grid_drill, :parent => :drill do
     title "Title of Grid Drill"
     type "GridDrill"    
     
     lesson
 
-    ignore do
-      headers_count 5
+    factory :grid_drill_with_no_title do
+      title ''
     end
 
-    after(:create) do |grid_drill, evaluator|
-      FactoryGirl.create_list(:header, evaluator.headers_count, grid_drill: grid_drill)
+    factory :grid_drill_with_headers do
+      ignore do
+        headers_count 5
+      end
+
+      after(:create) do |grid_drill, evaluator|
+        FactoryGirl.create_list(:header, evaluator.headers_count, grid_drill: grid_drill)
+      end
     end
 
     factory :grid_drill_with_exercises do
@@ -159,4 +156,12 @@ FactoryGirl.define do
 
   end
 
+  factory :header do
+    title "Title of Header"
+
+    position
+
+    grid_drill
+    exercise_item   
+  end
 end

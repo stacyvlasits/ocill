@@ -21,15 +21,15 @@ describe Drill do
       drill.position.should_not be_nil
     end
 
-    it "adds a default header_row" do
-      drill = FactoryGirl.create(:drill)
-      drill.header_row.should_not be_empty
-    end
+    # it "adds a default header" do
+    #   drill = FactoryGirl.create(:drill)
+    #   drill.headers.size.should_not == 0
+    # end
 
     it "adds a default title" do
       drill = FactoryGirl.build(:drill_with_no_title)
-      drill.send(:set_default_values)
-      drill.title.should_not be_empty
+      drill.set_default_values
+      drill.title.should_not be_blank
     end
   end
 
