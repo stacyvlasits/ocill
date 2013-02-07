@@ -1,4 +1,6 @@
 FactoryGirl.define do
+  sequence(:position)
+
   factory :course do
     title "Title of Course"
 
@@ -11,6 +13,15 @@ FactoryGirl.define do
         FactoryGirl.create_list(:lesson, evaluator.lessons_count, course: course)
       end
     end
+  end
+
+  factory :header do
+    title "Title of Header"
+
+    position
+
+    grid_drill
+    exercise_item   
   end
 
   factory :lesson do
@@ -38,7 +49,7 @@ FactoryGirl.define do
       title ''
     end
 
-   factory :drill_with_exercises do
+    factory :drill_with_exercises do
       ignore do
         exercises_count 5
       end
@@ -47,10 +58,31 @@ FactoryGirl.define do
         FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: drill)
       end
     end
+  end
 
-    factory :drill_with_header_row do
-      header_row {{ one: "one", two: "two" }}
+  factory :grid_drill, parent: :drill do
+    title "Title of Grid Drill"
+    type "GridDrill"    
+    
+    lesson
+
+    ignore do
+      headers_count 5
     end
+
+    after(:create) do |grid_drill, evaluator|
+      FactoryGirl.create_list(:header, evaluator.headers_count, grid_drill: grid_drill)
+    end
+
+    factory :grid_drill_with_exercises do
+      ignore do
+        exercises_count 5
+      end
+
+      after(:create) do |grid_drill, evaluator|
+        FactoryGirl.create_list(:exercise, evaluator.exercises_count, grid_drill: drill)
+      end
+    end      
   end
 
   factory :listening_drill do 
