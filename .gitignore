@@ -16,7 +16,7 @@
 .env
 # Ignore photo documentation
 /doc/photodocs
-*.sublime-project
+*.sublime*
 # Ignore mac files
 .DS_Store
 
