@@ -1,5 +1,5 @@
 class Lesson < ActiveRecord::Base
-  attr_accessible :position, :title, :drills_attributes
+  attr_accessible :position, :title, :drills_attributes, :course_id
   belongs_to :course
   alias :parent :course
   has_many :drills, :autosave => true

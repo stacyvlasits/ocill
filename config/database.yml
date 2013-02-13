@@ -7,7 +7,7 @@ development:
   username: sgv287
   password:
 
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: ocill-test
@@ -22,3 +22,5 @@ production:
   pool: 5
   username: sgv287
   password: 
+cucumber:
+  <<: *test

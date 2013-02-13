@@ -17,6 +17,9 @@ describe Header do
     describe "with several siblings" do
       it "should have different positions" do
         header = FactoryGirl.create(:five_siblinged_header)
+        siblings = header.drill.headers
+        sibling_positions = siblings.map {|h| h.position}
+        siblings.size.should == sibling_positions.uniq.size
       end
     end
   end
