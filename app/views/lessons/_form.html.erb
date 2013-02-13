@@ -14,7 +14,7 @@
   <div class="control-group">
     <%= f.label :course_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :course_id, :class => 'number_field' %>
+      <%= select("lesson", "course_id", Course.all.sort_by(&:position).collect {|c| [ c.title, c.id ] }, {:prompt => 'Select a Course', :selected => @lesson.course_id }) %>
     </div>
   </div>
 

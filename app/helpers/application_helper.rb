@@ -18,11 +18,11 @@ module ApplicationHelper
     html += '</tr></thead>'
   end
 
-  def show_headers(header_row)
+  def show_headers(headers)
     html = "<thead><tr>"
-    header_row.each do |k, v| 
+    headers.each do |h| 
       html += '<th scope="col">'
-      html += ( v.to_s || "&nbsp;") + '</th>'
+      html += ( h.title || "&nbsp;") + '</th>'
     end
     html += '</tr></thead>'
   end

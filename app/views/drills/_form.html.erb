@@ -24,15 +24,9 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :exercises, :class => 'control-label' %>
-    <table summary="<%= @drill.title.to_s.parameterize.underscore %> ">
-      <%= edit_headers(@drill.header_row).to_s.html_safe %>
-      <%= f.fields_for :exercises do |builder| %>
-        <%= render "table", f: builder %>
-      <% end %>
-      <%= link_to_add_fields "Add Row", f, :exercises %>
-    </table>
-  </div>
+    <%= f.label :type, :class => 'control-label' %>
+      <%= render @drill.type if @drill.type %>
+    </div>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), drills_path, :class => 'btn' %>
