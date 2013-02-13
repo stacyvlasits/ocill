@@ -75,3 +75,9 @@ rails generate migration AddMediaColumnsExerciseItems
 rails generate model Header drill_id:integer title:string position:integer exercise_item_id
 
 rails g migration RenameHeaderDrillIDtoGridDrillID
+
+rails g migration AddHeaderColumnToExerciseItem header_id:integer
+
+rails g migration RemoveExerciseItemColumnFromHeader exercise_item_id:integer 
+
+rails g migration RemoveColumnColumnFromExerciseItem column:string

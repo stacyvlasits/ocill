@@ -1,14 +1,15 @@
 class ExerciseItem < ActiveRecord::Base
-
-  attr_accessible :graded, :exercise_item_type, :column, :answer, :text, :type, :media_items_attributes, :image, :audio, :video
+  attr_accessible :graded, :header_id, :exercise_item_type, :column, :answer, :text, :type, :image, :audio, :video
+  # attr_accessible :media_items_attributes
+ 
   belongs_to :exercise
-  alias :parent :exercise
-  has_many :media_items, :dependent => :destroy, :autosave => true
-  alias :children :media_items
-  accepts_nested_attributes_for :media_items, allow_destroy: true
-  
-  before_save :set_default_header, :set_default_type
+  belongs_to :header
 
+  alias :parent :exercise
+  # has_many :media_items, :dependent => :destroy, :autosave => true
+  # alias :children :media_items
+  # accepts_nested_attributes_for :media_items, allow_destroy: true
+  before_save :set_default_type, :set_default_header
    
   def content
     self.text
@@ -29,15 +30,6 @@ private
   def set_default_type
     self.type = "TextExerciseItem" unless self.type
   end
-
-  def set_default_column
-  #   headers_needed=self.siblings.size-drill.headers.size
-  #   if headers_needed > 0
-  #     headers_needed.times do |n|
-  #       drill.add_header
-  #     end
-  #   end
-  #   drill.save
-  #   self.column = drill.headers(self.siblings.size.to_s) unless self.column
+  def set_default_header
   end
 end
