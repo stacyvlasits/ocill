@@ -3,7 +3,7 @@ describe Drill do
 
   describe '.children' do
     it "lists the exercises that belong to the drill" do
-      drill = FactoryGirl.create(:drill_with_exercises)
+      drill = FactoryGirl.create(:five_childed_drill)
       drill.children.should be == drill.exercises
     end
   end
@@ -27,7 +27,7 @@ describe Drill do
     # end
 
     it "adds a default title" do
-      drill = FactoryGirl.build(:drill_with_no_title)
+      drill = FactoryGirl.build(:untitled_drill)
       drill.set_default_values
       drill.title.should_not be_blank
     end

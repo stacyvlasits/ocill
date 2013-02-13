@@ -11,58 +11,57 @@ describe ExerciseItem do
       exercise_item.type.should_not be_nil    
     end
     it "should not set a type if one is already set" do
-      exercise_item = FactoryGirl.build(:exercise_item_with_type_defined)
+      exercise_item = FactoryGirl.build(:typed_exercise_item)
       previously_defined_type = exercise_item.type
       exercise_item.save
       exercise_item.type.should == previously_defined_type
     end 
   end
 
-  describe ".set_default_column" do
-    it "should not set a column if the column is already set" do
-      exercise_item = FactoryGirl.build(:exercise_item_with_column_defined)
-      previously_defined_column = exercise_item.column
-      exercise_item.save
-      exercise_item.column.should == previously_defined_column      
-    end
-    it "should update the drill so that it has one header_row for each new exercise_item" do
-      exercise_item = FactoryGirl.create(:exercise_item_with_five_siblings)
-      drill = exercise_item.drill
-      drill.header_row.size.should == drill.exercise_items.size
-    end
-
+  describe ".set_default_header" do
+    # it "should not set a header if the header is already set" do
+    #   exercise_item = FactoryGirl.build(:headered_exercise_item)
+    #   previously_defined_header = exercise_item.header
+    #   exercise_item.save
+    #   exercise_item.header.should == previously_defined_header      
+    # end
+    # it "should update the drill so that it has one header for each new exercise_item" do
+    #   exercise_item = FactoryGirl.create(:five_headered_siblinged_headered_exercise_item)
+    #   drill = exercise_item.drill
+    #   drill.headers.size.should == drill.exercise_items.size
+    # end
   end
 
   describe ".siblings" do
     it "retrieves all of the exercise_item's siblings" do
-      exercise_item = FactoryGirl.create(:exercise_item_with_five_siblings)
+      exercise_item = FactoryGirl.create(:five_siblinged_exercise_item)
       exercise_item.siblings.should be == exercise_item.parent.children            
     end
 
     it "does not include the exercise_item" do
-      exercise_item = FactoryGirl.create(:exercise_item_with_five_siblings)
+      exercise_item = FactoryGirl.create(:five_siblinged_exercise_item)
       siblings = exercise_item.siblings
       siblings.should_not include(exercise_item)      
     end
   end
 
-  describe ".column" do
+  describe ".header" do
     it "should be unique among the children of the same exercise" do
-      exercise_item = FactoryGirl.create(:exercise_item_with_five_siblings)
-      siblings_columns = exercise_item.siblings.map {|e| e.column}
-      siblings_columns.size.should be == siblings_columns.uniq.size
+      exercise_item = FactoryGirl.create(:five_headered_siblinged_headered_exercise_item)
+      sibling_headers = exercise_item.siblings.map {|e| e.header}
+      sibling_headers.size.should be == sibling_headers.uniq.size
     end
 
     it "cannot have a duplicate value assigned to it" do
-      exercise_item1 = FactoryGirl.create(:exercise_item_with_five_siblings)
+      exercise_item1 = FactoryGirl.create(:five_siblinged_headered_exercise_item)
       exercise_item2 = exercise_item1.siblings.first 
-      expect {exercise_item1.column = exercise_item2.column}.to raise_error
+      expect {exercise_item1.header = exercise_item2.header}.to raise_error
     end
 
-    it "must match one of the values in its drill's header_row" do
-      exercise_item = FactoryGirl.create(:exercise_item_with_five_siblings)
-      header_row = exercise_item.drill.header_row
-      header_row.include?(exercise_item.column).should be_true
-    end
+    # it "must match one of the values in its drill's collection of header" do
+    #   exercise_item = FactoryGirl.create(:five_headered_siblinged_headered_exercise_item)
+    #   header = exercise_item.header
+    #   exercise_item.drill.headers.include?(header).should be_true
+    # end
   end
 end

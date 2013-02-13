@@ -24,7 +24,7 @@ describe Exercise do
 
   describe ".children" do
     it "is an alias for exercise_items" do
-      exercise = FactoryGirl.create(:exercise_with_exercise_items)
+      exercise = FactoryGirl.create(:five_children_exercise)
       exercise.children.should be == exercise.exercise_items
     end
   end
@@ -38,7 +38,7 @@ describe Exercise do
     end
 
     it "sets a position of 500 if it has five siblings" do
-      exercise = FactoryGirl.create(:exercise_with_five_siblings)
+      exercise = FactoryGirl.create(:five_siblinged_exercise)
       exercise.position.should be == 500
     end
   end

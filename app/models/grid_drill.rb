@@ -1,19 +1,15 @@
 class GridDrill < Drill
 
-
-
-  before_create :set_default_headers
-
-  
+#  before_create :set_default_headers
+ 
   def add_column(header_name='Header')
-    # self.header_row[header_row.size.to_s] = header_name
-    # self.save
-    self.headers.create(:title = header_name)
+    new_header = self.headers.create(:title => header_name)
     if self.exercises.empty?
       self.exercises.create(:title => "Title", :prompt => "Prompt")
     end 
     self.exercises.each do |exercise|
-      exercise.exercise_items.create(:column => header_name)
+      exercise_item = exercise.exercise_items.create()
+      exercise_item.header = new_header
     end
   end
 

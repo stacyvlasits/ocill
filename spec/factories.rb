@@ -36,11 +36,11 @@ FactoryGirl.define do
 
     lesson
 
-    factory :drill_with_no_title do
-      title ''
+    trait :untitled do
+      title nil
     end
 
-    factory :drill_with_exercises do
+    trait :five_childed do
       ignore do
         exercises_count 5
       end
@@ -49,73 +49,71 @@ FactoryGirl.define do
         FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: drill)
       end
     end
-  end
+ 
+    factory :untitled_drill, traits: [:untitled]
+    factory :five_childed_drill, traits: [:five_childed]
 
-  factory :grid_drill, :parent => :drill do
-    title "Title of Grid Drill"
-    type "GridDrill"    
-    
-    lesson
+ 
+    factory :grid_drill, :class => "GridDrill", :parent => :drill do
+      title "Title of Grid Drill"
+      type "GridDrill"
 
-    factory :grid_drill_with_no_title do
-      title ''
+      trait :five_headered do
+        ignore do
+          headers_count 5
+        end
+
+        after(:create) do |grid_drill, evaluator|
+          FactoryGirl.create_list(:header, evaluator.headers_count, drill: grid_drill)
+        end
+      end
+
+      trait :five_exercised do
+        ignore do
+          exercises_count 5
+        end
+
+        after(:create) do |grid_drill, evaluator|
+          FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: grid_drill)
+        end
+      end      
+
+      factory :five_exercised_grid_drill, traits: [:five_exercised]
+      factory :five_headered_grid_drill, traits: [:five_headered]
+      # this next one isn't used yet
+      factory :five_headered_five_exercised_grid_drill, traits: [:five_headered, :five_exercised] 
     end
-
-    factory :grid_drill_with_headers do
-      ignore do
-        headers_count 5
-      end
-
-      after(:create) do |grid_drill, evaluator|
-        FactoryGirl.create_list(:header, evaluator.headers_count, grid_drill: grid_drill)
-      end
-    end
-
-    factory :grid_drill_with_exercises do
-      ignore do
-        exercises_count 5
-      end
-
-      after(:create) do |grid_drill, evaluator|
-        FactoryGirl.create_list(:exercise, evaluator.exercises_count, grid_drill: drill)
-      end
-    end      
   end
-
-  factory :listening_drill do 
-    title "Title of Listening Drill"
-
-    lesson
-
-    factory :listening_drill_with_exercises do
-      ignore do
-        exercises_count 5
-      end
-
-      after(:create) do |listening_drill, evaluator|
-        FactoryGirl.create_list(:exercise, evaluator.exercises_count, listening_drill: listening_drill)
-      end
-    end    
-  end 
 
   factory :exercise do
     title "Title of Exercise"
     prompt "Prompt of Exercise"
 
     drill 
-    
-    factory :empty_exercise do
+
+    trait :untitled do
       title nil
+    end
+
+    trait :unprompted do
       prompt nil
     end
 
-    factory :exercise_with_five_siblings do
-      association :drill, factory: :drill_with_exercises
+    trait :five_siblinged do
+      association :drill, factory: :five_childed_drill
     end
 
+    trait :five_headered_children do
+      ignore do
+        exercise_items_count 5
+      end
 
+      after(:create) do |exercise, evaluator|
+        FactoryGirl.create_list(:headered_exercise_item, evaluator.exercise_items_count, exercise: exercise)
+      end
+    end
 
-    factory :exercise_with_exercise_items do
+    trait :five_childed do
       ignore do
         exercise_items_count 5
       end
@@ -124,44 +122,71 @@ FactoryGirl.define do
         FactoryGirl.create_list(:exercise_item, evaluator.exercise_items_count, exercise: exercise)
       end
     end
+
+    factory :five_siblinged_exercise, traits: [:five_siblinged]
+    factory :five_headered_children_exercise, traits: [:five_headered_children]
+    factory :five_children_exercise, traits: [:five_childed]
+    factory :untitled_exercise, traits: [:untitled]
+    factory :unprompted_exercise, traits: [:unprompted]
+    factory :empty_exercise, traits: [:untitled, :unprompted]
+
   end
   
   factory :exercise_item do
     exercise
 
-    sequence(:column) {|n| "#{n.to_s}"}
+    trait :default do
+      type "Type Defined"
+    end      
 
-    factory :exercise_item_with_type_defined do
+    trait :unexercised do
+      exercise nil
+    end
+
+    trait :headered do
+      association :header, :factory => [:titled_header]
+    end      
+
+    trait :five_siblinged do
+      association :exercise, factory: :five_children_exercise
+    end
+
+    trait :five_headered_siblinged do
+      association :exercise, factory: :five_headered_children_exercise
+    end
+
+    trait :typed do
       type "Type Defined"
     end
 
-    factory :exercise_item_with_column_defined do
-      column "Column Defined"
-    end    
-
-    factory :exercise_item_with_five_siblings do
-      association :exercise, factory: :exercise_with_exercise_items
-
-    end
-    
-    factory :exercise_item_with_media_items do
-      ignore do
-        media_items_count 5
-      end
-
-      after(:create) do |exercise_item, evaluator|
-        FactoryGirl.create_list(:exercise_item, evaluator.media_items_count, exercise_item: exercise_item)
-      end
-    end
-
+    factory :typed_exercise_item, traits: [:typed]
+    factory :headered_exercise_item, traits: [:headered]
+    factory :five_siblinged_exercise_item, traits: [:five_siblinged]
+    factory :five_siblinged_headered_exercise_item, traits: [:five_siblinged, :headered]
+    factory :five_headered_siblinged_headered_exercise_item, traits: [:five_headered_siblinged, :headered]
   end
 
   factory :header do
-    title "Title of Header"
-
-    position
-
     grid_drill
-    exercise_item   
+
+    trait :drillless do
+      grid_drill nil
+    end
+
+    trait :first do
+      position 1
+    end
+
+    trait :titled do
+      title "Title Defined"
+    end
+
+    trait :five_siblinged do
+      association :drill, factory: :five_headered_grid_drill
+    end
+
+    factory :five_siblinged_header, traits: [:five_siblinged]
+    factory :drillless_header, traits: [:drillless]
+    factory :titled_header, traits: [:titled]
   end
 end
