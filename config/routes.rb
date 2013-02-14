@@ -1,6 +1,6 @@
 Ocill::Application.routes.draw do
 
-  resources :listening_drills
+  resources :grid_drills
 
   resources :courses
 
@@ -12,9 +12,8 @@ Ocill::Application.routes.draw do
 
   resources :exercise_items
 
-  root :to => "drills#index"
+  root :to => "grid_drills#index"
 
-  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

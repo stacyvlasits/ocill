@@ -1,7 +1,11 @@
 class GridDrill < Drill
 
-#  before_create :set_default_headers
- 
+ # before_create :set_default_headers
+   
+   def self.model_name
+      Drill.model_name
+    end
+
   def add_column(header_name='Header')
     new_header = self.headers.create(:title => header_name)
     if self.exercises.empty?
