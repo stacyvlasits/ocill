@@ -25,8 +25,13 @@
   </div>
   <div class="control-group">
     <%= f.label :type, :class => 'control-label' %>
-      <%= render @drill.type if @drill.type %>
+    <div class="controls">
+    <%= select("drill", "type", ["GridDrill"].zip(Drill.all.each.collect {|d| d.type.titleize}).flatten.compact.uniq , {:prompt => 'Select a Drill Type', :selected => @drill.type }) %>
+      <%= render @drill.type.to_s.underscore + '_fields', :f => f unless @drill.type.empty?
+      %>
     </div>
+  </div>
+
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), drills_path, :class => 'btn' %>
