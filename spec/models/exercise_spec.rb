@@ -7,12 +7,6 @@ describe Exercise do
       exercise.prompt=nil
       exercise.valid?.should be_false  
     end
-
-    it "prevents the creation of an instance without a title" do
-      exercise = FactoryGirl.build(:exercise)
-      exercise.title=nil
-      exercise.valid?.should be_false        
-    end
   end
 
   describe ".parent" do

@@ -26,8 +26,9 @@
   <div class="control-group">
     <%= f.label :type, :class => 'control-label' %>
     <div class="controls">
-    <%= select("drill", "type", ["GridDrill"].zip(Drill.all.each.collect {|d| d.type.titleize}).flatten.compact.uniq , {:prompt => 'Select a Drill Type', :selected => @drill.type }) %>
-      <%= render @drill.type.to_s.underscore + '_fields', :f => f unless @drill.type.empty?
+    <%= select("drill", "type", ["GridDrill"].zip(Drill.all.each.collect {|d| d.type}).flatten.compact.uniq , {:prompt => 'Select a Drill Type', :selected => @drill.type }) %>
+      <%= 
+        render @drill.type.to_s.underscore + '_fields', :f => f unless @drill.type.nil? || @drill.type.empty?
       %>
     </div>
   </div>

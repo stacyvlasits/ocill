@@ -11,12 +11,12 @@ class Exercise < ActiveRecord::Base
  
   before_save :set_default_position 
 
-  validates :prompt, :title, :presence => true
+  validates :prompt, :presence => true
 
   def make_cells_for_row
-    (drill.columns-1).times do |num|
-      column = drill.header_row[(num+1).to_s]
-      self.exercise_items.create(:column => column)
+    (drill.headers.size).times do |num|
+      header_id = drill.headers.sort_by(&:position)[num].id
+      self.exercise_items.create(:header_id => header_id)
     end
   end
   
