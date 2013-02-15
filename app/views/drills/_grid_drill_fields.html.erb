@@ -1,34 +1,21 @@
+    
   <table class="table table-striped">  
     <thead>
       <tr>  
-        <th><%= f.text_field :title, :class => 'table-title' %><th>
-        <% f.fields_for :headers do |builder| %>
-          <%= render 'header_fields', :f => builder %>
+        <th class="cell"><%= f.text_field :title, :class => 'table-title' %></th>
+        <%= f.fields_for :headers do |builder| %>
+          <%= render 'grid_header_fields', f: builder %>
         <% end %>
-
+        <th class="add_column"><%= link_to "Add Column", controller: "drills", action: "add_column" %></th>
       </tr>      
     </thead>  
     <tbody>
+      <%= f.fields_for :exercises do |builder| %>
+          <%= render 'grid_exercise_fields', :f => builder %>
+      <% end %>
       <tr>
-
-      </tr>  
-      <tr>  
-        <td>001</td>  
-        <td>Rammohan </td>  
-        <td>Reddy</td>  
-        <td>A+</td>  
-      </tr>  
-      <tr>  
-        <td>002</td>  
-        <td>Smita</td>  
-        <td>Pallod</td>  
-        <td>A</td>  
-      </tr>  
-      <tr>  
-        <td>003</td>  
-        <td>Rabindranath</td>  
-        <td>Sen</td>  
-        <td>A+</td>  
-      </tr>  
+        <td class="add_row"><%= link_to "Add Row", controller: "drills", action: "add_row" %></td>
+      </tr>
     </tbody>  
-  </table> 
+  </table>
+   

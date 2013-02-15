@@ -1,5 +1,5 @@
 class ExerciseItem < ActiveRecord::Base
-  attr_accessible :graded, :header_id, :exercise_item_type, :column, :answer, :text, :type, :image, :audio, :video
+  attr_accessible :graded, :header_id, :exercise_item_type, :column, :answer, :text, :type, :image, :audio, :video, :file
   # attr_accessible :media_items_attributes
  
   belongs_to :exercise
@@ -12,7 +12,7 @@ class ExerciseItem < ActiveRecord::Base
   before_save :set_default_type, :set_default_header
    
   def content
-    self.text
+    { text: self.text, image: self.image, audio: self.audio, video: self.video, file: self.file }
   end
   
   def drill
@@ -30,6 +30,8 @@ private
   def set_default_type
     self.type = "TextExerciseItem" unless self.type
   end
+
   def set_default_header
+    
   end
 end
