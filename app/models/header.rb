@@ -6,12 +6,37 @@ class Header < ActiveRecord::Base
 
   validates :drill_id, presence: true
 
-  def grid_drill=(drill)
-    self.drill=drill
+  def column
+    smaller_siblings.size + 1
+  end
+
+  def siblings
+    self.drill.headers.sort_by(&:position) 
+  end
+
+  def smaller_siblings
+    siblings.select {|sib| sib.position > self.position }
+  end
+
+  def bigger_siblings
+    siblings.select {|sib| sib.position < self.position }
+  end
+    
+  def biggest_sibling
+    siblings.max
+  end
+
+  def lesson
+    self.drill.lesson
   end
 
 private
   def set_default_position
-    self.position ||= self.drill.headers.count * 100  
+    self.position ||= new_position
   end
+
+  def new_position
+    biggest_sibling ? biggest_sibling.position + 100 : 100
+  end
+
 end

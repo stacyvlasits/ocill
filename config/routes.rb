@@ -1,17 +1,19 @@
 Ocill::Application.routes.draw do
 
-  resources :grid_drills
-
   resources :courses
 
   resources :lessons
 
-  resources :drills
+  resources :drills do
+    resources :exercises do
+      resources :exercise_items
+    end
+  end
 
   resources :exercises
 
   resources :exercise_items
-
+  
   match 'drills/:id/row/add' => 'drills#add_row'
 
   match 'drills/:id/column/add' => 'drills#add_column'
@@ -20,7 +22,7 @@ Ocill::Application.routes.draw do
 
   match 'drills/:id/column/remove(/:header_id)' => 'drills#remove_column'
 
-  root :to => "grid_drills#index"
+  root :to => "drills#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

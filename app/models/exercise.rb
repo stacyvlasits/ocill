@@ -1,4 +1,5 @@
 class Exercise < ActiveRecord::Base
+
   attr_accessible :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes
   belongs_to :drill
   alias :parent :drill
@@ -13,6 +14,11 @@ class Exercise < ActiveRecord::Base
 
   validates :prompt, :presence => true
 
+  def <=>(object)
+    self.position <=> object.position
+  end
+
+
   def make_cells_for_row
     (drill.headers.size).times do |num|
       header_id = drill.headers.sort_by(&:position)[num].id
@@ -20,12 +26,37 @@ class Exercise < ActiveRecord::Base
     end
   end
   
+  def row
+    smaller_siblings.size + 1
+  end
+
+  def siblings
+    self.drill.exercises.sort_by(&:position) 
+  end
+
+  def smaller_siblings
+    siblings.select {|sib| sib.position > self.position }
+  end
+
+  def bigger_siblings
+    siblings.select {|sib| sib.position < self.position }
+  end
+    
+  def biggest_sibling
+    siblings.max
+  end
+
   def lesson
     self.drill.lesson
   end
 
 private
   def set_default_position
-    self.position ||= self.parent.children.count * 100  
+    self.position ||= new_position
   end
+
+  def new_position
+    biggest_sibling ? biggest_sibling.position + 100 : 100
+  end
+
 end
