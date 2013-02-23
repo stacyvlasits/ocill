@@ -1,1 +1,18 @@
-<td><%= f.text_field :text, :class => 'text_field' %></td>
+<td class="cell cell-c<%= f.object.header.column %>-r<%= f.object.exercise.row %>">
+  <%= f.text_field :text, :class => 'text_field' %>
+  <%= link_to '<i class="icon-headphones"></i>'.html_safe , new_exercise_item_path, id: "new_link", remote: true %>
+  <div id="audio-upload" class="modal hide fade in" style="display: none; ">  
+    <div class="modal-header">  
+      <a class="close" data-dismiss="modal">×</a>  
+      <h3>Audio</h3>  
+    </div>  
+    <div class="modal-body">  
+   
+    </div>
+    <div class="modal-footer">  
+      <a href="" id='submit-audio-upload' class='btn btn-success'> Upload </a>    
+      <a href="#" class="btn" data-dismiss="modal">Close</a>  
+      </div>  
+      
+  </div>  
+</td>

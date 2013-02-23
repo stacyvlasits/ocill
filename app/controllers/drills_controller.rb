@@ -1,14 +1,7 @@
 class DrillsController < InheritedResources::Base
   respond_to :json
-  
-  # def create
-  #   @drill = Drill.create!(params[:drill])
-  #   flash[:notice] = "Drill Updated."
-  #   respond_to do |format|
-  #     format.html { redirect_to(:action => 'edit')  }
-  #     format.js
-  #   end
-  # end
+
+
 
   def update
     @drill = Drill.find(params[:id])

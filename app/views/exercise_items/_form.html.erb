@@ -1,10 +1,5 @@
-<%= form_for @exercise_item, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :text, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :text, :class => 'text_field' %>
-    </div>
-  </div>
+<%= form_for @exercise_item, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+  <%= f.hidden_field :key %>
   <div class="control-group">
     <%= f.label :graded, :class => 'control-label' %>
     <div class="controls">
@@ -12,29 +7,16 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :exercise_item_type, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :exercise_item_type, :class => 'text_field' %>
+    <label class="control-label" for="exercise_item_audio">Audio</label>
+    <div class="controls exercise_item_audio">
+      <p><%= @exercise_item.audio_name %></p>
+        <%= direct_upload_form_for @audio_uploader do |f| %>
+          <p><%= f.file_field :audio %></p>
+        <% end %>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :exercise_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :exercise_id, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :position, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :position, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :column, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :column, :class => 'text_field' %>
-    </div>
-  </div>
+  </div>    
+
+
   <div class="control-group">
     <%= f.label :answer, :class => 'control-label' %>
     <div class="controls">
@@ -42,9 +24,5 @@
     </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                exercise_items_path, :class => 'btn' %>
-  </div>
 <% end %>
+

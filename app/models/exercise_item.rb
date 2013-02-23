@@ -1,16 +1,32 @@
 class ExerciseItem < ActiveRecord::Base
   attr_accessible :graded, :header_id, :exercise_item_type, :column, :answer, :text, :type, :image, :audio, :video, :file
   # attr_accessible :media_items_attributes
- 
+  mount_uploader :audio, AudioUploader
+  mount_uploader :video, VideoUploader
+  mount_uploader :image, ImageUploader
+  mount_uploader :file, FileUploader
+
   belongs_to :exercise
   belongs_to :header
 
   alias :parent :exercise
-  # has_many :media_items, :dependent => :destroy, :autosave => true
-  # alias :children :media_items
-  # accepts_nested_attributes_for :media_items, allow_destroy: true
-  before_save :set_default_type, :set_default_header
    
+  def audio_name
+     File.basename(audio.path || audio.filename ) unless audio.to_s.empty?
+  end
+
+  def video_name
+    File.basename(video.path || video.filename ) unless video.to_s.empty?
+  end
+  
+  def image_name
+    File.basename(image.path || image.filename ) unless image.to_s.empty?
+  end
+
+  def file_name
+    File.basename(file.path || file.filename ) unless file.to_s.empty?
+  end
+
   def content
     { text: self.text, image: self.image, audio: self.audio, video: self.video, file: self.file }
   end
@@ -24,14 +40,5 @@ class ExerciseItem < ActiveRecord::Base
     siblings.delete(self)
     siblings
   end
-  
-  
-private
-  def set_default_type
-    self.type = "TextExerciseItem" unless self.type
-  end
 
-  def set_default_header
-    
-  end
 end

@@ -13,7 +13,7 @@ class GridDrill < Drill
     end 
     self.exercises.each do |exercise|
       exercise_item = exercise.exercise_items.create(:header_id => header.id)
-    end
+    end 
   end
 
   def add_row(prompt='Prompt')

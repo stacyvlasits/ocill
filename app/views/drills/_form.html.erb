@@ -2,9 +2,9 @@
   <div class="control-group">
     <label class="control-label" for="drill_lesson">Lesson</label>
     <div class="controls">    
-      <%= select("drill", "lesson_id", Lesson.all.sort_by(&:position).collect {|l| [ l.title, l.id ] }, {:prompt => 'Select a Lesson', :selected => @drill.lesson_id }) %>
+      <%= select("drill", "lesson_id", Lesson.all.sort_by(&:position).collect {|l| [ l.course.title + " ==> " + l.title, l.id ] }, {:prompt => 'Select a Lesson', :selected => @drill.lesson_id }) %>
     </div>
-  </div>
+  </div> 
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">

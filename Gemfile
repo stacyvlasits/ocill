@@ -10,6 +10,9 @@ gem 'pg'
 gem 'thin'
 gem 'devise'
 
+#ember!
+gem 'ember-rails', '0.4.0'
+
 # interface provided by activeadmin keep this global
 # gem 'activeadmin'
 
