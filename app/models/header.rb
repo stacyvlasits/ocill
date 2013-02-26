@@ -6,6 +6,10 @@ class Header < ActiveRecord::Base
 
   validates :drill_id, presence: true
 
+  def grid_drill=(object)
+    self.drill=(object)
+  end
+
   def column
     smaller_siblings.size + 1
   end

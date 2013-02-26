@@ -1,10 +1,8 @@
 class GridDrill < Drill
 
- # before_create :set_default_headers
-   
-   def self.model_name
-      Drill.model_name
-    end
+  def self.model_name
+    Drill.model_name
+  end
 
   def add_column(header_name='Header')
     header = self.headers.create(:title => header_name)
@@ -37,17 +35,11 @@ class GridDrill < Drill
     end
   end
  
-  def add_header
-    self.header_row[header_row.size.to_s]= "--"
-  end
-
-
   def columns
     headers.size
   end
 
   def set_default_headers
     self.headers.create(:title => "Header Title")
-    # self.header_row = { "0" => "Exercises", "1" => "First Column" } unless self.header_row.size > 0
-  end
+   end
 end

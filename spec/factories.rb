@@ -45,8 +45,8 @@ FactoryGirl.define do
         exercises_count 5
       end
 
-      after(:create) do |drill, evaluator|
-        FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: drill)
+      after(:create) do |grid_drill, evaluator|
+        FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: grid_drill)
       end
     end
  

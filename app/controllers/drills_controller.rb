@@ -1,8 +1,6 @@
 class DrillsController < InheritedResources::Base
   respond_to :json
 
-
-
   def update
     @drill = Drill.find(params[:id])
     if @drill.update_attributes(params[:drill])
