@@ -76,8 +76,19 @@ FactoryGirl.define do
         after(:create) do |grid_drill, evaluator|
           FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: grid_drill)
         end
-      end      
+      end 
+      
+      trait :five_exercise_itemed_five_exercised do
+        ignore do
+          exercises_count 5
+        end
 
+        after(:create) do |grid_drill, evaluator|
+          FactoryGirl.create_list(:five_childed_exercise, evaluator.exercises_count, drill: grid_drill)
+        end
+      end  
+
+      factory :twenty_five_grand_childed_grid_drill, traits: [:five_exercise_itemed_five_exercised]
       factory :five_exercised_grid_drill, traits: [:five_exercised]
       factory :five_headered_grid_drill, traits: [:five_headered]
       # this next one isn't used yet
@@ -125,7 +136,7 @@ FactoryGirl.define do
 
     factory :five_siblinged_exercise, traits: [:five_siblinged]
     factory :five_headered_children_exercise, traits: [:five_headered_children]
-    factory :five_children_exercise, traits: [:five_childed]
+    factory :five_childed_exercise, traits: [:five_childed]
     factory :untitled_exercise, traits: [:untitled]
     factory :unprompted_exercise, traits: [:unprompted]
     factory :empty_exercise, traits: [:untitled, :unprompted]
@@ -148,7 +159,7 @@ FactoryGirl.define do
     end      
 
     trait :five_siblinged do
-      association :exercise, factory: :five_children_exercise
+      association :exercise, factory: :five_childed_exercise
     end
 
     trait :five_headered_siblinged do

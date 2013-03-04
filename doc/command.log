@@ -81,3 +81,5 @@ rails g migration AddHeaderColumnToExerciseItem header_id:integer
 rails g migration RemoveExerciseItemColumnFromHeader exercise_item_id:integer 
 
 rails g migration RemoveColumnColumnFromExerciseItem column:string
+
+rails g migration RemoveFileFromExerciseItems file:string

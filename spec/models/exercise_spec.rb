@@ -18,7 +18,7 @@ describe Exercise do
 
   describe ".children" do
     it "is an alias for exercise_items" do
-      exercise = FactoryGirl.create(:five_children_exercise)
+      exercise = FactoryGirl.create(:five_childed_exercise)
       exercise.children.should be == exercise.exercise_items
     end
   end

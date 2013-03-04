@@ -1,5 +1,7 @@
 Ocill::Application.routes.draw do
 
+  resources :audio
+  
   resources :courses
 
   resources :lessons
@@ -13,13 +15,10 @@ Ocill::Application.routes.draw do
   resources :exercises
 
   resources :exercise_items
-  
+
   match 'drills/:id/row/add' => 'drills#add_row'
-
   match 'drills/:id/column/add' => 'drills#add_column'
-
   match 'drills/:id/row/remove(/:exercise_id)' => 'drills#remove_row'
-
   match 'drills/:id/column/remove(/:header_id)' => 'drills#remove_column'
 
   root :to => "drills#index"

@@ -6,6 +6,10 @@ class Header < ActiveRecord::Base
 
   validates :drill_id, presence: true
 
+  def <=>(object)
+    self.position <=> object.position
+  end
+
   def grid_drill=(object)
     self.drill=(object)
   end
@@ -19,11 +23,11 @@ class Header < ActiveRecord::Base
   end
 
   def smaller_siblings
-    siblings.select {|sib| sib.position > self.position }
+    siblings.select {|sib| sib.position < self.position }
   end
 
   def bigger_siblings
-    siblings.select {|sib| sib.position < self.position }
+    siblings.select {|sib| sib.position > self.position }
   end
     
   def biggest_sibling

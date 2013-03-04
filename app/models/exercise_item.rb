@@ -1,10 +1,10 @@
 class ExerciseItem < ActiveRecord::Base
-  attr_accessible :graded, :header_id, :exercise_item_type, :column, :answer, :text, :type, :image, :audio, :video, :file
-  # attr_accessible :media_items_attributes
+  attr_accessible :graded, :header_id, :exercise_item_type, :column, :answer, :text, :type, :image, :audio, :video
+
   mount_uploader :audio, AudioUploader
   mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
-  mount_uploader :file, FileUploader
+
 
   belongs_to :exercise
   belongs_to :header
@@ -21,10 +21,6 @@ class ExerciseItem < ActiveRecord::Base
   
   def image_name
     File.basename(image.path || image.filename ) unless image.to_s.empty?
-  end
-
-  def file_name
-    File.basename(file.path || file.filename ) unless file.to_s.empty?
   end
 
   def content

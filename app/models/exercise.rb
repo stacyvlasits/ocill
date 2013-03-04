@@ -16,6 +16,10 @@ class Exercise < ActiveRecord::Base
 
   validates :prompt, :presence => true
 
+  def audio_name
+    File.basename(audio.path || audio.filename) if audio
+  end
+  
   def <=>(object)
     self.position <=> object.position
   end
@@ -36,11 +40,11 @@ class Exercise < ActiveRecord::Base
   end
 
   def smaller_siblings
-    siblings.select {|sib| sib.position > self.position }
+    siblings.select {|sib| sib.position < self.position }
   end
 
   def bigger_siblings
-    siblings.select {|sib| sib.position < self.position }
+    siblings.select {|sib| sib.position > self.position }
   end
     
   def biggest_sibling

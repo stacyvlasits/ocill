@@ -1,4 +1,8 @@
-$('#new_link').hide();
+// $('#new_link').hide();
+// Grab the form
 form = $('form');
-
-$('.modal-body').html('<%= j render("form") %>').parent().modal();
+// Grab the modal template NOTE: this needs to be changed, right now it's picking up the first one.  That's not really what we want
+modal = $('.modal').first();
+form.after(modal);
+modal.find('.modal-body').html('<%= j render("audio_form") %>');
+modal.modal('toggle');
