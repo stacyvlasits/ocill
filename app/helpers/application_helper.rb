@@ -7,16 +7,4 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
-
-# This may need to be moved to drills_helper at some point
-
-  def show_headers(drill)
-    html = "<thead><tr>"
-    html += '<th scope="col">' + ( drill.title || "&nbsp;" ) + '</th>'
-    drill.headers.each do |h| 
-      html += '<th scope="col">'
-      html += ( h.title || "&nbsp;") + '</th>'
-    end
-    html += '</tr></thead>'
-  end
 end

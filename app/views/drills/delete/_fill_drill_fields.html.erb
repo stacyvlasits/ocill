@@ -1,0 +1,7 @@
+<%= "<h1>Oh Hai!</h1>" %>
+<%= f.fields_for :exercises do |builder| %>
+    <%= render 'fill_exercise_fields', :f => builder %>
+<% end %>
+<%= link_to t('.new', :default => t("helpers.links.prompt")),
+          new_exercise_path,
+          :class => 'btn btn-primary' %>

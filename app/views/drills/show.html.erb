@@ -16,7 +16,7 @@
   <dd>
     <table class ="table" width="200" border="1" summary="A set of exercises for this <%= @drill.type.to_s.titleize %>">
         <%= show_headers(@drill).to_s.html_safe %>
-      <%= render :partial => 'show_' + @drill.type.underscore + '_exercises', :collection => @drill.exercises, :as => :exercise %>
+      <%= render :partial => nested_folder + 'show_exercises', :collection => @drill.exercises, :as => :exercise %>
     </table>
   </dt>
 </dl>
