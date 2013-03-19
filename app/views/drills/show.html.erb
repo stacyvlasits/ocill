@@ -15,8 +15,8 @@
   <dt><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></dt>
   <dd>
     <table class ="table" width="200" border="1" summary="A set of exercises for this <%= @drill.type.to_s.titleize %>">
-        <%= show_headers(@drill.headers).to_s.html_safe %>
-      <%= render :partial => 'show_exercises', :collection => @drill.exercises, :as => :exercise %>
+        <%= show_headers(@drill).to_s.html_safe %>
+      <%= render :partial => 'show_' + @drill.type.underscore + '_exercises', :collection => @drill.exercises, :as => :exercise %>
     </table>
   </dt>
 </dl>

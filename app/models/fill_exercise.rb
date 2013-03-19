@@ -1,0 +1,4 @@
+class FillExercise < Exercise
+
+
+end

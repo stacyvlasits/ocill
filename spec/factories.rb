@@ -52,8 +52,23 @@ FactoryGirl.define do
  
     factory :untitled_drill, traits: [:untitled]
     factory :five_childed_drill, traits: [:five_childed]
-
  
+    factory :fill_drill, :class => "FillDrill", :parent => :drill do
+      title "Title of Fill Drill"
+      type "FillDrill"
+
+      trait :five_exercised do
+        ignore do
+          exercises_count 5
+        end
+
+        after(:create) do |fill_drill, evaluator|
+          FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: fill_drill)
+        end
+      end 
+      factory :five_exercised_fill_drill, traits: [:five_exercised]
+    end
+
     factory :grid_drill, :class => "GridDrill", :parent => :drill do
       title "Title of Grid Drill"
       type "GridDrill"

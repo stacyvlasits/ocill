@@ -1,10 +1,9 @@
 class ExerciseItem < ActiveRecord::Base
-  attr_accessible :graded, :header_id, :exercise_item_type, :column, :answer, :text, :type, :image, :audio, :video
-
+  attr_accessible :graded, :header_id, :exercise_item_type, :answer, :text, :type, :image, :audio, :video
+  attr_accessible :position # TODO remove "column" from db
   mount_uploader :audio, AudioUploader
   mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
-
 
   belongs_to :exercise
   belongs_to :header
@@ -24,7 +23,7 @@ class ExerciseItem < ActiveRecord::Base
   end
 
   def content
-    { text: self.text, image: self.image, audio: self.audio, video: self.video, file: self.file }
+    { text: self.text, image: self.image, audio: self.audio, video: self.video }
   end
   
   def drill
@@ -36,5 +35,7 @@ class ExerciseItem < ActiveRecord::Base
     siblings.delete(self)
     siblings
   end
+
+
 
 end

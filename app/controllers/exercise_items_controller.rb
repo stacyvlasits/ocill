@@ -2,7 +2,6 @@ class ExerciseItemsController < InheritedResources::Base
   respond_to :json
 
   def edit
-    
     @exercise_item = ExerciseItem.find(params[:id])
     @audio_uploader = @exercise_item.audio
     @audio_uploader.success_action_redirect = edit_exercise_item_url(params[:id])
