@@ -4,5 +4,4 @@
   <% exercise.exercise_items.sort_by(&:position).each do |item| %>
     <td><%= content_tag(:p, item.content[:text]) %><%= content_tag(:p, item.content[:audio]) %></td>
   <% end %>
-
 </tr>

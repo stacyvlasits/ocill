@@ -1,7 +1,11 @@
-<%= "<h1>Oh Hai!</h1>" %>
-<%= f.fields_for :exercises do |builder| %>
-    <%= render 'fill_exercise_fields', :f => builder %>
-<% end %>
-<%= link_to t('.new', :default => t("helpers.links.prompt")),
-          new_exercise_path,
-          :class => 'btn btn-primary' %>
+ <%= f.fields_for :exercises do |builder| %>
+      <%= render 'exercise_fields', :f => builder %>
+  <% end %>
+
+<%= link_to_add_fields "Add Fill In The Blank", f, :exercises %>
+
+<%= if false
+      link_to t('.new', :default => t("helpers.links.new_fill_in_the_blank")),
+        new_drill_exercise_path(@drill),
+        :class => 'btn btn-primary', remote: true 
+    end %>

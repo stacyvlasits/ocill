@@ -1,24 +1,16 @@
 class DrillsController < InheritedResources::Base
   respond_to :json
-
-  def update
-    @drill = Drill.find(params[:id])
-    if @drill.update_attributes(params[:drill])
-      flash[:notice] = "Drill Updated."
-      respond_to do |format|
-        format.html { redirect_to(:action => 'edit')  }
-        format.js 
-      end
-    else
-      render :action => 'edit'
-    end  
-  end
-
+  
+  # def create
+  #   super do |format|
+  #     format.html { render :action => "edit" }
+  #   end
+  # end
   def add_column
     @drill = Drill.find(params[:id])
     if @drill.update_attributes(params[:drill])
       flash[:notice] = "Drill Updated."
-      if @column = @drill.add_column
+      if @drill.add_column
         respond_to do |format|
           format.html { redirect_to(:action => 'edit') }
           format.js

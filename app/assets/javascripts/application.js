@@ -16,8 +16,3 @@
 //= require tinymce-jquery
 //=
 //= require_tree .
-$('form .separate_fields').change(function(){
-  col_n =[];
-  $('form .separate_fields').each(function(i){col_n.push(this.value);});
-  $('form #submit-column-names').val(col_n)
-});

@@ -2,5 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 input {
-  width: 100px;
+  width: 150px;
+}
+.nested-label {
+  display: inline;
+}
+.nested-text-field {
+  display: inline;
+  width: 400px;
+}
+.fill-in-the-blank-field {
+  width: 400px;
 }

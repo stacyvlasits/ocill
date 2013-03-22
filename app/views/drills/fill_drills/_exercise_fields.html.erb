@@ -1,3 +1,2 @@
-<%= f.fields_for :exercise_items do |builder| %>
-  <%= f.text_field :fill_in_the_blank %>
-<% end %>
+<%= f.label :prompt, :class => 'nested-label' %>
+<%= f.text_field :prompt, :class => 'nested-text-field' %>

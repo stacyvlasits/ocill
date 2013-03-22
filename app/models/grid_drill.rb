@@ -38,8 +38,4 @@ class GridDrill < Drill
   def columns
     headers.size
   end
-
-  # def set_default_headers
-  #   self.headers.create(:title => "Header Title")
-  #  end
 end

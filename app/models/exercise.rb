@@ -2,7 +2,7 @@ class Exercise < ActiveRecord::Base
 
   # TODO debug positioning it is failing tests
 
-  attr_accessible :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes
+  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes
   belongs_to :drill
   
   alias :parent :drill
@@ -38,10 +38,15 @@ class Exercise < ActiveRecord::Base
 # end METHODS for grid_drills
 
 # start METHODS for fill_drills  
+  def fill_in_the_blank
+    self.prompt
+  end
+
   def fill_in_the_blank=(text)
+    self.prompt = text
+    self.save!
     blanks = text.scan(/\[([^\]]*)/).flatten
     fill_in_the_blank_exercise_items(blanks)
-    self.prompt = text
   end
 
   def fill_in_the_blank_exercise_items(blanks)
