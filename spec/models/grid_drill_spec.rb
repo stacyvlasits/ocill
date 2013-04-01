@@ -74,9 +74,9 @@ describe GridDrill do
       initial_exercise_count = grid_drill.exercises.count 
       initial_exercise_item_count = grid_drill.exercise_items.count
       grid_drill.remove_row(exercise.id)
-      grid_drill.exercises.count.should == initial_exercise_count + 1
+      grid_drill.exercises.count.should == initial_exercise_count - 1
       grid_drill.exercise_items.count.should < initial_exercise_item_count
-      grid_drill.exercises should_not include(exercise)
+      grid_drill.exercises.should_not include(exercise)
     end
   end
 

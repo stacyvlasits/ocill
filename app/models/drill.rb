@@ -20,7 +20,6 @@ class Drill < ActiveRecord::Base
     self.exercises.size
   end
 
-private
   def set_default_title 
     self.title = "Default Title" if self.title.blank?
   end

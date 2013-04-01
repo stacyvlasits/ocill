@@ -35,7 +35,4 @@ class ExerciseItem < ActiveRecord::Base
     siblings.delete(self)
     siblings
   end
-
-
-
 end

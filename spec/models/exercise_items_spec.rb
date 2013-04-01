@@ -7,8 +7,9 @@ describe ExerciseItem do
       exercise_item.type.should be_nil
     end
     it "assigns a default type when the exercise item is saved" do
-      exercise_item = FactoryGirl.create(:exercise_item)
-      exercise_item.type.should_not be_nil    
+      # exercise_item = FactoryGirl.create(:exercise_item)
+      # exercise_item.type.should_not be_nil    
+      pending('not sure this test is necessary/desireable')
     end
     it "should not set a type if one is already set" do
       exercise_item = FactoryGirl.build(:typed_exercise_item)
