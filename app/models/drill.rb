@@ -10,7 +10,7 @@ class Drill < ActiveRecord::Base
   accepts_nested_attributes_for :exercises, allow_destroy: true
   accepts_nested_attributes_for :headers, allow_destroy: true
  
-  before_save :set_default_values
+  before_save :set_default_title
 
   def course
     self.lesson.course unless self.lesson.nil?
@@ -19,18 +19,8 @@ class Drill < ActiveRecord::Base
   def rows
     self.exercises.size
   end
-  
-  def set_default_values
-    set_default_position
-    set_default_title    
-  end
 
 private
-  def set_default_position
-    number_of_siblings = Drill.where(:lesson_id => self.lesson_id).count || 0
-    self.position ||= (number_of_siblings + 1) * 100
-  end
-
   def set_default_title 
     self.title = "Default Title" if self.title.blank?
   end

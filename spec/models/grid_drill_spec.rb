@@ -49,13 +49,13 @@ describe GridDrill do
   
   describe ".remove_column" do
     it "should destroy the column header" do
-      pending()
+      pending
     end
     it "should remove the exercise_item from each exercise that matches the deleted header" do
-      pending()
+      pending
     end
     it "should do other things" do
-      pending()
+      pending
     end
   end
   describe ".add_row" do

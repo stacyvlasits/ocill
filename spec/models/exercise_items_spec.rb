@@ -18,20 +18,6 @@ describe ExerciseItem do
     end 
   end
 
-  describe ".set_default_header" do
-    # it "should not set a header if the header is already set" do
-    #   exercise_item = FactoryGirl.build(:headered_exercise_item)
-    #   previously_defined_header = exercise_item.header
-    #   exercise_item.save
-    #   exercise_item.header.should == previously_defined_header      
-    # end
-    # it "should update the drill so that it has one header for each new exercise_item" do
-    #   exercise_item = FactoryGirl.create(:five_headered_siblinged_headered_exercise_item)
-    #   drill = exercise_item.drill
-    #   drill.headers.size.should == drill.exercise_items.size
-    # end
-  end
-
   describe ".siblings" do
     it "retrieves all of the exercise_item's siblings" do
       exercise_item = FactoryGirl.create(:five_siblinged_exercise_item)
@@ -57,11 +43,5 @@ describe ExerciseItem do
       exercise_item2 = exercise_item1.siblings.first 
       expect {exercise_item1.header = exercise_item2.header}.to raise_error
     end
-
-    # it "must match one of the values in its drill's collection of header" do
-    #   exercise_item = FactoryGirl.create(:five_headered_siblinged_headered_exercise_item)
-    #   header = exercise_item.header
-    #   exercise_item.drill.headers.include?(header).should be_true
-    # end
   end
 end

@@ -23,20 +23,6 @@ describe Exercise do
     end
   end
 
-  describe ".set_default_position" do
-    it "set a value for position" do
-      exercise = FactoryGirl.build(:exercise)
-      initial_position = exercise.position
-      exercise.send(:set_default_position)
-      exercise.position.should_not == initial_position
-    end
-
-    it "sets a position of 500 if it has five siblings" do
-      exercise = FactoryGirl.create(:five_siblinged_exercise)
-      exercise.position.should be == 500
-    end
-  end
-  
   describe ".lesson" do
     it "should return the lesson the exercise is part of" do
       exercise = FactoryGirl.create(:exercise)
