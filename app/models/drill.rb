@@ -3,10 +3,10 @@ class Drill < ActiveRecord::Base
 
   belongs_to :lesson
   alias :parent :lesson
-  has_many :exercises, :dependent => :destroy, :autosave => true
+  has_many :exercises, :order => "position ASC", :dependent => :destroy, :autosave => true
   alias :children :exercises
   has_many :exercise_items, :through => :exercises, :autosave => true
-  has_many :headers, :dependent => :destroy, :autosave => true 
+  has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true 
   accepts_nested_attributes_for :exercises, allow_destroy: true
   accepts_nested_attributes_for :headers, allow_destroy: true
  

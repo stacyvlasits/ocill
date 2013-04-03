@@ -6,6 +6,12 @@ class DrillsController < InheritedResources::Base
   #     format.html { render :action => "edit" }
   #   end
   # end
+  
+  def update
+    super do |format|
+      format.html { render :action => "edit" }
+    end
+  end
   def add_column
     @drill = Drill.find(params[:id])
     if @drill.update_attributes(params[:drill])

@@ -8,6 +8,12 @@ class ExerciseItem < ActiveRecord::Base
   belongs_to :exercise
   belongs_to :header
 
+  after_initialize :set_default_position
+
+  def set_default_position
+    self.position ||= 999999
+  end
+
   alias :parent :exercise
    
   def audio_name

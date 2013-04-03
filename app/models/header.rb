@@ -1,8 +1,10 @@
 class Header < ActiveRecord::Base
+  include Comparable
+
   attr_accessible :drill_id, :position, :title
   belongs_to :drill
   has_many :exercise_items
-  before_save :set_default_position 
+  after_initialize :set_default_position 
 
   validates :drill_id, presence: true
 
@@ -19,15 +21,15 @@ class Header < ActiveRecord::Base
   end
 
   def siblings
-    self.drill.headers.sort_by(&:position) 
+    self.drill.headers.sort
   end
 
   def smaller_siblings
-    siblings.select {|sib| sib.position < self.position }
+    siblings.select {|sib| sib < self }
   end
 
   def bigger_siblings
-    siblings.select {|sib| sib.position > self.position }
+    siblings.select {|sib| sib > self }
   end
     
   def biggest_sibling
@@ -38,13 +40,7 @@ class Header < ActiveRecord::Base
     self.drill.lesson
   end
 
-private
   def set_default_position
-    self.position ||= new_position
+    self.position ||= 999999
   end
-
-  def new_position
-    biggest_sibling ? biggest_sibling.position + 100 : 100
-  end
-
 end

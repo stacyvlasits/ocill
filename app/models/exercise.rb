@@ -1,15 +1,23 @@
 class Exercise < ActiveRecord::Base
 
+  include Comparable
+
   attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes
 
   belongs_to :drill
   alias :parent :drill
   
-  has_many :exercise_items, :dependent => :destroy, :autosave => true
+  has_many :exercise_items, :order => "position ASC", :dependent => :destroy, :autosave => true
   alias :children :exercise_items
   
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
+
+  after_initialize :set_default_position
+
+  def set_default_position
+    self.position ||= 999999
+  end
 
   def audio_name
     File.basename(audio.path || audio.filename) if audio
@@ -53,15 +61,19 @@ class Exercise < ActiveRecord::Base
 
 # end METHODS for fill_drills 
   def siblings
-    self.drill.exercises.sort_by(&:position) 
+    self.drill.exercises.sort
   end
 
   def smaller_siblings
-    siblings.select {|sib| sib.position < self.position }
+    siblings.select {|sib| sib < self }
+  end
+  
+  def myself
+    self
   end
 
   def bigger_siblings
-    siblings.select {|sib| sib.position > self.position }
+    siblings.select {|sib| sib > self }
   end
     
   def biggest_sibling

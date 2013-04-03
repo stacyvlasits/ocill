@@ -1,5 +1,12 @@
 <tr>
-  <td class="cell" id="cell-c0-r<%= f.object.row %>"><span class="remove-row"><%= link_to ' <i class="icon-remove"></i> '.html_safe, controller: "drills", action: "remove_row", exercise_id: f.object.id %></span><%= f.text_field :prompt, :class => 'text_field' %></td>
+  <td class="cell" id="cell-c0-r<%= f.object.row %>">
+    <span class="remove-row">
+      <%= link_to ' <i class="icon-remove"></i> '.html_safe, controller: "drills", action: "remove_row", exercise_id: f.object.id %>
+    </span>
+      <%= f.text_field :prompt, :class => 'text_field' %>
+      <%= f.hidden_field :position, value: nested_child_index(f) %> 
+  </td>
+  
   <%= f.fields_for :exercise_items do |builder| %>
     <%= render nested_folder + 'exercise_item_fields', :f => builder %>
   <% end %>

@@ -14,11 +14,11 @@
    <dd><%= @drill.prompt.to_s.html_safe %></dd>
   <dt><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></dt>
   <dd>
-    <table class ="table" width="200" border="1" summary="A set of exercises for this <%= @drill.type.to_s.titleize %>">
-        <%= show_headers(@drill).to_s.html_safe %>
+
+    <%= before_exercise_wrapper(@drill).html_safe %>    
       <%= render :partial => nested_folder + 'show_exercises', :collection => @drill.exercises, :as => :exercise %>
-    </table>
-  </dt>
+    <%= after_exercise_wrapper(@drill).html_safe %>
+  </dd>
 </dl>
 <div style="clear:both"></div>
 <div class="form-actions">
