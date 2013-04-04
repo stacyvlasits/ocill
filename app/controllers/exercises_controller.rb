@@ -4,7 +4,7 @@ class ExercisesController < InheritedResources::Base
     @drill = Drill.find(params[:drill_id])
     @exercise = Exercise.new(drill_id: params[:drill_id])
     respond_to do |format|
-      format.html { redirect_to root_path  }
+      format.html { redirect_to proc { edit_drill_url(@drill, @exercise) } }
       format.js 
     end 
   end

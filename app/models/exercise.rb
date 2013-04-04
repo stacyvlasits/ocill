@@ -45,7 +45,7 @@ class Exercise < ActiveRecord::Base
     self.prompt
   end
 
-  def fill_in_the_blank=(text)
+  def fill_in_the_blank=(text = "a")
     self.prompt = text
     self.save!
     blanks = text.scan(/\[([^\]]*)/).flatten

@@ -10,7 +10,11 @@ jQuery ->
     event.preventDefault()
 
   $('form').on 'click', '.add_fields', (event) ->
-    time = new Date().getTime()
+    current_position = $(this).data('id')
+    if (typeof window.position == 'undefined')
+      window.position = current_position + 1 
+    else
+      window.position = window.position + 1
     regexp = new RegExp($(this).data('id'), 'g')
-    $(this).before($(this).data('fields').replace(regexp, time))
+    $(this).before($(this).data('fields').replace(regexp, window.position))
     event.preventDefault()
