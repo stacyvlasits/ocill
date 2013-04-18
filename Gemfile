@@ -8,7 +8,10 @@ gem 'rails', '3.2.8'
 #postgresql
 gem 'pg'
 gem 'thin'
+
+#authorization/authentication
 gem 'devise'
+gem 'cancan'
 
 #ember!
 gem 'ember-rails', '0.4.0'

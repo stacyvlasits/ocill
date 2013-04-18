@@ -1,5 +1,7 @@
 Ocill::Application.routes.draw do
 
+  devise_for :users
+
   resources :audio, :exercise_items, :exercises, :courses
 
   resources :lessons do
