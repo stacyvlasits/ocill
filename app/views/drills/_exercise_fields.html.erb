@@ -1,9 +1,8 @@
-<fieldset>
-  <%= f.label :title, "Fill In The Blank", :class => "control-label" %>
-  <div class="controls">
-    <%= f.text_field(:fill_in_the_blank, class: "fill-in-the-blank-field") %>
-    <%= f.hidden_field :position, value: nested_child_index(f) %> 
-    <%= f.hidden_field :_destroy %>
-    <%= link_to icon("remove", "white"), '#', class: "remove_fields" %>
-  </div>
-</fieldset>
+<li>
+  <fieldset>
+      <%= f.hidden_field :position, value: nested_child_index(f), class: "hidden-position" %> 
+      <%= f.text_field(:fill_in_the_blank, class: "fill-in-the-blank-field") %>
+          <%= f.hidden_field :_destroy %>
+      <%= link_to icon("remove", "white"), '#', class: "remove_fields" %>
+  </fieldset>
+</li>

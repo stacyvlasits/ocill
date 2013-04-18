@@ -5,4 +5,10 @@ class LessonsController < InheritedResources::Base
       format.html { redirect_to lessons_url }
     end
   end
+
+  def update
+    super do |format|
+      format.html { redirect_to lessons_url }
+    end
+  end
 end

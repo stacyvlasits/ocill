@@ -11,6 +11,12 @@ input {
   display: inline;
   width: 400px;
 }
-.fill-in-the-blank-field {
-  width: 400px;
+form .fill-in-the-blank-field {
+  margin-bottom: 5px;
+  width: 575px;
+}
+//  JQuery UI sortable
+.ui-state-highlight { 
+  height: 1.5em; 
+  line-height: 1.2em; 
 }

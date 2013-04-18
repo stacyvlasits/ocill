@@ -14,7 +14,7 @@
   <div class="control-group">
     <%= f.label :instructions, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :instructions, :size => "20x1", :class => 'text_area tinymce' %>
+      <%= f.text_area :instructions, :rows => 1, :cols => 80, :class => 'text_area tinymce' %>
     </div>
   </div>
   <div class="control-group">
@@ -31,9 +31,10 @@
       </div>
     </div>
   <% end %>
-  
+
   <div class="control-group">
-    <%= f.label :exercises, :class => 'control-label' %>
+    <%= # f.label :exercises, :class => 'control-label' 
+    %>
     <div id="exercises" class="controls">
       <%= render nested_folder + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
     </div>

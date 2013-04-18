@@ -7,5 +7,5 @@ class Lesson < ActiveRecord::Base
   alias :children :drills
   has_many :exercises, :through => :drills
   has_many :exercise_items, :through => :drills
-
+  accepts_nested_attributes_for :drills
 end

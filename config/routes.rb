@@ -1,25 +1,29 @@
 Ocill::Application.routes.draw do
 
-  resources :audio
+  resources :audio, :exercise_items, :exercises, :courses
+
+  resources :lessons do
+    resources :drills
+
+    
+  end
   
-  resources :courses
-
-  resources :lessons
-
   resources :drills do
+    member do
+      post 'row/add' => 'drills#add_row'
+      post 'column/add' => 'drills#add_column'
+      delete 'row/remove(/:exercise_id)' => 'drills#remove_row'
+      delete 'column/remove(/:header_id)' => 'drills#remove_column'
+      get 'perform'
+      post 'submit'
+    end
+    
     resources :exercises do
       resources :exercise_items
     end
   end
 
-  resources :exercises
-
-  resources :exercise_items
-
-  match 'drills/:id/row/add' => 'drills#add_row'
-  match 'drills/:id/column/add' => 'drills#add_column'
-  match 'drills/:id/row/remove(/:exercise_id)' => 'drills#remove_row'
-  match 'drills/:id/column/remove(/:header_id)' => 'drills#remove_column'
+  
 
   root :to => "drills#index"
 

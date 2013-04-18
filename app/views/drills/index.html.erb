@@ -13,21 +13,7 @@
   </thead>
   <tbody>
     <% @drills.each do |drill| %>
-      <tr>
-        <td><%= link_to drill.course.title, course_path(drill.course) %> ( <%= drill.course.lessons.count %> ) </td>
-        <td><%= link_to drill.lesson.title, lesson_path(drill.lesson) %> ( <%= drill.lesson.drills.count %> ) </td>
-        <td><%= link_to drill.title, drill_path(drill) %></td>
-
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_drill_path(drill), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      drill_path(drill),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
+      <%= render partial: '/shared/list_of_drills', locals: { drill: drill } -%>
     <% end %>
   </tbody>
 </table>

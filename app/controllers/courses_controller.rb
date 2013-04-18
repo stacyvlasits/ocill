@@ -4,4 +4,10 @@ class CoursesController < InheritedResources::Base
       format.html { redirect_to courses_url }
     end
   end
+
+  def update
+    super do |format|
+      format.html { redirect_to courses_url }
+    end
+  end
 end
