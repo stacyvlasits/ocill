@@ -17,6 +17,7 @@ describe Course do
       expect(course.children).to be_empty
     end
   end
+<<<<<<< HEAD
 
   describe ".set_default_values" do 
 
@@ -35,4 +36,6 @@ describe Course do
     
   end
 
+=======
+>>>>>>> experiments
 end

@@ -1,3 +1,25 @@
 // Place all the styles related to the Drills controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+<<<<<<< HEAD
+=======
+input {
+  width: 150px;
+}
+.nested-label {
+  display: inline;
+}
+.nested-text-field {
+  display: inline;
+  width: 400px;
+}
+form .fill-in-the-blank-field {
+  margin-bottom: 5px;
+  width: 575px;
+}
+//  JQuery UI sortable
+.ui-state-highlight { 
+  height: 1.5em; 
+  line-height: 1.2em; 
+}
+>>>>>>> experiments

@@ -1,0 +1,17 @@
+<%= f.label :exercises, "Fill In The Blank:" %>
+<%= f.label :exercises, "Questions contain [blanks] in [brackets] and hints at the end. (no content, at the start and end)" %>
+<ol id="sortable">
+  <%= f.fields_for :exercises do |builder| %>
+      <%= render 'exercise_fields', :f => builder %>
+  <% end %>
+  <%= link_to_add_fields "Add Fill In The Blank", f, :exercises %>
+</ol> <!-- #sortable -->
+
+
+<%= 
+    # Just holding on tho this code in case link_to_add_fields doesn't work
+    if false
+      link_to t('.new', :default => t("helpers.links.new_fill_in_the_blank")),
+        new_drill_exercise_path(@drill),
+        :class => 'btn btn-primary', remote: true 
+    end %>

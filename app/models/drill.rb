@@ -3,6 +3,7 @@ class Drill < ActiveRecord::Base
 
   belongs_to :lesson
   alias :parent :lesson
+<<<<<<< HEAD
   has_many :exercises, :dependent => :destroy, :autosave => true
   alias :children :exercises
   has_many :exercise_items, :through => :exercises, :autosave => true
@@ -12,6 +13,16 @@ class Drill < ActiveRecord::Base
   accepts_nested_attributes_for :headers, allow_destroy: true
  
   before_save :set_default_values
+=======
+  has_many :exercises, :order => "position ASC", :dependent => :destroy, :autosave => true
+  alias :children :exercises
+  has_many :exercise_items, :through => :exercises, :autosave => true
+  has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true 
+  accepts_nested_attributes_for :exercises, allow_destroy: true
+  accepts_nested_attributes_for :headers, allow_destroy: true
+ 
+  before_save :set_default_title
+>>>>>>> experiments
 
   def course
     self.lesson.course unless self.lesson.nil?
@@ -20,6 +31,7 @@ class Drill < ActiveRecord::Base
   def rows
     self.exercises.size
   end
+<<<<<<< HEAD
   
   def set_default_values
     set_default_position
@@ -31,6 +43,8 @@ private
     number_of_siblings = Drill.where(:lesson_id => self.lesson_id).count || 0
     self.position ||= (number_of_siblings + 1) * 100
   end
+=======
+>>>>>>> experiments
 
   def set_default_title 
     self.title = "Default Title" if self.title.blank?

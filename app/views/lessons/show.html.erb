@@ -10,6 +10,35 @@
   <dd><%= @lesson.position %></dd>
   <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
   <dd><%= @lesson.course_id %></dd>
+<<<<<<< HEAD
+=======
+  <dt><strong><%= model_class.human_attribute_name(:drills) %>:</strong></dt>
+  <dd>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Course ( Lessons ) </th>
+          <th>Lesson ( Drills )</th>
+           <th>Drill Title </th>
+         <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @lesson.drills.each do |drill| %>
+          <%= render partial: 'shared/list_of_drills', locals: { drill: drill } -%>
+        <% end -%>
+        <tr>
+          <td><%= link_to t('.new', :default => t("helpers.links.new_drill_in_lesson")),
+              new_lesson_drill_path(@lesson), :class => 'btn' %>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>        
+  </dd>
+>>>>>>> experiments
 </dl>
 
 <div class="form-actions">

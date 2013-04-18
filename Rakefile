@@ -4,4 +4,8 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+<<<<<<< HEAD
 Ocill::Application.load_tasks
+=======
+Ocill::Application.load_tasks
+>>>>>>> experiments

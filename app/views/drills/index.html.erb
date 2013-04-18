@@ -13,6 +13,7 @@
   </thead>
   <tbody>
     <% @drills.each do |drill| %>
+<<<<<<< HEAD
       <tr>
         <td><%= link_to drill.course.title, course_path(drill.course) %> ( <%= drill.course.lessons.count %> ) </td>
         <td><%= link_to drill.lesson.title, lesson_path(drill.lesson) %> ( <%= drill.lesson.drills.count %> ) </td>
@@ -28,6 +29,9 @@
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
+=======
+      <%= render partial: '/shared/list_of_drills', locals: { drill: drill } -%>
+>>>>>>> experiments
     <% end %>
   </tbody>
 </table>

@@ -11,13 +11,20 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+<<<<<<< HEAD
+=======
+//= require jquery-ui.min
+>>>>>>> experiments
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require tinymce-jquery
 //=
 //= require_tree .
+<<<<<<< HEAD
 $('form .separate_fields').change(function(){
   col_n =[];
   $('form .separate_fields').each(function(i){col_n.push(this.value);});
   $('form #submit-column-names').val(col_n)
 });
+=======
+>>>>>>> experiments

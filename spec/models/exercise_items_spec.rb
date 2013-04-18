@@ -7,8 +7,14 @@ describe ExerciseItem do
       exercise_item.type.should be_nil
     end
     it "assigns a default type when the exercise item is saved" do
+<<<<<<< HEAD
       exercise_item = FactoryGirl.create(:exercise_item)
       exercise_item.type.should_not be_nil    
+=======
+      # exercise_item = FactoryGirl.create(:exercise_item)
+      # exercise_item.type.should_not be_nil    
+      pending('not sure this test is necessary/desireable')
+>>>>>>> experiments
     end
     it "should not set a type if one is already set" do
       exercise_item = FactoryGirl.build(:typed_exercise_item)
@@ -18,6 +24,7 @@ describe ExerciseItem do
     end 
   end
 
+<<<<<<< HEAD
   describe ".set_default_header" do
     # it "should not set a header if the header is already set" do
     #   exercise_item = FactoryGirl.build(:headered_exercise_item)
@@ -32,6 +39,8 @@ describe ExerciseItem do
     # end
   end
 
+=======
+>>>>>>> experiments
   describe ".siblings" do
     it "retrieves all of the exercise_item's siblings" do
       exercise_item = FactoryGirl.create(:five_siblinged_exercise_item)
@@ -57,11 +66,14 @@ describe ExerciseItem do
       exercise_item2 = exercise_item1.siblings.first 
       expect {exercise_item1.header = exercise_item2.header}.to raise_error
     end
+<<<<<<< HEAD
 
     # it "must match one of the values in its drill's collection of header" do
     #   exercise_item = FactoryGirl.create(:five_headered_siblinged_headered_exercise_item)
     #   header = exercise_item.header
     #   exercise_item.drill.headers.include?(header).should be_true
     # end
+=======
+>>>>>>> experiments
   end
 end

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <fieldset>
   <%= f.label :title, "Exercise Prompt", :class => "control-label" %>
   <div class="controls">
@@ -10,3 +11,13 @@
     <%= link_to_add_fields "Add Exercise Item", f, :exercise_items %>
   </div>
 </fieldset>
+=======
+<li>
+  <fieldset>
+      <%= f.hidden_field :position, value: nested_child_index(f), class: "hidden-position" %> 
+      <%= f.text_field(:fill_in_the_blank, class: "fill-in-the-blank-field") %>
+          <%= f.hidden_field :_destroy %>
+      <%= link_to icon("remove", "white"), '#', class: "remove_fields" %>
+  </fieldset>
+</li>
+>>>>>>> experiments

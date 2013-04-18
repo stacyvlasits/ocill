@@ -52,8 +52,28 @@ FactoryGirl.define do
  
     factory :untitled_drill, traits: [:untitled]
     factory :five_childed_drill, traits: [:five_childed]
+<<<<<<< HEAD
 
  
+=======
+ 
+    factory :fill_drill, :class => "FillDrill", :parent => :drill do
+      title "Title of Fill Drill"
+      type "FillDrill"
+
+      trait :five_exercised do
+        ignore do
+          exercises_count 5
+        end
+
+        after(:create) do |fill_drill, evaluator|
+          FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: fill_drill)
+        end
+      end 
+      factory :five_exercised_fill_drill, traits: [:five_exercised]
+    end
+
+>>>>>>> experiments
     factory :grid_drill, :class => "GridDrill", :parent => :drill do
       title "Title of Grid Drill"
       type "GridDrill"
@@ -76,8 +96,24 @@ FactoryGirl.define do
         after(:create) do |grid_drill, evaluator|
           FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: grid_drill)
         end
+<<<<<<< HEAD
       end      
 
+=======
+      end 
+      
+      trait :five_exercise_itemed_five_exercised do
+        ignore do
+          exercises_count 5
+        end
+
+        after(:create) do |grid_drill, evaluator|
+          FactoryGirl.create_list(:five_childed_exercise, evaluator.exercises_count, drill: grid_drill)
+        end
+      end  
+
+      factory :twenty_five_grand_childed_grid_drill, traits: [:five_exercise_itemed_five_exercised]
+>>>>>>> experiments
       factory :five_exercised_grid_drill, traits: [:five_exercised]
       factory :five_headered_grid_drill, traits: [:five_headered]
       # this next one isn't used yet
@@ -125,7 +161,11 @@ FactoryGirl.define do
 
     factory :five_siblinged_exercise, traits: [:five_siblinged]
     factory :five_headered_children_exercise, traits: [:five_headered_children]
+<<<<<<< HEAD
     factory :five_children_exercise, traits: [:five_childed]
+=======
+    factory :five_childed_exercise, traits: [:five_childed]
+>>>>>>> experiments
     factory :untitled_exercise, traits: [:untitled]
     factory :unprompted_exercise, traits: [:unprompted]
     factory :empty_exercise, traits: [:untitled, :unprompted]
@@ -148,7 +188,11 @@ FactoryGirl.define do
     end      
 
     trait :five_siblinged do
+<<<<<<< HEAD
       association :exercise, factory: :five_children_exercise
+=======
+      association :exercise, factory: :five_childed_exercise
+>>>>>>> experiments
     end
 
     trait :five_headered_siblinged do

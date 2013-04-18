@@ -23,6 +23,7 @@ describe Lesson do
       expect(lesson.parent).to eq(lesson.course)
     end 
   end
+<<<<<<< HEAD
  
   describe ".set_default_values" do 
     it "doesn't change the value of .position if .position is already set" do
@@ -39,3 +40,6 @@ describe Lesson do
   end
 
 end
+=======
+ end
+>>>>>>> experiments

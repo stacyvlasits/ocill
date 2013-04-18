@@ -1,0 +1,8 @@
+<tr>
+  <th scope="row"><%= exercise.prompt.html_safe || "&nbsp;" %></th>
+  
+  <% exercise.exercise_items.sort_by(&:position).each do |item| %>
+    <td><%= item.content %></td>
+  <% end %>
+
+</tr>

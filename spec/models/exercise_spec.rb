@@ -18,11 +18,16 @@ describe Exercise do
 
   describe ".children" do
     it "is an alias for exercise_items" do
+<<<<<<< HEAD
       exercise = FactoryGirl.create(:five_children_exercise)
+=======
+      exercise = FactoryGirl.create(:five_childed_exercise)
+>>>>>>> experiments
       exercise.children.should be == exercise.exercise_items
     end
   end
 
+<<<<<<< HEAD
   describe ".set_default_position" do
     it "set a value for position" do
       exercise = FactoryGirl.build(:exercise)
@@ -37,6 +42,8 @@ describe Exercise do
     end
   end
   
+=======
+>>>>>>> experiments
   describe ".lesson" do
     it "should return the lesson the exercise is part of" do
       exercise = FactoryGirl.create(:exercise)

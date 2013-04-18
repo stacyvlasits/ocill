@@ -2,6 +2,30 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+<<<<<<< HEAD
+=======
+#  When a user sets the drill type on a new drill
+#  the form is submitted
+
+jQuery ->
+  $("select#drill_type").on 'change', ( event ) ->
+    $("form#new_drill").submit()
+
+jQuery ->
+  $(".mceLayout").focus ->
+    $(this).toggleClass('mceHideToolbar')
+
+jQuery ->
+  $("#sortable").sortable({
+    forcePlaceholderSize: true, 
+    placeholder: "ui-state-highlight"
+  });
+
+jQuery ->
+  $("#sortable").on 'sortchange', ( event, ui) ->
+    $("#sortable li .hidden-position").each (index, element) ->
+      $(element).val(index)
+>>>>>>> experiments
 
 jQuery ->
   $('form').on 'click', '.remove_fields', (event) ->
@@ -10,8 +34,20 @@ jQuery ->
     event.preventDefault()
 
   $('form').on 'click', '.add_fields', (event) ->
+<<<<<<< HEAD
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
  
+=======
+    current_position = $(this).data('id')
+    if (typeof window.position == 'undefined')
+      window.position = current_position + 1 
+    else
+      window.position = window.position + 1
+    regexp = new RegExp($(this).data('id'), 'g')
+    $(this).before($(this).data('fields').replace(regexp, window.position))
+    event.preventDefault()
+
+>>>>>>> experiments

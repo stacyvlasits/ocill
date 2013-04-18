@@ -1,0 +1,20 @@
+<table class="table table-striped">  
+  <thead>
+    <tr>  
+      <th class="cell cell-c0-r0"><%= f.text_field :title, :class => 'table-title' %></th>
+      <%= f.fields_for :headers do |builder| %>
+        <%= render 'grid_header_fields', f: builder %>
+      <% end %>
+      <th class="add_column"><%= link_to "Add Column", controller: "drills", action: "add_column" %></th>
+    </tr>      
+  </thead>  
+  <tbody>
+    <%= f.fields_for :exercises do |builder| %>
+        <%= render 'grid_exercise_fields', :f => builder %>
+    <% end %>
+    <tr>
+      <td class="add_row"><%= link_to "Add Row", controller: "drills", action: "add_row" %></td>
+    </tr>
+  </tbody>  
+</table>
+ 

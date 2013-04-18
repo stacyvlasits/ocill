@@ -15,6 +15,7 @@ describe Drill do
     end
   end
 
+<<<<<<< HEAD
   describe '.set_default_values' do
     it "adds a default position" do
       drill = FactoryGirl.create(:drill)
@@ -29,16 +30,28 @@ describe Drill do
     it "adds a default title" do
       drill = FactoryGirl.build(:untitled_drill)
       drill.set_default_values
+=======
+  describe '.set_default_title' do
+    it "adds a default title" do
+      drill = FactoryGirl.build(:untitled_drill)
+      drill.set_default_title
+>>>>>>> experiments
       drill.title.should_not be_blank
     end
   end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> experiments
   describe '.rows' do
     it "tells how many elements are in the header_row" do
       drill = FactoryGirl.create(:drill)
       drill.rows.should == drill.exercises.size
     end
   end
+<<<<<<< HEAD
 
+=======
+>>>>>>> experiments
 end
