@@ -83,3 +83,11 @@ rails g migration RemoveExerciseItemColumnFromHeader exercise_item_id:integer
 rails g migration RemoveColumnColumnFromExerciseItem column:string
 
 rails g migration RemoveFileFromExerciseItems file:string
+
+rails g migration CreateRoles name:string
+
+rails g migration CreateRolesUsers
+
+rail g migration RemoveTimestampsFromRolesUsers
+
+rails g model attempt answer_id:integer
