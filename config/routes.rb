@@ -4,8 +4,6 @@ Ocill::Application.routes.draw do
 
   resources :lessons do
     resources :drills
-
-    
   end
   
   resources :drills do
@@ -22,8 +20,6 @@ Ocill::Application.routes.draw do
       resources :exercise_items
     end
   end
-
-  
 
   root :to => "drills#index"
 
