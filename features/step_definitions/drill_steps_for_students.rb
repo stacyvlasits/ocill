@@ -8,7 +8,7 @@ When(/^I am on the "(.*?)" page\.$/) do |model|
 end
 
 When(/^I am on the drill's page\.$/) do 
-    visit('/drills/' + )
+    visit('/drills/' )
 end
 
 Given(/^The drill has an exercise called "(.*?)"\.$/) do |title|
