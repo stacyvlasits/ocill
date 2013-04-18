@@ -1,12 +1,5 @@
 Ocill::Application.routes.draw do
 
-<<<<<<< HEAD
-  resources :courses
-
-  resources :lessons
-
-  resources :drills do
-=======
   resources :audio, :exercise_items, :exercises, :courses
 
   resources :lessons do
@@ -25,27 +18,12 @@ Ocill::Application.routes.draw do
       post 'submit'
     end
     
->>>>>>> experiments
     resources :exercises do
       resources :exercise_items
     end
   end
 
-<<<<<<< HEAD
-  resources :exercises
-
-  resources :exercise_items
   
-  match 'drills/:id/row/add' => 'drills#add_row'
-
-  match 'drills/:id/column/add' => 'drills#add_column'
-
-  match 'drills/:id/row/remove(/:exercise_id)' => 'drills#remove_row'
-
-  match 'drills/:id/column/remove(/:header_id)' => 'drills#remove_column'
-=======
-  
->>>>>>> experiments
 
   root :to => "drills#index"
 

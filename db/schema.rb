@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130207223010) do
-=======
 ActiveRecord::Schema.define(:version => 20130301183231) do
->>>>>>> experiments
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -45,10 +41,6 @@ ActiveRecord::Schema.define(:version => 20130301183231) do
     t.integer  "exercise_id"
     t.integer  "position"
     t.string   "answer"
-<<<<<<< HEAD
-    t.string   "file"
-=======
->>>>>>> experiments
     t.string   "image"
     t.string   "audio"
     t.string   "video"

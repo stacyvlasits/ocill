@@ -1,9 +1,5 @@
 require 'spec_helper'
 describe GridDrill do
-<<<<<<< HEAD
-
-=======
->>>>>>> experiments
   describe '.add_column' do
     it "adds a header if none exists" do
       grid_drill = FactoryGirl.create(:grid_drill)
@@ -51,8 +47,6 @@ describe GridDrill do
     end
   end
   
-<<<<<<< HEAD
-=======
   describe ".remove_column" do
     it "should destroy the column header" do
       pending
@@ -64,7 +58,6 @@ describe GridDrill do
       pending
     end
   end
->>>>>>> experiments
   describe ".add_row" do
     it "should increase the number of exercises by one" do
       grid_drill = FactoryGirl.create(:grid_drill)
@@ -73,8 +66,6 @@ describe GridDrill do
       grid_drill.exercises.size.should be == initial_num + 1
     end
   end
-<<<<<<< HEAD
-=======
 
   describe ".remove_row" do
     it "should remove one exercise and all its children" do
@@ -89,7 +80,6 @@ describe GridDrill do
     end
   end
 
->>>>>>> experiments
   describe '.columns' do
     it "tells how many elements are in the header_row" do
       grid_drill = FactoryGirl.create(:grid_drill)

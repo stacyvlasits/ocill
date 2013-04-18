@@ -14,31 +14,12 @@
   <div class="control-group">
     <%= f.label :instructions, :class => 'control-label' %>
     <div class="controls">
-<<<<<<< HEAD
-      <%= f.text_area :instructions, :size => "20x2", :class => 'text_area tinymce' %>
-=======
       <%= f.text_area :instructions, :rows => 1, :cols => 80, :class => 'text_area tinymce' %>
->>>>>>> experiments
     </div>
   </div>
   <div class="control-group">
     <%= f.label :prompt, :class => 'control-label' %>
     <div class="controls">
-<<<<<<< HEAD
-      <%= f.text_area :prompt, :size => "20x2", :class => 'tinymce' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :type, :class => 'control-label' %>
-    <div class="controls">
-    <%= select("drill", "type", ["GridDrill"].zip(Drill.all.each.collect {|d| d.type}).flatten.compact.uniq , {:prompt => 'Select a Drill Type', :selected => @drill.type }) %>
-      <%= 
-        render @drill.type.to_s.underscore + '_fields', :f => f unless @drill.type.nil? || @drill.type.empty?
-      %>
-    </div>
-  </div>
-
-=======
       <%= f.text_area :prompt, :size => "20x1", :class => 'tinymce' %>
     </div>
   </div>
@@ -59,7 +40,6 @@
     </div>
   </div>
       
->>>>>>> experiments
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), drills_path, :class => 'btn' %>

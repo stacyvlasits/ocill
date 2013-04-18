@@ -11,14 +11,9 @@ class AudioUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::IsolatedHelper
   include CarrierWaveDirect::Uploader
   # Choose what kind of storage to use for this uploader:
-<<<<<<< HEAD
-  # storage :file
-  storage :fog
-=======
 
   include CarrierWave::MimeTypes
   process :set_content_type
->>>>>>> experiments
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

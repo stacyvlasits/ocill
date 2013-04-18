@@ -42,25 +42,18 @@ group :development do
   gem 'debugger'
   gem 'hirb'
   gem 'jist'
-<<<<<<< HEAD
-=======
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'guard-cucumber'
->>>>>>> experiments
 end
 
 group :test do
   gem "factory_girl_rails", "~> 4.0"
-<<<<<<< HEAD
-  gem "capybara"
-=======
 # adding 2.0.3 declaration may fix capybara-webkit issues
 # per: http://stackoverflow.com/questions/15996969/capybara-webkit-page-should-have-content-not-implemented  
   gem "capybara", "2.0.3"
   gem "capybara-webkit"
->>>>>>> experiments
   gem "guard-rspec"
   gem "launchy"
   gem "cucumber-rails"

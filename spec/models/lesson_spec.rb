@@ -23,23 +23,4 @@ describe Lesson do
       expect(lesson.parent).to eq(lesson.course)
     end 
   end
-<<<<<<< HEAD
- 
-  describe ".set_default_values" do 
-    it "doesn't change the value of .position if .position is already set" do
-      lesson = FactoryGirl.create(:lesson)
-      position = lesson.position
-      expect(lesson.send(:set_default_values)).to eq(position)
-    end
-
-    it "sets .position to a number if it isn't one already" do
-      lesson = FactoryGirl.create(:lesson)      
-      lesson.position = nil
-      lesson.send(:set_default_values).should be_an_instance_of(Fixnum)
-    end    
-  end
-
-end
-=======
  end
->>>>>>> experiments

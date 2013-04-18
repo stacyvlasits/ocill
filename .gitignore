@@ -5,19 +5,6 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 # Ignore bundler config
-<<<<<<< HEAD
-.bundle
-
-# Ignore the default SQLite database.
-db/*.sqlite3
-
-# Ignore all logfiles and tempfiles.
-log/*.log
-tmp
-.env
-# Ignore photo documentation
-doc/photodocs
-=======
 /.bundle
 
 # Ignore the default SQLite database.
@@ -29,16 +16,9 @@ doc/photodocs
 .env
 # Ignore photo documentation
 /doc/photodocs
->>>>>>> experiments
 *.sublime*
 # Ignore mac files
 .DS_Store
 
-<<<<<<< HEAD
-# Ignore config
-config/database.yml
-config/application.yml
-=======
 /config/database.yml
 /config/application.yml
->>>>>>> experiments

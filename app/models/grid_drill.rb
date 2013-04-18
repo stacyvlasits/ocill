@@ -5,10 +5,7 @@ class GridDrill < Drill
   end
 
   def add_column(header_name='Header')
-<<<<<<< HEAD
-=======
     self.save!
->>>>>>> experiments
     header = self.headers.create(:title => header_name)
     if self.exercises.empty?
       self.exercises.create(:title => "Title", :prompt => "Prompt")
@@ -19,28 +16,19 @@ class GridDrill < Drill
   end
 
   def add_row(prompt='Prompt')
-<<<<<<< HEAD
-=======
     self.save!
->>>>>>> experiments
     exercise = self.exercises.create(:title => "Title", :prompt => prompt)
     exercise.make_cells_for_row
   end
 
   def remove_row(exercise_id)
-<<<<<<< HEAD
-=======
     self.save!
->>>>>>> experiments
     exercise = self.exercises.find(exercise_id)
     exercise.destroy
   end
 
   def remove_column(header_id)
-<<<<<<< HEAD
-=======
     self.save!
->>>>>>> experiments
     exercise_items = self.exercise_items.where(header_id: header_id) 
     exercise_items.each do |ei|
       ei.destroy
@@ -54,11 +42,4 @@ class GridDrill < Drill
   def columns
     headers.size
   end
-<<<<<<< HEAD
-
-  def set_default_headers
-    self.headers.create(:title => "Header Title")
-   end
-=======
->>>>>>> experiments
 end

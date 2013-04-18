@@ -1,7 +1,4 @@
 class ExercisesController < InheritedResources::Base
-<<<<<<< HEAD
-  respond_to :json
-=======
   respond_to :html, :json
   def new
     @drill = Drill.find(params[:drill_id])
@@ -11,5 +8,4 @@ class ExercisesController < InheritedResources::Base
       format.js 
     end 
   end
->>>>>>> experiments
 end

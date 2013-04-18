@@ -1,6 +1,4 @@
 module DrillsHelper
-<<<<<<< HEAD
-=======
   def show_headers(drill)
     html = "<thead><tr>"
     html += '<th scope="col">' + ( drill.title || "&nbsp;" ) + '</th>'
@@ -34,5 +32,4 @@ module DrillsHelper
         html = "&nbsp;"
       end 
   end
->>>>>>> experiments
 end
