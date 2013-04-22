@@ -8,5 +8,10 @@ class AttemptsController < InheritedResources::Base
     end
   end 
 
+  def create
+    super do |format|
+      format.html { redirect_to drills_path }
+    end
+  end
 
 end
