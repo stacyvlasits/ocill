@@ -91,3 +91,11 @@ rails g migration CreateRolesUsers
 rail g migration RemoveTimestampsFromRolesUsers
 
 rails g model attempt answer_id:integer
+
+rails g migration RenameAnswerToSavedAnswerInExerciseItem answer:string
+
+rails g migration RenameAnswerIDToDrillIDInAttempt
+
+rails g migration AddUserIDColumnToAttempts
+
+rails g migration RenameResponseToResponsesInAttempts

@@ -4,7 +4,7 @@
   <td><%= link_to drill.title, drill_path(drill) %></td>
 
   <td>
-    <%= link_to t('.perform', :default => t("helpers.links.do")), perform_drill_path(drill), :class => 'btn btn-mini'  %>
+    <%= link_to t('.perform', :default => t("helpers.links.attempt")), new_attempt_path(:drill_id => drill.id), :class => 'btn btn-mini'  %>
    
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_drill_path(drill), :class => 'btn btn-mini' %>

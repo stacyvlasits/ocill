@@ -15,6 +15,10 @@ class Exercise < ActiveRecord::Base
 
   after_initialize :set_default_position
 
+  def answers
+    self.exercise_items.map { |exercise_item| exercise_item.answer}
+  end
+
   def set_default_position
     self.position ||= 999999
   end

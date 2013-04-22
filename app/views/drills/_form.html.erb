@@ -36,7 +36,7 @@
     <%= # f.label :exercises, :class => 'control-label' 
     %>
     <div id="exercises" class="controls">
-      <%= render nested_folder + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
+      <%= render nested_folder(@drill) + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
     </div>
   </div>
       

@@ -9,6 +9,7 @@ module DrillsHelper
     html += '</tr></thead>'
   end
   
+
   def before_exercise_wrapper(drill)
     case drill.type
       when "GridDrill"

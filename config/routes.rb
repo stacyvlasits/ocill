@@ -2,7 +2,7 @@ Ocill::Application.routes.draw do
 
   devise_for :users
 
-  resources :audio, :exercise_items, :exercises, :courses
+  resources :audio, :exercise_items, :exercises, :courses, :attempts
 
   resources :lessons do
     resources :drills
@@ -14,8 +14,6 @@ Ocill::Application.routes.draw do
       post 'column/add' => 'drills#add_column'
       delete 'row/remove(/:exercise_id)' => 'drills#remove_row'
       delete 'column/remove(/:header_id)' => 'drills#remove_column'
-      get 'perform'
-      post 'submit'
     end
     
     resources :exercises do

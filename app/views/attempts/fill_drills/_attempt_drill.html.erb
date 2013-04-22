@@ -1,0 +1,28 @@
+<%= form_for @attempt do |f| %>
+<%- model_class = Drill -%>
+  <dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:lesson) %>:</strong></dt>
+    <dd><%= drill.lesson.title %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+    <dd><%= drill.title %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:instructions) %>:</strong></dt>
+    <dd><%= drill.instructions.to_s.html_safe %></dd>
+     <dt><strong><%= model_class.human_attribute_name(:prompt) %>:</strong></dt>
+     <dd><%= drill.prompt.to_s.html_safe %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></dt>
+    <dd>
+
+      <%= before_exercise_wrapper(drill).html_safe %>
+        <%= f.hidden_field :drill_id %> 
+        <%= f.hidden_field :responses %>
+        <%= render :partial => nested_folder(attempt) + 'attempt_exercises', :collection => drill.exercises, :as => :exercise %>
+      <%= after_exercise_wrapper(drill).html_safe %>
+    </dd>
+  </dl>
+  <div style="clear:both"></div>
+  <div class="form-actions">
+    <%= link_to t('.back', :default => t("helpers.links.back")),
+                drills_path, :class => 'btn'  %>
+    <%= f.submit nil, :id => 'attempt-submit', :class => 'btn btn-primary' %>
+  </div>
+<% end %>

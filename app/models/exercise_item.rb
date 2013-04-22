@@ -10,6 +10,14 @@ class ExerciseItem < ActiveRecord::Base
 
   after_initialize :set_default_position
 
+  def answer
+    saved_answer || special_answer
+  end
+
+  def special_answer
+    self.text
+  end
+
   def set_default_position
     self.position ||= 999999
   end

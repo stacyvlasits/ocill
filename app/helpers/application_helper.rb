@@ -12,8 +12,10 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
-  def nested_folder(folder="drills", drill=@drill)
-    '/' + folder + '/' + drill.type.to_s.underscore.pluralize + '/'
+  def nested_folder(model, sub_folder=nil)
+    folder = model.class.model_name.downcase.pluralize
+    sub_folder ||= model.respond_to?(:type) ? model.type.to_s.underscore.pluralize : model.drill.type.to_s.underscore.pluralize
+    '/' + folder + '/' + sub_folder + '/'
   end
 
   def icon(type, color='')

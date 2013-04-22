@@ -1,6 +1,3 @@
-<li> <%= exercise.prompt.html_safe %>
-  <% exercise.exercise_items.sort_by(&:position).each do |item| %>
-    <span><%=  #item.content[:text] 
-              %></span>
-  <% end %>
+<li class="fill-drill-prompt"> 
+  <%= perform_fill_drill_exercises(exercise).html_safe %>
 </li>

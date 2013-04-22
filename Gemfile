@@ -48,7 +48,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'guard-cucumber'
 end
 
 group :test do
@@ -61,6 +60,7 @@ group :test do
   gem "launchy"
   gem "cucumber-rails"
   gem "database_cleaner"
+  gem 'guard-cucumber'
 end
 
 group :development, :test do

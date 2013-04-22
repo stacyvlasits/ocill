@@ -8,6 +8,6 @@
   </td>
   
   <%= f.fields_for :exercise_items do |builder| %>
-    <%= render nested_folder + 'exercise_item_fields', :f => builder %>
+    <%= render nested_folder(@drill) + 'exercise_item_fields', :f => builder %>
   <% end %>
 <tr>

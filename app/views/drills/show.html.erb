@@ -16,7 +16,7 @@
   <dd>
 
     <%= before_exercise_wrapper(@drill).html_safe %>    
-      <%= render :partial => nested_folder + 'show_exercises', :collection => @drill.exercises, :as => :exercise %>
+      <%= render :partial => nested_folder(@drill) + 'show_exercises', :collection => @drill.exercises, :as => :exercise %>
     <%= after_exercise_wrapper(@drill).html_safe %>
   </dd>
 </dl>
