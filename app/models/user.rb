@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 #  has_many :lessons, :through => :matriculations
 #  has_many :drills, :through => :matriculations
 #  has_many :drills, :through => :attempts
-#  has_many :attempts, :through => :assessments 
+#  has_many :attempts, :through => :assessments
 
   has_many :attempts
   has_many :drills, :through => :attempts

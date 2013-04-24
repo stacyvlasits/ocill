@@ -1,5 +1,5 @@
 class AudioController < InheritedResources::Base
-  respond_to :json  
+  respond_to :json
 
   def new
     @exercise_item = ExerciseItem.find(params[:id]) || ExerciseItem.new

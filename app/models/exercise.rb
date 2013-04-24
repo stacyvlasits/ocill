@@ -31,7 +31,7 @@ class Exercise < ActiveRecord::Base
     self.position <=> object.position
   end
   
-# start METHODS for grid_drills    
+# start METHODS for grid_drills
   def make_cells_for_row
     (drill.headers.size).times do |num|
       header_id = drill.headers.sort_by(&:position)[num].id
@@ -44,7 +44,7 @@ class Exercise < ActiveRecord::Base
   end
 # end METHODS for grid_drills
 
-# start METHODS for fill_drills  
+# start METHODS for fill_drills
   def fill_in_the_blank
     self.prompt
   end
@@ -63,7 +63,7 @@ class Exercise < ActiveRecord::Base
     end
   end
 
-# end METHODS for fill_drills 
+# end METHODS for fill_drills
   def siblings
     self.drill.exercises.sort
   end

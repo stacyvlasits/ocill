@@ -11,15 +11,15 @@ class Attempt < ActiveRecord::Base
   end
 
   def correct
-    graded_responses.select {|response| response == true }.count    
+    graded_responses.select {|response| response == true }.count
   end
 
   def incorrect
-    graded_responses.count - correct 
+    graded_responses.count - correct
   end
 
   def graded_responses
-    answers.each_with_index.map { |answer, index| (answer == responses[index]) || answer } 
+    answers.each_with_index.map { |answer, index| (answer == responses[index]) || answer }
   end
 
   def answers

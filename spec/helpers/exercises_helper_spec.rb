@@ -5,5 +5,5 @@ describe ExercisesHelper do
     it "removes the answers" do
       pending
     end
-  end    
+  end
 end

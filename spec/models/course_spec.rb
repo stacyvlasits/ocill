@@ -8,7 +8,7 @@ describe Course do
     end
 
     it "is the same as .lessons when lessons don't exist" do
-      course = FactoryGirl.create(:course)    
+      course = FactoryGirl.create(:course)
       expect(course.children).to eq(course.lessons)
     end
 

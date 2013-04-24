@@ -39,7 +39,7 @@ Feature: Content Creator Makes a FillDrill
 # Commented out steps fail because they rely on javascript
 #		And I fill in the ".fill-in-the-blank-field" input with "This is a [FillDrill].".
 		And I click on "Update Drill"
-		And I "show" the drill. 		
+		And I "show" the drill.
 #		Then I should see "This is a [FillDrill].".
 
 	

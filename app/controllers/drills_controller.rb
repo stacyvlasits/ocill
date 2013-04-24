@@ -2,7 +2,7 @@ class DrillsController < InheritedResources::Base
   respond_to :json
   
   def new
-    if params[:lesson_id] 
+    if params[:lesson_id]
       @lesson = Lesson.find(params[:lesson_id])
       @drill = @lesson.drills.build
     else

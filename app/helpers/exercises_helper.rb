@@ -1,5 +1,5 @@
 module ExercisesHelper
-# TODO change so that 'perform_fill_drill_exercises(exercise, attempt)' 
+# TODO change so that 'perform_fill_drill_exercises(exercise, attempt)'
   def attempt_fill_drill_exercises(exercise)
     initial_prompt = exercise.prompt
     hint = '<span class="hint">' + initial_prompt[/\(.+?\)/] + '</span>'

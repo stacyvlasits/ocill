@@ -7,7 +7,7 @@ describe Lesson do
     end
 
     it "is the same as .drills when drills don't exist" do
-      lesson = FactoryGirl.create(:lesson)    
+      lesson = FactoryGirl.create(:lesson)
       expect(lesson.children).to eq(lesson.drills)
     end
 
@@ -21,6 +21,6 @@ describe Lesson do
     it "is the same as .course when course exists" do
       lesson = FactoryGirl.create(:lesson)
       expect(lesson.parent).to eq(lesson.course)
-    end 
+    end
   end
  end

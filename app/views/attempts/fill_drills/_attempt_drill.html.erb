@@ -13,7 +13,7 @@
     <dd>
 
       <%= before_exercise_wrapper(drill).html_safe %>
-        <%= f.hidden_field :drill_id %> 
+        <%= f.hidden_field :drill_id %>
         <%= f.hidden_field :responses %>
         <%= render :partial => nested_folder(attempt) + 'attempt_exercises', :collection => drill.exercises, :as => :exercise %>
       <%= after_exercise_wrapper(drill).html_safe %>

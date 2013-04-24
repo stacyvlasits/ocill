@@ -25,14 +25,14 @@ module ApplicationHelper
       icon = '<i class="icon-' + type + color + '"></i>'
     else
       icon = type
-    end 
+    end
     icon.html_safe
   end
 
   def nested_child_index(f)
     model = f.object.class.name.underscore.pluralize + "_attributes"
     attributes = f.object_name.scan(/(?<=\[)[^\]]+?(?=\])/)
-    raise "nested_child_index couldn't find a matching attribute" unless attributes.index(model) 
+    raise "nested_child_index couldn't find a matching attribute" unless attributes.index(model)
     index = attributes[attributes.index(model) + 1].to_i
   end
 end

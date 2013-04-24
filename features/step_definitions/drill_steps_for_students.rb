@@ -7,7 +7,7 @@ When(/^I am on the "(.*?)" page\.$/) do |model|
   visit('/' + model)
 end
 
-When(/^I am on the drill's page\.$/) do 
+When(/^I am on the drill's page\.$/) do
     visit('/drills/' )
 end
 
