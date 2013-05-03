@@ -14,16 +14,25 @@
 
       <%= before_exercise_wrapper(drill).html_safe %>
         
-        <% f.fields_for :responses do |f| %>
-          <%= render :partial => nested_folder(attempt) + action_name + '_attempt_exercises', :locals => {:f => f , :exercises => drill.exercises} %>
+        <% drill.exercises.each do |exercise| %>
+          <%= render :partial => nested_folder(attempt) + action_name + '_attempt_exercises', :locals => {:f => f, :exercise => exercise, :attempt => @attempt } %>
         <% end %>
        <%= after_exercise_wrapper(drill).html_safe %>
     </dd>
+    <% if action_name == "show" %>
+      <dt><strong><%= Attempt.human_attribute_name(:score) %>:</strong></dt>
+      <dd><%= @attempt.score.html_safe %></dd>
+    <% end %>
   </dl>
   <div style="clear:both"></div>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
                 drills_path, :class => 'btn'  %>
+    <% if action_name == "show" %>
+    <%= link_to "Attempt Again",
+                edit_attempt_path, :class => 'btn btn-primary'  %>
+    <% elsif action_name == "new" %>
     <%= f.submit nil, :id => 'attempt-submit', :class => 'btn btn-primary' %>
+    <% end %>
   </div>
 <% end %>

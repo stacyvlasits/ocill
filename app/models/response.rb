@@ -4,7 +4,7 @@ class Response < ActiveRecord::Base
   belongs_to :attempt
   belongs_to :exercise_item
 
-  def correct_answer
+  def answer
     self.exercise_item.answer
   end
 
