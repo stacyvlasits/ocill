@@ -5,7 +5,7 @@
       <%= f.fields_for :headers do |builder| %>
         <%= render nested_folder(@drill) + 'header_fields', f: builder %>
       <% end %>
-      <th class="add_column"><%= link_to "Add Column", { controller: "drills", action: "add_column" },class: "submit-form" %></th>
+      <th class="add_column"><%= link_to "Add Column", column_add_drill_path(@drill) ,class: "submit-form" %></th>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +13,7 @@
         <%= render nested_folder(@drill) + 'exercise_fields', :f => builder %>
     <% end %>
     <tr>
-      <td class="add_row"><%= link_to "Add Row", {controller: "drills", action: "add_row" }, class: "submit-form" %></td>
+      <td class="add_row"><%= link_to "Add Row", row_add_drill_path(@drill), class: "submit-form" %></td>
     </tr>
   </tbody>
 </table>
