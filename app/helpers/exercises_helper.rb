@@ -10,3 +10,5 @@ module ExercisesHelper
     pre_prompt + final_prompt + post_prompt + hint
   end
 end
+
+

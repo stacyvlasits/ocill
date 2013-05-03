@@ -20,7 +20,7 @@ rails generate migration AddExerciseIDToExerciseItems exercise_id:integer
 
 rails generate migration AddExerciseItemIDToMediaItems exercise_item_id:integer
 
-rails generate model Template name:string desc:text 
+rails generate model Template name:string desc:text
 
 rails generate migration RenameTypeToExerciseItemTypeInExerciseItems
 
@@ -78,7 +78,7 @@ rails g migration RenameHeaderDrillIDtoGridDrillID
 
 rails g migration AddHeaderColumnToExerciseItem header_id:integer
 
-rails g migration RemoveExerciseItemColumnFromHeader exercise_item_id:integer 
+rails g migration RemoveExerciseItemColumnFromHeader exercise_item_id:integer
 
 rails g migration RemoveColumnColumnFromExerciseItem column:string
 
@@ -99,3 +99,6 @@ rails g migration RenameAnswerIDToDrillIDInAttempt
 rails g migration AddUserIDColumnToAttempts
 
 rails g migration RenameResponseToResponsesInAttempts
+
+rails g model Response exercise_item_it:integer attempt_id value:string
+rails g migration ChangeColumnResponseValueToText

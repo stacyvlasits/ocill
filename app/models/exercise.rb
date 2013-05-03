@@ -3,10 +3,8 @@ class Exercise < ActiveRecord::Base
   include Comparable
 
   attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes
-
   belongs_to :drill
   alias :parent :drill
-  
   has_many :exercise_items, :order => "position ASC", :dependent => :destroy, :autosave => true
   alias :children :exercise_items
   
@@ -45,6 +43,14 @@ class Exercise < ActiveRecord::Base
 # end METHODS for grid_drills
 
 # start METHODS for fill_drills
+  def hint
+    self.prompt[/\(.+?\)/]
+  end
+
+  def hintless_prompt
+    self.prompt.gsub(/\(.+?\)/, '')
+  end
+
   def fill_in_the_blank
     self.prompt
   end

@@ -5,6 +5,8 @@ class ExerciseItem < ActiveRecord::Base
   mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
 
+  has_many :responses
+
   belongs_to :exercise
   belongs_to :header
 

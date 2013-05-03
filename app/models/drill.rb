@@ -7,7 +7,7 @@ class Drill < ActiveRecord::Base
   alias :children :exercises
   has_many :attempts
   has_many :exercise_items, :through => :exercises, :autosave => true
-  has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true 
+  has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
   accepts_nested_attributes_for :exercises, allow_destroy: true
   accepts_nested_attributes_for :headers, allow_destroy: true
  
@@ -25,7 +25,7 @@ class Drill < ActiveRecord::Base
     self.exercises.size
   end
 
-  def set_default_title 
+  def set_default_title
     self.title = "Default Title" if self.title.blank?
   end
 end

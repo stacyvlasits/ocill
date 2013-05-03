@@ -1,0 +1,11 @@
+<% exercises.each do |exercise| %>
+  <li class="fill-drill-exercise">
+    <% exercise.prompt %>
+    <% html = exercise.hintless_prompt %>
+
+    
+    <%= html.html_safe %>
+
+    <span class="hint"><%= exercise.hint %></span>
+  </li>
+<% end %>

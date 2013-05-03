@@ -13,10 +13,11 @@
     <dd>
 
       <%= before_exercise_wrapper(drill).html_safe %>
-        <%= f.hidden_field :drill_id %>
-        <%= f.hidden_field :responses %>
-        <%= render :partial => nested_folder(attempt) + 'attempt_exercises', :collection => drill.exercises, :as => :exercise %>
-      <%= after_exercise_wrapper(drill).html_safe %>
+        
+        <% f.fields_for :responses do |f| %>
+          <%= render :partial => nested_folder(attempt) + action_name + '_attempt_exercises', :locals => {:f => f , :exercises => drill.exercises} %>
+        <% end %>
+       <%= after_exercise_wrapper(drill).html_safe %>
     </dd>
   </dl>
   <div style="clear:both"></div>

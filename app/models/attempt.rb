@@ -1,28 +1,23 @@
 class Attempt < ActiveRecord::Base
-  attr_accessible :drill_id, :responses, :user_id
-  serialize :responses
+  attr_accessible :drill_id, :user_id
+  has_many :responses
   belongs_to :drill
   belongs_to :user
-
-  before_validation :parse_responses
-
-  def parse_responses
-    self.responses = self.responses.split("&&&")
-  end
+  accepts_nested_attributes_for :responses, allow_destroy: true
 
   def correct
-    graded_responses.select {|response| response == true }.count
+    gradesheet.select {|el| el[0] == el[1] }.count
   end
 
   def incorrect
-    graded_responses.count - correct
+    grade_sheet.count - correct
   end
 
-  def graded_responses
-    answers.each_with_index.map { |answer, index| (answer == responses[index]) || answer }
+  def grade_sheet
+    responses.each_with_index.map { |response, index| [response.value, response.answer] }
   end
 
   def answers
-    self.drill.answers
+    self.responses.answer
   end
 end
