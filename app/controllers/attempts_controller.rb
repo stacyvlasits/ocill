@@ -7,10 +7,7 @@ class AttemptsController < InheritedResources::Base
     else
       not_found 'There is no drill here for you attempt'
     end
-    
     new_responses.times { @attempt.responses.build }
-      
-    
   end
 
   def create

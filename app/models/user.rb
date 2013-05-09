@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 #  has_many :drills, :through => :attempts
 #  has_many :attempts, :through => :assessments
 
+  has_many :roles
   has_many :attempts
   has_many :drills, :through => :attempts
 

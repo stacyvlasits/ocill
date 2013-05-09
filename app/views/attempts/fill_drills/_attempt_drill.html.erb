@@ -29,10 +29,11 @@
     <%= link_to t('.back', :default => t("helpers.links.back")),
                 drills_path, :class => 'btn'  %>
     <% if action_name == "show" %>
-    <%= link_to "Attempt Again",
-                edit_attempt_path, :class => 'btn btn-primary'  %>
+      <%= link_to "Attempt Again", edit_attempt_path, :class => 'btn btn-primary'  %>
     <% elsif action_name == "new" %>
-    <%= f.submit nil, :id => 'attempt-submit', :class => 'btn btn-primary' %>
+      <%= f.submit nil, :id => 'attempt-submit', :class => 'btn btn-primary' %>
+    <% elsif action_name == "edit" %>
+      <%= f.submit nil, :id => 'attempt-submit', :class => 'btn btn-primary' %>
     <% end %>
   </div>
 <% end %>
