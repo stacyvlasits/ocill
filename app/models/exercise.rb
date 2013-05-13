@@ -3,10 +3,8 @@ class Exercise < ActiveRecord::Base
   include Comparable
 
   attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes
-
   belongs_to :drill
   alias :parent :drill
-  
   has_many :exercise_items, :order => "position ASC", :dependent => :destroy, :autosave => true
   alias :children :exercise_items
   
@@ -14,6 +12,10 @@ class Exercise < ActiveRecord::Base
   validates :prompt, :presence => true
 
   after_initialize :set_default_position
+
+  def answers
+    self.exercise_items.map { |exercise_item| exercise_item.answer}
+  end
 
   def set_default_position
     self.position ||= 999999
@@ -27,7 +29,7 @@ class Exercise < ActiveRecord::Base
     self.position <=> object.position
   end
   
-# start METHODS for grid_drills    
+# start METHODS for grid_drills
   def make_cells_for_row
     (drill.headers.size).times do |num|
       header_id = drill.headers.sort_by(&:position)[num].id
@@ -40,7 +42,15 @@ class Exercise < ActiveRecord::Base
   end
 # end METHODS for grid_drills
 
-# start METHODS for fill_drills  
+# start METHODS for fill_drills
+  def hint
+    self.prompt[/\(.+?\)/]
+  end
+
+  def hintless_prompt
+    self.prompt.gsub(/\(.+?\)/, '')
+  end
+
   def fill_in_the_blank
     self.prompt
   end
@@ -59,7 +69,7 @@ class Exercise < ActiveRecord::Base
     end
   end
 
-# end METHODS for fill_drills 
+# end METHODS for fill_drills
   def siblings
     self.drill.exercises.sort
   end

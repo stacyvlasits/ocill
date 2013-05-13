@@ -131,7 +131,7 @@
 			"file": "app/views/drills/_exercise_fields.html.erb",
 			"settings":
 			{
-				"buffer_size": 485,
+				"buffer_size": 328,
 				"line_ending": "Unix"
 			}
 		},
@@ -139,7 +139,7 @@
 			"file": "app/views/drills/_exercise_item_fields.html.erb",
 			"settings":
 			{
-				"buffer_size": 318,
+				"buffer_size": 204,
 				"line_ending": "Unix"
 			}
 		},
@@ -147,7 +147,7 @@
 			"file": "app/views/drills/_media_item_fields.html.erb",
 			"settings":
 			{
-				"buffer_size": 338,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
@@ -155,7 +155,7 @@
 			"file": "app/models/course.rb",
 			"settings":
 			{
-				"buffer_size": 384,
+				"buffer_size": 291,
 				"line_ending": "Unix"
 			}
 		},
@@ -163,7 +163,7 @@
 			"file": "app/models/lesson.rb",
 			"settings":
 			{
-				"buffer_size": 332,
+				"buffer_size": 441,
 				"line_ending": "Unix"
 			}
 		},
@@ -171,7 +171,7 @@
 			"file": "app/models/drill.rb",
 			"settings":
 			{
-				"buffer_size": 437,
+				"buffer_size": 959,
 				"line_ending": "Unix"
 			}
 		},
@@ -179,7 +179,7 @@
 			"file": "app/models/exercise.rb",
 			"settings":
 			{
-				"buffer_size": 386,
+				"buffer_size": 2022,
 				"line_ending": "Unix"
 			}
 		},
@@ -187,7 +187,7 @@
 			"file": "app/assets/javascripts/drills.js.coffee",
 			"settings":
 			{
-				"buffer_size": 631,
+				"buffer_size": 1558,
 				"line_ending": "Unix"
 			}
 		},
@@ -195,7 +195,7 @@
 			"file": "app/views/layouts/application.html.erb",
 			"settings":
 			{
-				"buffer_size": 1913,
+				"buffer_size": 1630,
 				"line_ending": "Unix"
 			}
 		},
@@ -402,7 +402,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"-*201210*,-*.log",
@@ -615,15 +615,15 @@
 					"file": "app/views/drills/_exercise_fields.html.erb",
 					"settings":
 					{
-						"buffer_size": 485,
+						"buffer_size": 328,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								485,
-								485
+								0,
+								0
 							]
 						],
 						"settings":
@@ -647,15 +647,15 @@
 					"file": "app/views/drills/_exercise_item_fields.html.erb",
 					"settings":
 					{
-						"buffer_size": 318,
+						"buffer_size": 204,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								217,
-								217
+								0,
+								0
 							]
 						],
 						"settings":
@@ -677,15 +677,15 @@
 					"file": "app/views/drills/_media_item_fields.html.erb",
 					"settings":
 					{
-						"buffer_size": 338,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								338,
-								338
+								0,
+								0
 							]
 						],
 						"settings":
@@ -706,15 +706,15 @@
 					"file": "app/models/course.rb",
 					"settings":
 					{
-						"buffer_size": 384,
+						"buffer_size": 291,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								132,
-								132
+								0,
+								0
 							]
 						],
 						"settings":
@@ -735,15 +735,15 @@
 					"file": "app/models/lesson.rb",
 					"settings":
 					{
-						"buffer_size": 332,
+						"buffer_size": 441,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								78,
-								78
+								0,
+								0
 							]
 						],
 						"settings":
@@ -764,65 +764,7 @@
 					"file": "app/models/drill.rb",
 					"settings":
 					{
-						"buffer_size": 437,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								437,
-								437
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 412.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/models/exercise.rb",
-					"settings":
-					{
-						"buffer_size": 386,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								313,
-								313
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 257.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app/assets/javascripts/drills.js.coffee",
-					"settings":
-					{
-						"buffer_size": 631,
+						"buffer_size": 959,
 						"regions":
 						{
 						},
@@ -838,7 +780,71 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 412.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/models/exercise.rb",
+					"settings":
+					{
+						"buffer_size": 2022,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 257.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/assets/javascripts/drills.js.coffee",
+					"settings":
+					{
+						"buffer_size": 1558,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								163,
+								163
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -857,15 +863,15 @@
 					"file": "app/views/layouts/application.html.erb",
 					"settings":
 					{
-						"buffer_size": 1913,
+						"buffer_size": 1630,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								772,
-								772
+								0,
+								0
 							]
 						],
 						"settings":
@@ -991,7 +997,9 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

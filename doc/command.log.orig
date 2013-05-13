@@ -1,0 +1,107 @@
+rails generate scaffold Drill title:string prompt:text instructions:text order:integer responses:integer
+
+rails generate scaffold Exercise title:string weight:decimal prompt:text column_names:text order:integer
+
+rails generate model ExerciseItem text:string scored:boolean type:string
+
+rails generate model MediaItem name:string url:string type:string
+
+rails generate model Course title:string order:integer
+
+rails generate model Lesson title:string order:integer
+
+rails generate migration AddLessonIDToDrills lesson_id:integer
+
+rails generate migration AddCourseIDToLessons course_id:integer
+
+rails generate migration AddDrillIDToExercises drill_id:integer
+
+rails generate migration AddExerciseIDToExerciseItems exercise_id:integer
+
+rails generate migration AddExerciseItemIDToMediaItems exercise_item_id:integer
+
+rails generate model Template name:string desc:text
+
+rails generate migration RenameTypeToExerciseItemTypeInExerciseItems
+
+rails g migration RemoveColumnNamesFromExercises column_names:text
+
+rails g scaffold Course --migration=false --skip
+
+rails g scaffold Course --migration=false --skip
+
+rails g bootstrap:themed lessons -f
+
+rails g bootstrap:themed courses -f
+
+rails g migration RenameOrderToPositionInDrills
+
+rails g migration RenameResponsesToExerciseItemsPerExerciseInDrills
+
+rails g bootstrap:themed lessons -f
+
+GET READY FOR CARRIER WAVE:
+
+rails g migration AddTypeToDrills type:string
+
+rails g uploader image
+
+rails g uploader sound
+
+rails g migration RenameExerciseItemTypeToTypeInExerciseItems
+
+rails g migration AddFileToExerciseItems file:string
+
+rails g uploader file
+
+rails g controller ListeningDrill
+
+rails d controller ListeningDrill
+
+rails g controller ListeningDrills new edit create
+
+rails g migration RemoveExerciseItemsPerExerciseFromDrills
+
+rails g migration RemoveTemplateIdFromDrills template_id:integer
+
+rails g migration RenameColumnNamesToHeaderRow
+
+rails generate migration RemoveActiveAdminVestiges
+
+rails generate migration DropTemplateTable
+
+rails generate migration AddMediaColumnsExerciseItems
+
+rails generate model Header drill_id:integer title:string position:integer exercise_item_id
+
+rails g migration RenameHeaderDrillIDtoGridDrillID
+
+rails g migration AddHeaderColumnToExerciseItem header_id:integer
+
+rails g migration RemoveExerciseItemColumnFromHeader exercise_item_id:integer
+
+rails g migration RemoveColumnColumnFromExerciseItem column:string
+
+rails g migration RemoveFileFromExerciseItems file:string
+<<<<<<< HEAD
+=======
+
+rails g migration CreateRoles name:string
+
+rails g migration CreateRolesUsers
+
+rail g migration RemoveTimestampsFromRolesUsers
+
+rails g model attempt answer_id:integer
+
+rails g migration RenameAnswerToSavedAnswerInExerciseItem answer:string
+
+rails g migration RenameAnswerIDToDrillIDInAttempt
+
+rails g migration AddUserIDColumnToAttempts
+
+rails g migration RenameResponseToResponsesInAttempts
+
+rails g model Response exercise_item_it:integer attempt_id value:string
+rails g migration ChangeColumnResponseValueToText
+>>>>>>> new-model-experiment

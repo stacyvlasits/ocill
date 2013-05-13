@@ -41,7 +41,7 @@ module Ocill
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
-    
+    # TODO determine if this is the right setting when we actually go into prod    
     config.assets.initialize_on_precompile = false
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]

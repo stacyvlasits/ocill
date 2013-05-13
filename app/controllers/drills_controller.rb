@@ -1,23 +1,8 @@
 class DrillsController < InheritedResources::Base
   respond_to :json
   
-  def perform
-    @drill = Drill.find(params[:id])
-  end
-
-  def submit
-    @drill = Drill.find(params[:id])
-      if @drill.update_attributes(params[:drill])
-      flash[:notice] = "Successfully updated drill."
-      redirect_to @drill
-    else
-      render :action => 'edit'
-    end      
-  end
-
-
   def new
-    if params[:lesson_id] 
+    if params[:lesson_id]
       @lesson = Lesson.find(params[:lesson_id])
       @drill = @lesson.drills.build
     else

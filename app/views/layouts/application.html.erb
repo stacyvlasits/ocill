@@ -29,8 +29,14 @@
             <li><%= link_to "New Drill", new_drill_path %></li>
                    </ul>
         </div> <!-- nav-collapse -->
+        <div class="nav-collapse">
+          <ul class="nav">
+            <%= render 'devise/menu/registration_items' %>
+            <%= render 'devise/menu/login_items' %>
+          </ul>
+        </div>
       </div> <!-- container -->
-    </div> <!-- navbar-inner --> 
+    </div> <!-- navbar-inner -->
   </div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>

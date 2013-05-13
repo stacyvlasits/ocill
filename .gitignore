@@ -19,6 +19,8 @@
 *.sublime*
 # Ignore mac files
 .DS_Store
+# Ignore sublime cruft
+*.sublime-workspace
 
 /config/database.yml
 /config/application.yml

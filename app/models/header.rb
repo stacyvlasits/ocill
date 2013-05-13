@@ -4,7 +4,7 @@ class Header < ActiveRecord::Base
   attr_accessible :drill_id, :position, :title
   belongs_to :drill
   has_many :exercise_items
-  after_initialize :set_default_position 
+  after_initialize :set_default_position
 
   validates :drill_id, presence: true
 

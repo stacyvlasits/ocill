@@ -12,8 +12,10 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
-  def nested_folder(folder="drills", drill=@drill)
-    '/' + folder + '/' + drill.type.to_s.underscore.pluralize + '/'
+  def nested_folder(model, sub_folder=nil)
+    folder = model.class.model_name.downcase.pluralize
+    sub_folder ||= model.respond_to?(:type) ? model.type.to_s.underscore.pluralize : model.drill.type.to_s.underscore.pluralize
+    '/' + folder + '/' + sub_folder + '/'
   end
 
   def icon(type, color='')
@@ -23,14 +25,14 @@ module ApplicationHelper
       icon = '<i class="icon-' + type + color + '"></i>'
     else
       icon = type
-    end 
+    end
     icon.html_safe
   end
 
   def nested_child_index(f)
     model = f.object.class.name.underscore.pluralize + "_attributes"
     attributes = f.object_name.scan(/(?<=\[)[^\]]+?(?=\])/)
-    raise "nested_child_index couldn't find a matching attribute" unless attributes.index(model) 
+    raise "nested_child_index couldn't find a matching attribute" unless attributes.index(model)
     index = attributes[attributes.index(model) + 1].to_i
   end
 end

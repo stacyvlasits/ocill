@@ -1,10 +1,10 @@
 <%= form_for @drill, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <label class="control-label" for="drill_lesson">Lesson</label>
-    <div class="controls">    
+    <div class="controls">
       <%= select("drill", "lesson_id", Lesson.all.sort_by(&:position).collect {|l| [ l.course.title + " ==> " + l.title, l.id ] }, {:prompt => 'Select a Lesson', :selected => @drill.lesson_id }) %>
     </div>
-  </div> 
+  </div>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
@@ -33,10 +33,10 @@
   <% end %>
 
   <div class="control-group">
-    <%= # f.label :exercises, :class => 'control-label' 
+    <%= # f.label :exercises, :class => 'control-label'
     %>
     <div id="exercises" class="controls">
-      <%= render nested_folder + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
+      <%= render nested_folder(@drill) + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
     </div>
   </div>
       

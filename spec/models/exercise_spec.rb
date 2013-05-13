@@ -5,7 +5,7 @@ describe Exercise do
     it "prevents the creation of an instance without a prompt" do
       exercise = FactoryGirl.build(:exercise)
       exercise.prompt=nil
-      exercise.valid?.should be_false  
+      exercise.valid?.should be_false
     end
   end
 

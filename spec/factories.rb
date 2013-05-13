@@ -5,7 +5,7 @@ FactoryGirl.define do
     title "Title of Course"
 
     factory :course_with_lessons do
-      ignore do 
+      ignore do
         lessons_count 5
       end
 
@@ -65,7 +65,7 @@ FactoryGirl.define do
         after(:create) do |fill_drill, evaluator|
           FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: fill_drill)
         end
-      end 
+      end
       factory :five_exercised_fill_drill, traits: [:five_exercised]
     end
 
@@ -91,7 +91,7 @@ FactoryGirl.define do
         after(:create) do |grid_drill, evaluator|
           FactoryGirl.create_list(:exercise, evaluator.exercises_count, drill: grid_drill)
         end
-      end 
+      end
       
       trait :five_exercise_itemed_five_exercised do
         ignore do
@@ -101,13 +101,13 @@ FactoryGirl.define do
         after(:create) do |grid_drill, evaluator|
           FactoryGirl.create_list(:five_childed_exercise, evaluator.exercises_count, drill: grid_drill)
         end
-      end  
+      end
 
       factory :twenty_five_grand_childed_grid_drill, traits: [:five_exercise_itemed_five_exercised]
       factory :five_exercised_grid_drill, traits: [:five_exercised]
       factory :five_headered_grid_drill, traits: [:five_headered]
       # this next one isn't used yet
-      factory :five_headered_five_exercised_grid_drill, traits: [:five_headered, :five_exercised] 
+      factory :five_headered_five_exercised_grid_drill, traits: [:five_headered, :five_exercised]
     end
   end
 
@@ -115,7 +115,7 @@ FactoryGirl.define do
     title "Title of Exercise"
     prompt "Prompt of Exercise"
 
-    drill 
+    drill
 
     trait :untitled do
       title nil
@@ -163,7 +163,7 @@ FactoryGirl.define do
 
     trait :default do
       type "Type Defined"
-    end      
+    end
 
     trait :unexercised do
       exercise nil
@@ -171,7 +171,7 @@ FactoryGirl.define do
 
     trait :headered do
       association :header, :factory => [:titled_header]
-    end      
+    end
 
     trait :five_siblinged do
       association :exercise, factory: :five_childed_exercise

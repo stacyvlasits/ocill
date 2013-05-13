@@ -9,10 +9,10 @@ class GridDrill < Drill
     header = self.headers.create(:title => header_name)
     if self.exercises.empty?
       self.exercises.create(:title => "Title", :prompt => "Prompt")
-    end 
+    end
     self.exercises.each do |exercise|
       exercise_item = exercise.exercise_items.create(:header_id => header.id)
-    end 
+    end
   end
 
   def add_row(prompt='Prompt')
@@ -29,13 +29,13 @@ class GridDrill < Drill
 
   def remove_column(header_id)
     self.save!
-    exercise_items = self.exercise_items.where(header_id: header_id) 
+    exercise_items = self.exercise_items.where(header_id: header_id)
     exercise_items.each do |ei|
       ei.destroy
     end
     headers = self.headers.where(id: header_id)
     headers.each do |h|
-      h.destroy 
+      h.destroy
     end
   end
  

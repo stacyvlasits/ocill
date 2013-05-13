@@ -5,10 +5,20 @@ class ExerciseItem < ActiveRecord::Base
   mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
 
+  has_many :responses
+
   belongs_to :exercise
   belongs_to :header
 
   after_initialize :set_default_position
+
+  def answer
+    saved_answer || special_answer
+  end
+
+  def special_answer
+    self.text
+  end
 
   def set_default_position
     self.position ||= 999999
