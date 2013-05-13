@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502151610) do
+ActiveRecord::Schema.define(:version => 20130513194555) do
 
   create_table "attempts", :force => true do |t|
     t.integer  "drill_id"
@@ -72,14 +72,6 @@ ActiveRecord::Schema.define(:version => 20130502151610) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "lessons", :force => true do |t|
-    t.string   "title"
-    t.integer  "position"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "course_id"
-  end
-
   create_table "media_items", :force => true do |t|
     t.string   "name"
     t.string   "url"
@@ -109,6 +101,14 @@ ActiveRecord::Schema.define(:version => 20130502151610) do
     t.integer "user_id"
   end
 
+  create_table "units", :force => true do |t|
+    t.string   "title"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "course_id"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -128,14 +128,14 @@ ActiveRecord::Schema.define(:version => 20130502151610) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-  add_foreign_key "drills", "lessons", :name => "drills_lesson_id_fk"
+  add_foreign_key "drills", "units", :name => "drills_lesson_id_fk", :column => "lesson_id"
 
   add_foreign_key "exercise_items", "exercises", :name => "exercise_items_exercise_id_fk"
 
   add_foreign_key "exercises", "drills", :name => "exercises_drill_id_fk"
 
-  add_foreign_key "lessons", "courses", :name => "lessons_course_id_fk"
-
   add_foreign_key "media_items", "exercise_items", :name => "media_items_exercise_item_id_fk"
+
+  add_foreign_key "units", "courses", :name => "lessons_course_id_fk"
 
 end
