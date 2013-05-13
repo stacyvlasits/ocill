@@ -1,4 +1,4 @@
-class Lesson < ActiveRecord::Base
+class Unit < ActiveRecord::Base
   attr_accessible :position, :title, :drills_attributes, :course_id
   belongs_to :course
   alias :parent :course

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   
   #EXPERIMENTAL
 #  has_many :courses, :through => :matriculations
-#  has_many :lessons, :through => :matriculations
+#  has_many :units, :through => :matriculations
 #  has_many :drills, :through => :matriculations
 #  has_many :drills, :through => :attempts
 #  has_many :attempts, :through => :assessments

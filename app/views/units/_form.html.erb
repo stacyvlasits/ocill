@@ -1,4 +1,4 @@
-<%= form_for @lesson, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @unit, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
@@ -14,13 +14,13 @@
   <div class="control-group">
     <%= f.label :course_id, :class => 'control-label' %>
     <div class="controls">
-      <%= select("lesson", "course_id", Course.all.sort_by(&:position).collect {|c| [ c.title, c.id ] }, {:prompt => 'Select a Course', :selected => @lesson.course_id }) %>
+      <%= select("unit", "course_id", Course.all.sort_by(&:position).collect {|c| [ c.title, c.id ] }, {:prompt => 'Select a Course', :selected => @unit.course_id }) %>
     </div>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                lessons_path, :class => 'btn' %>
+                units_path, :class => 'btn' %>
   </div>
 <% end %>

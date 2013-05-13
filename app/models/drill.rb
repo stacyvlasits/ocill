@@ -1,8 +1,8 @@
 class Drill < ActiveRecord::Base
-  attr_accessible :instructions, :lesson_id, :position, :prompt, :title, :exercises_attributes, :type, :headers_attributes
+  attr_accessible :instructions, :unit_id, :position, :prompt, :title, :exercises_attributes, :type, :headers_attributes
 
-  belongs_to :lesson
-  alias :parent :lesson
+  belongs_to :unit
+  alias :parent :unit
   has_many :exercises, :order => "position ASC", :dependent => :destroy, :autosave => true
   alias :children :exercises
   has_many :attempts
@@ -18,7 +18,7 @@ class Drill < ActiveRecord::Base
   end
 
   def course
-    self.lesson.course unless self.lesson.nil?
+    self.unit.course unless self.unit.nil?
   end
   
   def rows

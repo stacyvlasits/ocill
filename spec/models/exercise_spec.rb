@@ -23,10 +23,10 @@ describe Exercise do
     end
   end
 
-  describe ".lesson" do
-    it "should return the lesson the exercise is part of" do
+  describe ".unit" do
+    it "should return the unit the exercise is part of" do
       exercise = FactoryGirl.create(:exercise)
-      exercise.lesson.should be == exercise.drill.lesson
+      exercise.unit.should be == exercise.drill.unit
     end
   end
 end

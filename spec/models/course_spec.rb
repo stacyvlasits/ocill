@@ -2,17 +2,17 @@ require 'spec_helper'
 describe Course do
   describe ".children" do
 
-    it "is the same as .lessons when lessons exist" do
-      course_with_lessons = FactoryGirl.create(:course_with_lessons)
-      expect(course_with_lessons.children).to eq(course_with_lessons.lessons)
+    it "is the same as .units when units exist" do
+      course_with_units = FactoryGirl.create(:course_with_units)
+      expect(course_with_units.children).to eq(course_with_units.units)
     end
 
-    it "is the same as .lessons when lessons don't exist" do
+    it "is the same as .units when units don't exist" do
       course = FactoryGirl.create(:course)
-      expect(course.children).to eq(course.lessons)
+      expect(course.children).to eq(course.units)
     end
 
-    it "is empty when there are no lessons" do
+    it "is empty when there are no units" do
       course = FactoryGirl.create(:course)
       expect(course.children).to be_empty
     end

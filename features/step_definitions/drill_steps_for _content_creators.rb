@@ -1,28 +1,28 @@
 Given(/^I have drills "(.*?)" and "(.*?)"$/) do |drill1_title, drill2_title|
-    @lesson = FactoryGirl.create(:lesson)
-    @drill1 = FactoryGirl.create(:fill_drill, title: drill1_title, lesson_id: @lesson.id)
-    @drill2 = FactoryGirl.create(:fill_drill, title: drill2_title, lesson_id: @lesson.id)
+    @unit = FactoryGirl.create(:unit)
+    @drill1 = FactoryGirl.create(:fill_drill, title: drill1_title, unit_id: @unit.id)
+    @drill2 = FactoryGirl.create(:fill_drill, title: drill2_title, unit_id: @unit.id)
   end
 
-Given(/^all the drills are in lesson "(.*?)"$/) do |lesson_title|
-  @lesson.title = lesson_title
+Given(/^all the drills are in unit "(.*?)"$/) do |unit_title|
+  @unit.title = unit_title
 end
 
-When(/^I go to the lesson titled "(.*?)"$/) do |lesson_title|
-  visit('/lessons/' + @lesson.id.to_s )
+When(/^I go to the unit titled "(.*?)"$/) do |unit_title|
+  visit('/units/' + @unit.id.to_s )
 end
 
 Then(/^I should see "(.*?)"$/) do |arg1|
   page.should have_content(arg1)
 end
 
-Given(/^A lesson with no drills$/) do
-  @lesson = FactoryGirl.create(:lesson)
+Given(/^A unit with no drills$/) do
+  @unit = FactoryGirl.create(:unit)
 end
 
-When(/^I go to the lesson "(.*?)"$/) do |lesson_title|
-  @lesson = FactoryGirl.create(:lesson, title: lesson_title)
-  visit('/lessons/' + @lesson.id.to_s )
+When(/^I go to the unit "(.*?)"$/) do |unit_title|
+  @unit = FactoryGirl.create(:unit, title: unit_title)
+  visit('/units/' + @unit.id.to_s )
 end
 
 Then(/^I should see a new drill$/) do

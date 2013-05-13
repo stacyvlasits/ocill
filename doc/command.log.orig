@@ -8,11 +8,11 @@ rails generate model MediaItem name:string url:string type:string
 
 rails generate model Course title:string order:integer
 
-rails generate model Lesson title:string order:integer
+rails generate model Unit title:string order:integer
 
-rails generate migration AddLessonIDToDrills lesson_id:integer
+rails generate migration AddUnitIDToDrills unit_id:integer
 
-rails generate migration AddCourseIDToLessons course_id:integer
+rails generate migration AddCourseIDToUnits course_id:integer
 
 rails generate migration AddDrillIDToExercises drill_id:integer
 
@@ -30,7 +30,7 @@ rails g scaffold Course --migration=false --skip
 
 rails g scaffold Course --migration=false --skip
 
-rails g bootstrap:themed lessons -f
+rails g bootstrap:themed units -f
 
 rails g bootstrap:themed courses -f
 
@@ -38,7 +38,7 @@ rails g migration RenameOrderToPositionInDrills
 
 rails g migration RenameResponsesToExerciseItemsPerExerciseInDrills
 
-rails g bootstrap:themed lessons -f
+rails g bootstrap:themed units -f
 
 GET READY FOR CARRIER WAVE:
 

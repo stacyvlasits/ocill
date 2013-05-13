@@ -1,33 +1,33 @@
-<%- model_class = Lesson -%>
+<%- model_class = Unit -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @lesson.title %></dd>
+  <dd><%= @unit.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:position) %>:</strong></dt>
-  <dd><%= @lesson.position %></dd>
+  <dd><%= @unit.position %></dd>
   <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
-  <dd><%= @lesson.course_id %></dd>
+  <dd><%= @unit.course_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:drills) %>:</strong></dt>
   <dd>
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Course ( Lessons ) </th>
-          <th>Lesson ( Drills )</th>
+          <th>Course ( Units ) </th>
+          <th>Unit ( Drills )</th>
            <th>Drill Title </th>
          <th><%=t '.actions', :default => t("helpers.actions") %></th>
         </tr>
       </thead>
       <tbody>
-        <% @lesson.drills.each do |drill| %>
+        <% @unit.drills.each do |drill| %>
           <%= render partial: 'shared/list_of_drills', locals: { drill: drill } -%>
         <% end -%>
         <tr>
-          <td><%= link_to t('.new', :default => t("helpers.links.new_drill_in_lesson")),
-              new_lesson_drill_path(@lesson), :class => 'btn' %>
+          <td><%= link_to t('.new', :default => t("helpers.links.new_drill_in_unit")),
+              new_unit_drill_path(@unit), :class => 'btn' %>
           </td>
           <td></td>
           <td></td>
@@ -40,11 +40,11 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              lessons_path, :class => 'btn'  %>
+              units_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_lesson_path(@lesson), :class => 'btn' %>
+              edit_unit_path(@unit), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              lesson_path(@lesson),
+              unit_path(@unit),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

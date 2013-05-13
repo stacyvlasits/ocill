@@ -90,7 +90,7 @@ class Exercise < ActiveRecord::Base
     siblings.max
   end
 
-  def lesson
-    self.drill.lesson
+  def unit
+    self.drill.unit
   end
 end

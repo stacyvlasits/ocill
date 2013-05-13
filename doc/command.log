@@ -105,3 +105,5 @@ rails g model Response exercise_item_it:integer attempt_id value:string
 rails g migration ChangeColumnResponseValueToText
 
 rails g migration RenameLessonToUnit
+
+rails g migration RenameLessonIDToUnitIDinDrills

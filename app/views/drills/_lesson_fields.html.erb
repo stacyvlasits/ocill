@@ -1,13 +1,13 @@
   <div class="control-group">
-    <label class="control-label" for="drill_lesson">Lesson</label>
+    <label class="control-label" for="drill_unit">Unit</label>
     <div class="controls">
-      <select name="lesson">
-        <% Lesson.all.sort_by(&:position).each do |l| %>
-          <option value="<%= l.title %>" <%= (@drill.lesson && (l.title == @drill.lesson.title)) ? 'selected=selected' : '' %> >
+      <select name="unit">
+        <% Unit.all.sort_by(&:position).each do |l| %>
+          <option value="<%= l.title %>" <%= (@drill.unit && (l.title == @drill.unit.title)) ? 'selected=selected' : '' %> >
             <%= l.title %>
           </option>
         <% end %>
-        <% unless @drill.lesson %>
+        <% unless @drill.unit %>
           <option value="" selected="selected">
           </option>
         <% end %>

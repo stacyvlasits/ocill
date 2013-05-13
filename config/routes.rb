@@ -4,7 +4,7 @@ Ocill::Application.routes.draw do
 
   resources :audio, :exercise_items, :exercises, :courses, :attempts
 
-  resources :lessons do
+  resources :units do
     resources :drills
   end
   

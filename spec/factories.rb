@@ -4,29 +4,29 @@ FactoryGirl.define do
   factory :course do
     title "Title of Course"
 
-    factory :course_with_lessons do
+    factory :course_with_units do
       ignore do
-        lessons_count 5
+        units_count 5
       end
 
       after(:create) do |course, evaluator|
-        FactoryGirl.create_list(:lesson, evaluator.lessons_count, course: course)
+        FactoryGirl.create_list(:unit, evaluator.units_count, course: course)
       end
     end
   end
 
-  factory :lesson do
-    title "Title of Lesson"
+  factory :unit do
+    title "Title of Unit"
 
     course
 
-    factory :lesson_with_drills do
+    factory :unit_with_drills do
       ignore do
         drills_count 5
       end
 
-      after(:create) do |lesson, evaluator|
-        FactoryGirl.create_list(:drill, evaluator.drills_count, lesson: lesson)
+      after(:create) do |unit, evaluator|
+        FactoryGirl.create_list(:drill, evaluator.drills_count, unit: unit)
       end
     end
   end
@@ -34,7 +34,7 @@ FactoryGirl.define do
   factory :drill do
     title "Title of Drill"
 
-    lesson
+    unit
 
     trait :untitled do
       title nil

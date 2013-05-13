@@ -36,8 +36,8 @@ class Header < ActiveRecord::Base
     siblings.max
   end
 
-  def lesson
-    self.drill.lesson
+  def unit
+    self.drill.unit
   end
 
   def set_default_position

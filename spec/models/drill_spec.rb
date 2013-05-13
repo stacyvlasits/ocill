@@ -9,9 +9,9 @@ describe Drill do
   end
 
   describe '.parent' do
-    it "returns the lesson to which the drill belongs" do
+    it "returns the unit to which the drill belongs" do
       drill = FactoryGirl.create(:drill)
-      drill.parent.should be == drill.lesson
+      drill.parent.should be == drill.unit
     end
   end
 

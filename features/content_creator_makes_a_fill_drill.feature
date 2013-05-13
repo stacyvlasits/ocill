@@ -3,17 +3,17 @@ Feature: Content Creator Makes a FillDrill
 	A content creator
 	Should be able to create FillDrills
 
-	Scenario: View all drills in a lesson
+	Scenario: View all drills in a unit
 		Given I have drills "Conjugating 'to run'" and "Conjugating 'to walk'"
-			And all the drills are in lesson "Conjugating verbs"
-		When I go to the lesson titled "Conjugating verbs"
+			And all the drills are in unit "Conjugating verbs"
+		When I go to the unit titled "Conjugating verbs"
 		Then I should see "Conjugating 'to run'"
 			And I should see "Conjugating 'to walk'"
 
-	Scenario: Create a new drill in an lesson
-		Given A lesson with no drills
-		When I go to the lesson "Conjugating verbs"
-		And I click on "New Drill In Lesson"
+	Scenario: Create a new drill in an unit
+		Given A unit with no drills
+		When I go to the unit "Conjugating verbs"
+		And I click on "New Drill In Unit"
 		Then I should see a new drill
 			And I should see "Select a Drill Type"
 
