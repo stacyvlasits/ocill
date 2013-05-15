@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513200837) do
+ActiveRecord::Schema.define(:version => 20130514185511) do
 
   create_table "attempts", :force => true do |t|
     t.integer  "drill_id"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20130513200837) do
     t.string   "eid"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
