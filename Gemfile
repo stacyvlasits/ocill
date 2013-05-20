@@ -13,12 +13,6 @@ gem 'thin'
 gem 'devise'
 gem 'cancan'
 
-#ember!
-gem 'ember-rails', '0.4.0'
-
-# interface provided by activeadmin keep this global
-# gem 'activeadmin'
-
 # WYSIWYG provided by tinymce
 gem 'tinymce-rails'
 
