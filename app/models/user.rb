@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_and_belongs_to_many :roles
   
   #EXPERIMENTAL
 #  has_many :courses, :through => :matriculations
@@ -12,12 +11,14 @@ class User < ActiveRecord::Base
 #  has_many :drills, :through => :matriculations
 #  has_many :drills, :through => :attempts
 #  has_many :attempts, :through => :assessments
-
-  has_many :roles
+  
   has_many :attempts
   has_many :drills, :through => :attempts
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
+  attr_accessible :email, :role, :password, :password_confirmation, :remember_me
+  ROLES = %w[admin instructor student]
+
+  validates :role, :inclusion => { :in => ROLES,
+    :message => "\"%{value}\" is not a valid role" }
 end

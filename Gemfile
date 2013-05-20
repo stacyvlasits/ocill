@@ -13,9 +13,6 @@ gem 'thin'
 gem 'devise'
 gem 'cancan'
 
-# interface provided by activeadmin keep this global
-# gem 'activeadmin'
-
 # WYSIWYG provided by tinymce
 gem 'tinymce-rails'
 
