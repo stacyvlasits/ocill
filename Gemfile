@@ -13,9 +13,6 @@ gem 'thin'
 gem 'devise'
 gem 'cancan'
 
-#ember!
-gem 'ember-rails', '0.4.0'
-
 # interface provided by activeadmin keep this global
 # gem 'activeadmin'
 
@@ -77,7 +74,6 @@ group :assets do
   gem 'twitter-bootstrap-rails'
   gem 'less-rails'
   gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
