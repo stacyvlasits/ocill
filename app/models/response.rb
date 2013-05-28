@@ -4,12 +4,13 @@ class Response < ActiveRecord::Base
   belongs_to :attempt
   belongs_to :exercise_item
 
-  def answer
-    self.exercise_item.answer
+  def answers
+    self.exercise_item.answers
   end
 
   def correct?
-    self.value == self.exercise_item.answer
+    answers.include?(self.value)
   end
+
   alias :credit? :correct?
 end

@@ -13,6 +13,7 @@ When(/^I go to the unit titled "(.*?)"$/) do |unit_title|
 end
 
 Then(/^I should see "(.*?)"$/) do |arg1|
+  # binding.pry if arg1 == "Conjugating 'to walk'"
   page.should have_content(arg1)
 end
 

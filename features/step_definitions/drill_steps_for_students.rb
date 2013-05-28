@@ -1,5 +1,10 @@
 Given(/^I have a drill called "(.*?)"\.$/) do |title|
-  @drill = Drill.new(title: title)
+  @drill = Drill.create(title: title)
+end
+
+Given(/^I have a "(.*?)" drill called "(.*?)"\.$/) do |drill_type, title|
+  drill_type = drill_type.to_s + "Drill"
+  @drill = Drill.create(title: title, type: drill_type)
 end
 
 When(/^I am on the "(.*?)" page\.$/) do |model|
@@ -7,12 +12,14 @@ When(/^I am on the "(.*?)" page\.$/) do |model|
   visit('/' + model)
 end
 
-When(/^I am on the drill's page\.$/) do
+When(/^I am on the drills page\.$/) do
+    binding.pry
     visit('/drills/' )
+
 end
 
 Given(/^The drill has an exercise called "(.*?)"\.$/) do |title|
-  @exercise = @drill.exercises.new(title: title)
+  @exercise = @drill.exercises.create(title: title)
 end
 
 When(/^I click on "(.*?)" next to "(.*?)"\.$/) do |link, content|

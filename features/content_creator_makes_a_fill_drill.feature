@@ -2,7 +2,10 @@ Feature: Content Creator Makes a FillDrill
 	In order help students practice
 	A content creator
 	Should be able to create FillDrills
-
+	
+	Background:
+		Given I am logged in as a "creator"
+		
 	Scenario: View all drills in a unit
 		Given I have drills "Conjugating 'to run'" and "Conjugating 'to walk'"
 			And all the drills are in unit "Conjugating verbs"

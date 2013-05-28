@@ -1,9 +1,10 @@
 class ExerciseItem < ActiveRecord::Base
-  attr_accessible :graded, :header_id, :exercise_item_type, :answer, :text, :type, :image, :audio, :video
+  attr_accessible :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video
   attr_accessible :position # TODO remove "column" from db
   mount_uploader :audio, AudioUploader
   mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
+  serialize :acceptable_answers
 
   has_many :responses
 
@@ -12,12 +13,12 @@ class ExerciseItem < ActiveRecord::Base
 
   after_initialize :set_default_position
 
-  def answer
-    saved_answer || special_answer
+  def answers
+    special_answers || acceptable_answers
   end
 
-  def special_answer
-    self.text
+  def special_answers
+    nil
   end
 
   def set_default_position

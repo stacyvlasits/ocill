@@ -68,12 +68,14 @@ describe GridDrill do
   end
 
   describe ".remove_row" do
+    grid_drill = FactoryGirl.create(:twenty_five_grand_childed_grid_drill)
+    exercise = grid_drill.exercises.first
+    initial_exercise_count = grid_drill.exercises.count
+    initial_exercise_item_count = grid_drill.exercise_items.count
+    grid_drill.remove_row(exercise.id)
+    
     it "should remove one exercise and all its children" do
-      grid_drill = FactoryGirl.create(:twenty_five_grand_childed_grid_drill)
-      exercise = grid_drill.exercises.first
-      initial_exercise_count = grid_drill.exercises.count 
-      initial_exercise_item_count = grid_drill.exercise_items.count
-      grid_drill.remove_row(exercise.id)
+
       grid_drill.exercises.count.should == initial_exercise_count - 1
       grid_drill.exercise_items.count.should < initial_exercise_item_count
       grid_drill.exercises.should_not include(exercise)

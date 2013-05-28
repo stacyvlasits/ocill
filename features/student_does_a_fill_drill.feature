@@ -12,13 +12,13 @@ Feature: Student Does a Fill Drill
     Then I should see "Conjugating 'to walk'"
       And I should see "Conjugating 'to run'"
 
-  Scenario: Do a Fill Drill
+  Scenario: Attempt a Fill Drill
    # Given I am logged in.
-    Given I have a drill called "Conjugating 'to run'".
+    Given I have a "Fill" drill called "Conjugating 'to run'".
     And The drill has an exercise called "Tomorrow, I am [going to run]. (to run)".
  #  And The drills have been assigned to me.
-    And I am on the drill's page.
-    When I click on "Do Drill" next to "Conjugating 'to run'".
+    And I am on the drills page.
+    When I click on "Attempt" next to "Conjugating 'to run'".
     Then I should see "Tomorrow, I am"
     And I should see ". (to run)".
     But I should not see "going to run"

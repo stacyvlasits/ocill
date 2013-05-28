@@ -107,3 +107,5 @@ rails g migration ChangeColumnResponseValueToText
 rails g migration RenameLessonToUnit
 
 rails g migration RenameLessonIDToUnitIDinDrills
+
+rails g migration ChangeColumnSavedAnswerToTextIntExerciseItem saved_answer:text

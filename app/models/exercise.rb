@@ -65,7 +65,8 @@ class Exercise < ActiveRecord::Base
   def fill_in_the_blank_exercise_items(blanks)
     self.exercise_items.destroy_all
     blanks.each_with_index do |blank, index|
-      self.exercise_items.create(text: blank, position: index)
+      answers = blank.split('/')
+      self.exercise_items.create(acceptable_answers: answers, position: index)
     end
   end
 

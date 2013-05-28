@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514185511) do
+ActiveRecord::Schema.define(:version => 20130523170113) do
 
   create_table "attempts", :force => true do |t|
     t.integer  "drill_id"
@@ -43,11 +43,11 @@ ActiveRecord::Schema.define(:version => 20130514185511) do
     t.string   "text"
     t.boolean  "graded"
     t.string   "type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "exercise_id"
     t.integer  "position"
-    t.string   "saved_answer"
+    t.text     "acceptable_answers"
     t.string   "image"
     t.string   "audio"
     t.string   "video"

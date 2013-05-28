@@ -24,9 +24,15 @@ describe Drill do
   end
 
   describe '.rows' do
-    it "tells how many elements are in the header_row" do
-      drill = FactoryGirl.create(:drill)
+    it "tells how many exercises have been created" do
+      drill = FactoryGirl.create(:five_childed_drill)
       drill.rows.should == drill.exercises.size
     end
+    
+    it "is zero when the drill has no exercises" do
+      drill = FactoryGirl.create(:drill)
+      drill.rows.should == 0
+    end
+
   end
 end

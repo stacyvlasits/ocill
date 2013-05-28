@@ -10,11 +10,11 @@ class Attempt < ActiveRecord::Base
   end
 
   def correct
-    grade_sheet.select {|el| el[0] == el[1] }.count
+    grade_sheet.select {|el| el[1].include?(el[0])}.count
   end
 
   def incorrect
-    total.count - correct
+    total - correct
   end
 
   def total
@@ -22,7 +22,7 @@ class Attempt < ActiveRecord::Base
   end
 
   def grade_sheet
-    responses.each_with_index.map { |response, index| [response.value, response.answer] }
+    responses.each_with_index.map { |response, index| [response.value, response.answers] }
   end
 
   def answers
