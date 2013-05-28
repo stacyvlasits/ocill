@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523170113) do
+ActiveRecord::Schema.define(:version => 20130528210551) do
 
   create_table "attempts", :force => true do |t|
     t.integer  "drill_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130523170113) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "drill_id"
+    t.string   "audio"
   end
 
   create_table "headers", :force => true do |t|

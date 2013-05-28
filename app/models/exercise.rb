@@ -8,11 +8,14 @@ class Exercise < ActiveRecord::Base
   has_many :exercise_items, :order => "position ASC", :dependent => :destroy, :autosave => true
   alias :children :exercise_items
   
+  serialize :prompt, Hash
+
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
 
   after_initialize :set_default_position
 
+ 
   def answers
     self.exercise_items.map { |exercise_item| exercise_item.answer}
   end
@@ -21,10 +24,15 @@ class Exercise < ActiveRecord::Base
     self.position ||= 999999
   end
 
-  def audio_name
-    File.basename(audio.path || audio.filename) if audio
+  def audio
+    self.prompt[:audio]
   end
-  
+
+  def audio=(audio)
+    self.prompt[:audio] = audio
+  end
+
+
   def <=>(object)
     self.position <=> object.position
   end
@@ -44,19 +52,19 @@ class Exercise < ActiveRecord::Base
 
 # start METHODS for fill_drills
   def hint
-    self.prompt[/\(.+?\)/]
+    self.prompt[:text][/\(.+?\)/]
   end
 
   def hintless_prompt
-    self.prompt.gsub(/\(.+?\)/, '')
+    self.prompt[:text].gsub(/\(.+?\)/, '')
   end
 
   def fill_in_the_blank
-    self.prompt
+    self.prompt[:text]
   end
 
   def fill_in_the_blank=(text = "a")
-    self.prompt = text
+    self.prompt[:text] = text
     self.save!
     blanks = text.scan(/\[([^\]]*)/).flatten
     fill_in_the_blank_exercise_items(blanks)
@@ -70,7 +78,9 @@ class Exercise < ActiveRecord::Base
     end
   end
 
-# end METHODS for fill_drills
+  # end METHODS for fill_drills
+
+
   def siblings
     self.drill.exercises.sort
   end

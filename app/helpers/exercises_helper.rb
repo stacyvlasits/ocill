@@ -31,9 +31,8 @@ module ExercisesHelper
   end
 
   def create_fill_drill_exercise(exercise)
-    # inputs = exercise.exercise_items.map { |ei| create_response_input(ei.id, rand(147483647..2147483647)) }
-    inputs = exercise.exercise_items.map { |ei| create_response_input(ei.id, 666) }
-
+    # TODO  This is very hacky.  replace this randomizing tool if we continue using the rails view
+    inputs = exercise.exercise_items.map { |ei| create_response_input(ei.id, rand(1474836..21473647)) }
     prompt = exercise.hintless_prompt.gsub!(/\[/,'{{').gsub!(/\]/,'}}')
     inputs.each {|input| prompt.sub!(/\{\{.+?\}\}/, input) }
     prompt
