@@ -22,5 +22,5 @@
 # Ignore sublime cruft
 *.sublime-workspace
 
-/config/database.yml
-/config/application.yml
+# /config/database.yml
+# /config/application.yml
