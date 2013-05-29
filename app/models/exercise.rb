@@ -1,18 +1,20 @@
 class Exercise < ActiveRecord::Base
 
   include Comparable
+  mount_uploader :audio, AudioUploader
 
-  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes
+  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes, :audio
   belongs_to :drill
   alias :parent :drill
   has_many :exercise_items, :order => "position ASC", :dependent => :destroy, :autosave => true
   alias :children :exercise_items
-  
+
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
 
   after_initialize :set_default_position
 
+ 
   def answers
     self.exercise_items.map { |exercise_item| exercise_item.answer}
   end
@@ -21,10 +23,6 @@ class Exercise < ActiveRecord::Base
     self.position ||= 999999
   end
 
-  def audio_name
-    File.basename(audio.path || audio.filename) if audio
-  end
-  
   def <=>(object)
     self.position <=> object.position
   end
@@ -70,7 +68,9 @@ class Exercise < ActiveRecord::Base
     end
   end
 
-# end METHODS for fill_drills
+  # end METHODS for fill_drills
+
+
   def siblings
     self.drill.exercises.sort
   end

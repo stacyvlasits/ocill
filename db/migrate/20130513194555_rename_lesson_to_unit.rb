@@ -1,5 +1,5 @@
-class RenameUnitToUnit < ActiveRecord::Migration
+class RenameLessonToUnit < ActiveRecord::Migration
   def change
-    rename_table :units, :units
+    rename_table :lessons, :units
   end
 end
