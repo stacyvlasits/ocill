@@ -29,4 +29,17 @@ describe Exercise do
       exercise.unit.should be == exercise.drill.unit
     end
   end
+
+  describe "Fill in the blank exercise" do
+    it "should return the drill's exercises" do
+        drill = FactoryGirl.create(:five_exercised_fill_drill)
+        drill.children.should be == drill.exercises
+    end
+    it "should return the drill's exercise_items" do
+        drill = FactoryGirl.create(:five_exercised_fill_drill)
+        drill.children.each do |exercise|
+          exercise.children.should be == drill.children.find(exercise.id).exercise_items
+        end
+    end
+  end
 end
