@@ -1,14 +1,13 @@
 class Exercise < ActiveRecord::Base
 
   include Comparable
+  mount_uploader :audio, AudioUploader
 
-  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes
+  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes, :audio
   belongs_to :drill
   alias :parent :drill
   has_many :exercise_items, :order => "position ASC", :dependent => :destroy, :autosave => true
   alias :children :exercise_items
-  
-  serialize :prompt, Hash
 
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
@@ -23,15 +22,6 @@ class Exercise < ActiveRecord::Base
   def set_default_position
     self.position ||= 999999
   end
-
-  def audio
-    self.prompt[:audio]
-  end
-
-  def audio=(audio)
-    self.prompt[:audio] = audio
-  end
-
 
   def <=>(object)
     self.position <=> object.position
@@ -52,19 +42,19 @@ class Exercise < ActiveRecord::Base
 
 # start METHODS for fill_drills
   def hint
-    self.prompt[:text][/\(.+?\)/]
+    self.prompt[/\(.+?\)/]
   end
 
   def hintless_prompt
-    self.prompt[:text].gsub(/\(.+?\)/, '')
+    self.prompt.gsub(/\(.+?\)/, '')
   end
 
   def fill_in_the_blank
-    self.prompt[:text]
+    self.prompt
   end
 
   def fill_in_the_blank=(text = "a")
-    self.prompt[:text] = text
+    self.prompt = text
     self.save!
     blanks = text.scan(/\[([^\]]*)/).flatten
     fill_in_the_blank_exercise_items(blanks)
