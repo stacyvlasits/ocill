@@ -111,3 +111,5 @@ rails g migration RenameLessonIDToUnitIDinDrills
 rails g migration ChangeColumnSavedAnswerToTextIntExerciseItem saved_answer:text
 
 rails g migration add_audio_to_exercise audio:string
+
+rails g migration AddOptionsToDrills options:text

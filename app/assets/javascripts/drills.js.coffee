@@ -37,6 +37,7 @@ jQuery ->
     $(this).closest('fieldset').parent().hide()
     event.preventDefault()
 
+jQuery ->
   $('form').on 'click', '.add_fields', (event) ->
     current_position = $(this).data('id')
     if (typeof window.position == 'undefined')
@@ -44,6 +45,6 @@ jQuery ->
     else
       window.position = window.position + 1
     regexp = new RegExp($(this).data('id'), 'g')
-    $(this).before($(this).data('fields').replace(regexp, window.position))
+    $('.add_fields').before($('.add_fields').data('fields').replace(regexp, window.position))
     event.preventDefault()
 
