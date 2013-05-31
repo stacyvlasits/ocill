@@ -1,5 +1,4 @@
 class Exercise < ActiveRecord::Base
-
   include Comparable
   mount_uploader :audio, AudioUploader
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528210551) do
+ActiveRecord::Schema.define(:version => 20130531135525) do
 
   create_table "attempts", :force => true do |t|
     t.integer  "drill_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130528210551) do
     t.integer  "unit_id"
     t.text     "header_row"
     t.string   "type"
+    t.text     "options"
   end
 
   create_table "exercise_items", :force => true do |t|

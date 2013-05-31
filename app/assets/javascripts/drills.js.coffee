@@ -48,3 +48,12 @@ jQuery ->
     $('.add_fields').before($('.add_fields').data('fields').replace(regexp, window.position))
     event.preventDefault()
 
+jQuery ->
+  $('.text-field').addClass('rtl') if $('.set-rtl').is(':checked')
+  $('.text-field').removeClass('rtl') unless $('.set-rtl').is(':checked')
+  $('form').on 'change', '.set-rtl', (event) ->
+   $('.text-field').toggleClass('rtl')
+   regexp = /class="/g
+   rtl_fields = $('.add_fields').data('fields').replace(regexp,'class="rtl ')
+   $('.add_fields').attr('data-fields', "rtl_fields")
+   event.preventDefault()
