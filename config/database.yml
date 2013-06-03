@@ -4,23 +4,24 @@ development:
   encoding: unicode
   database: ocill
   pool: 5
-  username: sgv287
-  password:
+  username: postgres
+  password: password
 
 test: &test
   adapter: postgresql
   encoding: unicode
   database: ocill-test
   pool: 5
-  username: sgv287
-  password:
+  username: postgres
+  password: password
 
 production:
   adapter: postgresql
   encoding: unicode
   database: ocill-prod
   pool: 5
-  username: sgv287
-  password: 
+  username: postgres
+  password: password
+
 cucumber:
   <<: *test
