@@ -31,15 +31,20 @@ describe Exercise do
   end
 
   describe "Fill in the blank exercise" do
-    it "should return the drill's exercises" do
-        drill = FactoryGirl.create(:five_exercised_fill_drill)
-        drill.children.should be == drill.exercises
+    it "should evaluate correct responses as being correct" do
+        exercise = FactoryGirl.create(:three_correct_responses_exercise)
+        correct_responses = exercise.exercise_items.first.responses.all
+        correct_responses.first.correct?.should be_true
+        correct_responses.second.correct?.should be_true
+        correct_responses.third.correct?.should be_true
     end
-    it "should return the drill's exercise_items" do
-        drill = FactoryGirl.create(:five_exercised_fill_drill)
-        drill.children.each do |exercise|
-          exercise.children.should be == drill.children.find(exercise.id).exercise_items
-        end
+
+    it "should evaluate incorrect responses as being false" do
+        exercise = FactoryGirl.create(:three_incorrect_responses_exercise)
+        incorrect_responses = exercise.exercise_items.first.responses.all
+        incorrect_responses.first.correct?.should be_false
+        incorrect_responses.second.correct?.should be_false
+        incorrect_responses.third.correct?.should be_false
     end
   end
 end
