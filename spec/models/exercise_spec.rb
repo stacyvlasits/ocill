@@ -29,4 +29,22 @@ describe Exercise do
       exercise.unit.should be == exercise.drill.unit
     end
   end
+
+  describe "Fill in the blank exercise" do
+    it "should evaluate correct responses as being correct" do
+        exercise = FactoryGirl.create(:three_correct_responses_exercise)
+        correct_responses = exercise.exercise_items.first.responses.all
+        correct_responses.first.correct?.should be_true
+        correct_responses.second.correct?.should be_true
+        correct_responses.third.correct?.should be_true
+    end
+
+    it "should evaluate incorrect responses as being false" do
+        exercise = FactoryGirl.create(:three_incorrect_responses_exercise)
+        incorrect_responses = exercise.exercise_items.first.responses.all
+        incorrect_responses.first.correct?.should be_false
+        incorrect_responses.second.correct?.should be_false
+        incorrect_responses.third.correct?.should be_false
+    end
+  end
 end

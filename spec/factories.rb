@@ -145,6 +145,30 @@ FactoryGirl.define do
       title nil
     end
 
+    trait :three_correct_responses do
+      prompt "Acceptable answers are [many/a few/quite a few]"
+
+      ignore do
+        exercise_item_count 1
+      end
+
+      after(:create) do |exercise, evaluator|
+        FactoryGirl.create_list(:three_correct_responses_exercise_item,evaluator.exercise_item_count,exercise: exercise)
+      end
+    end
+
+    trait :three_incorrect_responses do
+      prompt "Acceptable answers are [many/a few/quite a few]"
+
+      ignore do
+        exercise_item_count 1
+      end
+
+      after(:create) do |exercise, evaluator|
+        FactoryGirl.create_list(:three_incorrect_responses_exercise_item,evaluator.exercise_item_count,exercise: exercise)
+      end
+    end
+
     trait :unprompted do
       prompt nil
     end
@@ -173,6 +197,8 @@ FactoryGirl.define do
       end
     end
 
+    factory :three_incorrect_responses_exercise, traits: [:three_incorrect_responses]
+    factory :three_correct_responses_exercise, traits: [:three_correct_responses]
     factory :five_siblinged_exercise, traits: [:five_siblinged]
     factory :five_headered_children_exercise, traits: [:five_headered_children]
     factory :five_childed_exercise, traits: [:five_childed]
@@ -187,6 +213,34 @@ FactoryGirl.define do
 
     trait :default do
       type "Type Defined"
+    end
+
+    trait :three_correct_responses do
+      acceptable_answers ["many", "a few", "quite a few"]
+
+      ignore do
+        response_count 1
+      end
+
+      after(:create) do |exercise_item, evaluator|
+        FactoryGirl.create_list(:first_correct_response, evaluator.response_count, exercise_item: exercise_item)
+        FactoryGirl.create_list(:second_correct_response, evaluator.response_count, exercise_item: exercise_item)
+        FactoryGirl.create_list(:third_correct_response, evaluator.response_count, exercise_item: exercise_item)
+      end
+    end
+
+    trait :three_incorrect_responses do
+      acceptable_answers ["many", "a few", "quite a few"]
+
+      ignore do
+        response_count 1
+      end
+
+      after(:create) do |exercise_item, evaluator|
+        FactoryGirl.create_list(:first_incorrect_response, evaluator.response_count, exercise_item: exercise_item)
+        FactoryGirl.create_list(:second_incorrect_response, evaluator.response_count, exercise_item: exercise_item)
+        FactoryGirl.create_list(:third_incorrect_response, evaluator.response_count, exercise_item: exercise_item)
+      end
     end
 
     trait :unexercised do
@@ -209,11 +263,50 @@ FactoryGirl.define do
       type "Type Defined"
     end
 
+    factory :three_incorrect_responses_exercise_item, traits: [:three_incorrect_responses]
+    factory :three_correct_responses_exercise_item, traits: [:three_correct_responses]
     factory :typed_exercise_item, traits: [:typed]
     factory :headered_exercise_item, traits: [:headered]
     factory :five_siblinged_exercise_item, traits: [:five_siblinged]
     factory :five_siblinged_headered_exercise_item, traits: [:five_siblinged, :headered]
     factory :five_headered_siblinged_headered_exercise_item, traits: [:five_headered_siblinged, :headered]
+  end
+
+  factory :response do
+    value "typical response"
+
+    exercise_item
+
+    trait :first_incorrect do
+      value "man"
+    end
+
+    trait :second_incorrect do
+      value "any"
+    end
+
+    trait :third_incorrect do
+      value "m any"
+    end
+
+    trait :first_correct do
+      value "many"
+    end
+
+    trait :second_correct do
+      value "a few"
+    end
+
+    trait :third_correct do
+      value "quite a few"
+    end
+
+    factory :first_incorrect_response, traits: [:first_incorrect]
+    factory :second_incorrect_response, traits:[:second_incorrect]
+    factory :third_incorrect_response, traits: [:third_incorrect]
+    factory :first_correct_response, traits: [:first_correct]
+    factory :second_correct_response, traits:[:second_correct]
+    factory :third_correct_response, traits: [:third_correct]
   end
 
   factory :header do

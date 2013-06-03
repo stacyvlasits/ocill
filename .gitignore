@@ -22,5 +22,9 @@
 # Ignore sublime cruft
 *.sublime-workspace
 
-# /config/database.yml
-# /config/application.yml
+.gitignore
+Gemfile
+Gemfile.lock
+/config/database.yml
+/config/application.yml
+
