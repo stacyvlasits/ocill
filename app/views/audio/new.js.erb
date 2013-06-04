@@ -1,1 +1,3 @@
-$('.modal-body').html('<h1>OH HAI!!</h1>');
+area = $('.modal').first();
+area.find('.modal-body').html('<%= j render("form") %>');
+area.modal();

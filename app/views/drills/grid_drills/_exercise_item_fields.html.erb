@@ -1,15 +1,15 @@
-<%- table_cell = "cell-c" + f.object.header.column.to_s + "-r" + f.object.exercise.row.to_s %>
+<%- table_cell = "cell-c" + (f.object.header.position + 1).to_s + "-r" + (f.object.exercise.position + 1).to_s %>
 
 <td class="cell" id="<%= table_cell %>">
   <%= f.text_field :text, :class => 'text_field' %>
   <%= f.hidden_field :position, value: nested_child_index(f) %>
   <%= f.hidden_field :key %>
-
-  <%= link_to icon("headphones", "white").html_safe, new_audio_path, {:remote => true, :table_cell => table_cell, 'data-controls-modal' =>  "modal-window"}
+  <%= "Audio: " + @exercise_item.audio_name %>
+  <%= link_to icon("headphones", "white").html_safe, new_exercise_item_audio_path(f.object), :table_cell => table_cell, :remote => true, 'data-controls-modal' =>  "modal-window"
   %>
 
-
   <%= render '/shared/modal', :table_cell => table_cell %>
+</td>
 <!--   <div id="audio-upload" class="modal hide fade in" name="<%= table_cell %>" style="display: none; ">
     <div class="modal-header">
       <a class="close" data-dismiss="modal">×</a>
@@ -22,7 +22,7 @@
       <a href="#" class="btn" data-dismiss="modal">Close</a>
     </div>
   </div> -->
-</td>
+
 <!--
       {
         :controller => "audio",

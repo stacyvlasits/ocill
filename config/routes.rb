@@ -2,7 +2,7 @@ Ocill::Application.routes.draw do
 
   devise_for :users
 
-  resources :audio, :exercise_items, :exercises, :courses, :attempts
+  resources :courses, :attempts
 
   resources :units do
     resources :drills
@@ -19,6 +19,14 @@ Ocill::Application.routes.draw do
     resources :exercises do
       resources :exercise_items
     end
+  end
+
+  resources :exercise do
+    resources :audio
+  end
+  
+  resources :exercise_items do
+    resources :audio
   end
 
   root :to => "drills#index"

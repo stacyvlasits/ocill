@@ -30,8 +30,9 @@ class Drill < ActiveRecord::Base
       "
     end
   end
-  
+
   serialized_attr_accessor :rtl
+  
   def answers
     self.exercise_items.map {|exercise_item| exercise_item.answer}.flatten
   end

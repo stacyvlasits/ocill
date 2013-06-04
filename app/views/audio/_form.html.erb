@@ -2,7 +2,7 @@
   <label class="control-label" for="exercise_item_audio">Audio:</label>
   <div class="controls exercise_item_audio <%= params[:table_cell] %>">
       <%= direct_upload_form_for @audio_uploader do |f| %>
-        <p><%= f.file_field :audio %></p>
+        <p><%= f.file_field :audio;binding.pry %></p>
         <%= f.submit "Upload Audio", class: "btn btn-primary", id: "submit-audio-upload" %>
       <% end %>
   </div>
