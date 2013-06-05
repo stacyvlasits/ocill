@@ -3,7 +3,7 @@
     <span class="remove-row">
       <%= link_to ' <i class="icon-remove"></i> '.html_safe, controller: "drills", action: "remove_row", exercise_id: f.object.id %>
     </span>
-      <%= f.text_field :prompt, :class => 'text_field' %>
+      <%= f.text_field :prompt, :class => 'text-field' %>
       <%= f.hidden_field :position, value: nested_child_index(f) %>
   </td>
   

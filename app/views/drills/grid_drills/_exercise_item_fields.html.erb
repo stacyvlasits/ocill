@@ -1,7 +1,7 @@
 <%- table_cell = "cell-c" + (f.object.header.position + 1).to_s + "-r" + (f.object.exercise.position + 1).to_s %>
 
 <td class="cell" id="<%= table_cell %>">
-  <%= f.text_field :text, :class => 'text_field' %>
+  <%= f.text_field :text, :class => 'text-field' %>
   <%= f.hidden_field :position, value: nested_child_index(f) %>
   <%= f.hidden_field :key %>
   <%= link_to icon("headphones", "white").html_safe, "#", :class => "open-upload-form"

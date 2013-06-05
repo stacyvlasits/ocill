@@ -45,20 +45,23 @@ jQuery ->
     else
       window.position = window.position + 1
     regexp = new RegExp($(this).data('id'), 'g')
-    $('.add_fields').before($('.add_fields').data('fields').replace(regexp, window.position))
+    $(this).before($(this).data('fields').replace(regexp, window.position))
+    fixRTL()
     event.preventDefault()
 
+# Handles RTL
 jQuery ->
-  $('.text-field').addClass('rtl') if $('.set-rtl').is(':checked')
-  $('.text-field').removeClass('rtl') unless $('.set-rtl').is(':checked')
+  fixRTL()
   $('form').on 'change', '.set-rtl', (event) ->
-    $('.text-field').toggleClass('rtl')
-    regexp = /class="/g
-    rtl_fields = $('.add_fields').data('fields').replace(regexp,'class="rtl ')
-    $('.add_fields').attr('data-fields', "rtl_fields")
+    fixRTL()
     event.preventDefault()
+
+fixRTL = () ->
+  $('form .text-field').addClass('rtl') if $('.set-rtl').is(':checked')
+  $('form .text-field').removeClass('rtl') unless $('.set-rtl').is(':checked')
+
 
 jQuery ->
   $('form').on 'click', '.open-upload-form', (event) ->
-    cell = $(this).parent().find('.audio-upload-form').toggleClass('hidden');
+    $(this).parent().find('.audio-upload-form').toggleClass('hidden');
     event.preventDefault()
