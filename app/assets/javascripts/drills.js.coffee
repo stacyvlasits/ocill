@@ -52,8 +52,13 @@ jQuery ->
   $('.text-field').addClass('rtl') if $('.set-rtl').is(':checked')
   $('.text-field').removeClass('rtl') unless $('.set-rtl').is(':checked')
   $('form').on 'change', '.set-rtl', (event) ->
-   $('.text-field').toggleClass('rtl')
-   regexp = /class="/g
-   rtl_fields = $('.add_fields').data('fields').replace(regexp,'class="rtl ')
-   $('.add_fields').attr('data-fields', "rtl_fields")
-   event.preventDefault()
+    $('.text-field').toggleClass('rtl')
+    regexp = /class="/g
+    rtl_fields = $('.add_fields').data('fields').replace(regexp,'class="rtl ')
+    $('.add_fields').attr('data-fields', "rtl_fields")
+    event.preventDefault()
+
+jQuery ->
+  $('form').on 'click', '.open-upload-form', (event) ->
+    cell = $(this).parent().find('.audio-upload-form').toggleClass('hidden');
+    event.preventDefault()

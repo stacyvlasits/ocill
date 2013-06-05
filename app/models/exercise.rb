@@ -66,7 +66,10 @@ class Exercise < ActiveRecord::Base
       self.exercise_items.create(acceptable_answers: answers, position: index)
     end
   end
-
+  
+  def audio_name
+     File.basename(audio.path || audio.filename ) unless audio.to_s.empty?
+  end
   # end METHODS for fill_drills
 
 

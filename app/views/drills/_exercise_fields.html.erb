@@ -1,8 +1,11 @@
 <li>
   <fieldset>
       <%= f.hidden_field :position, value: nested_child_index(f), class: "hidden-position" %>
+      <%= link_to icon("headphones", "white").html_safe, "#", :class => "open-upload-form" %>
+      <%= ("<audio preload=\"auto\" controls><source src=\"#{f.object.audio_url}\" type=\"audio/mpeg\" >Please report this error to the website owner.</audio>").html_safe if f.object.audio_url %>
+      <%= f.file_field :audio, :class => "hidden audio-upload-form" %>
       <%= f.text_field(:fill_in_the_blank, class: "fill-in-the-blank-field text-field") %>
-          <%= f.hidden_field :_destroy %>
-      <%= link_to icon("remove", "white"), '#', class: "remove_fields" %>
+      <%= f.hidden_field :_destroy %>
+      <%= link_to icon("remove", "white"), '#', class: "remove_fields"%>
   </fieldset>
 </li>

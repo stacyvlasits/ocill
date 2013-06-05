@@ -4,31 +4,8 @@
   <%= f.text_field :text, :class => 'text_field' %>
   <%= f.hidden_field :position, value: nested_child_index(f) %>
   <%= f.hidden_field :key %>
-  <%= "Audio: " + @exercise_item.audio_name %>
-  <%= link_to icon("headphones", "white").html_safe, new_exercise_item_audio_path(f.object), :table_cell => table_cell, :remote => true, 'data-controls-modal' =>  "modal-window"
+  <%= link_to icon("headphones", "white").html_safe, "#", :class => "open-upload-form"
   %>
-
-  <%= render '/shared/modal', :table_cell => table_cell %>
+  <%= ("<audio preload=\"auto\" controls><source src=\"#{f.object.audio_url}\" type=\"audio/mpeg\" >rats</audio>").html_safe if f.object.audio_url %>
+  <%= f.file_field :audio, :class => "hidden audio-upload-form" %>
 </td>
-<!--   <div id="audio-upload" class="modal hide fade in" name="<%= table_cell %>" style="display: none; ">
-    <div class="modal-header">
-      <a class="close" data-dismiss="modal">×</a>
-      <h3>Audio</h3>
-    </div>
-    <div class="modal-body">
-    </div>
-    <div class="modal-footer">
-      <a href="" id='submit-audio-upload' class='btn btn-success'> Upload </a>
-      <a href="#" class="btn" data-dismiss="modal">Close</a>
-    </div>
-  </div> -->
-
-<!--
-      {
-        :controller => "audio",
-        :action => "new",
-        :id => f.object.id,
-        :drill_id => f.object.drill.id,
-        :table_cell => table_cell
-      },
-      remote: true -->

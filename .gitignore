@@ -27,4 +27,5 @@ Gemfile
 Gemfile.lock
 /config/database.yml
 /config/application.yml
-
+public/uploads/tmp/*
+junk/*
