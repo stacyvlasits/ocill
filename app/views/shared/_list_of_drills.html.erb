@@ -1,7 +1,7 @@
 <tr>
   <td><%= link_to drill.course.title, course_path(drill.course) %> ( <%= drill.course.units.count %> ) </td>
   <td><%= link_to drill.unit.title, unit_path(drill.unit) %> ( <%= drill.unit.drills.count %> ) </td>
-  <td><%= link_to drill.title, drill_path(drill) %></td>
+  <td><%= link_to drill.title + " (" + drill.type_abbr + ") " , drill_path(drill) %></td>
 
   <td>
     <%= link_to t('.attempt', :default => t("helpers.links.attempt")), new_attempt_path(:drill_id => drill.id), :class => 'btn btn-mini'  %>

@@ -35,6 +35,17 @@ class Drill < ActiveRecord::Base
 
   serialized_attr_accessor :rtl
   
+  def type_abbr
+    case self.type
+    when "GridDrill"
+      "Grid"
+    when "FillDrill"
+      "FITB"
+    else
+      ""
+    end
+  end
+
   def answers
     self.exercise_items.map {|exercise_item| exercise_item.answer}.flatten
   end
