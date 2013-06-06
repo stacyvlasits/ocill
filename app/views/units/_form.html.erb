@@ -1,4 +1,5 @@
 <%= form_for @unit, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_messages %>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">

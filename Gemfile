@@ -28,7 +28,7 @@ gem 'carrierwave_direct'
 gem 'sidekiq'
 
 gem 'inherited_resources'
-
+gem 'dynamic_form'
 
 
 # Gems used only for assets and not required
