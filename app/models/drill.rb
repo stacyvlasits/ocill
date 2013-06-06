@@ -13,7 +13,9 @@ class Drill < ActiveRecord::Base
   has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
   accepts_nested_attributes_for :exercises, allow_destroy: true
   accepts_nested_attributes_for :headers, allow_destroy: true
- 
+
+    validates :unit_id, :presence => true
+
   before_save :set_default_title
 
   def self.serialized_attr_accessor(*args)

@@ -23,6 +23,7 @@
         <a class="brand" href="#">OCILL</a>
         <div class="nav-collapse">
           <ul class="nav">
+            <li><%= link_to "Ocill Help", "https://devtools.la.utexas.edu/confluence/display/op/Getting+Started+With+OCILL" %></li>
             <li><%= link_to "Courses", courses_path %></li>
             <li><%= link_to "Units", units_path %></li>
             <li><%= link_to "Drills", drills_path %></li>
@@ -33,6 +34,11 @@
           <ul class="nav">
             <%= render 'devise/menu/registration_items' %>
             <%= render 'devise/menu/login_items' %>
+          </ul>
+        </div>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <%= link_to "Report a Bug", "https://devtools.la.utexas.edu/confluence/display/op/Getting+Started+With+OCILL" %>
           </ul>
         </div>
       </div> <!-- container -->
