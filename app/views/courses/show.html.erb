@@ -6,8 +6,35 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @course.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:position) %>:</strong></dt>
-  <dd><%= @course.position %></dd>
+ 
+  <% @course.units.each do |unit| %>
+  <dt><strong><%= unit.title %>:</strong></dt>
+  <dd>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Course ( Units ) </th>
+          <th>Unit ( Drills )</th>
+           <th>Drill Title </th>
+         <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% unit.drills.each do |drill| %>
+          <%= render partial: 'shared/list_of_drills', locals: { drill: drill } -%>
+        <% end -%>
+        <tr>
+          <td><%= link_to t('.new', :default => t("helpers.links.new_drill_in_unit")),
+              new_unit_drill_path(unit), :class => 'btn' %>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+  <% end %>
 </dl>
 
 <div class="form-actions">
