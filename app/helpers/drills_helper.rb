@@ -9,14 +9,14 @@ module DrillsHelper
     html += '</tr></thead>'
   end
 
-  def before_exercise_wrapper(drill)
+  def before_exercise_wrapper(drill, width="200" )
+    direction = (drill.rtl == "1") ? '"rtl"' : '"ltr"'
     case drill.type
     when "GridDrill"
-      html = '<table class ="table" width="200" border="1" summary="A set of exercises for this'
+      html = '<table dir=#{direction} class ="table" width="' + width + '" border="1" summary="A set of exercises for this'
       html += @drill.type.to_s.titleize + '">'
       html += show_headers(@drill).to_s
     when "FillDrill"
-      direction = drill.rtl ? '"rtl"' : '"ltr"'
       html = "<ol dir=#{direction}>"
     else
       html = "&nbsp;"
