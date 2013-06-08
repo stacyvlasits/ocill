@@ -30,9 +30,9 @@
     <% when "show" %>
       <%= link_to "Attempt Again", new_attempt_path(:drill_id => drill.id), :class => 'btn btn-primary'  %>
     <% when "new" %>
-      <%= f.submit nil, :id => 'attempt-submit', :class => 'btn btn-primary' %>
+      <%= f.submit "Submit Attempt", :id => 'attempt-submit', :class => 'btn btn-primary' %>
     <% when "edit" %>
-      <%= f.submit nil, :id => 'attempt-submit', :class => 'btn btn-primary' %>
+      <%= f.submit "Submit Attempt", :id => 'attempt-submit', :class => 'btn btn-primary' %>
     <% end %>
   </div>
 <% end %>

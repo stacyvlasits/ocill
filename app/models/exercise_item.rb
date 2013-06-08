@@ -12,7 +12,7 @@ class ExerciseItem < ActiveRecord::Base
   belongs_to :header
 
   after_initialize :set_default_position
-
+  
   def show_text?
     # TODO Yuck.  why am I reaching into the Drill?
     self.exercise.drill.show_text
@@ -23,7 +23,7 @@ class ExerciseItem < ActiveRecord::Base
   end
 
   def special_answers
-    if self.audio
+    if self.audio.present?
       "1"
     else
       nil

@@ -11,12 +11,26 @@ module ExercisesHelper
 
   def graded_fill_drill_exercise(exercise, responses)
     spans = exercise.exercise_items.map do |ei|
+      # TODO reduce number of sql queries
       response = responses.where(:exercise_item_id => ei)
       '<span class="' + (response.first.correct? ? "correct" : "incorrect") + '">' + response.first.value.to_s + '</span>'
     end
-    prompt = exercise.hintless_prompt.gsub!(/\[/,'{{').gsub!(/\]/,'}}')
-    spans.each {|span| prompt.sub!(/\{\{.+?\}\}/, span) }
-    prompt
+    html = exercise.hintless_prompt.gsub!(/\[/,'{{').gsub!(/\]/,'}}')
+    spans.each {|span| html.sub!(/\{\{.+?\}\}/, span) }
+    html
+  end
+
+  def graded_grid_drill_exercise(exercise, responses)
+    html = ""
+    exercise.exercise_items.each do |ei|
+      if ei.answers
+        response = responses.where(:exercise_item_id => ei).first
+        html += "<td>" + (response.correct? ? "Complete" : "Incomplete") + "</td>"
+      else
+        html += "<td>--</td>".html_safe
+      end
+    end
+    html.html_safe
   end
 
   def edit_fill_drill_exercise(exercise, responses)
@@ -39,8 +53,8 @@ module ExercisesHelper
     prompt
   end
 
-  def create_response_input(exercise_item_id, response_id, type="text", css_class="the_blank" )
-    '<input id="attempt_responses_attributes_' + response_id.to_s + '_exercise_item_id" name="attempt[responses_attributes][' + response_id.to_s + '][exercise_item_id]" type="hidden" value="' + exercise_item_id.to_s + ' "/><input class="' + css_class + '" id="attempt_responses_attributes_' + response_id.to_s + '_value" name="attempt[responses_attributes][' + response_id.to_s + '][value]" type="' + type + '" value=""/>'
+  def create_response_input(exercise_item_id, response_id, type="text", css_class="the_blank", value="" )
+    '<input id="attempt_responses_attributes_' + response_id.to_s + '_exercise_item_id" name="attempt[responses_attributes][' + response_id.to_s + '][exercise_item_id]" type="hidden" value="' + exercise_item_id.to_s + ' "/><input class="' + css_class + '" id="attempt_responses_attributes_' + response_id.to_s + '_value" name="attempt[responses_attributes][' + response_id.to_s + '][value]" type="' + type + '" value="' + value + '"/>'
   end
 
   def create_grid_drill_exercises(exercise)
@@ -48,7 +62,7 @@ module ExercisesHelper
 
       input = "<td>"
       response = Response.create(exercise_item_id:ei.id)
-      input += create_response_input(ei.id, response.id, "hidden", "audio-played" )
+      input += create_response_input(ei.id, response.id, "hidden", "audio-played", "0" )
       input += audio_tag(:src =>ei.audio_url)
       text = ei.text if ei.show_text?
       input += content_tag(:p, text )
