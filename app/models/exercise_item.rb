@@ -13,12 +13,21 @@ class ExerciseItem < ActiveRecord::Base
 
   after_initialize :set_default_position
 
+  def show_text?
+    # TODO Yuck.  why am I reaching into the Drill?
+    self.exercise.drill.show_text
+  end
+
   def answers
     special_answers || acceptable_answers
   end
 
   def special_answers
-    nil
+    if self.audio
+      "1"
+    else
+      nil
+    end
   end
 
   def set_default_position

@@ -11,12 +11,10 @@
      <dd><%= drill.prompt.to_s.html_safe %></dd>
     <dt><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></dt>
     <dd>
-
       <%= before_exercise_wrapper(drill).html_safe %>
-      <%= show_headers(drill) %>
-        <% drill.exercises.each do |exercise| %>
-          <%= render :partial => nested_folder(attempt) + action_name + '_attempt_exercises', :locals => {:f => f, :exercise => exercise, :attempt => @attempt } %>
-        <% end %>
+      <% drill.exercises.each do |exercise| %>
+        <%= render :partial => nested_folder(attempt) + action_name + '_attempt_exercises', :locals => {:f => f, :exercise => exercise, :attempt => @attempt } %>
+      <% end %>
        <%= after_exercise_wrapper(drill).html_safe %>
     </dd>
     <% if action_name == "show" %>

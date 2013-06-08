@@ -14,7 +14,7 @@ class Drill < ActiveRecord::Base
   accepts_nested_attributes_for :exercises, allow_destroy: true
   accepts_nested_attributes_for :headers, allow_destroy: true
 
-    validates :unit_id, :presence => true
+  validates :unit_id, :presence => true
 
   before_save :set_default_title
 
@@ -33,7 +33,7 @@ class Drill < ActiveRecord::Base
     end
   end
 
-  serialized_attr_accessor :rtl
+  serialized_attr_accessor :rtl, :show_text
   
   def type_abbr
     case self.type

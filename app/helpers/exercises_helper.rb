@@ -1,5 +1,4 @@
 module ExercisesHelper
-# TODO change so that 'perform_fill_drill_exercises(exercise, attempt)'
   def attempt_fill_drill_exercises(exercise)
     initial_prompt = exercise.prompt
     hint = '<span class="hint">' + initial_prompt[/\(.+?\)/] + '</span>'
@@ -31,16 +30,33 @@ module ExercisesHelper
   end
 
   def create_fill_drill_exercise(exercise)
-    # TODO  This is very hacky.  replace this randomizing tool if we continue using the rails view
-    inputs = exercise.exercise_items.map { |ei| create_response_input(ei.id, Random.rand(14748366..214736476)) }
+    inputs = exercise.exercise_items.map do |ei|
+      response = Response.create(exercise_item_id:ei.id)
+      create_response_input(ei.id, response.id)
+    end
     prompt = exercise.hintless_prompt.gsub!(/\[/,'{{').gsub!(/\]/,'}}')
     inputs.each {|input| prompt.sub!(/\{\{.+?\}\}/, input) }
     prompt
   end
 
-  def create_response_input(exercise_item_id, response_id)
-    '<input id="attempt_responses_attributes_' + response_id.to_s + '_exercise_item_id" name="attempt[responses_attributes][' + response_id.to_s + '][exercise_item_id]" type="hidden" value="' + exercise_item_id.to_s + ' "/><input class="the_blank" id="attempt_responses_attributes_' + response_id.to_s + '_value" name="attempt[responses_attributes][' + response_id.to_s + '][value]" type="text" value=""/>'
+  def create_response_input(exercise_item_id, response_id, type="text", css_class="the_blank" )
+    '<input id="attempt_responses_attributes_' + response_id.to_s + '_exercise_item_id" name="attempt[responses_attributes][' + response_id.to_s + '][exercise_item_id]" type="hidden" value="' + exercise_item_id.to_s + ' "/><input class="' + css_class + '" id="attempt_responses_attributes_' + response_id.to_s + '_value" name="attempt[responses_attributes][' + response_id.to_s + '][value]" type="' + type + '" value=""/>'
   end
+
+  def create_grid_drill_exercises(exercise)
+    inputs = exercise.exercise_items.map do |ei|
+
+      input = "<td>"
+      response = Response.create(exercise_item_id:ei.id)
+      input += create_response_input(ei.id, response.id, "hidden", "audio-played" )
+      input += audio_tag(:src =>ei.audio_url)
+      text = ei.text if ei.show_text?
+      input += content_tag(:p, text )
+      input += "</td>"
+    end
+    inputs.join('')
+  end
+
 end
 
 

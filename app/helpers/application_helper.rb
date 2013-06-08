@@ -35,4 +35,11 @@ module ApplicationHelper
     raise "nested_child_index couldn't find a matching attribute" unless attributes.index(model)
     index = attributes[attributes.index(model) + 1].to_i
   end
+
+  def audio_tag(options)
+    return "" unless options[:src]
+    options[:preload] ||= "auto"
+    options[:error]  ||= "Your browser does not support the mp3 audio format"
+    audio = "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{options[:src]}\" type=\"audio/mpeg\" >#{options[:error]}</audio>".html_safe
+  end
 end

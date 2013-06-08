@@ -13,9 +13,9 @@ module DrillsHelper
     direction = (drill.rtl == "1") ? '"rtl"' : '"ltr"'
     case drill.type
     when "GridDrill"
-      html = '<table dir=#{direction} class ="table" width="' + width + '" border="1" summary="A set of exercises for this'
-      html += @drill.type.to_s.titleize + '">'
-      html += show_headers(@drill).to_s
+      html = '<table dir=' + direction + 'class ="table" width="' + width + '" border="1" summary="A set of exercises for this'
+      html += drill.type.to_s.titleize + '">'
+      html += show_headers(drill).to_s
     when "FillDrill"
       html = "<ol dir=#{direction}>"
     else
@@ -33,4 +33,5 @@ module DrillsHelper
       html = "&nbsp;"
     end
   end
+
 end

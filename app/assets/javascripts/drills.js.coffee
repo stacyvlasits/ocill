@@ -65,3 +65,10 @@ jQuery ->
   $('form').on 'click', '.open-upload-form', (event) ->
     $(this).parent().find('.audio-upload-form').toggleClass('hidden');
     event.preventDefault()
+
+jQuery ->
+  $('form audio').bind 'ended', (event) ->
+    playCounter = $(this).parent().find('.audio-played')
+    playCounter.parent().css('background-color', 'lightgreen')
+    playCounter.val(1)
+    

@@ -6,6 +6,6 @@
   <%= f.hidden_field :key %>
   <%= link_to icon("headphones", "white").html_safe, "#", :class => "open-upload-form"
   %>
-  <%= ("<audio preload=\"auto\" controls><source src=\"#{f.object.audio_url}\" type=\"audio/mpeg\" >rats</audio>").html_safe if f.object.audio_url %>
+  <%= audio_tag(src:f.object.audio_url) %>
   <%= f.file_field :audio, :class => "hidden audio-upload-form" %>
 </td>

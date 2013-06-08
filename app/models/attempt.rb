@@ -10,15 +10,21 @@ class Attempt < ActiveRecord::Base
   end
 
   def correct
-    grade_sheet.select {|el| el[1].include?(el[0])}.count
+    correct = grade_sheet.select do |el|
+      el[1].include?(el[0]) if el[1].respond_to?(:include?)
+      el[1] == el[0]
+    end
+    correct.count
+    # binding.pry
   end
+
 
   def incorrect
     total - correct
   end
 
   def total
-    grade_sheet.count
+    grade_sheet.select { |el| el[0].present? }.count
   end
 
   def grade_sheet
