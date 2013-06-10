@@ -36,10 +36,23 @@ module ApplicationHelper
     index = attributes[attributes.index(model) + 1].to_i
   end
 
-  def audio_tag(options)
-    return "" unless options[:src]
+  def audio_tag(src, options ={})
+    return "" unless src
     options[:preload] ||= "auto"
     options[:error]  ||= "Your browser does not support the mp3 audio format"
-    audio = "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{options[:src]}\" type=\"audio/mpeg\" >#{options[:error]}</audio>".html_safe
+    audio = "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{src}\" type=\"audio/mpeg\" >#{options[:error]}</audio>".html_safe
+  end
+
+  def video_tag(src, options ={})
+    return "" unless src
+    options[:preload] ||= "auto"
+    options[:error]  ||= "Your browser does not support the mp3 audio format"
+    options[:formats]  ||= ["mp4"]
+    options[:classes] ||= ""
+    html = "<video controls class=\"#{options[:classes]}\" preload=\"#{options[:preload]}\">"
+    sources = options[:formats].each {|format| html += "<source src=\"#{src}.#{format}\" type=\"video/#{format}\">" }
+    html += "options[:error]"
+    html += "</video>"
+    html.html_safe
   end
 end

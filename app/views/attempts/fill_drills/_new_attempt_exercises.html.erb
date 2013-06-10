@@ -1,4 +1,6 @@
 <li class="fill-drill-exercise">
+  <%= audio_tag(exercise.audio_url, :preload => true, :controls => true) %>
+  <%= image_tag(exercise.image_url(:small)) %>
   <%= create_fill_drill_exercise(exercise).html_safe %>
   <span class="hint"><%= exercise.hint %></span>
 </li>

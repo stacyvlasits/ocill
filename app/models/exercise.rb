@@ -1,8 +1,10 @@
 class Exercise < ActiveRecord::Base
   include Comparable
   mount_uploader :audio, AudioUploader
+  mount_uploader :video, VideoUploader
+  mount_uploader :image, ImageUploader
 
-  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes, :audio
+  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes, :audio, :image, :audio, :video
   belongs_to :drill
   alias :parent :drill
   has_many :exercise_items, :order => "position ASC", :dependent => :destroy, :autosave => true
@@ -53,6 +55,7 @@ class Exercise < ActiveRecord::Base
   end
 
   def fill_in_the_blank=(text = "a")
+binding.pry
     self.prompt = text
     self.save!
     blanks = text.scan(/\[([^\]]*)/).flatten

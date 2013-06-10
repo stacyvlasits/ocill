@@ -60,12 +60,24 @@ fixRTL = () ->
   $('form .text-field').addClass('rtl') if $('.set-rtl').is(':checked')
   $('form .text-field').removeClass('rtl') unless $('.set-rtl').is(':checked')
 
+hideUpload = () ->
+  $('form .upload-field').addClass('hidden')
 
 jQuery ->
-  $('form').on 'click', '.open-upload-form', (event) ->
-    $(this).parent().find('.audio-upload-form').toggleClass('hidden');
+  $('form').on 'click', '.add-audio-field', (event) ->
+    hideUpload()
+    $(this).parent().find('.audio-upload-field').toggleClass('hidden');
     event.preventDefault()
-
+jQuery ->
+  $('form').on 'click', '.add-video-field', (event) ->
+    hideUpload()
+    $(this).parent().find('.video-upload-field').toggleClass('hidden');
+    event.preventDefault()
+jQuery ->
+  $('form').on 'click', '.add-image-field', (event) ->
+    hideUpload()
+    $(this).parent().find('.image-upload-field').toggleClass('hidden');
+    event.preventDefault()
 jQuery ->
   $('form audio').bind 'ended', (event) ->
     playCounter = $(this).parent().find('.audio-played')
