@@ -4,7 +4,7 @@
   <%= f.text_field :text, :class => 'text-field' %>
   <%= f.hidden_field :position, value: nested_child_index(f) %>
   <%= f.hidden_field :key %>
-  <%= link_to icon("headphones", "white").html_safe, "#", :class => "add-audio-form" %>
+  <%= link_to icon("headphones", "white").html_safe, "#", :class => "add-audio-field" %>
   <%= audio_tag(f.object.audio_url, :preload => true, :controls => true) %>
-  <%= f.file_field :audio, :class => "hidden audio-upload-field" %>
+  <%= f.file_field :audio, :class => "hidden audio-upload-field upload-field" %>
 </td>
