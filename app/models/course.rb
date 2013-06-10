@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :units, allow_destroy: true
   
   validates :position, :numericality => { :only_integer => true, :greater_than => 0 }
-  validates :presence, :title
+  validates :title, :presence => true
   after_initialize :set_default_position
 
 

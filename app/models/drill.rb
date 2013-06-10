@@ -15,7 +15,7 @@ class Drill < ActiveRecord::Base
   accepts_nested_attributes_for :headers, allow_destroy: true
 
   validates :unit_id, :presence => true
-  validates :presence, :title
+  validates :title, :presence => true
   
   before_save :set_default_title
 

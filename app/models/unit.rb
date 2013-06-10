@@ -10,6 +10,6 @@ class Unit < ActiveRecord::Base
   accepts_nested_attributes_for :drills
 
   validates :course_id, :presence => true
-  validates :presence, :title
+  validates :title, :presence => true
   validates :position, :numericality => { :only_integer => true, :greater_than => 0 }
 end
