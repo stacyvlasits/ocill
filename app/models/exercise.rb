@@ -12,7 +12,7 @@ class Exercise < ActiveRecord::Base
 
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
-
+  validates :drill_id, :presence => true
   after_initialize :set_default_position
 
  

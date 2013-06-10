@@ -10,6 +10,7 @@ class ExerciseItem < ActiveRecord::Base
 
   belongs_to :exercise
   belongs_to :header
+  validates :exercise_id, :presence => true
 
   after_initialize :set_default_position
   

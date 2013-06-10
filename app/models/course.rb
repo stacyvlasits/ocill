@@ -4,8 +4,9 @@ class Course < ActiveRecord::Base
   alias :children :units
   has_many :drills, :through => :units
   accepts_nested_attributes_for :units, allow_destroy: true
+  
   validates :position, :numericality => { :only_integer => true, :greater_than => 0 }
-
+  validates :presence, :title
   after_initialize :set_default_position
 
 

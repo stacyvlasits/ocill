@@ -15,7 +15,8 @@ class Drill < ActiveRecord::Base
   accepts_nested_attributes_for :headers, allow_destroy: true
 
   validates :unit_id, :presence => true
-
+  validates :presence, :title
+  
   before_save :set_default_title
 
   def self.serialized_attr_accessor(*args)
