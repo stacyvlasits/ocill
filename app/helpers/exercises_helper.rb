@@ -64,6 +64,7 @@ module ExercisesHelper
       response = Response.create(exercise_item_id:ei.id)
       input += create_response_input(ei.id, response.id, "hidden", "audio-played", "0" )
       input += audio_tag(ei.audio_url, :preload => true, :controls => true)
+      input += image_tag(exercise.image_url(:small))
       text = ei.text if ei.show_text?
       input += content_tag(:p, text )
       input += "</td>"

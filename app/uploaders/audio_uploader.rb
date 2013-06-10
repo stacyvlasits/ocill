@@ -9,7 +9,7 @@ class AudioUploader < CarrierWave::Uploader::Base
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
-  include CarrierWaveDirect::Uploader
+#  include CarrierWaveDirect::Uploader
   # Choose what kind of storage to use for this uploader:
 
   include CarrierWave::MimeTypes

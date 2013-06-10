@@ -6,5 +6,6 @@
   <%= f.hidden_field :key %>
   <%= link_to icon("headphones", "white").html_safe, "#", :class => "add-audio-field" %>
   <%= audio_tag(f.object.audio_url, :preload => true, :controls => true) %>
+  <%= image_tag(exercise.image_url(:small)) %>
   <%= f.file_field :audio, :class => "hidden audio-upload-field upload-field" %>
 </td>

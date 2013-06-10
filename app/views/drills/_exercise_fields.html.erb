@@ -3,14 +3,11 @@
       <%= f.hidden_field :position, value: nested_child_index(f), class: "hidden-position" %>
       <%= link_to icon("headphones", "white").html_safe, "#", :class => "add-audio-field" %>
       <%= link_to icon("camera","white").html_safe, "#", :class => "add-image-field" %>
-      <%= link_to icon("facetime-video","white").html_safe, "#", :class => "add-video-field" %>
 
       <%= audio_tag(f.object.audio_url, :preload => true, :controls => true) %>
-      <%= image_tag(f.object.image_url(:small).to_s, :class => "hidden") %>
-      <%= video_tag(f.object.video_url, :class => "hidden") %>
+      <%= image_tag(f.object.image_url(:small).to_s) unless f.object.image.blank? %>
       
       <%= f.file_field :audio, :class => "hidden audio-upload-field upload-field" %>
-      <%= f.file_field :video, :class => "hidden video-upload-field upload-field" %>
       <%= f.file_field :image, :class => "hidden image-upload-field upload-field" %>
       <%= f.text_field(:fill_in_the_blank, class: "fill-in-the-blank-field text-field") %>
       <%= f.hidden_field :_destroy %>

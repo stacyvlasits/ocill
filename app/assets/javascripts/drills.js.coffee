@@ -68,16 +68,13 @@ jQuery ->
     hideUpload()
     $(this).parent().find('.audio-upload-field').toggleClass('hidden');
     event.preventDefault()
-jQuery ->
-  $('form').on 'click', '.add-video-field', (event) ->
-    hideUpload()
-    $(this).parent().find('.video-upload-field').toggleClass('hidden');
-    event.preventDefault()
+
 jQuery ->
   $('form').on 'click', '.add-image-field', (event) ->
     hideUpload()
     $(this).parent().find('.image-upload-field').toggleClass('hidden');
     event.preventDefault()
+    
 jQuery ->
   $('form audio').bind 'ended', (event) ->
     playCounter = $(this).parent().find('.audio-played')
