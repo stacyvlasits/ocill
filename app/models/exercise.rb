@@ -13,8 +13,8 @@ class Exercise < ActiveRecord::Base
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
   after_initialize :set_default_position
+  
 
- 
   def answers
     self.exercise_items.map { |exercise_item| exercise_item.answer}
   end

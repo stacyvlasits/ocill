@@ -13,7 +13,15 @@ class ExerciseItem < ActiveRecord::Base
   validates :exercise_id, :presence => true
 
   after_initialize :set_default_position
+  before_save :cleanup_audio
   
+  
+  def cleanup_audio
+    if remove_audio
+      self.remove_audio!
+    end
+  end
+
   def show_text?
     # TODO Yuck.  why am I reaching into the Drill?
     self.exercise.drill.show_text

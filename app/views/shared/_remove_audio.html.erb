@@ -1,6 +1,1 @@
-  <p>
-    <label>
-      <%= f.check_box :remove_audio %>
-      Remove audio
-    </label>
-  </p>
+<%= link_to icon('remove-sign', 'white'), remove_audio_path(exercise_item), :confirm => "Are you sure you want to delete this file?", :method => :delete %>

@@ -4,8 +4,10 @@
       <%= link_to icon("headphones", "white").html_safe, "#", :class => "add-audio-field" %>
       <%= link_to icon("camera","white").html_safe, "#", :class => "add-image-field" %>
 
-      <%= audio_tag(f.object.audio_url, :preload => true, :controls => true) unless f.object.audio_url.blank?%>
-      <%= render :partial => 'shared/remove_audio', :locals => {:f => f} unless ( f.object.audio_url.include?("fallback") ||  f.object.audio_url.blank? ) %>
+      <%= audio_tag(f.object.audio_url, :preload => true, :controls => true) unless f.object.audio_url.blank? || f.object.audio_url.include?("fallback") %>
+      <% if f.object.id %>
+      <%= link_to icon('remove-sign', 'white'), exercise_remove_audio_path(f.object), :confirm => "Are you sure you want to delete this file?", :method => :delete  unless f.object.audio_url.blank? %>
+      <% end %>
 
       <%= image_tag(f.object.image_url(:small).to_s) unless f.object.image.blank? %>
       
