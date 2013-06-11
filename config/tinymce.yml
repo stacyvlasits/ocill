@@ -3,10 +3,13 @@ theme: advanced
 theme_advanced_toolbar_location: top
 theme_advanced_toolbar_align: left
 theme_advanced_statusbar_location: bottom
-theme_advanced_buttons1: "bold,italic,strikethrough,underline,|,bullist,numlist,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,styleselect,|,pastetext,pasteword,|,outdent,indent,|,undo,redo,|,uploadimage"
+theme_advanced_buttons1: "bold,italic,strikethrough,underline,|,bullist,numlist,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,styleselect,|,pastetext,pasteword,|,outdent,indent,|,undo,redo,|,code,uploadimage"
 theme_advanced_toolbar_location: "external"
-theme_advanced_resizing : true
+theme_advanced_resizing: true
 uploadimage_default_img_class: mce-upload-image
+extended_valid_elements:
+  - "iframe[src|title|width|height|allowfullscreen|frameborder]"
+  - "embed[width|height|name|flashvars|src|bgcolor|align|play|loop|quality|allowscriptaccess|type|pluginspage]"
 style_formats:
   - title: R-to-L
     block: div
@@ -14,3 +17,7 @@ style_formats:
 content_css : /assets/tinymce/themes/advanced/skins/default/content.css
 plugins:
   - uploadimage
+  - media
+media_strict: false
+mode: textareas
+

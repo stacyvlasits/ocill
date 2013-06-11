@@ -81,4 +81,5 @@ jQuery ->
     playCounter = $(this).parent().find('.audio-played')
     playCounter.parent().css('background-color', 'lightgreen')
     playCounter.val(1)
-    
+ 
+ 
