@@ -14,8 +14,8 @@ Ocill::Application.routes.draw do
     member do
       get 'row/add' => 'drills#add_row'
       get 'column/add' => 'drills#add_column'
-      delete 'row/remove(/:exercise_id)' => 'drills#remove_row'
-      delete 'column/remove(/:header_id)' => 'drills#remove_column'
+      delete 'row(/:exercise_id)' => 'drills#remove_row'
+      delete 'column(/:header_id)' => 'drills#remove_column'
     end
     
     resources :exercises do
