@@ -117,3 +117,5 @@ rails g migration AddOptionsToDrills options:text
 rails g migration AddVideoAndImageToDrills video:string image:string
 
 rails g migration AddVideoAndImageToExercises video:string image:string
+
+rails generate model Image image:string imageable_type:string imageable_id:integer

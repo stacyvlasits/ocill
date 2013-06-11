@@ -24,7 +24,7 @@ class AudioUploader < CarrierWave::Uploader::Base
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
     # For Rails 3.1+ asset pipeline compatibility:
-    asset_path("/images/fallback/" + [version_name, "default.m4a"].compact.join('_'))
+    asset_path("/fallback/" + [version_name, "default.m4a"].compact.join('_'))
   end
 
   # Process files as they are uploaded:

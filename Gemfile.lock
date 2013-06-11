@@ -278,6 +278,9 @@ GEM
     timers (1.1.0)
     tinymce-rails (3.5.8.2)
       railties (>= 3.1.1)
+    tinymce-rails-imageupload (3.5.6.4)
+      railties (>= 3.1)
+      tinymce-rails (>= 3.4.9)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
@@ -340,5 +343,6 @@ DEPENDENCIES
   therubyracer
   thin
   tinymce-rails
+  tinymce-rails-imageupload (~> 3.5.6.3)
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)

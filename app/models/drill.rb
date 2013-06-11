@@ -11,6 +11,7 @@ class Drill < ActiveRecord::Base
   has_many :attempts
   has_many :exercise_items, :through => :exercises, :autosave => true
   has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
+  has_many :images, :as => :imageable
   accepts_nested_attributes_for :exercises, allow_destroy: true
   accepts_nested_attributes_for :headers, allow_destroy: true
 

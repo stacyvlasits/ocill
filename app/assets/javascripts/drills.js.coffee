@@ -16,6 +16,7 @@ jQuery ->
   $("select#drill_type").on 'change', ( event ) ->
     $("form#new_drill").submit()
 
+# reveal the tiny mce Toolbar
 jQuery ->
   $(".mceLayout").focus ->
     $(this).toggleClass('mceHideToolbar')
@@ -74,7 +75,7 @@ jQuery ->
     hideUpload()
     $(this).parent().find('.image-upload-field').toggleClass('hidden');
     event.preventDefault()
-    
+
 jQuery ->
   $('form audio').bind 'ended', (event) ->
     playCounter = $(this).parent().find('.audio-played')

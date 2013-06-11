@@ -2,6 +2,8 @@ Ocill::Application.routes.draw do
 
   devise_for :users
 
+  post '/tinymce_assets' => 'tinymce_assets#create'
+  
   resources :courses, :attempts
 
   resources :units do

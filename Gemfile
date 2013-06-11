@@ -16,6 +16,7 @@ gem 'cancan'
 
 # WYSIWYG provided by tinymce
 gem 'tinymce-rails'
+gem 'tinymce-rails-imageupload', '~> 3.5.6.3'
 
 # adding foreign keys
 gem 'foreigner'

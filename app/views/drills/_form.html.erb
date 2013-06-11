@@ -21,7 +21,7 @@
   <div class="control-group">
     <%= f.label :prompt, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :prompt, :size => "20x1", :class => 'tinymce' %>
+      <%= f.text_area :prompt, :size => "20x1", :class => 'text_area tinymce' %>
     </div>
   </div>
     <div class="control-group">
@@ -51,5 +51,5 @@
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), drills_path, :class => 'btn' %>
   </div>
-  <%= tinymce %>
+  <%= tinymce :default %>
 <% end %>

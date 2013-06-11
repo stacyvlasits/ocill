@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608194931) do
+ActiveRecord::Schema.define(:version => 20130611021936) do
 
   create_table "attempts", :force => true do |t|
     t.integer  "drill_id"
@@ -74,6 +74,14 @@ ActiveRecord::Schema.define(:version => 20130608194931) do
     t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "image"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "media_items", :force => true do |t|
