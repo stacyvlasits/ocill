@@ -1,3 +1,5 @@
+
+<%= form_for @attempt, :html => { :class => 'form-horizontal' } do |f| %>
 <% drill = @attempt.drill %>
 <%- model_class = Drill -%>
   <dl class="dl-horizontal">
@@ -28,10 +30,11 @@
                 drills_path, :class => 'btn'  %>
     <% case action_name %>
     <% when "show" %>
-      <%= link_to "Attempt Again", new_attempt_path(:drill_id => drill.id), :class => 'btn btn-primary'  %>
+      <%= link_to "Attempt Again", new_drill_attempt_path(:drill_id => drill.id), :class => 'btn btn-primary'  %>
     <% when "new" %>
       <%= tag :input, :value => "Submit Attempt", :id => 'attempt-submit', :class => 'btn btn-primary' %>
     <% when "edit" %>
       <%= tag :input, :value => "Submit Attempt", :id => 'attempt-submit', :class => 'btn btn-primary' %>
     <% end %>
   </div>
+<% end %>

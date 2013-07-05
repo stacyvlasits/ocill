@@ -3,7 +3,6 @@ class Drill < ActiveRecord::Base
 
   serialize :options, Hash
   
-
   belongs_to :unit
   alias :parent :unit
   has_many :exercises, :order => "position ASC", :dependent => :destroy, :autosave => true
@@ -35,7 +34,7 @@ class Drill < ActiveRecord::Base
     end
   end
 
-  serialized_attr_accessor :rtl, :show_text
+  serialized_attr_accessor :rtl, :hide_text
   
   def type_abbr
     case self.type

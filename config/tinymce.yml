@@ -22,6 +22,5 @@ content_css: /assets/tinymce/themes/advanced/skins/default/content.css
 plugins:
   - uploadimage
   - media
-  - autoresize
 media_strict: false
 mode: textareas

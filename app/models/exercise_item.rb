@@ -22,9 +22,9 @@ class ExerciseItem < ActiveRecord::Base
     end
   end
 
-  def show_text?
+  def hide_text?
     # TODO Yuck.  why am I reaching into the Drill?
-    self.exercise.drill.show_text
+    self.exercise.drill.hide_text
   end
 
   def answers

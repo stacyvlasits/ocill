@@ -24,10 +24,16 @@
       <%= f.text_area :prompt, :class => 'text_area tinymce' %>
     </div>
   </div>
-    <div class="control-group">
+  <div class="control-group">
     <%= f.label :rtl, :class => 'control-label' %>
     <div class="controls">
       <%= f.check_box :rtl, :class => 'set-rtl' %>
+    </div>
+  </div>
+    <div class="control-group">
+    <%= f.label :hide_text, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :hide_text, :class => 'set-show-text' %>
     </div>
   </div>
   <% if @drill.exercises.empty? %>
