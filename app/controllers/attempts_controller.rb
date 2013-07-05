@@ -10,10 +10,20 @@ class AttemptsController < InheritedResources::Base
     new_responses.times { @attempt.responses.build }
   end
 
+  def show
+    @attempt = Attempt.find(params[:id])
+    @drill = Drill.find(params[:drill_id])
+  end
+  
   def create
     super do |format|
-      format.html { redirect_to attempt_path(@attempt) }
+      format.html { redirect_to drill_attempt_path(@attempt) }
     end
   end
 
+  def update
+    super do |format|
+      format.html { redirect_to drill_attempt_path }
+    end
+  end
 end
