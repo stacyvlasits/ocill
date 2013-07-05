@@ -1,6 +1,5 @@
 <li> <%= exercise.prompt.html_safe %>
   <% exercise.exercise_items.sort_by(&:position).each do |item| %>
-    <span><%=  #item.content[:text]
-              %></span>
+    <span><%= item.text %></span>
   <% end %>
 </li>

@@ -2,6 +2,6 @@
   <th scope="row"><%= exercise.prompt.html_safe || "&nbsp;" %></th>
   
   <% exercise.exercise_items.sort_by(&:position).each do |item| %>
-    <td><%= content_tag(:p, item.content[:text]) %><%= content_tag(:p, item.content[:audio]) %></td>
+    <td><%= content_tag(:p, item.text ) %><%= audio_tag( item.audio_url ) %></td>
   <% end %>
 </tr>

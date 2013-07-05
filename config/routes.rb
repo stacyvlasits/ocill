@@ -4,7 +4,7 @@ Ocill::Application.routes.draw do
 
   post '/tinymce_assets' => 'tinymce_assets#create'
   
-  resources :courses, :attempts
+  resources :courses
 
   resources :units do
     resources :drills
@@ -18,14 +18,16 @@ Ocill::Application.routes.draw do
       delete 'column(/:header_id)' => 'drills#remove_column'
     end
     
+    resources :attempts
+  
     resources :exercises do
 
       resources :exercise_items
     end
   end
 
-  resources :exercise do
-    delete 'remove_audio' => 'exercise#remove_audio'
+  resources :exercises do
+    delete 'remove_audio' => 'exercises#remove_audio'
     resources :audio
   end
   

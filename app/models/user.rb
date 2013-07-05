@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :role, :password, :password_confirmation, :remember_me
   ROLES = %w[admin instructor creator student]
 
+
   validates :role, :inclusion => { :in => ROLES,
-    :message => "\"%{value}\" is not a valid role" }
+    :message => "\"%{value}\" is not a valid role. Select from #{User::ROLES.join(", ")}." }
 end

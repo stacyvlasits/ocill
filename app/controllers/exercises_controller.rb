@@ -12,11 +12,11 @@ class ExercisesController < InheritedResources::Base
   def remove_audio
     exercise = Exercise.find(params[:exercise_id])
     exercise.remove_audio!
-    if exercise_item.save!
+    if exercise.save!
       flash[:notice] = "Audio file removed"
     else
       flash[:error] = "Audio file not removed"
     end
-    redirect_to :back
+    redirect_to edit_drill_path(exercise.drill)
   end
 end
