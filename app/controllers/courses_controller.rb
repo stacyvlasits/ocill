@@ -1,4 +1,6 @@
 class CoursesController < InheritedResources::Base
+  load_and_authorize_resource
+  
   def create
     @course = Course.new(params[:course])
     if @course.save

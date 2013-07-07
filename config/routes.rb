@@ -17,11 +17,8 @@ Ocill::Application.routes.draw do
       delete 'row(/:exercise_id)' => 'drills#remove_row'
       delete 'column(/:header_id)' => 'drills#remove_column'
     end
-    
     resources :attempts
-  
     resources :exercises do
-
       resources :exercise_items
     end
   end

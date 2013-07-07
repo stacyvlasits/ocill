@@ -17,6 +17,9 @@ class Attempt < ActiveRecord::Base
     correct.count
   end
 
+  def course
+    self.drill.course
+  end
 
   def incorrect
     total - correct

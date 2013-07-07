@@ -1,4 +1,5 @@
 class ExerciseItemsController < InheritedResources::Base
+  load_and_authorize_resource :exercise
   respond_to :json
 
   def remove_audio

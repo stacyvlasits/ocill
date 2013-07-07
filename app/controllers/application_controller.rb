@@ -6,4 +6,9 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new(message)
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied!"
+    redirect_to courses_path
+  end
+
 end

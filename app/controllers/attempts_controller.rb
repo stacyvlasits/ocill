@@ -1,4 +1,6 @@
 class AttemptsController < InheritedResources::Base
+  load_and_authorize_resource :drill
+
   def new
     if params[:drill_id]
       @attempt = Attempt.create(:drill_id => params[:drill_id])
@@ -14,7 +16,7 @@ class AttemptsController < InheritedResources::Base
     @attempt = Attempt.find(params[:id])
     @drill = Drill.find(params[:drill_id])
   end
-  
+
   def create
     super do |format|
       format.html { redirect_to drill_attempt_path(@attempt) }

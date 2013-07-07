@@ -1,4 +1,5 @@
 class UnitsController < InheritedResources::Base
+  load_and_authorize_resource
   respond_to :json
   def create
     @unit = Unit.new(params[:unit])

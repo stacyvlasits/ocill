@@ -1,4 +1,5 @@
 class ExercisesController < InheritedResources::Base
+  load_and_authorize_resource :drill
   respond_to :html, :json
   def new
     @drill = Drill.find(params[:drill_id])
