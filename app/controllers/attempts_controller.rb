@@ -1,9 +1,9 @@
 class AttemptsController < InheritedResources::Base
-  load_and_authorize_resource :drill
+  load_and_authorize_resource
 
   def new
     if params[:drill_id]
-      @attempt = Attempt.create(:drill_id => params[:drill_id])
+      @attempt = Attempt.create(:drill_id => params[:drill_id], :user_id => current_user.id)
       @drill = @attempt.drill
       new_responses = Drill.find(params[:drill_id]).exercise_items.count || 1
     else

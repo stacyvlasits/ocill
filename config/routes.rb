@@ -4,7 +4,10 @@ Ocill::Application.routes.draw do
 
   post '/tinymce_assets' => 'tinymce_assets#create'
   
-  resources :courses
+  resources :courses do
+    resources :roles
+    resources :users
+  end
 
   resources :units do
     resources :drills

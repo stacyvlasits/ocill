@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 
 #postgresql
 gem 'pg'
+#server
 gem 'thin'
 
 #authorization/authentication
@@ -28,6 +29,13 @@ gem 'rmagick'
 gem 'fog'
 gem 'carrierwave_direct'
 gem 'sidekiq'
+
+gem 'jquery-rails'
+
+# To use ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+# gems for forms
 
 gem 'inherited_resources'
 gem 'dynamic_form'
@@ -76,10 +84,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

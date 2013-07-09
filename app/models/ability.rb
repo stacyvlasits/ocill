@@ -5,44 +5,38 @@ class Ability
     user ||= User.new
 
     case user.role
-    when "admin"
+
+    when "Administrator"
       can :manage, :all
-    when "instructor"
-      can :read, :all
-      can :create, Course
+    when "Instructor"
       can :manage, Course do |course|
-        course.try(:user) == user
+        course.roles.where(:name => ['Instructor', 'Administrator'], :user_id => user.id ).count > 0
+      end
+      can :create, Course
+      can :manage, Unit do |unit|
+        unit.course.roles.where(:name => ['Instructor', 'Administrator'], :user_id => user.id ).count > 0
       end
       can :create, Unit
-      can :manage, Unit do |unit|
-        unit.course.try(:user) == user
-      end
-      can :create, Drill
       can :manage, Drill do |drill|
-        drill.course.try(:user) == user
-      end
-    when "creator"
-      can :read, :all
-      can :create, Course
-      can :update, Course do |course|
-        course.try(:user) == user
+        drill.course.roles.where(:name => ['Instructor', 'Administrator'], :user_id => user.id ).count > 0
       end
       can :create, Drill
-      can :update, Drill do |drill|
-        drill.course.try(:user) == user
+    when "Learner"
+      can :read, Course do |course|
+        course.roles.where(:name => ['Learner'], :user_id => user.id ).count > 0
       end
-    when "student"
-      can :read, Course
       can :read, Drill do |drill|
-        drill.course.try(:user) == user
+        drill.course.roles.where(:name => ['Learner'], :user_id => user.id ).count > 0
       end
       can :create, Attempt do |attempt|
-        attempt.course.try(:user) == user
+        attempt.drill.course.roles.where(:name => ['Learner'], :user_id => user.id ).count > 0
       end
-      # can :create, Response do |response|
-      #   response.attempt.try(user) == user
-      # end
+      can :create, Response do |response|
+        response.attempt.users.include? user
+      end
     end
+    #everybody!
     can :read, Course
+    can :create, :show, Attempt  #TODO fix
   end
 end
