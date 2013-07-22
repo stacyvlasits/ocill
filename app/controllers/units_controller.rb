@@ -1,13 +1,18 @@
 class UnitsController < InheritedResources::Base
   load_and_authorize_resource
   respond_to :json
+  
+  def new
+    @course = Course.find(params[:course_id])
+    @unit = @course.units.build
+    respond_with @unit
+  end
+
   def create
-    @unit = Unit.new(params[:unit])
     if @unit.save
       flash[:notice] = "Successfully created unit."
       redirect_to units_url
     else
-
       render :action => 'new'
     end
   end

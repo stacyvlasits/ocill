@@ -55,4 +55,12 @@ module ApplicationHelper
     html += "</video>"
     html.html_safe
   end
+
+  def ul_tag(array, classes)
+    html = "<ul class=\"" + classes.join(" ") + "\">"
+    array.each do |el|
+      html += "<li>" + el.to_s + "</li>"
+    end
+    html += "</ul>"
+  end
 end

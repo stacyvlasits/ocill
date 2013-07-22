@@ -13,6 +13,7 @@ class Ability
         course.roles.where(:name => ['Instructor', 'Administrator'], :user_id => user.id ).count > 0
       end
       can :create, Course
+      can :read, Course
       can :manage, Unit do |unit|
         unit.course.roles.where(:name => ['Instructor', 'Administrator'], :user_id => user.id ).count > 0
       end
@@ -21,6 +22,7 @@ class Ability
         drill.course.roles.where(:name => ['Instructor', 'Administrator'], :user_id => user.id ).count > 0
       end
       can :create, Drill
+      can :manage, Attempt  # for debugging purposes only.
     when "Learner"
       can :read, Course do |course|
         course.roles.where(:name => ['Learner'], :user_id => user.id ).count > 0
@@ -37,6 +39,6 @@ class Ability
     end
     #everybody!
     can :read, Course
-    can :create, :show, Attempt  #TODO fix
+    can :create, :read, Attempt  #TODO fix
   end
 end

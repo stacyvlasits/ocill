@@ -35,7 +35,7 @@ class Drill < ActiveRecord::Base
   end
 
   serialized_attr_accessor :rtl, :hide_text
-  
+
   def type_abbr
     case self.type
     when "GridDrill"

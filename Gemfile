@@ -44,6 +44,7 @@ gem 'dynamic_form'
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do
+  gem 'rails_best_practices'
   gem 'foreigner'
   gem 'immigrant'
   gem 'debugger'

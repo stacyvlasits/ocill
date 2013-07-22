@@ -9,7 +9,13 @@ class Unit < ActiveRecord::Base
   has_many :exercise_items, :through => :drills
   accepts_nested_attributes_for :drills
 
+  after_initialize :set_default_position
+
   validates :course_id, :presence => true
   validates :title, :presence => true
   validates :position, :numericality => { :only_integer => true, :greater_than => 0 }
+
+  def set_default_position
+    self.position = Unit.maximum(:id) + 1
+  end
 end
