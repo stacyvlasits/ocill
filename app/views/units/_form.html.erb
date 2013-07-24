@@ -6,7 +6,7 @@
       <%= f.text_field :title, :class => 'text-field' %>
     </div>
   </div>
-
+  <%= f.text_field :course_id, :class => 'hidden' %>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

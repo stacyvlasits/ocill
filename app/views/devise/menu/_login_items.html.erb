@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <li >
-  <%= link_to('Logout (' + current_user.role.to_s + ')' , destroy_user_session_path, :method => :delete ) %>
+  <%= link_to('Logout ' + current_user.email.to_s + '(' + current_user.role.to_s + ')' , destroy_user_session_path, :method => :delete ) %>
   </li>
 <% else %>
   <li>

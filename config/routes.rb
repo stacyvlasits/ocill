@@ -3,11 +3,14 @@ Ocill::Application.routes.draw do
   devise_for :users
 
   post '/tinymce_assets' => 'tinymce_assets#create'
+ 
+  resources :roles
   
   resources :courses do
     resources :roles
     resources :users
     resources :units
+
   end
 
   resources :units do
@@ -38,5 +41,6 @@ Ocill::Application.routes.draw do
   end
 
   root :to => "drills#index"
+
 
 end

@@ -6,12 +6,15 @@ class UnitsController < InheritedResources::Base
     @course = Course.find(params[:course_id])
     @unit = @course.units.build
     respond_with @unit
+
   end
 
   def create
+
     if @unit.save
       flash[:notice] = "Successfully created unit."
-      redirect_to units_url
+      binding.pry
+      redirect_to course_url(@unit.course_id)
     else
       render :action => 'new'
     end
@@ -26,4 +29,14 @@ class UnitsController < InheritedResources::Base
       respond_with(@unit)
     end
   end
+  def destroy
+    @unit = Unit.find(params[:id])
+    title = @unit.title
+    course = @unit.course
+    @unit.destroy
+    flash[:notice] = "Successfully deleted the unit: " + title.to_s
+    redirect_to course_url(course)
+  end
+
+
 end
