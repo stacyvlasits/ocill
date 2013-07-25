@@ -13,7 +13,6 @@ class UnitsController < InheritedResources::Base
 
     if @unit.save
       flash[:notice] = "Successfully created unit."
-      binding.pry
       redirect_to course_url(@unit.course_id)
     else
       render :action => 'new'

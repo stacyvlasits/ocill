@@ -40,7 +40,6 @@ Ocill::Application.routes.draw do
     resources :audio
   end
 
-  root :to => "drills#index"
-
+  root :to => "courses#index"
 
 end
