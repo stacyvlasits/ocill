@@ -15,7 +15,7 @@
   		<%= render partial: 'layouts/drill_navigation', :collection => unit.drills, as: :drill %>
   	</ul>
   <% if can? :create, Drill %>
-    <%= link_to icon("plus") + "Add New Drill", new_drill_path, :title => "Add New" %>
+    <%= link_to icon("plus") + "Add New Drill", new_unit_drill_path(unit), :title => "Add New" %>
   <% end -%>
   </li>
 <% end -%>
