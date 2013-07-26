@@ -22,7 +22,7 @@
 <p class="alert"><%= flash[:alert] %></p>
 <p class="error alert"><%= flash[:error] %></p>
 
-<% unless current_user # purposefully turned off using unless %>
+<% if "turned off" # purposefully turned off using unless %>
   <% roles = current_user.roles.map {|r| r.name }.uniq  %>
   <%= render 'layouts/role_links', :roles => roles %>
 <% end %>
