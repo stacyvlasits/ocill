@@ -1,17 +1,21 @@
 <%- model_class = Drill -%>
 <li class="nav-leaf drill">
   <% if can? :read, drill %>
-    <%= link_to icon("file") + drill.title, drill_path(drill) %>
+    <%= link_to icon("file") + " " + drill.title, drill_path(drill), :title => "View" %>
   <% end -%>
 	
   <% if can? :update, drill %>
-    <%= link_to icon("pencil"), edit_drill_path(drill) %>
+    <%= link_to icon("pencil"), edit_drill_path(drill), :title => "Edit" %>
   <% end -%>
   
   <% if can? :create, Attempt %>
-  <%= link_to icon("star"), new_drill_attempt_path(drill) %>
+  <%= link_to icon("star"), new_drill_attempt_path(drill), :title => "Attempt" %>
+  <% end -%>
+
+  <% if can? :update, drill %>
     <%= link_to icon("remove"),
           drill_path(drill),
+          :title => "Remove",
           :method => :delete,
           :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
   <% end -%>

@@ -1,19 +1,22 @@
 <tr>
-  <td><%= link_to drill.course.title, course_path(drill.course) %> ( <%= drill.course.units.count %> ) </td>
-  <td><%= link_to drill.unit.title, unit_path(drill.unit) %> ( <%= drill.unit.drills.count %> ) </td>
-  <td><%= link_to drill.title + " (" + drill.type_abbr + ") " , drill_path(drill) %></td>
+  <td><%= link_to drill.title + " (" + drill.type_abbr + ") " , drill_path(drill), :title => "View" %></td>
 
   <td>
-    <%= link_to t('.attempt', :default => t("helpers.links.attempt")), new_drill_attempt_path(drill), :class => 'btn btn-mini'  %>
-   
-    <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                edit_drill_path(drill), :class => 'btn btn-mini' %>
+    <% if can? :create, Attempt %>
+      <%= link_to t('.attempt', :default => t("helpers.links.attempt")), new_drill_attempt_path(drill), :class => 'btn btn-mini', :title => "Attempt"  %>
+    <% end %>
 
-                
-    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+    <% if can? :update, drill %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_drill_path(drill), :class => 'btn btn-mini', :title => "Edit" %>
+    <% end %>
+    
+    <% if can? :destroy, drill %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                 drill_path(drill),
                 :method => :delete,
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                :class => 'btn btn-mini btn-danger' %>
+                :class => 'btn btn-mini btn-danger',
+                :title => "Remove" %>
+    <% end %>
   </td>
 </tr>

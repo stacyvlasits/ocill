@@ -9,11 +9,10 @@
 
   validates :position, :numericality => { :only_integer => true, :greater_than => 0 }
   validates :title, :presence => true
+
   after_initialize :set_default_position
 
-
   def set_default_position
-    self.position ||= 1
+    self.position = Course.maximum(:id) + 1
   end
-
 end
