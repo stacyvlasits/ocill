@@ -11,8 +11,8 @@
   <% end -%>
   <ul class="nav-branch units">
   	<%= render partial: 'layouts/unit_navigation', :collection => course.units, as: :unit %>
+  <% if can? :update, course %>
+    <%= link_to icon("plus") + "Add New Unit", new_course_unit_path(course), :title => "Add New" %>
+  <% end -%>
   </ul>
-<% if can? :update, course %>
-  <%= link_to icon("plus") + "Add New Unit", new_course_unit_path(course), :title => "Add New" %>
-<% end -%>
 </li>
