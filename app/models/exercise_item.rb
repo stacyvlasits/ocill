@@ -44,22 +44,6 @@ class ExerciseItem < ActiveRecord::Base
   end
 
   alias :parent :exercise
-   
-  # def audio_name
-  #    File.basename(audio.path || audio.filename ) unless audio.to_s.empty?
-  # end
-
-  # def video_name
-  #   File.basename(video.path || video.filename ) unless video.to_s.empty?
-  # end
-  
-  # def image_name
-  #   File.basename(image.path || image.filename ) unless image.to_s.empty?
-  # end
-
-  # def content
-  #   { text: self.text, image: self.image, audio: self.audio, video: self.video }
-  # end
   
   def drill
     self.exercise.drill
