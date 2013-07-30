@@ -47,6 +47,7 @@ class Drill < ActiveRecord::Base
     end
   end
 
+
   def answers
     self.exercise_items.map {|exercise_item| exercise_item.answer}.flatten
   end
@@ -54,7 +55,7 @@ class Drill < ActiveRecord::Base
   def course
     self.unit.course unless self.unit.nil?
   end
-  
+    
   def rows
     self.exercises.size
   end

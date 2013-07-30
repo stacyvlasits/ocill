@@ -1,0 +1,92 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1158" measuredH="1156" mockupW="1156" mockupH="1156">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="2" y="0" w="1156" h="1156" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//ocill.com/drills/practice-verb-conjugation/edit/</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::ButtonBar" x="919" y="73" w="-1" h="-1" measuredW="235" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Home%2C%20Login/Logout%2C%20Register</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::TabBar" x="2" y="185" w="1149" h="760" measuredW="388" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <color>2848996</color>
+        <selectedIndex>1</selectedIndex>
+        <size>20</size>
+        <tabHPosition>right</tabHPosition>
+        <tabVPosition>top</tabVPosition>
+        <text>Student%2C%20*Creator*%2C%20Instructor%2C%20Admin</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Title" x="2" y="110" w="271" h="-1" measuredW="221" measuredH="75" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>72</size>
+        <text>OCILL</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="__group__" x="10" y="229" w="1037" h="844" measuredW="1037" measuredH="844" zOrder="4" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Tree" x="0" y="0" w="1035" h="651" measuredW="300" measuredH="412" zOrder="0" locked="false" isInGroup="31">
+          <controlProperties>
+            <borderStyle>none</borderStyle>
+            <selectedIndex>5</selectedIndex>
+            <text>%3E%20Arabic%20301%0Av%20Arabic%20302%0A%20%3E%20Unit%20One%3A%20%5BUnit%20Title%5D%0A%20%3E%20Unit%20Two%3A%20%5BUnit%20Title%5D%0A%20v%20Unit%20Three%0A%20%20%3E%20Grid%20Drill%3A%20%20%5BPractice%20Verb%5Cr%20Conjugations%5D%0A%20%20%3EGrid%20Drill%3A%20%20%5BGrid%20Drill%20Title%5D%20%20%0A%20%20%3E%20Fill%20Drill%3A%20%20%5BFill%20Drill%20Title%5D%0A%20%20%3E%20Fill%20Drill%3A%20%5BFill%20Drill%20Title%5D%0A%20%20%5B+%5D%20Add%20New%20Drill%5Cr%20%28Creator%20only%29%09%0A%20%3E%20Unit%20Four%0A%20%3E%20Unit%20Five%0A%20%5B+%5D%20Add%20New%20Unit%5Cr%20%28Creator%20only%29%0A%3E%20Russian%20301%0A%3E%20Russian%20302%0A%5B+%5D%20Add%20New%20Course%20%5Cr%20%28Admin%20only%29</text>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="__group__" x="242" y="0" w="795" h="844" measuredW="795" measuredH="844" zOrder="1" locked="false" isInGroup="31">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="795" h="844" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="9">
+              <controlProperties>
+                <borderStyle>none</borderStyle>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="__group__" x="15" y="0" w="777" h="106" measuredW="809" measuredH="273" zOrder="1" locked="false" isInGroup="9">
+              <groupChildrenDescriptors>
+                <control controlID="0" controlTypeID="com.balsamiq.mockups::Title" x="0" y="0" w="481" h="-1" measuredW="368" measuredH="27" zOrder="0" locked="false" isInGroup="1">
+                  <controlProperties>
+                    <align>left</align>
+                    <color>5865130</color>
+                    <size>24</size>
+                    <text>Practice%20verb%20conjugations%20%28FITB%29</text>
+                  </controlProperties>
+                </control>
+                <control controlID="1" controlTypeID="__group__" x="0" y="46" w="777" h="27" measuredW="777" measuredH="27" zOrder="1" locked="false" isInGroup="1">
+                  <groupChildrenDescriptors>
+                    <control controlID="0" controlTypeID="com.balsamiq.mockups::TextInput" x="93" y="0" w="684" h="-1" measuredW="236" measuredH="27" zOrder="0" locked="false" isInGroup="1">
+                      <controlProperties>
+                        <text>These%20are%20the%20instructions%20for%20the%20drill</text>
+                      </controlProperties>
+                    </control>
+                    <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="71" h="-1" measuredW="71" measuredH="21" zOrder="1" locked="false" isInGroup="1">
+                      <controlProperties>
+                        <text>Instructions</text>
+                      </controlProperties>
+                    </control>
+                  </groupChildrenDescriptors>
+                </control>
+                <control controlID="2" controlTypeID="__group__" x="0" y="79" w="777" h="27" measuredW="777" measuredH="27" zOrder="2" locked="false" isInGroup="1">
+                  <groupChildrenDescriptors>
+                    <control controlID="0" controlTypeID="com.balsamiq.mockups::TextInput" x="93" y="0" w="684" h="-1" measuredW="258" measuredH="27" zOrder="0" locked="false" isInGroup="2">
+                      <controlProperties>
+                        <text>Fill%20in%20the%20blank%20with%20the%20correct%20verb%20form</text>
+                      </controlProperties>
+                    </control>
+                    <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="43" h="-1" measuredW="43" measuredH="21" zOrder="1" locked="false" isInGroup="2">
+                      <controlProperties>
+                        <text>Prompt</text>
+                      </controlProperties>
+                    </control>
+                  </groupChildrenDescriptors>
+                </control>
+              </groupChildrenDescriptors>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>

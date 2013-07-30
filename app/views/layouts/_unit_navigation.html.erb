@@ -1,7 +1,7 @@
 <%- model_class = Unit -%>
 <% if can? :read, unit %>
   <li class="nav-leaf unit">
-      <%= link_to icon("folder-close") + " " + unit.title, unit_path(unit), :title => "View" %>
+      <%= link_to icon("folder-close") + " " + unit.title, "#", :title => "View Drills" %>
 
     <% if can? :update, unit %>
   		<%= link_to icon("pencil"), edit_unit_path(unit), :title => "Edit" %>

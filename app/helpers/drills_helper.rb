@@ -23,6 +23,21 @@ module DrillsHelper
     end
   end
 
+  def drill_breadcrumbs(drill)
+    html = '<div class="breadcrumbs">'
+    html += '<span class="crumb">'
+    html += drill.course.title
+    html += '</span>'
+    html += '<span class="crumb">'
+    html += drill.unit.title
+    html += '</span>'
+    html += '<span class="last-crumb">'
+    html += drill.title
+    html += '</span>'
+    html += '</div><!-- .breadcrumbs -->'
+    html.html_safe
+  end
+
   def after_exercise_wrapper(drill)
     case drill.type
     when "GridDrill"
