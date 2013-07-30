@@ -127,3 +127,7 @@ rails g migration AddRoleToUser role:string
 Role.all.each {|r| case r.name;when "admin";r.name="Administrator";when "creator"; r.name="Instructor";when "instructor";r.name="Instructor";when "student";r.name="Learner";end;r.save!}
 
 User.all.each {|r| case r.role;when "admin";r.role="Administrator";when "creator"; r.role="Instructor";when "instructor";r.role="Instructor";when "student";r.role="Learner";end;r.save!}
+
+rails g migration AddCourseIDIndexToUnits
+
+rails g migration AddIndexesToVariousModels

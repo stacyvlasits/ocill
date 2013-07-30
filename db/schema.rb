@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708022123) do
+ActiveRecord::Schema.define(:version => 20130730191944) do
 
   create_table "attempts", :force => true do |t|
     t.integer  "drill_id"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20130708022123) do
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
+
+  add_index "attempts", ["drill_id", "user_id"], :name => "index_attempts_on_drill_id_and_user_id"
+  add_index "attempts", ["user_id", "drill_id"], :name => "index_attempts_on_user_id_and_drill_id"
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -40,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20130708022123) do
     t.text     "options"
   end
 
+  add_index "drills", ["unit_id"], :name => "index_drills_on_unit_id"
+
   create_table "exercise_items", :force => true do |t|
     t.string   "text"
     t.boolean  "graded"
@@ -55,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20130708022123) do
     t.integer  "header_id"
   end
 
+  add_index "exercise_items", ["exercise_id"], :name => "index_exercise_items_on_exercise_id"
+
   create_table "exercises", :force => true do |t|
     t.string   "title"
     t.decimal  "weight"
@@ -68,6 +75,8 @@ ActiveRecord::Schema.define(:version => 20130708022123) do
     t.string   "image"
   end
 
+  add_index "exercises", ["drill_id"], :name => "index_exercises_on_drill_id"
+
   create_table "headers", :force => true do |t|
     t.integer  "drill_id"
     t.string   "title"
@@ -75,6 +84,8 @@ ActiveRecord::Schema.define(:version => 20130708022123) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "headers", ["drill_id"], :name => "index_headers_on_drill_id"
 
   create_table "images", :force => true do |t|
     t.string   "image"
@@ -102,6 +113,9 @@ ActiveRecord::Schema.define(:version => 20130708022123) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "responses", ["attempt_id"], :name => "index_responses_on_attempt_id"
+  add_index "responses", ["exercise_item_id"], :name => "index_responses_on_exercise_item_id"
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -109,6 +123,9 @@ ActiveRecord::Schema.define(:version => 20130708022123) do
     t.integer  "user_id"
     t.integer  "course_id"
   end
+
+  add_index "roles", ["course_id"], :name => "index_roles_on_course_id"
+  add_index "roles", ["user_id"], :name => "index_roles_on_user_id"
 
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id"
@@ -122,6 +139,8 @@ ActiveRecord::Schema.define(:version => 20130708022123) do
     t.datetime "updated_at", :null => false
     t.integer  "course_id"
   end
+
+  add_index "units", ["course_id"], :name => "index_units_on_course_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
