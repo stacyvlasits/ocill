@@ -1,6 +1,6 @@
  class Course < ActiveRecord::Base
   attr_accessible :position, :title, :units_attributes
-  has_many :units, :order => "position ASC", :autosave => true
+  has_many :units, :order => "position ASC", :dependent => :destroy, :autosave => true, :autosave => true
   alias :children :units
   has_many :drills, :through => :units
   accepts_nested_attributes_for :units, allow_destroy: true
@@ -13,6 +13,6 @@
   after_initialize :set_default_position
 
   def set_default_position
-    self.position = Course.maximum(:id) + 1
+    self.position ||= Course.maximum(:id) + 1
   end
 end

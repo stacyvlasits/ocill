@@ -18,6 +18,7 @@ class Drill < ActiveRecord::Base
   validates :title, :presence => true
   
   before_save :set_default_title
+  after_initialize :set_default_position
 
   def self.serialized_attr_accessor(*args)
     args.each do |method_name|
@@ -62,5 +63,9 @@ class Drill < ActiveRecord::Base
 
   def set_default_title
     self.title = "Default Title" if self.title.blank?
+  end
+
+  def set_default_position
+    self.position ||= Drill.maximum(:id) + 1
   end
 end

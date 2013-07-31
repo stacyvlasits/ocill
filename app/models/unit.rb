@@ -2,7 +2,7 @@ class Unit < ActiveRecord::Base
   attr_accessible :position, :title, :drills_attributes, :course_id
   belongs_to :course
   alias :parent :course
-  has_many :drills, :order => "position ASC", :autosave => true
+  has_many :drills, :order => "position ASC", :dependent => :destroy, :autosave => true, :autosave => true
   has_many :grid_drills, :order => "position ASC", :autosave => true
   alias :children :drills
   has_many :exercises, :through => :drills
@@ -16,6 +16,6 @@ class Unit < ActiveRecord::Base
   validates :position, :numericality => { :only_integer => true, :greater_than => 0 }
 
   def set_default_position
-    self.position = Unit.maximum(:id) + 1
+    self.position ||= Unit.maximum(:id) + 1
   end
 end
