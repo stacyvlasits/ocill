@@ -13,8 +13,7 @@ class Unit < ActiveRecord::Base
 
   validates :course_id, :presence => true
   validates :title, :presence => true
-  validates :position, :numericality => { :only_integer => true, :greater_than => 0 }
-
+  validates :position, :numericality => { :only_integer => true }
   def set_default_position
     self.position ||= Unit.maximum(:id) + 1
   end
