@@ -28,9 +28,9 @@ jQuery ->
   });
 
 jQuery ->
-  $("#sortable").on 'sortchange', ( event, ui) ->
-    $("#sortable li .hidden-position").each (index, element) ->
-      $(element).val(index)
+  $("#sortable").on 'sortdeactivate', ( event, ui) ->
+    $('#sortable .hidden-position').each (index, element) ->
+      $(element).val(index + 1)
 
 jQuery ->
   $('form').on 'click', '.remove_fields', (event) ->

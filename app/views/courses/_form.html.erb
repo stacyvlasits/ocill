@@ -1,13 +1,35 @@
-<%= form_for @course, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @course do |f| %>
   <%= f.error_messages %>
-  <div class="control-group">
-    <%= f.label :title, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :title, :class => 'text-field' %>
-    </div>
-  </div>
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+
+    <%= f.label :title  %>
+    <%= f.text_field :title, :class => 'text-field' %>
+    <%= f.submit "Save Course", :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), courses_path, :class => 'btn' %>
-  </div>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#permissions" data-toggle="tab">Permissions</a></li>
+    <li><a href="#sort-units" data-toggle="tab">Sort Units</a></li>
+  </ul>
+  <div class="tab-content">
+    <% unless action_name == "new" %>
+      <% if can? :manage, @course %>
+        <div class="tab-pane active" id="permissions">
+          <%= render :partial => 'role_fields' %>
+        </div>
+      <% end -%>
+    <% end -%>
+    <% unless action_name == "new" %>
+      <% if can? :manage, @course %>
+        <div class="tab-pane" id="sort-units">
+          <ol id="sortable">
+            <%= f.fields_for :units do |builder| %>
+              <li>
+                <%= render 'unit_fields', :f => builder %>
+              </li>
+            <% end %>
+          </ol> <!-- sortable -->
+        </div>
+      <% end -%>
+    <% end -%>
+  </div>   <!-- .tab-content -->
 <% end %>

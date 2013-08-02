@@ -18,7 +18,7 @@ style_formats:
   - title: R-to-L
     block: div
     classes: rtl
-content_css: /assets/content.css
+content_css: /assets/stylesheets/custom_tinymce/content.css
 plugins:
   - uploadimage
   - media

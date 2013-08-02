@@ -9,7 +9,7 @@ class RolesController < ApplicationController
     else
       flash[:alert] = "Failed to remove " + user.email + " \(" + @role.name + "\) from \"" + @course.title
     end
-    redirect_to course_path(@course)
+    redirect_to edit_course_url(@course)
 	end
 
   def create
@@ -23,7 +23,7 @@ class RolesController < ApplicationController
       else
         flash[:alert] = "Failed to add " + @user.email + " to Course: " + @course.title + " as a " + role_name
       end
-      redirect_to course_path(@course)
+      redirect_to edit_course_url(@course)
     else
       flash[:alert] = "Failed to add a new " + role_name + ".  Please specify a user to give that role to."
       redirect_to request.referer

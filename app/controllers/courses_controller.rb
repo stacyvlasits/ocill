@@ -6,7 +6,8 @@ class CoursesController < InheritedResources::Base
     if @course.save
       @course.roles.create(:name => "Administrator", :user => current_user)
       flash[:notice] = "Successfully created course."
-      redirect_to courses_url
+
+      redirect_to edit_course_url(@course)
     else
       render :action => 'new'
     end
@@ -14,7 +15,9 @@ class CoursesController < InheritedResources::Base
 
   def update
     super do |format|
-      format.html { redirect_to courses_url }
+      format.html { redirect_to edit_course_url(@course) }
     end
   end
+
+
 end
