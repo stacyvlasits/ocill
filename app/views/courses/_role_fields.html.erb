@@ -1,0 +1,14 @@
+<% Role::ROLES.each do |role| %>
+  <h5><strong><%= role.pluralize %></strong></h5>
+  <div class="user-group">
+    <ul>
+      <% @course.roles.where(:name => role).each do |user_role| %>
+        <%= render partial: 'shared/list_of_users', locals: { role: user_role } -%>
+      <% end -%>
+    </ul>
+    <div class="add-user-role">
+      <%= select_tag role.downcase + '-user-id' , options_for_select(User.all.collect{ |u| [u.email, u.id] }), :prompt => "Add user to group ..." %>
+      <%= link_to icon("plus") + role.to_s, course_roles_path(@course, :user_id => "", :role_name => role.to_s ), :method => :post %>
+    </div>
+  </div>
+<% end %>
