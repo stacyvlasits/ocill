@@ -11,6 +11,8 @@
  *= require_self
  *= require_tree .
  *= require font-awesome
+ *= require toastr.min 
+ *= require toastr-responsive
  */
 
  body {

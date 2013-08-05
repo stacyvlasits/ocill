@@ -86,6 +86,7 @@ group :assets do
   gem 'font-awesome-rails'
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
+  gem 'toastr-rails'
 end
 
 

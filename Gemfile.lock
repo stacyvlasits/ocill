@@ -306,6 +306,8 @@ GEM
     tinymce-rails-imageupload (3.5.6.4)
       railties (>= 3.1)
       tinymce-rails (>= 3.4.9)
+    toastr-rails (1.0.3)
+      railties (>= 3.1.0)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -374,5 +376,6 @@ DEPENDENCIES
   thin
   tinymce-rails (~> 3.5)
   tinymce-rails-imageupload (~> 3.5.6.3)
+  toastr-rails
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
