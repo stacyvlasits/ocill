@@ -25,13 +25,13 @@ module DrillsHelper
 
   def drill_breadcrumbs(drill)
     html = '<div class="breadcrumbs">'
-    html += '<span class="crumb" data-course-id="' + drill.course.id.to_s + '">'
+    html += '<span class="crumb course" data-course-id="' + drill.course.id.to_s + '">'
     html += drill.course.title.to_s
     html += '</span>'
-    html += '<span class="crumb icon-arrow-right" data-unit-id="' + drill.unit.id.to_s + '">'
+    html += '<span class="crumb unit icon-arrow-right" data-unit-id="' + drill.unit.id.to_s + '">'
     html += drill.unit.title.to_s
     html += '</span>'
-    html += '<span class="last-crumb icon-arrow-right" data-drill-id="' + drill.id.to_s + '">'
+    html += '<span class="last-crumb drill icon-arrow-right" data-drill-id="' + drill.id.to_s + '">'
     html += drill.title.to_s
     html += '</span>'
     html += '</div><!-- .breadcrumbs -->'
