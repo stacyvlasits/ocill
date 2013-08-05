@@ -48,7 +48,7 @@ module ExercisesHelper
       response = Response.create(exercise_item_id:ei.id)
       create_response_input(ei.id, response.id)
     end
-    prompt = exercise.hintless_prompt.gsub!(/\[/,'{{').gsub!(/\]/,'}}')
+    prompt = exercise.hintless_prompt.gsub!(/\[/,'{{').to_s.gsub!(/\]/,'}}') || exercise.hintless_prompt
     inputs.each {|input| prompt.sub!(/\{\{.+?\}\}/, input) }
     prompt
   end
