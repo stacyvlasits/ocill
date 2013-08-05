@@ -1,5 +1,5 @@
 <%- model_class = Drill -%>
-<li class="nav-leaf drill">
+<li class="nav-leaf drill" data-drill-id="<%= drill.id %>">
   <% if can? :read, drill %>
     <%= link_to icon("file") + " " + drill.title, drill_path(drill), :title => "View" %>
   <% end -%>

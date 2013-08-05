@@ -1,5 +1,5 @@
 <%- model_class = Course -%>
-<li class="nav-leaf course">
+<li class="nav-leaf course" data-course-id="<%= course.id %>">
   <% if can? :read, course %>
   	<%= link_to icon("book") + " " + course.title, course_path(course), :title => "View" %>
   <% end -%>
