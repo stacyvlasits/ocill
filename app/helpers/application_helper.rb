@@ -34,6 +34,7 @@ module ApplicationHelper
     attributes = f.object_name.scan(/(?<=\[)[^\]]+?(?=\])/)
     raise "nested_child_index couldn't find a matching attribute" unless attributes.index(model)
     index = attributes[attributes.index(model) + 1].to_i
+    binding.pry
   end
 
   def audio_tag(src, options ={})

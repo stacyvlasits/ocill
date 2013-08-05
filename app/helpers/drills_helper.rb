@@ -28,10 +28,10 @@ module DrillsHelper
     html += '<span class="crumb">'
     html += drill.course.title.to_s
     html += '</span>'
-    html += '<span class="crumb">'
+    html += '<span class="crumb icon-arrow-right">'
     html += drill.unit.title.to_s
     html += '</span>'
-    html += '<span class="last-crumb">'
+    html += '<span class="last-crumb icon-arrow-right">'
     html += drill.title.to_s
     html += '</span>'
     html += '</div><!-- .breadcrumbs -->'
