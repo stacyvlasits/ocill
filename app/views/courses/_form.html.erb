@@ -3,9 +3,6 @@
 
     <%= f.label :title  %>
     <%= f.text_field :title, :class => 'text-field' %>
-    <%= f.submit "Save Course", :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), courses_path, :class => 'btn' %>
-
   <ul class="nav nav-tabs">
     <li class="active"><a href="#permissions" data-toggle="tab">Permissions</a></li>
     <li><a href="#sort-units" data-toggle="tab">Sort Units</a></li>
@@ -32,4 +29,6 @@
       <% end -%>
     <% end -%>
   </div>   <!-- .tab-content -->
+      <%= f.submit "Save Course", :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), courses_path, :class => 'btn' %>
 <% end %>
