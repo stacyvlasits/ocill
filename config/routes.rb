@@ -8,10 +8,10 @@ Ocill::Application.routes.draw do
   
   resources :courses do
     resources :roles
-    resources :users
     resources :units
-
   end
+
+  resources :users, only: [:index, :show] 
 
   resources :units do
     resources :drills

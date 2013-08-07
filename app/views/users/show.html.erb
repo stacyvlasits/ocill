@@ -1,0 +1,9 @@
+<div id="profile">
+  <%= content_tag :h3, @user.email %>
+</div>
+
+<div id="courses">
+  <% @user.courses.each do |course| %>
+    <%= render :partial => "users/courses", locals: {:course => course } %>
+  <% end -%>
+</div> <!-- #courses -->

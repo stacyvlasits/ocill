@@ -6,12 +6,11 @@ class Attempt < ActiveRecord::Base
   accepts_nested_attributes_for :responses, allow_destroy: true
 
   def score
-    '<span class="score">' + correct.to_s + ' out of ' + total.to_s + '</span>'
+    '<span class="score"><span class="correct">' + correct.to_s + '</span>/<span class="total">' + total.to_s + '</span></span>'
   end
 
   def correct
     correct = grade_sheet.select do |el|
-      # binding.pry
       el[1].include?(el[0].to_s) if el[1].respond_to?(:include?)
     end
     correct.count
@@ -33,7 +32,12 @@ class Attempt < ActiveRecord::Base
     responses.each_with_index.map { |response, index| [response.value, response.answers] }
   end
 
+  def percent
+    correct / total
+  end
+
   def answers
-    self.responses.answer
+    # pretty sure this method is worthless.  wrote it anyway
+    responses.map{|r| r.answers}.flatten
   end
 end

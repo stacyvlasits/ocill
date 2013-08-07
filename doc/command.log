@@ -131,3 +131,5 @@ User.all.each {|r| case r.role;when "admin";r.role="Administrator";when "creator
 rails g migration AddCourseIDIndexToUnits
 
 rails g migration AddIndexesToVariousModels
+
+rails generate controller Users show index

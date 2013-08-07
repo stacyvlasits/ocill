@@ -1,0 +1,20 @@
+<table class="course-report">
+  <thead>
+    <tr>
+    	<th>
+    		<%= content_tag :h5, (link_to course.title, course_path(course) if course.present?) %>
+    	</th>
+      <th>Total Attempts</th>
+      
+      <% 5.times do |t| %>
+        <th> Attempt <%= (t+1).to_s %> </th>
+      <% end -%>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% course.drills.each do |drill| %>
+      <%= render :partial => "users/drills", locals: {:drill => drill, :user => @user } %>
+    <% end -%>
+ </tbody>
+</table>

@@ -6,7 +6,7 @@ class Response < ActiveRecord::Base
   belongs_to :exercise_item
 
   def answers
-    self.exercise_item.answers
+    self.exercise_item.answers if self.exercise_item
   end
 
   def correct?
