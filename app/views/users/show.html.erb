@@ -1,5 +1,5 @@
 <div id="profile">
-  <%= content_tag :h3, @user.email %>
+  <%= content_tag :h3, @user.email.to_s + ((" \(" + @user.eid + "\)") if @user.eid.present?).to_s  %>
 </div>
 
 <div id="courses">
