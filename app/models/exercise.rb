@@ -7,7 +7,7 @@ class Exercise < ActiveRecord::Base
   attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes, :audio, :image, :audio, :video, :remove_audio, :remove_image, :remove_video
   belongs_to :drill
   alias :parent :drill
-  has_many :exercise_items, :order => "position ASC", :dependent => :destroy, :autosave => true
+  has_many :exercise_items, :dependent => :destroy, :autosave => true
   alias :children :exercise_items
 
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
@@ -23,10 +23,6 @@ class Exercise < ActiveRecord::Base
     self.position ||= 999999
   end
 
-  def <=>(object)
-    self.position <=> object.position
-  end
-  
 # start METHODS for grid_drills
   def make_cells_for_row
     (drill.headers.size).times do |num|
