@@ -4,6 +4,8 @@ class Exercise < ActiveRecord::Base
   # mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
 
+  default_scope order("position asc")
+
   attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes, :audio, :image, :audio, :video, :remove_audio, :remove_image, :remove_video
   belongs_to :drill
   alias :parent :drill
