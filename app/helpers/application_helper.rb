@@ -2,9 +2,7 @@ module ApplicationHelper
   def link_to_add_fields(name, f, association)
     new_object = f.object.send(association).klass.new
     # id = new_object.object_id
-    # binding.pry
-    id = f.instance_variable_get("@nested_child_index").values[0] || 0
-    id = id.to_i
+    id = (f.instance_variable_get("@nested_child_index").values[0] || 0).to_i
 
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s.singularize + "_fields", f: builder)
@@ -34,7 +32,6 @@ module ApplicationHelper
     attributes = f.object_name.scan(/(?<=\[)[^\]]+?(?=\])/)
     raise "nested_child_index couldn't find a matching attribute" unless attributes.index(model)
     index = attributes[attributes.index(model) + 1].to_i
-    binding.pry
   end
 
   def audio_tag(src, options ={})
