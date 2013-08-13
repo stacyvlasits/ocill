@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+  	binding.pry
+  	@user.attempts.each {|attempt| attempt.destroy if attempt.responses.empty? }
   	respond_with @user
   end
 

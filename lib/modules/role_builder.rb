@@ -10,16 +10,18 @@ class RoleBuilder
   end
 
   def save!
+    roles = []
     @users_and_info.each do |user_info|
       unless user_info.blank?
         user = User.find_by_email_or_eid(user_info).first 
-        role = @course.roles.new( :user => user, :name => @role_name )
+        roles << role = @course.roles.new( :user => user, :name => @role_name )
         if role.save
           @successes << user_info 
         else
           @failures << user_info
         end
       end
-    end    
+    end
+    roles    
   end
 end
