@@ -3,7 +3,7 @@
 </div>
 
 <div id="courses">
-  <% @user.courses.each do |course| %>
+  <% @user.courses.uniq.each do |course| %>
     <%= render :partial => "users/courses", locals: {:course => course } %>
   <% end -%>
 </div> <!-- #courses -->

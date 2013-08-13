@@ -41,10 +41,10 @@ class RolesController < ApplicationController
     rbuilder.save!
 
     unless rbuilder.successes.empty?
-      flash[:notice] = "Successfully added: <br>" + rbuilder.successes.join("<br>") + "<br>To the " + @course.title + " course as " + role_name.pluralize 
+      flash[:notice] = "Successfully added: <br>" + rbuilder.successes.join("<br>") + "<br>to the " + @course.title + " course as " + role_name.pluralize 
     end
 
-    flash[:alert] = "Failed to create: <br>" + rbuilder.failures.join("<br>") + "<br>In the " + @course.title + " course." if rbuilder.failures
+    flash[:alert] = "Failed to create: <br>" + rbuilder.failures.join("<br>") + "<br>in the " + @course.title + " course." if rbuilder.failures
     redirect_to edit_course_url(@course)
   end
 end
