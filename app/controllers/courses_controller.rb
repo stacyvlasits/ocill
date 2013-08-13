@@ -18,6 +18,4 @@ class CoursesController < InheritedResources::Base
       format.html { redirect_to edit_course_url(@course) }
     end
   end
-
-
 end

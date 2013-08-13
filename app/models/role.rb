@@ -11,4 +11,6 @@ class Role < ActiveRecord::Base
 
   validates :name, :inclusion => { :in => ROLES,
     :message => "\"%{value}\" is not a valid role. Select from #{Role::ROLES.join(", ")}." }
+  validates :user_id, :presence => true
+  validates :course_id, :presence => true
 end

@@ -8,10 +8,12 @@ Ocill::Application.routes.draw do
   
   resources :courses do
     resources :roles
+    post 'create_many_roles' => 'roles#create_many_roles'
     resources :units
   end
 
   resources :users, only: [:index, :show] 
+
 
   resources :units do
     resources :drills

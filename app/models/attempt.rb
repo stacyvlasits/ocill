@@ -5,6 +5,7 @@ class Attempt < ActiveRecord::Base
   belongs_to :user
   accepts_nested_attributes_for :responses, allow_destroy: true
 
+  # TODO move the presentation of the score out of the model and into a view helper
   def score
     '<span class="score"><span class="correct">' + correct.to_s + '</span>/<span class="total">' + total.to_s + '</span></span>'
   end

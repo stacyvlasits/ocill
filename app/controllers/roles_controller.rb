@@ -7,7 +7,10 @@ class RolesController < ApplicationController
 		if @role.destroy
 		  flash[:notice] = "Successfully removed " + user.email + " \(" + @role.name + "\) from \"" + @course.title
     else
-      flash[:alert] = "Failed to remove " + user.email + " \(" + @role.name + "\) from \"" + @course.title
+      email = user ? user.email : "unknown user"
+      role = @role ? @role.name : "unknown role"
+      course_title = @course ? @course.title : "unknown title"
+      flash[:alert] = "Failed to remove " + email + " \(" + role + "\) from \"" + course_title
     end
     redirect_to edit_course_url(@course)
 	end
@@ -28,5 +31,20 @@ class RolesController < ApplicationController
       flash[:alert] = "Failed to add a new " + role_name + ".  Please specify a user to give that role to."
       redirect_to request.referer
     end
+  end
+
+  def create_many_roles
+    @course = Course.find(params[:course_id])
+    role_name = params[:role_name] || "Learner"
+    users_and_info =  ActiveSupport::JSON.decode(params[:users_info])
+    rbuilder = RoleBuilder.new(@course, role_name, users_and_info)
+    rbuilder.save!
+
+    unless rbuilder.successes.empty?
+      flash[:notice] = "Successfully added: <br>" + rbuilder.successes.join("<br>") + "<br>To the " + @course.title + " course as " + role_name.pluralize 
+    end
+
+    flash[:alert] = "Failed to create: <br>" + rbuilder.failures.join("<br>") + "<br>In the " + @course.title + " course." if rbuilder.failures
+    redirect_to edit_course_url(@course)
   end
 end
