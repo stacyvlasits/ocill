@@ -13,6 +13,9 @@
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               drills_path, :class => 'btn'  %>
+  <% if can? :create, Attempt %>
+    <%= link_to "Attempt", new_drill_attempt_path(@drill), :title => "Attempt", :class =>'btn btn-primary' %>
+  <% end -%>
   <% if can? :update, @drill %>           
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_drill_path(@drill), :class => 'btn' %>

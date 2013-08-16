@@ -1,6 +1,11 @@
 <li>
-	<%= link_to role.user.email, user_url(role.user) if role.user.present? %>
-  	<% if can? :manage, @course %> 
-	    <%= link_to icon("remove"), role_path(role), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
+	<%= content_tag :span, role.user.email %>
+	
+	<% if can? :update, @course %>
+		<%= link_to "User Page", user_url(role.user) if role.user.present? %>
+	<% end -%> 
+	
+	<% if can? :manage, @course %> 
+    <%= link_to icon("remove"), role_path(role), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
 	<% end -%>
 </li>

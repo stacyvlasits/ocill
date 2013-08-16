@@ -4,12 +4,14 @@ class RolesController < ApplicationController
 		@role = Role.find(params[:id])
     user = @role.user
     @course = @role.course
+
+    email = user ? user.email : "unknown user"
+    role = @role ? @role.name : "unknown role"
+    course_title = @course ? @course.title : "unknown title"
+
 		if @role.destroy
 		  flash[:notice] = "Successfully removed " + user.email + " \(" + @role.name + "\) from \"" + @course.title
     else
-      email = user ? user.email : "unknown user"
-      role = @role ? @role.name : "unknown role"
-      course_title = @course ? @course.title : "unknown title"
       flash[:alert] = "Failed to remove " + email + " \(" + role + "\) from \"" + course_title
     end
     redirect_to edit_course_url(@course)

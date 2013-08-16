@@ -19,12 +19,17 @@ class User < ActiveRecord::Base
   has_many :drills, :through => :attempts
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :role, :password, :password_confirmation, :remember_me
+  attr_accessible :first_name, :last_name, :email, :role, :password, :password_confirmation, :remember_me
 
   scope :none, where(:id => nil).where("id IS NOT ?", nil)
+  default_scope order("last_name asc, first_name asc, email asc")
 
   validates :role, :inclusion => { :in => Role::ROLES,
     :message => "\"%{value}\" is not a valid role. Select from #{Role::ROLES.join(", ")}." }
+
+  def full_name
+    self.first_name + " " + self.last_name
+  end
 
   def self.find_by_email_or_eid(info)
     info.downcase!
