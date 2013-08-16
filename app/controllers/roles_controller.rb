@@ -36,15 +36,14 @@ class RolesController < ApplicationController
   def create_many_roles
     @course = Course.find(params[:course_id])
     role_name = params[:role_name] || "Learner"
-    users_and_info =  ActiveSupport::JSON.decode(params[:users_info])
-    rbuilder = RoleBuilder.new(@course, role_name, users_and_info)
+    user_identifiers =  ActiveSupport::JSON.decode(params[:users_info])
+    rbuilder = RoleBuilder.new(@course, role_name, user_identifiers, current_user.email)
     rbuilder.save!
-
-    unless rbuilder.successes.empty?
-      flash[:notice] = "Successfully added: <br>" + rbuilder.successes.join("<br>") + "<br>to the " + @course.title + " course as " + role_name.pluralize 
-    end
-
-    flash[:alert] = "Failed to create: <br>" + rbuilder.failures.join("<br>") + "<br>in the " + @course.title + " course." if rbuilder.failures
+    
+    flash[:notice] = "Successfully added: <br> #{rbuilder.successes.join("<br>")} <br>to the #{@course.title} course as #{role_name.pluralize}" unless rbuilder.successes.empty?
+    
+    flash[:alert] = "Failed to create: <br> #{rbuilder.failures.join("<br>")} <br>in the #{@course.title} course." unless rbuilder.failures.empty?
+    
     redirect_to edit_course_url(@course)
   end
 end

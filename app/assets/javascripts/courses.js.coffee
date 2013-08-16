@@ -29,11 +29,11 @@ validateEmailsEids = ( textarea ) ->
   return emails_and_eids_marked
 
 markEids = (text) ->
-  eid_pattern = '[a-z]+[0-9]+' 
+  eid_pattern = '([a-z]+[0-9]+[\n\r$])' 
   re = new RegExp(eid_pattern, "g")
-  return text.replace(re, '<span class="green">' + " validated eid text " + '</span>' )
+  return text.replace(re, '<span class="eid-match">' + "$1" + '</span>' )
 
 markEmails = (text) ->
-  email_pattern = '[a-z0-9\+\.]+\@[a-z0-9\+\.]+\.[a-z]{1,5}' # TODO fix this sucky regex 
+  email_pattern = '([a-z0-9\+\.]+\@[a-z0-9\+\.]+\.[a-z]{1,5})' # TODO fix this sucky regex 
   re = new RegExp(email_pattern, "g")
-  return text.replace(re, '<span class="lightgreen">' + " validated email text " + '</span>' )
+  return text.replace(re, '<span class="email-match">' + "$1" + '</span>' )

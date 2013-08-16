@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-  	binding.pry
+    # TODO this way of maintaining the integrity of the attempts collection is a little kludgie
   	@user.attempts.each {|attempt| attempt.destroy if attempt.responses.empty? }
   	respond_with @user
   end
@@ -12,4 +12,5 @@ class UsersController < ApplicationController
   	@users = Users.all
   	respond_with @users
   end
+  
 end

@@ -1,0 +1,9 @@
+<%= @creator %> requested that an account be created for you at the University of Texas Ocill website
+
+Your username for the site is your email address: <%= @user.email %>
+
+Before you log in for the first time you will need to set your password by pasting the following link into your browser's address bar:  <%= edit_password_url(@user, :reset_password_token => @user.reset_password_token) %>.
+
+Once you have set your password you will be able to log in and access your course work at the following url: https://ocill.herokuapp.com/
+
+For help and support in the use of this site, please contact stacyvlasits@austin.utexas.edu

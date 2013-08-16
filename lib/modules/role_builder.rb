@@ -1,24 +1,25 @@
 class RoleBuilder
   attr_reader :failures, :successes
 
-	def initialize(course = "", role_name="", users_and_info=[])
+	def initialize(course = "", role_name="", user_identifiers=[], creator)
+    @creator = creator
     @course = course
     @role_name = role_name
-    @users_and_info = users_and_info
+    @user_identifiers = user_identifiers
 	  @failures = []
     @successes = []
   end
 
   def save!
     roles = []
-    @users_and_info.each do |user_info|
-      unless user_info.blank?
-        user = User.find_by_email_or_eid(user_info).first 
+    @user_identifiers.each do |email|
+      unless email.blank?
+        user = User.find_or_create_by_email(email, @role_name, @creator).first 
         roles << role = @course.roles.new( :user => user, :name => @role_name )
         if role.save
-          @successes << user_info 
+          @successes << email 
         else
-          @failures << user_info
+          @failures << email
         end
       end
     end

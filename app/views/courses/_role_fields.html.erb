@@ -14,7 +14,7 @@
       <%= link_to icon("plus") + role.to_s, course_roles_path(@course, :user_id => "", :role_name => role.to_s ), :method => :post %>
     </div>
     <div class="add-user-batch">
-      <%= content_tag :textarea, "" ,:placeholder => "email address or eid" ,:class => "add-" + role.to_s.downcase.pluralize  %>
+      <%= content_tag :textarea, "" ,:placeholder => "Add a list of email addresses, one per line, no commas..." ,:class => "add-" + role.to_s.downcase.pluralize  %>
       <%= link_to icon("plus") + " A batch of  " + role.to_s.pluralize, course_create_many_roles_path(@course, :users_info => '', :role_name => role.to_s ), :method => :post %>
       <br />
       <%= content_tag :div, "", :class => "hidden proof" %>
