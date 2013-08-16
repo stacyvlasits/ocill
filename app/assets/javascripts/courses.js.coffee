@@ -4,19 +4,19 @@
 
 jQuery ->
   $('.add-user-role select').on 'change', (event) ->
-    updateLink( $(this), $(this).next(), "user_id" )
+    updateLink( $(this).val(), $(this).next(), "user_id" )
 
 jQuery ->
   $('.add-user-batch textarea').on 'blur', (event) ->
-    updateLink( $(this), $(this).next(), "users_info" )
+    new_source_text = JSON.stringify($(this).val().split('\n'))
+    new_source_text = encodeURIComponent(new_source_text)
+    updateLink( new_source_text, $(this).next(), "users_info" )
     validated = validateEmailsEids( $(this) )
     $(this).parent().find('.proof').html(validated).removeClass("hidden") 
 
-updateLink = (source, link, link_argument) ->
-  new_source_text = JSON.stringify(source.val().split('\n'))
-  new_source_text = encodeURIComponent(new_source_text)
+updateLink = (text, link, link_argument) ->
   cur_href = link.attr('href')
-  replacement = "$1" + new_source_text # javascript regex trick
+  replacement = "$1" + text # javascript regex trick
   pattern = '(' + link_argument + '=)([^&|\n|\r]*)'
   re = new RegExp(pattern);
   new_href = cur_href.replace(re, replacement)

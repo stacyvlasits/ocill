@@ -135,3 +135,5 @@ rails g migration AddIndexesToVariousModels
 rails generate controller Users show index
 
 rails generate mailer NewRegistration
+
+rails g migration AddFirstNameLastNameToUsers first_name:string last_name:string
