@@ -34,8 +34,9 @@ class Ability
         drill.course.roles.is_learner(user).count > 0
       end
       can :manage, Attempt do |attempt|
-        attempt.course.is_learner(user).count > 0
+        attempt.course.roles.is_learner(user).count > 0
       end
+      can :create, Attempt
       can :create, Response do |response|
         response.attempt.users.include? user
       end

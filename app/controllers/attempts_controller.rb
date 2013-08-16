@@ -27,5 +27,6 @@ class AttemptsController < InheritedResources::Base
     super do |format|
       format.html { redirect_to drill_attempt_path }
     end
+    flash[:notice] = "Your attempt has been submitted successfully."
   end
 end
