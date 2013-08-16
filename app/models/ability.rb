@@ -13,7 +13,6 @@ class Ability
         course.roles.is_instructor_or_admin(user).count > 0
       end
       can :create, Course
-      can :read, Course
       can :manage, Unit do |unit|
         unit.course.roles.is_instructor_or_admin(user).count > 0
       end
@@ -23,6 +22,7 @@ class Ability
       end
       can :create, Drill
       can :manage, Attempt  # for debugging purposes only.
+      can :read, Course, Unit, Drill
     when "Learner"
       can :read, Course do |course|
         course.roles.is_learner(user).count > 0
@@ -33,7 +33,7 @@ class Ability
       can :read, Drill do |drill|
         drill.course.roles.is_learner(user).count > 0
       end
-      can :create, Attempt do |attempt|
+      can :manage, Attempt do |attempt|
         attempt.course.is_learner(user).count > 0
       end
       can :create, Response do |response|
