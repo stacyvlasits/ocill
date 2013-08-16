@@ -24,6 +24,9 @@ class Ability
       can :manage, Attempt  # for debugging purposes only.
       can :read, Course, Unit, Drill
     when "Learner"
+      can :read, User do |other_user|
+        other_user == user
+      end
       can :read, Course do |course|
         course.roles.is_learner(user).count > 0
       end
