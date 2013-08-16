@@ -27,6 +27,9 @@ class Ability
       can :read, Course do |course|
         course.roles.is_learner(user).count > 0
       end
+      can :read, Unit do |unit|
+        unit.course.roles.is_learner(user).count > 0
+      end
       can :read, Drill do |drill|
         drill.course.roles.is_learner(user).count > 0
       end
