@@ -1,8 +1,10 @@
 <tr>
   <td><%= attempter.full_name.to_s %></td>
-  <td><%= attempter.email.to_s %></td>
+  <td><%= link_to attempter.email.to_s, user_url(attempter) if attempter.present? %></td>
   <td><%= attempter.total_attempts(@drill) %></td>
   <td><%= attempter.best_attempt(@drill).score.html_safe %></td>
+  <td class="small-date"><%= (attempter.best_attempt(@drill).created_at.to_s(:simple_date) + "<br>" + attempter.best_attempt(@drill).created_at.to_s(:simple_time)).html_safe %>
   <td><%= attempter.worst_attempt(@drill).score.html_safe %></td>
+  <td class="small-date"><%= (attempter.worst_attempt(@drill).created_at.to_s(:simple) + "<br>" + attempter.worst_attempt(@drill).created_at.to_s(:simple_time)).html_safe  %>
   <td><%= attempter.average_score(@drill) %></td>  
 </tr>

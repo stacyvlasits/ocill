@@ -1,0 +1,5 @@
+Time::DATE_FORMATS[:created] = "created on %B %d at %I:%M %p"
+Time::DATE_FORMATS[:attempted] = "attempted on %B %d at %I:%M %p"
+Time::DATE_FORMATS[:simple_date] = "%-m/%e/%Y"
+Time::DATE_FORMATS[:simple_time] = "%l:%M%P-%Z"
+Time::DATE_FORMATS[:simple] = "%-m/%e/%Y\n%l:%M%P-%Z"
