@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Number of Attempts</th>
+      <th>Best Score</th>
+      <th>Worst Score</th>
+      <th>Average Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'shared/attempter_performance', collection: @attempters.uniq, as: :attempter %>
+  </tbody>
+</table>

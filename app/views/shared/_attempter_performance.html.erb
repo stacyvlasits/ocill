@@ -1,0 +1,8 @@
+<tr>
+  <td><%= attempter.full_name.to_s %></td>
+  <td><%= attempter.email.to_s %></td>
+  <td><%= attempter.total_attempts(@drill) %></td>
+  <td><%= attempter.best_attempt(@drill).score.html_safe %></td>
+  <td><%= attempter.worst_attempt(@drill).score.html_safe %></td>
+  <td><%= attempter.average_score(@drill) %></td>  
+</tr>

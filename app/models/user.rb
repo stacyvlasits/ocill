@@ -78,4 +78,22 @@ class User < ActiveRecord::Base
   def worst_attempt(drill)
     attempts_on(drill).min{|a, b| a.correct <=> b.correct}
   end
+  def total_score(drill)
+    attempts_on(drill).includes(:responses).inject(0) {|sum, attempt| sum + attempt.correct}
+  end
+  def total_responses(drill)
+    attempts_on(drill).inject(0) {|sum, attempt| sum + attempt.total}
+  end
+
+  def average_score(drill)
+    attempts = total_attempts(drill)
+    score = total_score(drill)
+    if attempts == 0
+      "--" # this should never happen
+    elsif score == 0
+      0.0
+    else
+      (score.to_f/attempts).round(2)
+    end
+  end
 end
