@@ -2,6 +2,11 @@ class DrillsController < InheritedResources::Base
   load_and_authorize_resource
   respond_to :json
   
+  def show
+    @drill = Drill.find(params[:id])
+    @attempters = @drill.attempters.includes(:attempts =>:responses)
+  end
+
   def new
     if params[:unit_id]
       @unit = Unit.find(params[:unit_id])

@@ -8,6 +8,7 @@ class Drill < ActiveRecord::Base
   has_many :exercises, :dependent => :destroy, :autosave => true
   alias :children :exercises
   has_many :attempts
+  has_many :attempters, :through => :attempts, :source => :user
   has_many :exercise_items, :through => :exercises, :autosave => true
   has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
   has_many :images, :as => :imageable
@@ -47,7 +48,6 @@ class Drill < ActiveRecord::Base
       ""
     end
   end
-
 
   def answers
     self.exercise_items.map {|exercise_item| exercise_item.answer}.flatten

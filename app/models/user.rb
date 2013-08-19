@@ -55,11 +55,27 @@ class User < ActiveRecord::Base
 
   def self.create_and_notify(email, role, creator= "Someone")
     password = User.reset_password_token
-    role = role == "Instructor" || "Administrator" ? "Instructor" : "Learner"
+    role = ( role == "Instructor" || role == "Administrator" ) ? "Instructor" : "Learner"
     user = self.new(email: email, role: role, password: password)
     user.reset_password_token = User.reset_password_token
     user.reset_password_sent_at = Time.now
     user.save
     NewRegistration.welcome_email(user, role, creator).deliver if user.id
+  end
+
+  def attempts_on(drill)
+    self.attempts.where(:drill_id => drill.id)
+  end
+
+  def total_attempts(drill)
+    attempts_on(drill).size
+  end
+  
+  def best_attempt(drill)
+    attempts_on(drill).max{|a, b| a.correct <=> b.correct}
+  end
+  
+  def worst_attempt(drill)
+    attempts_on(drill).min{|a, b| a.correct <=> b.correct}
   end
 end

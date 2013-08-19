@@ -14,6 +14,7 @@ class AttemptsController < InheritedResources::Base
 
   def show
     @attempt = Attempt.find(params[:id])
+    @responses = @attempt.responses
     @drill = Drill.find(params[:drill_id])
   end
 

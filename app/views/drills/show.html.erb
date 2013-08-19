@@ -10,6 +10,23 @@
   <dd><%= @drill.instructions.to_s.html_safe %></dd>
 </dl>
 <div style="clear:both"></div>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#performance" data-toggle="tab">Performance</a></li>
+  <li><a href="#placeholder" data-toggle="tab">Nothing here</a></li>
+</ul>
+<div class="tab-content">
+
+    <% if can? :manage, @drill %>
+      <div class="tab-pane active" id="performance">
+        <%= render :partial => 'shared/performance' %>
+      </div>
+    <% end -%>
+
+  <% if can? :manage, @drill %>
+    <div class="tab-pane" id="placeholder">
+    </div>
+  <% end -%>
+</div>   <!-- .tab-content -->
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               drills_path, :class => 'btn'  %>
