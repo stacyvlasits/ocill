@@ -55,10 +55,11 @@ class User < ActiveRecord::Base
 
   def self.create_and_notify(email, role, creator= "Someone")
     password = User.reset_password_token
+    role = role == "Instructor" || "Administrator" ? "Instructor" : "Learner"
     user = self.new(email: email, role: role, password: password)
     user.reset_password_token = User.reset_password_token
     user.reset_password_sent_at = Time.now
     user.save
-    NewRegistration.welcome_email(user, role, creator).deliver if user.id 
+    NewRegistration.welcome_email(user, role, creator).deliver if user.id
   end
 end
