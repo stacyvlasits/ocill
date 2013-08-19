@@ -48,12 +48,4 @@ module DrillsHelper
       html = "&nbsp;"
     end
   end
-
-  def html_score(attempt)
-    created = attempt.created_at
-    html = attempt.score.to_s
-    html += '<br><span class="score-date">' + created.to_s(:simple_date) + "</span>"
-    html += '<br><span class="score-time">' + created.to_s(:simple_time) + "</span>"
-    html.html_safe
-  end
 end
