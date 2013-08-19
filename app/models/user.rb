@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     :message => "\"%{value}\" is not a valid role. Select from #{Role::ROLES.join(", ")}." }
 
   def full_name
-    self.first_name + " " + self.last_name
+    self.first_name.to_s + " " + self.last_name.to_s
   end
 
   def self.find_by_email_or_eid(info)
