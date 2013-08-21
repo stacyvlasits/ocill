@@ -27,6 +27,15 @@ class DrillsController < InheritedResources::Base
       format.html { render :action => "edit" }
     end
   end
+
+  def destroy
+    @drill = Drill.find(params[:id])
+    unit = @drill.unit
+    @drill.destroy
+    super do |format|
+      format.html { redirect_to unit_url(unit) }
+    end
+  end  
   
   def add_column
     @drill = Drill.find(params[:id])
