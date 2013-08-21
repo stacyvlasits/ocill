@@ -20,6 +20,7 @@ class Ability
       can :manage, Drill do |drill|
         drill.course.roles.is_instructor_or_admin(user).count > 0
       end
+      
       can :create, Drill
       can :manage, Attempt  # for debugging purposes only.
       can :read, Course

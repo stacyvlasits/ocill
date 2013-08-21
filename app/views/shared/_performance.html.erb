@@ -12,9 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <% binding.pry %>
     <% if @attempters %>
-
       <%= render partial: 'shared/attempter_performance', collection: @attempters.uniq, as: :attempter %>
     <% end -%>
   </tbody>

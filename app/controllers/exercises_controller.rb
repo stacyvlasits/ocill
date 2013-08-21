@@ -1,5 +1,6 @@
 class ExercisesController < InheritedResources::Base
   load_and_authorize_resource :drill
+  load_and_authorize_resource :exercise, :through => :drill
   respond_to :html, :json
   
   def new
