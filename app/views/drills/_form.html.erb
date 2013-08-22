@@ -46,8 +46,7 @@
       <%= render nested_folder(@drill) + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
     </div>
   </div>
-      
-  <div class="form-actions">
+  <div class="form-actions <%= @drill.type.to_s.underscore %>">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), drills_path, :class => 'btn' %>
   </div>
