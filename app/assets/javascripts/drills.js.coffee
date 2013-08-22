@@ -39,7 +39,6 @@ jQuery ->
     $(this).closest('fieldset').parent().hide()
     event.preventDefault()
 
-# updates the position on fill-in-the-blank drills
 jQuery ->
   $('form').on 'click', '.add_fields', (event) ->
     current_position = $(this).data('id')
@@ -80,10 +79,4 @@ jQuery ->
     playCounter.parent().css('background-color', 'lightgreen')
     playCounter.val(1)
  
- jQuery ->
-  $('.fill_drill :submit').on 'click', (event) ->
-    $('.fill-in-the-blank-field').each (input) ->
-      if $(this).val()=="" 
-        event.preventDefault()
-        alert "At least one of the text fields is blank.\nCheck each item to make sure you filled in the answer blank before clicking Update Drill again."
-      
+ 
