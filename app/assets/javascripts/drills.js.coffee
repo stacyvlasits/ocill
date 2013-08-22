@@ -26,6 +26,7 @@ jQuery ->
     forcePlaceholderSize: true,
     placeholder: "ui-state-highlight"
   });
+  
 
 jQuery ->
   $("#sortable").on 'sortdeactivate', ( event, ui) ->
@@ -45,8 +46,9 @@ jQuery ->
       window.position = current_position + 1
     else
       window.position = window.position + 1
-    regexp = new RegExp($(this).data('id'), 'g')
-    $(this).before($(this).data('fields').replace(regexp, window.position))
+    replacement = "([_\\[])" + $(this).data('id') + "([_\\]])"
+    regexp = new RegExp(replacement, 'g')
+    $(this).before($(this).data('fields').replace(regexp, "$1" + window.position + "$2"))
     fixRTL()
     event.preventDefault()
 
