@@ -21,7 +21,7 @@
   <%= render 'layouts/header' %>
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span3">
+      <div class="span4">
         <section id="sidebar">
           <% if current_user %>
           <ul id="nav-tree" >
@@ -37,7 +37,7 @@
           <% end %>
         </section>
       </div>
-      <div class="span9"><%= yield %></div>
+      <div class="span8"><%= yield %></div>
     </div>
   </div>
 </body>

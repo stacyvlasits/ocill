@@ -1,14 +1,18 @@
 <%- model_class = Course -%>
 <li class="nav-leaf course" data-course-id="<%= course.id %>">
   <% if can? :read, course %>
-  	<%= link_to icon("book") + " " + course.title, course_path(course), :title => "View" %>
+    <%= link_to icon("expand"), "#", :class => "expand-course" %>
+    <%= link_to icon("collapse"), "#", :class => "collapse-course hidden" %>
+  	<%= link_to course.title, course_path(course), :title => "View", :class => "text-link" %>
   <% end -%>
-  <% if can? :update, course %>
-  	<%= link_to icon("pencil"), edit_course_path(course), :title => "Edit" %>
-  <% end -%>
-  <% if can? :destroy, course %>
-  <%= link_to icon("remove"), course_path(course), :method => :delete, :title => "Remove", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Really?  This will delete *everything* in the course.')) } %>
-  <% end -%>
+  <span class="nav-actions">
+    <% if can? :update, course %>
+    	<%= link_to icon("pencil"), edit_course_path(course), :title => "Edit" %>
+    <% end -%>
+    <% if can? :destroy, course %>
+    <%= link_to icon("remove"), course_path(course), :method => :delete, :title => "Remove", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Really?  This will delete *everything* in the course.')) } %>
+    <% end -%>
+  </span>
   <ul class="nav-branch units">
   	<%= render partial: 'layouts/unit_navigation', :collection => course.units.includes(:drills), as: :unit %>
   <% if can? :update, course %>

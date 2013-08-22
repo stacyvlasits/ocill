@@ -1,15 +1,18 @@
 <%- model_class = Unit -%>
 <% if can? :read, unit %>
   <li class="nav-leaf" data-unit-id="<%= unit.id %>">
-      <%= link_to icon("folder-close") + " " + unit.title, "#", :title => "View Drills" %>
-
-    <% if can? :update, unit %>
-  		<%= link_to icon("pencil"), edit_unit_path(unit), :title => "Edit" %>
-  	<% end %>
-    
-    <% if can? :destroy, unit %>
-      <%= link_to icon("remove"), unit_path(unit), :method => :delete, :title => "Remove", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
-    <% end -%>
+      <%= link_to icon("expand"), "#", :class => "expand-unit" %>
+      <%= link_to icon("collapse"), "#", :class => "collapse-unit hidden" %>
+      <%= link_to unit.title, "#", :title => "View", :class => "text-link" %>
+    <span class="nav-actions">      
+      <% if can? :update, unit %>
+    		<%= link_to icon("pencil"), edit_unit_path(unit), :title => "Edit" %>
+    	<% end %>
+      
+      <% if can? :destroy, unit %>
+        <%= link_to icon("remove"), unit_path(unit), :method => :delete, :title => "Remove", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
+      <% end -%>
+    </span>  
     <ul class="nav-branch drills">
   		<%= render partial: 'layouts/drill_navigation', :collection => unit.drills, as: :drill %>
     <% if can? :create, Drill %>
