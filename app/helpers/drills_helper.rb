@@ -22,7 +22,7 @@ module DrillsHelper
       html = "&nbsp;"
     end
   end
-
+#  TODO remove this method unless you decide to use it
   def drill_breadcrumbs(drill)
     html = '<div class="breadcrumbs">'
     html += '<span class="crumb course" data-course-id="' + drill.course.id.to_s + '">'
