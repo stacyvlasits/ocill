@@ -1,3 +1,6 @@
+<% @attempters ||= attempters %>
+<% @drill ||= drill %>
+<%= content_tag :h3, @drill.title if is_unit %>
 <table>
   <thead>
     <tr>
