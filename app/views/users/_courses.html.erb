@@ -2,7 +2,7 @@
   <thead>
     <tr>
     	<th>
-    		<%= content_tag :h5, (link_to course.title, course_path(course) if course.present?) %>
+    		<%= content_tag :h4, (link_to course.title, course_path(course) if course.present?) %>
     	</th>
       <th>Total Attempts</th>
         <% 5.times do |t| %>
@@ -11,8 +11,11 @@
     </tr>
   </thead>
   <tbody>
-    <% course.drills.each do |drill| %>
-      <%= render :partial => "users/drills", locals: {:drill => drill, :user => @user } %>
+    <% course.units.each do |unit| %>
+      <%= content_tag :h5, (link_to unit.title, unit_path(unit) if unit.present?) %>
+      <% unit.drills.each do |drill| %>
+        <%= render :partial => "users/drills", locals: {:drill => drill, :user => @user } %>
+      <% end -%>
     <% end -%>
  </tbody>
 </table>

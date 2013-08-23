@@ -32,6 +32,8 @@ Ocill::Application.routes.draw do
     end
   end
 
+  resources :attempts
+  
   resources :exercises do
     delete 'remove_audio' => 'exercises#remove_audio'
     resources :audio

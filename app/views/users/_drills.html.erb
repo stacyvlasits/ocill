@@ -3,7 +3,7 @@
   </td>
   <td>
     <%= link_to drill.attempts.where('user_id =?', @user.id).count.to_s, drill_path(drill), {:title => "This should eventually point to all of the attempts."} %>
-  <% drill.attempts.where('user_id =?', user.id).limit(5).each do |attempt| %>
-    <%= content_tag :td, attempt.score.html_safe %>
-  <% end -%>
+	  <% drill.attempts.where('user_id =?', user.id).limit(5).each do |attempt| %>
+	    <%= content_tag :td, (link_to attempt.score.html_safe, attempt_path(attempt) if attempt.present?) %>
+	  <% end -%>
 </tr>

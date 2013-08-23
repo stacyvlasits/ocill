@@ -16,7 +16,7 @@
 
     <% if can? :manage, @drill %>
       <div class="tab-pane active" id="performance">
-        <%= render :partial => 'shared/performance', :locals => {:drill => @drill, :attempters => @attempters} %>
+        <%= render :partial => 'shared/performance', :locals => {:drill => @drill, :attempters => @attempters, :is_unit => false} %>
       </div>
     <% end -%>
 

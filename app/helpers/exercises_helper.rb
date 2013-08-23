@@ -13,9 +13,9 @@ module ExercisesHelper
     spans = exercise.exercise_items.map do |ei|
       # TODO reduce number of sql queries
       response = responses.where(:exercise_item_id => ei)
-      '<span class="' + (response.first.correct? ? "correct" : "incorrect") + '">' + response.first.value.to_s + '</span>'
+      '<span class="' + (response.first.correct? ? "correct" : "incorrect") + '">'  + response.first.value.to_s + '</span>' + " " + (response.first.correct? ? icon("ok") : icon("remove")) 
     end
-    html = exercise.hintless_prompt.gsub!(/\[/,'{{').gsub!(/\]/,'}}')
+    html = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
     spans.each {|span| html.sub!(/\{\{.+?\}\}/, span) }
     html
   end
@@ -25,7 +25,7 @@ module ExercisesHelper
     exercise.exercise_items.each do |ei|
       if ei.answers
         response = responses.where(:exercise_item_id => ei).first
-        html += "<td>" + (response.correct? ? "Complete" : "Incomplete") + "</td>"
+        html += "<td>" + (response.correct? ? icon("ok") : icon("remove")) + "</td>"
       else
         html += "<td>--</td>".html_safe
       end
@@ -38,7 +38,7 @@ module ExercisesHelper
       response = responses.where(:exercise_item_id => ei)
       create_response_input(ei.id, response.first.id)
     end
-    prompt = exercise.hintless_prompt.gsub!(/\[/,'{{').gsub!(/\]/,'}}')
+    prompt = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
     inputs.each {|input| prompt.sub!(/\{\{.+?\}\}/, input) }
     prompt
   end
@@ -48,7 +48,7 @@ module ExercisesHelper
       response = Response.create(exercise_item_id:ei.id)
       create_response_input(ei.id, response.id)
     end
-    prompt = exercise.hintless_prompt.gsub!(/\[/,'{{').to_s.gsub!(/\]/,'}}') || exercise.hintless_prompt
+    prompt = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
     inputs.each {|input| prompt.sub!(/\{\{.+?\}\}/, input) }
     prompt
   end
