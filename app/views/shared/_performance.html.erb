@@ -1,6 +1,4 @@
-<% @attempters ||= attempters %>
-<% @drill ||= drill %>
-<%= content_tag :h3, @drill.title if is_unit %>
+<%= content_tag :h3, drill.title if is_unit %>
 <table>
   <thead>
     <tr>
@@ -15,8 +13,8 @@
     </tr>
   </thead>
   <tbody>
-    <% if @attempters %>
-      <%= render partial: 'shared/attempter_performance', collection: @attempters.uniq, as: :attempter %>
+    <% if attempters %>
+      <%= render partial: 'shared/attempter_performance', collection: attempters.uniq, as: :attempter, :locals => {:drill => drill} %>
     <% end -%>
   </tbody>
 </table>

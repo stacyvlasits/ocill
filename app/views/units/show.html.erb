@@ -14,7 +14,7 @@
     <% if can? :manage, @unit %>
       <div class="tab-pane active" id="performance">
         <% @unit.drills.each do |drill| %>
-          <% attempters = drill.attempters.includes(:attempts =>:responses) %>
+          <% attempters = drill.attempters.includes(:attempts =>:responses).uniq %>
           <%= render :partial => 'shared/performance', :locals => {:attempters => attempters, :drill => drill, :is_unit => true } %>
         <% end -%>
       </div>

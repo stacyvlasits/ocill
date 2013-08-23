@@ -1,7 +1,7 @@
 class UnitsController < InheritedResources::Base
   load_and_authorize_resource
   respond_to :json
-  
+
   def new
     @course = Course.find(params[:course_id])
     @unit = @course.units.build
