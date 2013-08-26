@@ -62,6 +62,9 @@ class User < ActiveRecord::Base
     user.save
     NewRegistration.welcome_email(user, role, creator).deliver if user.id
   end
+  # TODO filter out "Learners" from the list of users who can be added as Administrators/Instructors.
+  def self.select_by_role(role)
+  end
 
   def attempts_on(drill)
     self.attempts.where(:drill_id => drill.id)
