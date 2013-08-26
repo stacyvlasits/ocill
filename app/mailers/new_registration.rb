@@ -1,5 +1,5 @@
 class NewRegistration < ActionMailer::Base
-  default :from => "laits-ocill-support@utlists.utexas.edu"
+  default :from => "stacyvlasits@austin.utexas.edu"
 
   def welcome_email(user, role="", creator)
     @user = user
