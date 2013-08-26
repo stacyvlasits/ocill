@@ -74,9 +74,16 @@ jQuery ->
     event.preventDefault()
 
 jQuery ->
-  $('form audio').bind 'ended', (event) ->
-    playCounter = $(this).parent().find('.audio-played')
-    playCounter.parent().css('background-color', 'lightgreen')
-    playCounter.val(1)
- 
+  $('.audio-player').each (index, element) ->
+    td = $(this).closest('td')
+    td.prepend("<p class=\"waiting-message\">Waiting for audio to load...</p>")
+    source = $(this).data('url')
+    filename = $(this).attr('id')
+    jwplayer(filename).setup({flashplayer: "/assets/jwplayer.flash.swf", file: source, height: 30, width: 200, analytics: { enabled: false, cookies: false }})
+    jwplayer(filename).onReady (event) ->
+      td.find('.waiting-message').remove()
+    jwplayer(filename).onComplete (event) ->
+      playCounter = td.toggleClass('finished-playing').find('.audio-played')
+      playCounter.val(1)
+
  

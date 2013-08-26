@@ -1,5 +1,5 @@
 <li class="fill-drill-exercise">
-  <%= audio_tag(exercise.audio_url, :preload => true, :controls => true) unless exercise.audio_url.blank? || exercise.audio_url.include?("fallback")%>
+  <%= audio_tag(exercise.audio_url) unless exercise.audio_url.blank? || exercise.audio_url.include?("fallback")%>
   <%= image_tag(exercise.image_url(:small)) unless exercise.image_url.include?("fallback") %>
   <%= create_fill_drill_exercise(exercise).html_safe %>
   <span class="hint"><%= exercise.hint %></span>
