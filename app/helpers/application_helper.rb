@@ -41,7 +41,7 @@ module ApplicationHelper
     return "" unless src
     filename = src.split("/").last
     id = "audio-" + filename.split(".").first
-    audio = "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\">".html_safe
+    audio = "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\"></div>".html_safe
   end
 
   def video_tag(src, options ={})
