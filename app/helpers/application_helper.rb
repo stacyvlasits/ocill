@@ -40,14 +40,30 @@ module ApplicationHelper
   def audio_tag(src, options ={})
     return "" unless src
     options[:preload] ||= "auto"
-    options[:error]  ||= "Your browser does not support the mp3 audio format"
-    audio = "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{src}\" type=\"audio/mpeg\" >#{options[:error]}</audio>".html_safe
     filename = src.split("/").last
+    format = filename.split(".").last
+    mime_type = audio_type_conversion(format)
+    options[:error]  ||= "Your browser does not support the #{format} audio format"    
     id = "audio-" + filename.split(".").first
-    audio += "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\"></div>".html_safe
-
+    audio = "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{src}\" type=\"#{mime_type}\" >#{options[:error]} </audio>".html_safe
+    audio += "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\" data-mime-type=\"#{mime_type}\"></div> ".html_safe
   end
 
+  def audio_type_conversion(ext)
+    case ext
+    when "m4a" || "mp4"
+      "audio/mp4"
+    when "wav"
+      "audio/wav"
+    when "mp3"
+      "audio/mpeg"
+    when "oga"
+      "audio/ogg"
+    else
+      ""
+    end
+  end
+  
   def video_tag(src, options ={})
     return "" unless src
     options[:preload] ||= "auto"

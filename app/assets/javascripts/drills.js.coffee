@@ -73,17 +73,33 @@ jQuery ->
     $(this).parent().find('.image-upload-field').toggleClass('hidden');
     event.preventDefault()
 
+isWav = (jelement) ->
+  jelement.data('mime-type') == "audio/wav"
+
 jQuery ->
   $('.audio-player').each (index, element) ->
-    td = $(this).closest('td')
-    td.prepend("<p class=\"waiting-message\">Waiting for audio to load...</p>")
-    source = $(this).data('url')
-    filename = $(this).attr('id')
-    jwplayer(filename).setup({flashplayer: "/assets/jwplayer.flash.swf", file: source, height: 30, width: 200, analytics: { enabled: false, cookies: false }})
-    jwplayer(filename).onReady (event) ->
-      td.find('.waiting-message').remove()
-    jwplayer(filename).onComplete (event) ->
-      playCounter = td.toggleClass('finished-playing').find('.audio-played')
-      playCounter.val(1)
+    if isWav($(this))
+      watchInHTML5($(this)) 
+    else
+      watchInJwplayer($(this))           
 
+watchInHTML5 = (jelement) ->
+  audio = jelement.prev()
+  jelement.remove()
+  audio.on 'ended', (event) ->
+    playCounter = audio.parent('td').addClass('finished-playing').find('.audio-played')
+    playCounter.val(1)
+
+watchInJwplayer = (jelement) ->
+  jelement.prev('audio').remove()
+  td = jelement.closest('td')
+  td.prepend("<p class=\"waiting-message\">Waiting for audio to load...</p>")
+  source = jelement.data('url')
+  filename = jelement.attr('id')
+  jwplayer(filename).setup({flashplayer: "/assets/jwplayer.flash.swf", html5player: "/assets/javascripts/jwplayer.html5.js", file: source, height: 30, width: 200, analytics: { enabled: false, cookies: false }})
+  jwplayer(filename).onReady (event) ->
+    td.find('.waiting-message').remove()
+  jwplayer(filename).onComplete (event) ->
+    playCounter = td.addClass('finished-playing').find('.audio-played')
+    playCounter.val(1)
  
