@@ -45,7 +45,7 @@ module ApplicationHelper
     mime_type = audio_type_conversion(format)
     options[:error]  ||= "Your browser does not support the #{format} audio format"    
     id = "audio-" + filename.split(".").first
-    audio = "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{src}\" type=\"#{mime_type}\" >#{options[:error]} </audio>".html_safe
+    audio = "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{src}\" type=\"#{mime_type}\" > #{options[:error]} </audio>".html_safe
     audio += "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\" data-mime-type=\"#{mime_type}\"></div> ".html_safe
   end
 
