@@ -14,7 +14,11 @@
   </thead>
   <tbody>
     <% if attempters %>
-      <%= render partial: 'shared/attempter_performance', collection: attempters.uniq, as: :attempter, :locals => {:drill => drill} %>
+      <% attempters.uniq.each do |attempter| %>
+        <% unless attempter.roles.is_learner(attempter).in_course(drill.course).empty? %>
+          <%= render partial: 'shared/attempter_performance', :locals => {:drill => drill, :attempter => attempter} %>
+        <% end -%>
+      <% end -%>
     <% end -%>
   </tbody>
 </table>

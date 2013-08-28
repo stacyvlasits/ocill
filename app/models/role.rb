@@ -5,6 +5,7 @@ class Role < ActiveRecord::Base
 
   scope :is_instructor_or_admin, ->(user) { where(:name => ['Instructor', 'Administrator'], :user_id => user.id )}
   scope :is_learner, ->(user) { where(:name => ['Learner'], :user_id => user.id )}
+  scope :in_course, ->(course) { where(:course_id => course.id)}
 
   ROLES = %w[Administrator Instructor Learner]
 

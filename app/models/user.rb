@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :role, :password, :password_confirmation, :remember_me
-
   scope :none, where(:id => nil).where("id IS NOT ?", nil)
   default_scope order("last_name asc, first_name asc, email asc")
 
