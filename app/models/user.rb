@@ -63,6 +63,25 @@ class User < ActiveRecord::Base
     NewRegistration.welcome_email(user, role, creator).deliver if user.id
   end
 
+  def senior_role(course)
+    all_roles = self.roles.where(:course_id => course.id).map {|r| r.name }
+    if all_roles.include? "Administrator"
+      "Administrator"
+    elsif all_roles.include? "Instructor"
+      "Instructor"
+    elsif all_roles.include? "Learner"
+      "Learner"
+    else
+      ""
+    end
+  end
+
+  def course_permissions
+    perm = CoursePermissions.new(self)
+    perm.build!
+    perm
+  end
+
   def attempts_on(drill)
     self.attempts.where(:drill_id => drill.id)
   end

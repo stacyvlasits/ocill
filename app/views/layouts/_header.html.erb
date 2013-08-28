@@ -12,7 +12,7 @@
           <li><%= link_to "Ocill Help", "https://devtools.la.utexas.edu/confluence/display/op/Getting+Started+With+OCILL" %></li>
           <%= render 'devise/menu/registration_items' %>
           <%= render 'devise/menu/login_items' %>
-          <li><%= link_to "Support", "mailto:stacyvlasits@austin.utexas.edu" %></li>
+          <li><%= link_to "Support", "mailto:" + ENV["SUPPORT_EMAIL"] %></li>
         </ul>
       </div> <!-- nav-collapse -->
     </div> <!-- container -->
@@ -21,8 +21,3 @@
 <p class="notice"><%= flash[:notice] %></p>
 <p class="alert"><%= flash[:alert] %></p>
 <p class="error alert"><%= flash[:error] %></p>
-
-<% unless "turned on" # purposefully turned off using unless %>
-  <% roles = current_user.roles.map {|r| r.name }.uniq  %>
-  <%= render 'layouts/role_links', :roles => roles %>
-<% end %>

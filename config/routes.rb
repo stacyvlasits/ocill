@@ -1,5 +1,7 @@
 Ocill::Application.routes.draw do
 
+  get "home/show"
+
   devise_for :users
 
   post '/tinymce_assets' => 'tinymce_assets#create'
@@ -44,6 +46,6 @@ Ocill::Application.routes.draw do
     resources :audio
   end
 
-  root :to => "courses#index"
+  root :to => "home#show"
 
 end

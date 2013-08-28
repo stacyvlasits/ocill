@@ -1,5 +1,8 @@
 <%- model_class = Course -%>
+<% if can? :read, course %>
 <li class="nav-leaf course" data-course-id="<%= course.id %>">
+<% end -%>
+
   <% if can? :read, course %>
     <%= link_to icon("expand"), "#", :class => "expand-course" %>
     <%= link_to icon("collapse"), "#", :class => "collapse-course hidden" %>
@@ -19,6 +22,8 @@
   <li>
     <%= link_to icon("plus") + "Add New Unit", new_course_unit_path(course), :title => "Add New" %>
   <% end -%>
+<% if can? :read, course %>  
 </li>
   </ul>
 </li>
+<% end -%>
