@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th class="cell cell-c0-r0"><%= f.text_field :title, :class => 'table-title' %></th>
+      <th class="cell cell-c0-r0"></th>
       <%= f.fields_for :headers do |builder| %>
         <%= render nested_folder(@drill) + 'header_fields', f: builder %>
       <% end %>
