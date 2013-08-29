@@ -83,19 +83,12 @@ jQuery ->
     else
       watchInJwplayer($(this))
 
-extractFilename = (url) ->
-  url_pieces = url.split("/")
-  file_name = url_pieces[url_pieces.length - 1]
-  file_name_pieces = file_name.split(".")
-  extensionless_file_name = file_name_pieces[file_name_pieces.length - 2]
-
 jQuery ->
   $('.video-player').each (index, element) ->
     source = $(this).text()
     $(this).text('')
-    id = extractFilename(source)
+    id = "video-" + index
     $(this).attr('id', id)
-    alert(id + " source: " + source)
     jwplayer(id).setup({flashplayer: "/assets/jwplayer.flash.swf", html5player: "/assets/javascripts/jwplayer.html5.js", file: source, height: 360, width: 640, analytics: { enabled: false, cookies: false }})
 
 watchInHTML5 = (jelement) ->
