@@ -18,6 +18,9 @@ style_formats:
   - title: R-to-L
     block: div
     classes: rtl
+  - title: Video
+    block: div
+    classes: video-player
 content_css: "https://s3.amazonaws.com/ocill-bucket/public/content.css"
 plugins:
   - uploadimage

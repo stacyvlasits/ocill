@@ -81,7 +81,15 @@ jQuery ->
     if isWav($(this))
       watchInHTML5($(this)) 
     else
-      watchInJwplayer($(this))           
+      watchInJwplayer($(this))
+
+jQuery ->
+  $('.video-player').each (index, element) ->
+    source = $(this).text()
+    $(this).text('')
+    id = "video-" + index
+    $(this).attr('id', id)
+    jwplayer(id).setup({flashplayer: "/assets/jwplayer.flash.swf", html5player: "/assets/javascripts/jwplayer.html5.js", file: source, height: 360, width: 640, analytics: { enabled: false, cookies: false }})
 
 watchInHTML5 = (jelement) ->
   audio = jelement.prev()
