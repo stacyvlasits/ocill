@@ -21,9 +21,9 @@
   <% if can? :update, course %>
   <li>
     <%= link_to icon("plus") + "Add New Unit", new_course_unit_path(course), :title => "Add New" %>
+  </li>
   <% end -%>
-<% if can? :read, course %>  
-</li>
   </ul>
+<% if can? :read, course %> 
 </li>
 <% end -%>
