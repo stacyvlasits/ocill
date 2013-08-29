@@ -4,6 +4,8 @@ Your username for the site is your email address: <%= @user.email %>
 
 Before you log in for the first time you will need to set your password by pasting the following link into your browser's address bar:  <%= edit_password_url(@user, :reset_password_token => @user.reset_password_token) %>.
 
+Please note: If you wait too long after receiving this email to reset your password, the link above will expire.  If that happens you will need to visit this page to request a password reset email http://ocill.herokuapp.com/users/password/new  
+
 Once you have set your password you will be able to log in and access your course work at the following url: https://ocill.herokuapp.com/
 
 For help and support in the use of this site, please contact <%= ENV["SUPPORT_EMAIL"] %>
