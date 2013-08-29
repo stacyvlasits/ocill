@@ -1,17 +1,16 @@
 <%= form_for [@drill, @attempt] do |f| %>
   <% drill = @attempt.drill %>
   <%- model_class = Drill -%>
-  <dl class="dl-horizontal">
-    <dt><strong><%= model_class.human_attribute_name(:unit) %>:</strong></dt>
-    <dd><%= drill.unit.title %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-    <dd><%= drill.title %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:instructions) %>:</strong></dt>
-    <dd><%= drill.instructions.to_s.html_safe %></dd>
-     <dt><strong><%= model_class.human_attribute_name(:prompt) %>:</strong></dt>
-     <dd><%= drill.prompt.to_s.html_safe %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></dt>
-    <dd>
+  <div>
+    <h5><strong><%= model_class.human_attribute_name(:unit) %>:</strong>  <%= drill.unit.title %></h5>
+    <h5><strong><%= model_class.human_attribute_name(:title) %>:</strong>  <%= drill.title %></h5>
+    <h5><strong><%= model_class.human_attribute_name(:instructions) %>:</strong></h5>
+    <p><%= drill.instructions.to_s.html_safe %></p>
+    <% unless drill.prompt.empty? %>
+       <h5><strong><%= model_class.human_attribute_name(:prompt) %>:</strong></h5>
+       <p><%= drill.prompt.to_s.html_safe %></p>
+     <% end -%>
+    <h5><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></h5>
       <%= before_exercise_wrapper(drill).html_safe %>
       <% drill.exercises.each do |exercise| %>
         <%= render :partial => nested_folder(attempt) + action_name + '_attempt_exercises', :locals => { :exercise => exercise, :attempt => @attempt } %>
@@ -19,10 +18,10 @@
        <%= after_exercise_wrapper(drill).html_safe %>
     </dd>
     <% if action_name == "show" %>
-      <dt><strong><%= Attempt.human_attribute_name(:score) %>:</strong></dt>
-      <dd><%= @attempt.score.html_safe %></dd>
+      <h5><strong><%= Attempt.human_attribute_name(:score) %>:</strong></h5>
+      <p><%= @attempt.score.html_safe %></p>
     <% end %>
-  </dl>
+  </div>
   <div style="clear:both"></div>
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
