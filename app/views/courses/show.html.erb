@@ -1,16 +1,14 @@
 <%- model_class = Course -%>
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @course.title %></dd>
+<div>
+  <h5><strong><%= model_class.human_attribute_name(:course) %>:</strong>  <%= @course.title %></h5>
+  <p></p>
   <% Role::ROLES.each do |role| %>
-      <dt><strong><%= role.pluralize %>:</strong></dt>
-      <dd>
-        <ul class="user-group">
-          <% @course.roles.where(:name => role).each do |user_role| %>
-            <%= render partial: 'shared/list_of_users', locals: { role: user_role } -%>
-          <% end -%>
-        </ul>
-      </dd>
+    <h5><strong><%= role.pluralize %>:</strong></h5>
+    <ul class="user-group">
+      <% @course.roles.where(:name => role).each do |user_role| %>
+        <%= render partial: 'shared/list_of_users', locals: { role: user_role } -%>
+      <% end -%>
+    </ul>
   <% end %>
-</dl>
+</div>
 

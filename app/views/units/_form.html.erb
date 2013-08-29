@@ -1,9 +1,11 @@
 <%= form_for @unit do |f| %>
   <%= f.error_messages %>
-  <div>
+  <div class="control-group">
     <%= f.label :title %>
-    <%= f.text_field :course_id, :class => 'hidden' %>
-    <%= f.text_field :title, :class => 'text-field' %>
+    <div class="controls">
+      <%= f.text_field :course_id, :class => 'hidden' %>
+      <%= f.text_field :title, :class => 'text-field' %>
+    </div>
   </div>
   <ul class="nav nav-tabs">
     <li class="active"><a href="#sort-drills" data-toggle="tab">Sort Drills</a></li>
