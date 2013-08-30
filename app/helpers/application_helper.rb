@@ -47,9 +47,8 @@ module ApplicationHelper
     options[:error]  ||= "Your browser does not support the #{format} audio format"    
     id = "audio-" + Digest::MD5.hexdigest(filename)[0..12]
     audio = ""
-    audio += "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{src}\" type=\"#{mime_type}\" > #{options[:error]} </audio>".html_safe unless false
-  #  TODO remove the next line if necessary
-  #  audio += "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\" data-mime-type=\"#{mime_type}\"></div> ".html_safe unless true
+    audio += "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{src}\" type=\"#{mime_type}\" > #{options[:error]} </audio>".html_safe if format == "wav"
+    audio += "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\" data-mime-type=\"#{mime_type}\"></div> ".html_safe if format == "mp3" || format == "m4a"
     audio.html_safe
   end
 

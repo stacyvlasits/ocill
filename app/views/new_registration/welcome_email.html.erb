@@ -2,15 +2,15 @@
 
 <p>Your username for the site is your email address: <%= @user.email %></p>
 
-<p>Before you log in for the first time you will need to <%= link_to 'set your password', edit_password_url(@user, :reset_password_token => @user.reset_password_token) %>.</p>
-
-<p>Once you have set your password you will be able to access your course work at the following url: <a href="https://ocill.herokuapp.com/">https://ocill.herokuapp.com/</a></p>
-
-<p><strong>Please note: </strong>If you wait too long after receiving this email to reset your password, the link above will expire.  If that happens you will need to visit this page to request a password reset email <a href="http://ocill.herokuapp.com/users/password/new">http://ocill.herokuapp.com/users/password/new</a>.</p>
-
-<p>One of the first things you should do upon logging in is add your first and last name to the system by clicking on the Edit Registration link on the top of the page or following this link: <a href="http://ocill.herokuapp.com/users/edit"> Edit Registration</a></p>
+<h4>First Steps</h4>
+<ol>
+<li><p>Before you log in for the first time you will need to <%= link_to 'set your password', edit_password_url(@user, :reset_password_token => @user.reset_password_token) %>.</p>
+	<p>If you wait too long after receiving this email to reset your password, the link above will expire.  If that happens you will need to visit this page to request a password reset email <a href="http://ocill.herokuapp.com/users/password/new">http://ocill.herokuapp.com/users/password/new</a>.</p>
+</li>
+<li><p>Once you have set your password you will be able to access your course work at the following url: <a href="https://ocill.herokuapp.com/">https://ocill.herokuapp.com/</a></p></li>
+<li><p>Add your first and last name to the system by clicking on the Edit Registration link on the top of the page or following this link: <a href="http://ocill.herokuapp.com/users/edit"> Edit Registration</a></p></li>
+</ol>
 
 <h4>Help!</h4>
-<p><strong>
-  For help and support in the use of this site, please contact</strong> <a href="<%= ENV["SUPPORT_EMAIL"] %>"><%= ENV["SUPPORT_EMAIL"] %></a></p>
+<p><strong>For help and support in the use of this site, please contact</strong> <a href="<%= ENV["SUPPORT_EMAIL"] %>"><%= ENV["SUPPORT_EMAIL"] %></a></p>
 
