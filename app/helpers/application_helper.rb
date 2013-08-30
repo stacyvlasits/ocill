@@ -36,7 +36,8 @@ module ApplicationHelper
     raise "nested_child_index couldn't find a matching attribute" unless attributes.index(model)
     index = attributes[attributes.index(model) + 1].to_i
   end
-
+  
+  require 'digest/md5'
   def audio_tag(src, options ={})
     return "" unless src
     options[:preload] ||= "auto"
@@ -44,10 +45,12 @@ module ApplicationHelper
     format = filename.split(".").last
     mime_type = audio_type_conversion(format)
     options[:error]  ||= "Your browser does not support the #{format} audio format"    
-    id = "audio-" + filename.split(".").first
+    id = "audio-" + Digest::MD5.hexdigest(filename)[0..12]
     audio = ""
     audio += "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{src}\" type=\"#{mime_type}\" > #{options[:error]} </audio>".html_safe unless false
-    audio += "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\" data-mime-type=\"#{mime_type}\"></div> ".html_safe unless true
+  #  TODO remove the next line if necessary
+  #  audio += "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\" data-mime-type=\"#{mime_type}\"></div> ".html_safe unless true
+    audio.html_safe
   end
 
   def audio_type_conversion(ext)
