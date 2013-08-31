@@ -25,6 +25,7 @@ class Ability
         role = permissions.drills[drill.id]
         role == "Instructor" || role == "Administrator"
       end
+      can :create, Drill
       can :manage, Exercise do |exercise|
         role = permissions.drills[exercise.drill_id]
         role == "Instructor" || role == "Administrator"
