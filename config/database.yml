@@ -4,6 +4,7 @@ development:
   encoding: unicode
   database: ocill
   pool: 5
+  host: localhost
   username: sgv287
   password:
 

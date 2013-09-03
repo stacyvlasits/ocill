@@ -14,6 +14,7 @@
 
 jQuery ->
   $("select#drill_type").on 'change', ( event ) ->
+  #TODO add errorchecking for empty #drill_title
     $("form#new_drill").submit()
 
 # reveal the tiny mce Toolbar
@@ -26,7 +27,7 @@ jQuery ->
     forcePlaceholderSize: true,
     placeholder: "ui-state-highlight"
   });
-  
+
 
 jQuery ->
   $("#sortable").on 'sortdeactivate', ( event, ui) ->
@@ -111,3 +112,7 @@ watchInJwplayer = (jelement) ->
     playCounter = td.addClass('finished-playing').find('.audio-played')
     playCounter.val(1)
  
+jQuery ->
+  $("form table audio").on 'ended', (event) ->
+    playCounter = $(this).closest('td').addClass('finished-playing').find('.audio-played')
+    playCounter.val(1)
