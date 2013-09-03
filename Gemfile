@@ -66,7 +66,7 @@ group :test do
  # gem "capybara-webkit"
   gem "guard-rspec"
   gem "launchy"
-  gem "cucumber-rails"
+  gem 'cucumber-rails', :require => false
   gem "database_cleaner"
   gem 'guard-cucumber'
 end

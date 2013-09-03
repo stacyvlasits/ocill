@@ -28,11 +28,13 @@ jQuery ->
     placeholder: "ui-state-highlight"
   });
 
-
 jQuery ->
-  $("#sortable").on 'sortdeactivate', ( event, ui) ->
-    $('#sortable .hidden-position').each (index, element) ->
-      $(element).val(index + 1)
+  $("form").on 'submit', (event, ui) ->
+    reSort($(this))
+
+reSort = (object) ->
+  object.find('.hidden-position').each (index, element) ->
+    $(element).val(index + 1)
 
 jQuery ->
   $('form').on 'click', '.remove_fields', (event) ->

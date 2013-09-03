@@ -1,4 +1,5 @@
 module ExercisesHelper
+  # TODO  Why is this not being used?
   def attempt_fill_drill_exercises(exercise)
     initial_prompt = exercise.prompt
     hint = '<span class="hint">' + initial_prompt[/\(.+?\)/] + '</span>'

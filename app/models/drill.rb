@@ -5,7 +5,7 @@ class Drill < ActiveRecord::Base
   
   belongs_to :unit
   alias :parent :unit
-  has_many :exercises, :dependent => :destroy, :autosave => true
+  has_many :exercises, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercises
   has_many :attempts
   has_many :attempters, :through => :attempts, :source => :user
