@@ -29,6 +29,7 @@ gem 'rmagick'
 gem 'fog'
 gem 'carrierwave_direct'
 gem 'sidekiq'
+gem 'panda', '~> 1.6.0'
 
 gem 'jquery-rails'
 
