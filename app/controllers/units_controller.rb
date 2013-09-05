@@ -33,9 +33,13 @@ class UnitsController < InheritedResources::Base
     title = @unit.title
     course = @unit.course
     @unit.destroy
-    flash[:notice] = "Successfully deleted the unit: " + title.to_s
+    flash[:notice] = "Successfully deleted unit: " + title.to_s
     redirect_to course_url(course)
   end
 
+  def show
+    @unit = Unit.find(params[:id])
+    @drills = @unit.drills.includes(:attempters=>:attempts)
+  end
 
 end

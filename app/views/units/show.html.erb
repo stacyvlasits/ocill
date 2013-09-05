@@ -9,17 +9,19 @@
   <li><a href="#placeholder" data-toggle="tab">Nothing here</a></li>
 </ul>
 <div class="tab-content">
-    <% if can? :manage, @unit %>
-      <div class="tab-pane active" id="performance">
-        <% @unit.drills.each do |drill| %>
-          <% attempters = drill.attempters.includes(:attempts =>:responses).uniq %>
-          <%= render :partial => 'shared/performance', :locals => {:attempters => attempters, :drill => drill, :is_unit => true } %>
-        <% end -%>
-      </div>
-    <% else %>
-      <p>Only instructors assigned to this course can see the students' performance</p>
+  <!-- TODO:  remove if statement to re-enable -->
+    <% if false %>
+      <% if can? :manage, @unit %>
+        <div class="tab-pane active" id="performance">
+          <% @unit.drills.each do |drill| %>
+            <% attempters = drill.attempters.includes(:attempts =>:responses).uniq %>
+            <%= render :partial => 'shared/performance', :locals => {:attempters => attempters, :drill => drill, :is_unit => true } %>
+          <% end -%>
+        </div>
+      <% else %>
+        <p>Only instructors assigned to this course can see the students' performance</p>
+      <% end -%>
     <% end -%>
-
   <% if can? :manage, @unit %>
     <div class="tab-pane" id="placeholder">
     </div>
