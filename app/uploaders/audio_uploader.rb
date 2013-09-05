@@ -9,7 +9,8 @@ class AudioUploader < CarrierWave::Uploader::Base
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
-#  include CarrierWaveDirect::Uploader
+  #  include CarrierWaveDirect::Uploader
+  include CarrierWave::AudioProcessor
   # Choose what kind of storage to use for this uploader:
 
   include CarrierWave::MimeTypes
@@ -37,15 +38,19 @@ class AudioUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :scale => [50, 50]
-  # end
+  version :ogg do
+    process :encode_as_ogg 
+  end
 
+  version :mp3 do
+    process :encode_as_mp3
+  end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(m4a wav mp3 ogg)
+    %w(m4a wav mp3 ogg oga)
   end
+
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

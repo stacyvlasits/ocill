@@ -6,7 +6,7 @@ class Exercise < ActiveRecord::Base
 
   default_scope order("position asc")
 
-  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes, :audio, :image, :audio, :video, :remove_audio, :remove_image, :remove_video
+  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes, :audio, :image, :video, :remove_audio, :remove_image, :remove_video
   belongs_to :drill
   alias :parent :drill
   has_many :exercise_items, :dependent => :destroy, :autosave => true, :order => "position ASC"

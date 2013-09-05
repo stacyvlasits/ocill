@@ -10,7 +10,7 @@ class CoursePermissions
   end
 
   def permit(model, role)
-    binding.pry
+
   end
 
   def build!
