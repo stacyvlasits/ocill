@@ -38,7 +38,8 @@ class UnitsController < InheritedResources::Base
   end
 
   def show
-    @unit = Unit.find(params[:id]).drills.includes(:attempters=>:attempts)
+    @unit = Unit.find(params[:id])
+    @drills = @unit.drills.includes(:attempters=>:attempts)
   end
 
 end
