@@ -17,7 +17,7 @@
     <% end -%>
   </span>
   <ul class="nav-branch units">
-  	<%= render partial: 'layouts/unit_navigation', :collection => course.units.includes(:drills), as: :unit %>
+  	<%= render partial: 'layouts/unit_navigation', :collection => course.units, as: :unit %>
   <% if can? :update, course %>
   <li>
     <%= link_to icon("plus") + "Add New Unit", new_course_unit_path(course), :title => "Add New" %>

@@ -13,10 +13,10 @@
     </tr>
   </thead>
   <tbody>
-    <% if attempters %>
-      <% attempters.uniq.each do |attempter| %>
-        <% unless attempter.roles.is_learner(attempter).in_course(drill.course).empty? %>
-          <%= render partial: 'shared/attempter_performance', :locals => {:drill => drill, :attempter => attempter} %>
+    <% if performances %>
+      <% performances.each do |performance| %>
+        <% unless performance.not_by_learner? %>
+          <%= render partial: 'shared/attempter_performance', :locals => {:performance => performance } %>
         <% end -%>
       <% end -%>
     <% end -%>

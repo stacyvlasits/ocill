@@ -8,7 +8,7 @@ class Drill < ActiveRecord::Base
   has_many :exercises, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercises
   has_many :attempts
-  has_many :attempters, :through => :attempts, :source => :user
+  has_many :attempters, :through => :attempts, :uniq => true, :source => :user
   has_many :exercise_items, :through => :exercises, :autosave => true
   has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
   has_many :images, :as => :imageable
@@ -19,7 +19,7 @@ class Drill < ActiveRecord::Base
   validates :title, :presence => true
   
   before_save :set_default_title
-  after_initialize :set_default_position
+  before_save :set_default_position
 
   def self.serialized_attr_accessor(*args)
     args.each do |method_name|
