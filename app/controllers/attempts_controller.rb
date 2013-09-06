@@ -3,17 +3,18 @@ class AttemptsController < InheritedResources::Base
 
   def new
     if params[:drill_id]
-      @attempt = Attempt.create(:drill_id => params[:drill_id], :user_id => current_user.id)
-      @drill = @attempt.drill
-      new_responses = Drill.find(params[:drill_id]).exercise_items.count || 1
+      @attempt = current_user.attempts.create(:drill_id => params[:drill_id])
+      @drill = Drill.includes(:exercises => :exercise_items).find(params[:drill_id])
+      new_responses = @drill.exercise_items.count || 1
+      @responses = Array.new(new_responses) { @attempt.responses.create }
     else
       not_found 'There is no drill here for you attempt'
     end
-    new_responses.times { @attempt.responses.build }
+    
   end
 
   def show
-    @attempt = Attempt.find(params[:id])
+    @attempt = Attempt.includes([:drill, {:responses => :exercise_item}] ).find(params[:id])
     @responses = @attempt.responses
     @drill =  @attempt.drill || Drill.find(params[:drill_id])
   end
@@ -26,7 +27,7 @@ class AttemptsController < InheritedResources::Base
 
   def update
     super do |format|
-      format.html { redirect_to drill_attempt_path }
+      format.html { redirect_to drill_attempt_path(@attempt)  }
     end
     flash[:notice] = "Your attempt has been submitted successfully."
   end

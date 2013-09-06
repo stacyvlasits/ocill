@@ -9,10 +9,6 @@ class CoursePermissions
     @attempts = {}
   end
 
-  def permit(model, role)
-    binding.pry
-  end
-
   def build!
     all_courses = Course.includes(:roles, :units => :drills)
   	all_courses.all.each do |c|
