@@ -14,9 +14,10 @@ class CoursePermissions
   end
 
   def build!
-  	Course.all.each do |c|
-  		senior_role = @user.senior_role(c)
-      @courses[c.id] = senior_role
+    all_courses = Course.includes(:roles, :units => :drills)
+  	all_courses.all.each do |c|
+  		senior_role = 
+      @courses[c.id] = c.roles.highest(@user)
       
       c.units.each do |u|
         @units[u.id] = senior_role

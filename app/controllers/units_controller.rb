@@ -9,6 +9,13 @@ class UnitsController < InheritedResources::Base
 
   end
 
+  def show
+    @unit = Unit.find(params[:id])
+  #  @unit = Unit.includes(:drills => [{ :attempters => :attempts }, :unit] ).find(params[:id])
+ #   @drills = @unit.drills
+ #   @drill_performances = @drills.map {|d| d.attempters.map {|attempter| Performance.new(d, attempter)}} 
+  end
+
   def create
     if @unit.save
       flash[:notice] = "Successfully created unit."
@@ -37,9 +44,6 @@ class UnitsController < InheritedResources::Base
     redirect_to course_url(course)
   end
 
-  def show
-    @unit = Unit.find(params[:id])
-    @drills = @unit.drills.includes(:attempters=>:attempts)
-  end
+
 
 end
