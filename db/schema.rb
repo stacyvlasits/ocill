@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20130905162147) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  add_foreign_key "drills", "units", :name => "drills_lesson_id_fk"
   add_foreign_key "drills", "units", :name => "drills_unit_id_fk"
 
   add_foreign_key "exercise_items", "exercises", :name => "exercise_items_exercise_id_fk"
@@ -172,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20130905162147) do
 
   add_foreign_key "media_items", "exercise_items", :name => "media_items_exercise_item_id_fk"
 
+  add_foreign_key "units", "courses", :name => "lessons_course_id_fk"
   add_foreign_key "units", "courses", :name => "unit_course_id_fk"
 
 end
