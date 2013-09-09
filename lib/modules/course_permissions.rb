@@ -9,15 +9,17 @@ class CoursePermissions
     @attempts = {}
   end
 
-  def permit(model, role)
-
-  end
-
   def build!
     all_courses = Course.includes(:roles, :units => :drills)
   	all_courses.all.each do |c|
-  		senior_role = 
-      @courses[c.id] = c.roles.highest(@user)
+
+      if c.roles.highest(@user).first
+  		  senior_role = c.roles.highest(@user).first.name
+      else
+        senior_role = ""
+      end
+
+      @courses[c.id] = senior_role
       
       c.units.each do |u|
         @units[u.id] = senior_role

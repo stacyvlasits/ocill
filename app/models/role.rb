@@ -8,7 +8,7 @@ class Role < ActiveRecord::Base
   scope :in_course, ->(course) { where(:course_id => course.id)}
   scope :highest, ->(user) { where(:user_id => user.id).order("name ASC").limit(1)}
 
-  # TODO if this list ever changes, you will need to redefine scope :senior to not be stupid
+  # TODO if this list ever changes, you will need to redefine scope :highest to not be stupid
   ROLES = %w[Administrator Instructor Learner]
 
 

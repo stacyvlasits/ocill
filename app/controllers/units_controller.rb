@@ -43,7 +43,4 @@ class UnitsController < InheritedResources::Base
     flash[:notice] = "Successfully deleted unit: " + title.to_s
     redirect_to course_url(course)
   end
-
-
-
 end
