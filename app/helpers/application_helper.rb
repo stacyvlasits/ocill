@@ -60,7 +60,7 @@ module ApplicationHelper
   end
 
   def remove_audio_ext(path_and_file)
-    path_and_file.sub(/\.ogg$|\.oga$|\.mp3$|\.wav$|\.m4a$/, '')
+    path_and_file.sub(/\.ogg$|\.oga$|\.mp3$|\.wav$|\.m4a$/i, '')
   end
 
   # def audio_type_conversion(ext)
