@@ -40,32 +40,43 @@ module ApplicationHelper
   require 'digest/md5'
   def audio_tag(src, options ={})
     return "" unless src
-    options[:preload] ||= "auto"
+    
+    path_sans_ext = remove_audio_ext(src)
     filename = src.split("/").last
     format = filename.split(".").last
-    mime_type = audio_type_conversion(format)
-    options[:error]  ||= "Your browser does not support the #{format} audio format"    
-    id = "audio-" + Digest::MD5.hexdigest(filename)[0..12]
+    # mime_type = audio_type_conversion(format)
+    options[:error]  ||= "Your browser does not support the audio formats used by this application."    
+    options[:preload] ||= "auto"
+    # id = "audio-" + Digest::MD5.hexdigest(filename)[0..12]
     audio = ""
-    audio += "<audio preload=\"#{options[:preload]}\" controls><source src=\"#{src}\" type=\"#{mime_type}\" > #{options[:error]} </audio>".html_safe 
+    audio += "<audio preload=\"#{options[:preload]}\" controls>" 
+    audio += "  <source src=\"#{path_sans_ext}.mp3\" type=\"audio/mpeg\" >"
+    audio += "  <source src=\"#{path_sans_ext}.ogg\" type=\"audio/ogg\" >"
+    audio += "  #{options[:error]}"
+    audio += "</audio>".html_safe 
+
    # audio += "<div class=\"audio-player\" id=\"#{id}\" data-url=\"#{src}\" data-filename=\"#{filename}\" data-mime-type=\"#{mime_type}\"></div> ".html_safe if format == "mp3" || format == "m4a"
     audio.html_safe
   end
 
-  def audio_type_conversion(ext)
-    case ext
-    when "m4a" || "mp4"
-      "audio/mp4"
-    when "wav"
-      "audio/wav"
-    when "mp3"
-      "audio/mpeg"
-    when "oga"
-      "audio/ogg"
-    else
-      ""
-    end
+  def remove_audio_ext(path_and_file)
+    path_and_file.sub(/\.ogg$|\.oga$|\.mp3$|\.wav$|\.m4a$/, '')
   end
+
+  # def audio_type_conversion(ext)
+  #   case ext
+  #   when "m4a" || "mp4"
+  #     "audio/mp4"
+  #   when "wav"
+  #     "audio/wav"
+  #   when "mp3"
+  #     "audio/mpeg"
+  #   when "oga" || "ogg"
+  #     "audio/ogg"
+  #   else
+  #     ""
+  #   end
+  # end
   
   def video_tag(src, options ={})
     return "" unless src
