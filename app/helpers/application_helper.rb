@@ -38,7 +38,7 @@ module ApplicationHelper
   end
   
   require 'digest/md5'
-  def audio_tag(src, options ={})
+  def audio_tag(srcs, options ={})
     return "" unless src
     
     path_sans_ext = remove_audio_ext(src)

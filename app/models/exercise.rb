@@ -23,6 +23,14 @@ class Exercise < ActiveRecord::Base
     @panda_audio ||= Panda::Video.find(panda_audio_id)
   end
 
+  def audio_urls
+    urls = []
+    urls << self.audio_url
+    urls << self.mp3
+    urls << self.ogg
+    urls = urls.compact.reject{|i| i.empty?}.map {|u| u.gsub(/http:/, "https:")}.uniq
+  end
+
   def self.serialized_attr_accessor(*args)
     args.each do |method_name|
       eval "
