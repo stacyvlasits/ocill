@@ -3,19 +3,42 @@ class Exercise < ActiveRecord::Base
   mount_uploader :audio, AudioUploader
   # mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
+  attr_accessible :prompt, :title, :fill_in_the_blank, :position, :drill_id, :weight, :exercise_items_attributes, :audio, :image, :video, :remove_audio, :remove_image, :remove_video, :panda_audio_id
+  # attr_accessible  :encodings
 
-  default_scope order("position asc")
+  serialize :encodings, Hash
 
-  attr_accessible :fill_in_the_blank, :position, :drill_id, :prompt, :title, :weight, :exercise_items_attributes, :audio, :image, :video, :remove_audio, :remove_image, :remove_video
   belongs_to :drill
   alias :parent :drill
   has_many :exercise_items, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercise_items
 
+  default_scope order("position asc")
+
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
   after_initialize :set_default_position
   
+  def panda_audio
+    @panda_audio ||= Panda::Video.find(panda_audio_id)
+  end
+
+  def self.serialized_attr_accessor(*args)
+    args.each do |method_name|
+      eval "
+        def #{method_name}
+          (self.encodings || {})[:#{method_name}]
+        end
+        def #{method_name}=(value)
+          self.encodings ||= {}
+          self.encodings[:#{method_name}] = value
+        end
+        attr_accessible :#{method_name}
+      "
+    end
+  end
+
+  serialized_attr_accessor :mp3, :ogg
 
   def answers
     self.exercise_items.map { |exercise_item| exercise_item.answer}

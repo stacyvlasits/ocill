@@ -140,3 +140,12 @@ rails g migration AddFirstNameLastNameToUsers first_name:string last_name:string
 
 rails g controller Home show
 
+rails g migration AddEncodingsToExercises encodings:text
+
+rails g migration AddEncodingsToExerciseItems encodings:text
+
+rails g controller Panda notifications
+
+rails g migration AddPandaAudioIdToExercises panda_audio_id:string
+
+rails g migration AddPandaAudioIdToExerciseItems panda_audio_id:string

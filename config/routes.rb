@@ -1,5 +1,7 @@
 Ocill::Application.routes.draw do
 
+  post "panda/notifications"
+
   get "home/show"
 
   devise_for :users

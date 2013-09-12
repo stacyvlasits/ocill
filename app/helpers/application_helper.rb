@@ -52,6 +52,7 @@ module ApplicationHelper
     audio += "<audio preload=\"#{options[:preload]}\" controls>" 
     audio += "  <source src=\"#{path_sans_ext}.mp3\" type=\"audio/mpeg\" >"
     audio += "  <source src=\"#{path_sans_ext}.ogg\" type=\"audio/ogg\" >"
+    audio += "  <source src=\"#{path_sans_ext}.oga\" type=\"audio/ogg\" >"
     audio += "  #{options[:error]}"
     audio += "</audio>".html_safe 
 

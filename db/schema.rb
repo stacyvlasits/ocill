@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905162147) do
+ActiveRecord::Schema.define(:version => 20130912160431) do
 
   create_table "attempts", :force => true do |t|
     t.integer  "drill_id"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20130905162147) do
     t.string   "audio"
     t.string   "video"
     t.integer  "header_id"
+    t.text     "encodings"
+    t.string   "panda_audio_id"
   end
 
   add_index "exercise_items", ["exercise_id"], :name => "index_exercise_items_on_exercise_id"
@@ -67,12 +69,14 @@ ActiveRecord::Schema.define(:version => 20130905162147) do
     t.decimal  "weight"
     t.text     "prompt"
     t.integer  "position"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "drill_id"
     t.string   "audio"
     t.string   "video"
     t.string   "image"
+    t.text     "encodings"
+    t.string   "panda_audio_id"
   end
 
   add_index "exercises", ["drill_id"], :name => "index_exercises_on_drill_id"

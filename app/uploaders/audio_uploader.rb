@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class AudioUploader < CarrierWave::Uploader::Base
-
+  after :store, :panda_encode
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -10,12 +10,11 @@ class AudioUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
   #  include CarrierWaveDirect::Uploader
-  include CarrierWave::AudioProcessor
+  # include CarrierWave::AudioProcessor
   # Choose what kind of storage to use for this uploader:
 
   include CarrierWave::MimeTypes
   process :set_content_type
-
   storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -30,6 +29,7 @@ class AudioUploader < CarrierWave::Uploader::Base
     asset_path("/fallback/" + [version_name, "default.m4a"].compact.join('_'))
   end
 
+
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
@@ -38,19 +38,11 @@ class AudioUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :ogg do
-    process :encode_as_ogg 
-  end
-
-  version :mp3 do
-    process :encode_as_mp3
-  end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
     %w(m4a wav mp3 ogg oga)
   end
-
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
@@ -58,4 +50,14 @@ class AudioUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+private
+  def panda_encode(*args)
+    audio=Panda::Video.create!(:source_url => url, :path_format => "#{store_dir}/#{remove_audio_ext(filename)}", :profiles => "mp3,ogg")
+    model.panda_audio_id = audio.id
+    model.save!
+  end
+
+  def remove_audio_ext(path_and_file)
+    path_and_file.sub(/\.ogg$|\.oga$|\.mp3$|\.wav$|\.m4a$/i, '')
+  end  
 end
