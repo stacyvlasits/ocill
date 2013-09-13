@@ -5,7 +5,7 @@
 	<%= link_to icon("headphones", "white").html_safe, "#", :class => "add-audio-field" %>
 	<%= link_to icon("camera","white").html_safe, "#", :class => "add-image-field" %>
 
-	<%= audio_tag(f.object.audio_url) unless f.object.audio_url.blank? || f.object.audio_url.include?("fallback") %>
+	<%= audio_tag(f.object.audio_urls) unless f.object.audio_url.blank? || f.object.audio_url.include?("fallback") %>
 	<% if f.object.id %>
 	<%= link_to icon('remove-sign', 'white'), exercise_remove_audio_path(f.object), :confirm => "Are you sure you want to delete this file?", :method => :delete  unless f.object.audio_url.blank? %>
 	<% end %>
