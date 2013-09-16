@@ -28,5 +28,5 @@
   </div>   <!-- .tab-content -->
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                units_path, :class => 'btn' %>
+                unit_path(f.object.course_id), :class => 'btn' %>
 <% end %>

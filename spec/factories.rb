@@ -1,33 +1,35 @@
 FactoryGirl.define do
   sequence(:position)
 
+  sequence :email do |n|
+    "person#{n}@example.com"
+  end
+
   factory :user do
-    email 'user@example.com'
+    email 
     password 'password'
     password_confirmation 'password'
 
-    trait :is_admin do
-      role 'admin'
+    trait :is_administrator do
+      role 'Administrator'
     end
 
     trait :is_instructor do
-      role 'instructor'
+      role 'Instructor'
     end
 
-    trait :is_creator do
-      role 'creator'
+    trait :is_learner do
+      role 'Learner'
     end
 
-    trait :is_student do
-      role 'student'
-    end
-
-    factory :admin_user, traits: [:is_admin]
+    factory :administrator, traits: [:is_administrator]
+    factory :instructor, traits: [:is_instructor]
+    factory :learner, traits: [:is_learner]
   end
 
   factory :course do
     title "Title of Course"
-
+    position
     factory :course_with_units do
       ignore do
         units_count 5

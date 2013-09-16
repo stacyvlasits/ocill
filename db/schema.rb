@@ -178,6 +178,5 @@ ActiveRecord::Schema.define(:version => 20130912160431) do
   add_foreign_key "media_items", "exercise_items", :name => "media_items_exercise_item_id_fk"
 
   add_foreign_key "units", "courses", :name => "lessons_course_id_fk"
-  add_foreign_key "units", "courses", :name => "unit_course_id_fk"
 
 end

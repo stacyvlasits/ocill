@@ -18,4 +18,9 @@ class CoursesController < InheritedResources::Base
       format.html { redirect_to edit_course_url(@course) }
     end
   end
+  def destroy
+    super do |format|
+      format.html { redirect_to root_path }
+    end
+  end  
 end

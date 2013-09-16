@@ -16,6 +16,6 @@ class Unit < ActiveRecord::Base
   validates :position, :numericality => { :only_integer => true }
   
   def set_default_position
-    self.position ||= Unit.maximum(:id) + 1
+    self.position ||= Unit.maximum(:id).to_i + 1
   end
 end

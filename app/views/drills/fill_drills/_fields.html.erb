@@ -3,9 +3,7 @@
 <%= f.label :exercises, "Drag items in the list to reorder them." %>
 <ol id="sortable">
   <%= f.fields_for :exercises do |builder| %>
-  	<li>
       <%= render 'exercise_fields', :f => builder %>
-    </li>
   <% end %>
   <%= link_to_add_fields "Add Fill In The Blank", f, :exercises %>
 </ol> <!-- #sortable -->

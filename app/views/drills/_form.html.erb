@@ -1,4 +1,4 @@
-<%= form_for @drill, :html => { :multipart => true } do |f| %>
+<%= form_for @drill, :html => { :multipart => true, :class => @drill.type.to_s.underscore.dasherize } do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :unit_id, :class => 'hidden' %>
   <div class="control-group">
@@ -37,15 +37,13 @@
     </div>
   <% end %>
   
-  <div class="control-group">
-    <div id="exercises" class="controls">
-      <%= render nested_folder(@drill) + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
-    </div>
+  <div id="exercises" class="controls">
+    <%= render nested_folder(@drill) + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
   </div>
       
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), drills_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), unit_path(@drill.unit_id), :class => 'btn' %>
   </div>
   <%= tinymce :default %>
 <% end %>

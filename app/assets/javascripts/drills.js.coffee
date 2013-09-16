@@ -42,6 +42,23 @@ jQuery ->
     $(this).closest('fieldset').parent().hide()
     event.preventDefault()
 
+# make sure there is a value for the prompt
+jQuery ->
+  $('form.fill-drill').on 'submit', (event, ui) ->
+    blanks = false
+    $('.fill-in-the-blank-field').each (index, element) ->
+      if ($(this).val() == "")
+        $(this).closest('.control-group').addClass("error")
+        blanks = true
+    toastr.error("Fill In The Blank fields cannot be left empty.")
+    event.preventDefault() if blanks 
+    return false if blanks 
+
+# clear the error message for empty fill in the blank
+jQuery ->
+  $('form.fill-drill .fill-in-the-blank-field').on 'focus', (event, ui) ->
+    $(this).closest('.control-group').removeClass("error")
+
 jQuery ->
   $('form').on 'click', '.add_fields', (event) ->
     current_position = $(this).data('id')

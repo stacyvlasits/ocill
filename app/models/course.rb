@@ -13,6 +13,6 @@
   after_initialize :set_default_position
 
   def set_default_position
-    self.position ||= Course.maximum(:id) + 1
+    self.position ||= Course.maximum(:id).to_i + 1
   end
 end

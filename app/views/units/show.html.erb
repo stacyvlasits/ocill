@@ -5,6 +5,10 @@
 </div>
 <div style="clear:both"></div>
 <!-- TODO Remove this once there is something useful to show here -->
+<% if can? :manage, @unit %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),edit_unit_path(@unit), :class => 'btn btn-primary' %>
+<% end -%>
+
 <% if false %>
 
 <ul class="nav nav-tabs">

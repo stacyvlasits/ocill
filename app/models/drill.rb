@@ -66,6 +66,6 @@ class Drill < ActiveRecord::Base
   end
 
   def set_default_position
-    self.position ||= Drill.maximum(:id) + 1
+    self.position ||= Drill.maximum(:id).to_i + 1
   end
 end

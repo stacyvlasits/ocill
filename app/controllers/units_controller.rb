@@ -19,7 +19,7 @@ class UnitsController < InheritedResources::Base
   def create
     if @unit.save
       flash[:notice] = "Successfully created unit."
-      redirect_to course_url(@unit.course_id)
+      redirect_to unit_path(@unit)
     else
       render :action => 'new'
     end
@@ -29,7 +29,7 @@ class UnitsController < InheritedResources::Base
     @unit = Unit.find(params[:id])
     if @unit.update_attributes(params[:unit])
       flash[:notice] = "Successfully updated unit."
-      redirect_to course_url(@unit.course)
+      redirect_to unit_path(@unit)
     else
       respond_with(@unit)
     end
