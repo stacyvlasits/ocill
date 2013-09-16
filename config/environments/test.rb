@@ -34,4 +34,7 @@ Ocill::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  ENV['PANDASTREAM_URL'] = "https://8004343febe45d829904:e8ccc0128cec99762880@api.pandastream.com/25ce2dfe445167db12c3aaa1aee6879a"
+
 end
