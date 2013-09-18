@@ -1,5 +1,7 @@
 Ocill::Application.routes.draw do
 
+  post "launch/create"
+
   post "panda/notifications"
 
   get "home/show"

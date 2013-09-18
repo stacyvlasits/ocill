@@ -23,7 +23,7 @@ gem 'tinymce-rails-imageupload', '~> 3.5.6.3'
 gem 'foreigner'
 gem 'immigrant'
 
-#gems for file upload and storage
+# for file upload and storage
 gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
@@ -36,13 +36,16 @@ gem 'jquery-rails'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-# gems for forms
-
+# for enhancing forms
 gem 'inherited_resources'
 gem 'dynamic_form'
 
+# for heroku
 gem 'mandrill-api'
 gem 'newrelic_rpm'
+
+# for LTI
+gem 'ims-lti'
 
 # Gems used only for assets and not required
 # in production environments by default.

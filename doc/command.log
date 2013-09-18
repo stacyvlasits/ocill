@@ -149,3 +149,5 @@ rails g controller Panda notifications
 rails g migration AddPandaAudioIdToExercises panda_audio_id:string
 
 rails g migration AddPandaAudioIdToExerciseItems panda_audio_id:string
+
+rails g controller Launch main
