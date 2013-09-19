@@ -1,7 +1,7 @@
 class NavigationSweeper < ActionController::Caching::Sweeper
   observe Course, Unit, Drill
 
-  def expire_cached_content
+  def expire_cached_content(record)
     expire_fragment(:fragment => 'main_navigation')
   end
 
