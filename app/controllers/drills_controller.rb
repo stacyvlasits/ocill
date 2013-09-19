@@ -1,6 +1,5 @@
 class DrillsController < InheritedResources::Base
   load_and_authorize_resource
-  cache_sweeper :navigation_sweeper, :only => [:create, :update, :destroy]
   respond_to :json
   
   def show
