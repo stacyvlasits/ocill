@@ -85,6 +85,7 @@ GEM
       nokogiri (>= 1.5.0)
       rails (~> 3.0)
     daemons (1.1.9)
+    dalli (2.6.4)
     database_cleaner (1.0.1)
     debug_inspector (0.0.2)
     debugger (1.6.1)
@@ -184,6 +185,7 @@ GEM
     mandrill-api (1.0.42)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
+    memcachier (0.0.2)
     meta_request (0.2.7)
       callsite
       rack-contrib
@@ -363,6 +365,7 @@ DEPENDENCIES
   carrierwave_direct
   coffee-rails (~> 3.2.1)
   cucumber-rails
+  dalli
   database_cleaner
   debugger
   devise
@@ -382,6 +385,7 @@ DEPENDENCIES
   launchy
   less-rails
   mandrill-api
+  memcachier
   meta_request
   newrelic_rpm
   panda (~> 1.6.0)

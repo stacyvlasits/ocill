@@ -1,5 +1,6 @@
 class CoursesController < InheritedResources::Base
   load_and_authorize_resource
+  cache_sweeper :navigation_sweeper, :only => [:create, :update, :destroy]
 
   def create
     @course = Course.new(params[:course])

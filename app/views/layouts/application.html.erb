@@ -26,7 +26,9 @@
         <section id="sidebar">
           <% if current_user %>
           <ul id="nav-tree" >
-            <%= render partial: 'layouts/course_navigation', :collection => Course.includes(:roles, :units => :drills), as: :course %>
+            <% cache(:fragment => 'main_navigation') do %>
+              <%= render partial: 'layouts/course_navigation', :collection => Course.includes(:roles, :units => :drills), as: :course %>
+            <% end -%>
             <% if can? :create, Course %>
               <li>
               <%= link_to icon("plus") + " Add New Course", new_course_path %>
