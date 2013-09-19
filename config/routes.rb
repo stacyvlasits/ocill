@@ -6,7 +6,7 @@ Ocill::Application.routes.draw do
 
   get "home/show"
 
-  devise_for :users
+  devise_for :users, :controllers => { :sessions => "users/sessions"}
 
   post '/tinymce_assets' => 'tinymce_assets#create'
  
