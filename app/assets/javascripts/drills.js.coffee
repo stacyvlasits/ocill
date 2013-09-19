@@ -50,7 +50,7 @@ jQuery ->
       if ($(this).val() == "")
         $(this).closest('.control-group').addClass("error")
         blanks = true
-    toastr.error("Fill In The Blank fields cannot be left empty.")
+        toastr.error("Fill In The Blank fields cannot be left empty.")
     event.preventDefault() if blanks 
     return false if blanks 
 

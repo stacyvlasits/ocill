@@ -38,10 +38,10 @@
     </div>
   </div>
     <script type="text/javascript">
-    (function() {
+(function() {
   jQuery(function() {
     
-    // Put your javascript here
+    
    $('.drills').hide();
    $('ul.nav-branch.units').hide();
 
@@ -95,6 +95,8 @@
       $('.nav-leaf[data-unit-id="'+whichItem+'"]').children('.drills').show();
     }
 
+
+
     // Removes the 'Successfully created unit/course' notification. 
     var noticeText = $('.notice').text();
     var errorText = $('.error').text();
@@ -135,6 +137,8 @@
         }
       }
     }
+
+    // resize the nav panel based on the size of the browser window
     var aoeu = window.innerHeight - $('.navbar').height() - 35;
     document.getElementById('nav-tree').style.height = aoeu+"px";
 
