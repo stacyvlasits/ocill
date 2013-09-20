@@ -10,7 +10,8 @@ class Response < ActiveRecord::Base
   end
 
   def correct?
-    answers.include?(self.value)
+    false
+    answers.include?(self.value) if answers
   end
 
   alias :credit? :correct?
