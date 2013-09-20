@@ -43,6 +43,7 @@ jQuery ->
     event.preventDefault()
 
 # make sure there is a value for the prompt
+# remove MS word special characters
 jQuery ->
   $('form.fill-drill').on 'submit', (event, ui) ->
     blanks = false
@@ -51,6 +52,8 @@ jQuery ->
         $(this).closest('.control-group').addClass("error")
         blanks = true
         toastr.error("Fill In The Blank fields cannot be left empty.")
+      else
+        $(this).val(replaceWordChars($(this).val())) 
     event.preventDefault() if blanks 
     return false if blanks 
 
@@ -93,16 +96,6 @@ jQuery ->
     $(this).parent().find('.image-upload-field').toggleClass('hidden');
     event.preventDefault()
 
-isWav = (jelement) ->
-  jelement.data('mime-type') == "audio/wav"
-
-jQuery ->
-  $('.audio-player').each (index, element) ->
-    if isWav($(this))
-      watchInHTML5($(this)) 
-    else
-      watchInJwplayer($(this))
-
 jQuery ->
   $('.video-player').each (index, element) ->
     source = $(this).text()
@@ -111,27 +104,26 @@ jQuery ->
     $(this).attr('id', id)
     jwplayer(id).setup({flashplayer: "/assets/jwplayer.flash.swf", html5player: "/assets/javascripts/jwplayer.html5.js", file: source, height: 360, width: 640, analytics: { enabled: false, cookies: false }})
 
-watchInHTML5 = (jelement) ->
-  audio = jelement.prev()
-  jelement.remove()
-  audio.on 'ended', (event) ->
-    playCounter = audio.parent('td').addClass('finished-playing').find('.audio-played')
-    playCounter.val(1)
-
-watchInJwplayer = (jelement) ->
-  jelement.prev('audio').remove()
-  td = jelement.closest('td')
-  td.prepend("<p class=\"waiting-message\">Waiting for audio to load...</p>")
-  source = jelement.data('url')
-  filename = jelement.attr('id')
-  jwplayer(filename).setup({flashplayer: "/assets/jwplayer.flash.swf", html5player: "/assets/javascripts/jwplayer.html5.js", file: source, height: 30, width: 200, analytics: { enabled: false, cookies: false }})
-  jwplayer(filename).onReady (event) ->
-    td.find('.waiting-message').remove()
-  jwplayer(filename).onComplete (event) ->
-    playCounter = td.addClass('finished-playing').find('.audio-played')
-    playCounter.val(1)
- 
 jQuery ->
   $("form table audio").on 'ended', (event) ->
     playCounter = $(this).closest('td').addClass('finished-playing').find('.audio-played')
     playCounter.val(1)
+
+replaceWordChars = (text) ->
+    s = text
+    # smart single quotes and apostrophe
+    s = s.replace(/[\u2018|\u2019|\u201A]/g, "\'")
+    # smart double quotes
+    s = s.replace(/[\u201C|\u201D|\u201E]/g, "\"")
+    # ellipsis
+    s = s.replace(/\u2026/g, "...")
+    # dashes
+    s = s.replace(/[\u2013|\u2014]/g, "-")
+    # circumflex
+    s = s.replace(/\u02C6/g, "^")
+    # open angle bracket
+    s = s.replace(/\u2039/g, "<")
+    # close angle bracket
+    s = s.replace(/\u203A/g, ">")
+    # spaces
+    s = s.replace(/[\u02DC|\u00A0]/g, " ")
