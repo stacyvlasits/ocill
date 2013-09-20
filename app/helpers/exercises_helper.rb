@@ -14,14 +14,22 @@ module ExercisesHelper
     spans = exercise.exercise_items.map do |ei|
       # TODO reduce number of sql queries
       if response = responses.where(:exercise_item_id => ei).first
-        '<span class="' + (response.correct? ? "correct" : "incorrect") + '">'  + response.value.to_s + '</span>' + " " + (response.correct? ? icon("ok") : icon("remove")) 
+        '<span class="' + graded_class(response) + '">'  + response.value.to_s + '</span>' + " " + (response.correct? ? icon("ok") : icon("remove")) 
       else
-        '<span class="incorrect"></span>' + icon("remove")
+        '<span class="left-blank"></span>' + icon("remove")
       end
     end
     html = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
     spans.each {|span| html.sub!(/\{\{.+?\}\}/, span) }
     html
+  end
+
+  def graded_class(response)
+    graded_class = "incorrect"
+    graded_class = "correct" if response.correct? 
+    graded_class = "left-blank" if response.value.blank?
+    graded_class
+    # binding.pry
   end
 
   def graded_grid_drill_exercise(exercise, responses)

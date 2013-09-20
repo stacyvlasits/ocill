@@ -10,10 +10,17 @@
 }
 .fill-drill-exercise .correct {
   background-color: #d5e6e3;
+  padding: 0px 5px;
 }
 .fill-drill-exercise .incorrect {
   background-color: #fcd4e7;
+  padding: 0px 5px;
 }
+.fill-drill-exercise .left-blank {
+  background-color: #fcd4e7;
+  padding: 0px 30px;
+}
+
 .fill-drill-prompt {
   // line-height: 40px;
 }
