@@ -13,8 +13,11 @@ module ExercisesHelper
   def graded_fill_drill_exercise(exercise, responses)
     spans = exercise.exercise_items.map do |ei|
       # TODO reduce number of sql queries
-      response = responses.where(:exercise_item_id => ei)
-      '<span class="' + (response.first.correct? ? "correct" : "incorrect") + '">'  + response.first.value.to_s + '</span>' + " " + (response.first.correct? ? icon("ok") : icon("remove")) 
+      if response = responses.where(:exercise_item_id => ei).first
+        '<span class="' + (response.correct? ? "correct" : "incorrect") + '">'  + response.value.to_s + '</span>' + " " + (response.correct? ? icon("ok") : icon("remove")) 
+      else
+        '<span class="incorrect"></span>' + icon("remove")
+      end
     end
     html = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
     spans.each {|span| html.sub!(/\{\{.+?\}\}/, span) }
