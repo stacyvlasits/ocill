@@ -75,6 +75,7 @@ class User < ActiveRecord::Base
     end
   end
 
+
   def course_permissions
     perm = CoursePermissions.new(self)
     perm.build!

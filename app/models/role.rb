@@ -8,6 +8,8 @@ class Role < ActiveRecord::Base
   scope :in_course, ->(course) { where(:course_id => course.id)}
   scope :highest, ->(user) { where(:user_id => user.id).order("name ASC").limit(1)}
 
+  after_create :check_and_update_user_role
+
   # TODO if this list ever changes, you will need to redefine scope :highest to not be stupid
   ROLES = %w[Administrator Instructor Learner]
 
@@ -16,5 +18,14 @@ class Role < ActiveRecord::Base
     :message => "\"%{value}\" is not a valid role. Select from #{Role::ROLES.join(", ")}." }
   validates :user_id, :presence => true
   validates :course_id, :presence => true
+
+  def check_and_update_user_role
+    if self.user.role == "Learner"
+      if self.user.senior_role(self.course) == "Administrator" || self.user.senior_role(self.course) == "Instructor"
+        self.user.role = "Instructor"
+        self.user.save!
+      end
+    end
+  end  
 
 end

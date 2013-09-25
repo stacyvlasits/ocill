@@ -24,6 +24,7 @@ class RolesController < ApplicationController
     
     if @user
       if @course.roles.create(:user => @user, :name => role_name)
+        binding.pry
         flash[:notice] = "Successfully added " + @user.email + " to \"" + @course.title + "\" as " + role_name
       else
         flash[:alert] = "Failed to add " + @user.email + " to Course: " + @course.title + " as a " + role_name
