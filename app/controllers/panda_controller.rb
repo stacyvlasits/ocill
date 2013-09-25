@@ -17,13 +17,13 @@ class PandaController < ApplicationController
               model.mp3 = mp3.url
 
             else
-              model.mp3_errors = "Something went wrong while uploading please email the url of this page to #{ENV["SUPPORT_EMAIL"]}"
+             # model.mp3_errors = "Something went wrong while uploading please email the url of this page to #{ENV["SUPPORT_EMAIL"]}"
             end
 
             if ogg.status == 'success'
                 model.ogg = ogg.url
             else 
-              model.ogg_errors = "Something went wrong while uploading please email the url of this page to #{ENV["SUPPORT_EMAIL"]}"
+             # model.ogg_errors = "Something went wrong while uploading please email the url of this page to #{ENV["SUPPORT_EMAIL"]}"
             end
           end
           model.save!
