@@ -4,6 +4,11 @@ class Response < ActiveRecord::Base
 
   belongs_to :attempt
   belongs_to :exercise_item
+  before_save :strip_value
+
+  def strip_value
+    self.value.strip! if self.value
+  end
 
   def answers
     self.exercise_item.answers if self.exercise_item
