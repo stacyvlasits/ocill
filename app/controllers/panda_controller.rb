@@ -18,8 +18,6 @@ class PandaController < ApplicationController
 
           if ogg.status == 'success'
               model.ogg = ogg.url
-          else 
-           # model.ogg_errors = "Something went wrong while uploading please email the url of this page to #{ENV["SUPPORT_EMAIL"]}"
           end
         model.save!
         end
