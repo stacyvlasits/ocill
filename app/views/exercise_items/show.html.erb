@@ -1,0 +1,31 @@
+<%- model_class = ExerciseItem -%>
+
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:text) %>:</strong></dt>
+  <dd><%= @exercise_item.text %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:graded) %>:</strong></dt>
+  <dd><%= @exercise_item.graded %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:exercise_item_type) %>:</strong></dt>
+  <dd><%= @exercise_item.exercise_item_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:exercise_id) %>:</strong></dt>
+  <dd><%= @exercise_item.exercise_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:position) %>:</strong></dt>
+  <dd><%= @exercise_item.position %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:column) %>:</strong></dt>
+  <dd><%= @exercise_item.column %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:answer) %>:</strong></dt>
+  <dd><%= @exercise_item.answer %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              exercise_items_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_exercise_item_path(@exercise_item), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              exercise_item_path(@exercise_item),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

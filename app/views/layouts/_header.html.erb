@@ -1,0 +1,25 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">OCILL</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><%= link_to "Ocill Help", "https://devtools.la.utexas.edu/confluence/display/op/Getting+Started+With+OCILL" %></li>
+          <%= render 'devise/menu/registration_items' %>
+          <%= render 'devise/menu/login_items' %>
+          <li><%= link_to "Support", "mailto:" + ENV["SUPPORT_EMAIL"] %></li>
+        </ul>
+      </div> <!-- nav-collapse -->
+    </div> <!-- container -->
+  </div> <!-- navbar-inner -->
+</div>
+<div class="messages">
+  <p class="notice"><%= flash[:notice] %></p>
+  <p class="alert"><%= flash[:alert] %></p>
+  <p class="error alert"><%= flash[:error] %></p>
+</div> <!-- .messages -->

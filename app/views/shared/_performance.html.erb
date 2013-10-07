@@ -1,0 +1,24 @@
+<%= content_tag :h3, drill.title if is_unit %>
+<table>
+  <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Number of Attempts</th>
+      <th>Best Score</th>
+      <th>(date)</th>      
+      <th>Worst Score</th>
+      <th>(date)</th>    
+      <th>Average Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if performances %>
+      <% performances.each do |performance| %>
+        <% unless performance.not_by_learner? %>
+          <%= render partial: 'shared/attempter_performance', :locals => {:performance => performance } %>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+  </tbody>
+</table>

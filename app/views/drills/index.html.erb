@@ -1,0 +1,20 @@
+<%- model_class = Drill -%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Course ( Units ) </th>
+      <th>Unit ( Drills )</th>
+       <th>Drill Title </th>
+     <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @drills.each do |drill| %>
+      <%= render partial: '/shared/list_of_drills', locals: { drill: drill } -%>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_drill_path,
+            :class => 'btn btn-primary' %>

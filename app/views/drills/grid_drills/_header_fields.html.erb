@@ -1,0 +1,8 @@
+<th class="cell" id="cell-c<%= f.object.column %>-r0" >
+  <%= f.text_field :title, :class => 'text-field' %>
+  <%= f.hidden_field :position, value: nested_child_index(f) %>
+  <span class="remove-column">
+    <%= link_to ' <i class="icon-remove"></i> '.html_safe , controller: "drills", action: "remove_column", header_id: f.object.id %>
+  </span>
+
+</th>

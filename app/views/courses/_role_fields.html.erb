@@ -1,0 +1,23 @@
+<% Role::ROLES.each do |role| %>
+  
+  <div class="user-group">
+    <h5>
+      <strong><%= role.pluralize %></strong>
+    </h5>
+    <ul>
+      <% @course.roles.where(:name => role).each do |user_role| %>
+        <%= render partial: 'shared/list_of_users', locals: { role: user_role } -%>
+      <% end -%>
+    </ul>
+    <div class="add-user-role">
+      <%= select_tag role.downcase + '-user-id' , options_for_select(User.all.collect{ |u| [u.email, u.id] }), :prompt => "Add user to group ..." %>
+      <%= link_to icon("plus") + role.to_s, course_roles_path(@course, :user_id => "", :role_name => role.to_s ), :method => :post %>
+    </div>
+    <div class="add-user-batch">
+      <%= content_tag :textarea, "" ,:placeholder => "Add a list of email addresses, one per line, no commas..." ,:class => "add-" + role.to_s.downcase.pluralize  %>
+      <%= link_to icon("plus") + " A batch of  " + role.to_s.pluralize, course_create_many_roles_path(@course, :users_info => '', :role_name => role.to_s ), :method => :post %>
+      <br />
+      <%= content_tag :div, "", :class => "hidden proof" %>
+    </div>
+  </div>
+<% end %>

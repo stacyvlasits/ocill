@@ -1,0 +1,12 @@
+<li>
+  <% if can? :read, role.user %>
+  	<%= content_tag :span, role.user.email %>
+	<% end %>
+	<% if can? :update, @course %>
+		<%= link_to "User Page", user_url(role.user) if role.user.present? %>
+	<% end -%> 
+	
+	<% if can? :manage, @course %> 
+    <%= link_to icon("remove"), role_path(role), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
+	<% end -%>
+</li>

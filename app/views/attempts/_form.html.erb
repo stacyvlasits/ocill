@@ -1,0 +1,38 @@
+<%= form_for [@drill, @attempt] do |f| %>
+  <% drill = @attempt.drill %>
+  <%- model_class = Drill -%>
+  <div>
+    <h5><strong><%= model_class.human_attribute_name(:unit) %>:</strong>  <%= drill.unit.title %></h5>
+    <h5><strong><%= model_class.human_attribute_name(:title) %>:</strong>  <%= drill.title %></h5>
+    <h5><strong><%= model_class.human_attribute_name(:instructions) %>:</strong></h5>
+    <p><%= drill.instructions.to_s.html_safe %></p>
+    <% unless drill.prompt.empty? %>
+       <h5><strong><%= model_class.human_attribute_name(:prompt) %>:</strong></h5>
+       <p><%= drill.prompt.to_s.html_safe %></p>
+     <% end -%>
+    <h5><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></h5>
+      <%= before_exercise_wrapper(drill).html_safe %>
+      <% drill.exercises.each do |exercise| %>
+        <%= render :partial => nested_folder(attempt) + action_name + '_attempt_exercises', :locals => { :exercise => exercise, :attempt => @attempt } %>
+      <% end %>
+       <%= after_exercise_wrapper(drill).html_safe %>
+    </dd>
+    <% if action_name == "show" %>
+      <h5><strong><%= Attempt.human_attribute_name(:score) %>:</strong></h5>
+      <p><%= @attempt.score.html_safe %></p>
+    <% end %>
+  </div>
+  <div style="clear:both"></div>
+  <div class="form-actions">
+    <%= link_to t('.back', :default => t("helpers.links.back")),
+                drills_path, :class => 'btn'  %>
+    <% case action_name %>
+    <% when "show" %>
+      <%= link_to "Attempt Again", new_drill_attempt_path(:drill_id => drill.id), :class => 'btn btn-primary'  %>
+    <% when "new" %>
+      <%= f.submit "Submit Attempt", :id => 'attempt-submit', :class => 'btn btn-primary' %>
+    <% when "edit" %>
+      <%= f.submit "Submit Attempt", :id => 'attempt-submit', :class => 'btn btn-primary' %>
+    <% end %>
+  </div>
+<% end %>

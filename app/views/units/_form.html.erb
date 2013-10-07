@@ -1,0 +1,32 @@
+<%= form_for @unit do |f| %>
+  <%= f.error_messages %>
+  <div class="control-group">
+    <%= f.label :title %>
+    <div class="controls">
+      <%= f.text_field :course_id, :class => 'hidden' %>
+      <%= f.text_field :title, :class => 'text-field' %>
+    </div>
+  </div>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#sort-drills" data-toggle="tab">Sort Drills</a></li>
+    <li><a href="#sort-drills" data-toggle="tab">Future Tab Pane</a></li>
+  </ul> 
+  <div>
+    <% unless action_name == "new" %>
+      <% if can? :manage, @unit %>
+        <div class="tab-pane" id="sort-drills">
+          <ol id="sortable">
+            <%= f.fields_for :drills do |builder| %>
+              <li>
+                <%= render 'drill_fields', :f => builder %>
+              </li>
+            <% end %>
+          </ol> <!-- sortable -->
+        </div>
+      <% end -%>
+    <% end -%>
+  </div>   <!-- .tab-content -->
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                unit_path(f.object.course_id), :class => 'btn' %>
+<% end %>

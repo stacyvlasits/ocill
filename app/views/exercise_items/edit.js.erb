@@ -1,0 +1,10 @@
+// $('#new_link').hide();
+// Grab the form
+form = $('form');
+// Grab the modal template NOTE: this needs to be changed,
+// right now it's picking up the first one.  That's not really what we want
+$('#audio-upload').data('tableCell')
+modal = $('.modal').first();
+form.after(modal);
+modal.find('.modal-body').html('<%= j render("upload_audio_form") %>');
+modal.modal('toggle');

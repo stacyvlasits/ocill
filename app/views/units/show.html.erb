@@ -1,0 +1,33 @@
+<%- model_class = Unit -%>
+<div>
+  <h5><strong><%= model_class.human_attribute_name(:course) %>:</strong>  <%= @unit.course.title %></h5>
+  <h5><strong><%= model_class.human_attribute_name(:unit) %>:</strong>  <%= @unit.title %></h5>
+</div>
+<div style="clear:both"></div>
+<!-- TODO Remove this once there is something useful to show here -->
+<% if can? :manage, @unit %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),edit_unit_path(@unit), :class => 'btn btn-primary' %>
+<% end -%>
+
+<% if false %>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#performance" data-toggle="tab">Performance</a></li>
+  <li><a href="#placeholder" data-toggle="tab">Nothing here</a></li>
+</ul>
+<div class="tab-content">
+  <% if can? :manage, @unit %>
+    <div class="tab-pane active" id="performance">
+      <% @drill_performances.each do |performances| %>
+        <%= render :partial => 'shared/performance', :locals => {:performances => performances, :is_unit => true} %>
+      <% end -%>
+    </div>
+  <% else %>
+    <p>Only instructors assigned to this course can see the students' performance</p>
+  <% end -%>
+  <% if can? :manage, @unit %>
+    <div class="tab-pane" id="placeholder">
+    </div>
+  <% end -%>
+<% end -%>
+</div>   <!-- .tab-content -->

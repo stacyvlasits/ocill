@@ -1,0 +1,10 @@
+<h2>OCILL</h2>
+<h4>Online Components for Intensive Language Learning</h4>
+<% unless current_user %> 
+	<p>This application requires a login. </p> 
+	<p> <strong>Students:</strong> If you  do not have a login, please contact your professor to request one.</p>
+	<p> <strong>Faculty Members:</strong> If you do not have a login, please request one by email using the address in the support link above. </p>
+<% end -%>
+<% if can? :read_more, :home %>
+
+<% end -%>	

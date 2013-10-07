@@ -1,0 +1,49 @@
+<%= form_for @drill, :html => { :multipart => true, :class => @drill.type.to_s.underscore.dasherize } do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :unit_id, :class => 'hidden' %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text-field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :instructions, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :instructions, :rows => "1", :class => 'text_area tinymce' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :prompt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :prompt, :rows => "3", :class => 'text_area tinymce' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :options %>
+    <div class="checkbox-controls">
+      <%= f.label :rtl, :class => 'control-label' %>
+      <%= f.check_box :rtl, :class => 'set-rtl' %>
+      <%= f.label :hide_text, :class => 'control-label' %>
+      <%= f.check_box :hide_text, :class => 'set-show-text' %>
+    </div>
+  </div>
+  <% if @drill.exercises.empty? %>
+    <div class="control-group">
+      <%= f.label :type, :class => 'control-label' %>
+      <div class="controls">
+      <%= select("drill", "type", (["GridDrill","FillDrill"]+Drill.all.each.collect {|d| d.type}).flatten.compact.uniq , {:prompt => 'Select a Drill Type', :selected => @drill.type }) %>
+      </div>
+    </div>
+  <% end %>
+  
+  <div id="exercises" class="controls">
+    <%= render nested_folder(@drill) + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
+  </div>
+      
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), unit_path(@drill.unit_id), :class => 'btn' %>
+  </div>
+  <%= tinymce :default %>
+<% end %>

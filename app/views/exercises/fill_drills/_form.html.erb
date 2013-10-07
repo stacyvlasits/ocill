@@ -1,0 +1,4 @@
+<%= fields_for @exercise, :html => { :class => 'form-horizontal' } do |f| %>
+    <%= f.label :prompt, :class => 'control-label' %>
+    <%= f.text_field :prompt, :class => 'text-field' %>
+<% end %>

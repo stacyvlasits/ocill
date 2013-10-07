@@ -1,0 +1,153 @@
+rails generate scaffold Drill title:string prompt:text instructions:text order:integer responses:integer
+
+rails generate scaffold Exercise title:string weight:decimal prompt:text column_names:text order:integer
+
+rails generate model ExerciseItem text:string scored:boolean type:string
+
+rails generate model MediaItem name:string url:string type:string
+
+rails generate model Course title:string order:integer
+
+rails generate model Lesson title:string order:integer
+
+rails generate migration AddLessonIDToDrills lesson_id:integer
+
+rails generate migration AddCourseIDToLessons course_id:integer
+
+rails generate migration AddDrillIDToExercises drill_id:integer
+
+rails generate migration AddExerciseIDToExerciseItems exercise_id:integer
+
+rails generate migration AddExerciseItemIDToMediaItems exercise_item_id:integer
+
+rails generate model Template name:string desc:text
+
+rails generate migration RenameTypeToExerciseItemTypeInExerciseItems
+
+rails g migration RemoveColumnNamesFromExercises column_names:text
+
+rails g scaffold Course --migration=false --skip
+
+rails g scaffold Course --migration=false --skip
+
+rails g bootstrap:themed lessons -f
+
+rails g bootstrap:themed courses -f
+
+rails g migration RenameOrderToPositionInDrills
+
+rails g migration RenameResponsesToExerciseItemsPerExerciseInDrills
+
+rails g bootstrap:themed lessons -f
+
+GET READY FOR CARRIER WAVE:
+
+rails g migration AddTypeToDrills type:string
+
+rails g uploader image
+
+rails g uploader sound
+
+rails g migration RenameExerciseItemTypeToTypeInExerciseItems
+
+rails g migration AddFileToExerciseItems file:string
+
+rails g uploader file
+
+rails g controller ListeningDrill
+
+rails d controller ListeningDrill
+
+rails g controller ListeningDrills new edit create
+
+rails g migration RemoveExerciseItemsPerExerciseFromDrills
+
+rails g migration RemoveTemplateIdFromDrills template_id:integer
+
+rails g migration RenameColumnNamesToHeaderRow
+
+rails generate migration RemoveActiveAdminVestiges
+
+rails generate migration DropTemplateTable
+
+rails generate migration AddMediaColumnsExerciseItems
+
+rails generate model Header drill_id:integer title:string position:integer exercise_item_id
+
+rails g migration RenameHeaderDrillIDtoGridDrillID
+
+rails g migration AddHeaderColumnToExerciseItem header_id:integer
+
+rails g migration RemoveExerciseItemColumnFromHeader exercise_item_id:integer
+
+rails g migration RemoveColumnColumnFromExerciseItem column:string
+
+rails g migration RemoveFileFromExerciseItems file:string
+
+rails g migration CreateRoles name:string
+
+rails g migration CreateRolesUsers
+
+rail g migration RemoveTimestampsFromRolesUsers
+
+rails g model attempt answer_id:integer
+
+rails g migration RenameAnswerToSavedAnswerInExerciseItem answer:string
+
+rails g migration RenameAnswerIDToDrillIDInAttempt
+
+rails g migration AddUserIDColumnToAttempts
+
+rails g migration RenameResponseToResponsesInAttempts
+
+rails g model Response exercise_item_it:integer attempt_id value:string
+
+rails g migration ChangeColumnResponseValueToText
+
+rails g migration RenameLessonToUnit
+
+rails g migration RenameLessonIDToUnitIDinDrills
+
+rails g migration ChangeColumnSavedAnswerToTextIntExerciseItem saved_answer:text
+
+rails g migration add_audio_to_exercise audio:string
+
+rails g migration AddOptionsToDrills options:text
+
+rails g migration AddVideoAndImageToDrills video:string image:string
+
+rails g migration AddVideoAndImageToExercises video:string image:string
+
+rails generate model Image image:string imageable_type:string imageable_id:integer
+
+rails g migration AddColumnUserIDAndCourseIDtoRoles user_id:integer course_id:integer
+
+rails g migration AddRoleToUser role:string
+
+Role.all.each {|r| case r.name;when "admin";r.name="Administrator";when "creator"; r.name="Instructor";when "instructor";r.name="Instructor";when "student";r.name="Learner";end;r.save!}
+
+User.all.each {|r| case r.role;when "admin";r.role="Administrator";when "creator"; r.role="Instructor";when "instructor";r.role="Instructor";when "student";r.role="Learner";end;r.save!}
+
+rails g migration AddCourseIDIndexToUnits
+
+rails g migration AddIndexesToVariousModels
+
+rails generate controller Users show index
+
+rails generate mailer NewRegistration
+
+rails g migration AddFirstNameLastNameToUsers first_name:string last_name:string
+
+rails g controller Home show
+
+rails g migration AddEncodingsToExercises encodings:text
+
+rails g migration AddEncodingsToExerciseItems encodings:text
+
+rails g controller Panda notifications
+
+rails g migration AddPandaAudioIdToExercises panda_audio_id:string
+
+rails g migration AddPandaAudioIdToExerciseItems panda_audio_id:string
+
+rails g controller Launch main

@@ -1,0 +1,26 @@
+// Place all the styles related to the Exercises controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.the_blank {
+  background-color: #d5e6e3;
+  margin: 5px;
+}
+.hint {
+
+}
+.fill-drill-exercise .correct {
+  background-color: #d5e6e3;
+  padding: 0px 5px;
+}
+.fill-drill-exercise .incorrect {
+  background-color: #fcd4e7;
+  padding: 0px 5px;
+}
+.fill-drill-exercise .left-blank {
+  background-color: #fcd4e7;
+  padding: 0px 30px;
+}
+
+.fill-drill-prompt {
+  // line-height: 40px;
+}
