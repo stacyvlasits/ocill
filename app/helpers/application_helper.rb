@@ -50,13 +50,13 @@ module ApplicationHelper
 
   def mime_type_for(ext)
     case ext
-    when "m4a" || "mp4"
+    when "m4a", "mp4"
       "audio/mp4"
     when "wav"
       "audio/wav"
     when "mp3"
       "audio/mpeg"
-    when "oga" || "ogg"
+    when "oga", "ogg"
       "audio/ogg"
     else
       ""
