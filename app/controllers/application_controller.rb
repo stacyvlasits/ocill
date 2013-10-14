@@ -18,9 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def authorize_mini_profiler
-
     if current_user && current_user.is_admin? 
-    binding.pry
       Rack::MiniProfiler.authorize_request
     end
   end
