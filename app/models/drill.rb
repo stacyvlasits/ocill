@@ -20,7 +20,8 @@ class Drill < ActiveRecord::Base
   
   before_save :set_default_title
   before_save :set_default_position
-
+  after_commit :flush_user_navigation_caches
+  
   def self.serialized_attr_accessor(*args)
     args.each do |method_name|
       eval "
@@ -67,5 +68,10 @@ class Drill < ActiveRecord::Base
 
   def set_default_position
     self.position ||= Drill.maximum(:id).to_i + 1
+  end
+
+private
+  def flush_user_navigation_caches
+    User.flush_all_navigation_caches    
   end
 end

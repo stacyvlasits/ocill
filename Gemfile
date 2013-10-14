@@ -51,6 +51,9 @@ gem 'ims-lti'
 gem 'memcachier'
 gem 'dalli'
 
+# for profiling
+gem 'rack-mini-profiler'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do

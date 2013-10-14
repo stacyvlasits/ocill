@@ -5,14 +5,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
   has_many :roles, :dependent => :destroy
   has_many :courses, :through => :roles
   has_many :attempts
@@ -25,9 +17,27 @@ class User < ActiveRecord::Base
 
   validates :role, :inclusion => { :in => Role::ROLES,
     :message => "\"%{value}\" is not a valid role. Select from #{Role::ROLES.join(", ")}." }
+  after_commit :flush_navigation_cache, :flush_permissions_cache
 
   def full_name
     self.first_name.to_s + " " + self.last_name.to_s
+  end
+
+  def is_admin?
+    self.role == "Administrator"
+  end
+
+  def flush_navigation_cache
+    Rails.cache.delete([self, "navigation-layout"])
+  end
+  
+  def self.flush_all_navigation_caches
+    self.all.each{|u| u.flush_navigation_cache}
+  end
+  
+  #  TODO remove this method, I don't think it's used
+  def flush_permissions_cache
+    Rails.cache.delete([self, "permissions"])
   end
 
   def self.find_by_email_or_eid(info)
@@ -72,6 +82,14 @@ class User < ActiveRecord::Base
       "Learner"
     else
       ""
+    end
+  end
+  
+  def cached_course_permissions
+    CoursePermissions
+    Unit
+    Rails.cache.fetch([self, "permissions"]) do
+      course_permissions
     end
   end
 
