@@ -51,7 +51,7 @@ gem 'ims-lti'
 gem 'memcachier'
 gem 'dalli'
 
-# for profiling
+# for profiling Must be after pg gem
 gem 'rack-mini-profiler'
 
 # Gems used only for assets and not required
