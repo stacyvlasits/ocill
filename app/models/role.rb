@@ -1,6 +1,6 @@
 class Role < ActiveRecord::Base
   attr_accessible :name, :user, :course
-  belongs_to :user
+  belongs_to :user, :touch => true
   belongs_to :course
 
   scope :is_instructor_or_admin, ->(user) { where(:name => ['Instructor', 'Administrator'], :user_id => user.id )}

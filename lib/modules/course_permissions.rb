@@ -13,8 +13,9 @@ class CoursePermissions
     all_courses = Course.includes(:roles, :units => :drills)
   	all_courses.all.each do |c|
 
-      if c.roles.highest(@user).first
-  		  senior_role = c.roles.highest(@user).first.name
+
+      if highest_role = c.roles.highest(@user).first 
+  		  senior_role = highest_role.name
       else
         senior_role = ""
       end
@@ -26,7 +27,6 @@ class CoursePermissions
 
         u.drills.each do |d|
           @drills[d.id] = senior_role
-
         end
       end
   	end

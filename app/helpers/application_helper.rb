@@ -37,6 +37,13 @@ module ApplicationHelper
     audio.html_safe
   end
 
+  def cached_user_navigation
+    CoursePermissions
+    Rails.cache.fetch([current_user, "navigation-layout"]) do
+      render partial: 'layouts/course_navigation', :layout => false, :collection => Course.includes(:units => :drills), as: :course
+    end
+  end
+
   def audio_source_tag(url)
     path_sans_ext = remove_audio_ext(url)
     filename = url.split("/").last
