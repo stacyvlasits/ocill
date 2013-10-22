@@ -1,5 +1,4 @@
 <tr>
-  <td><%= performance.user.full_name.to_s %></td>
   <td><%= link_to performance.user.email.to_s, user_url(performance.user) if performance.present? %></td>
   <td><%= performance.total_attempts %></td>
   <td><%= performance.best_attempt.score.html_safe %></td>
