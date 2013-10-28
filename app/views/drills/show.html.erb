@@ -7,8 +7,7 @@
 </div>
 <div style="clear:both"></div>
   <% if current_user && current_user.is_lti? %> 
-    
-    
+    <%= render :partial => 'shared/performance', :locals => {:performances => @performances, :is_unit => false} %>
   <% else %>
     <ul class="nav nav-tabs">
       <li class="active"><a href="#performance" data-toggle="tab">Performance</a></li>
