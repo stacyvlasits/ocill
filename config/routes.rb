@@ -20,6 +20,7 @@ Ocill::Application.routes.draw do
 
   resources :users, only: [:index, :show] 
 
+  resources :activities, only: [:edit, :update]
 
   resources :units do
     resources :drills

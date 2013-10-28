@@ -1,9 +1,9 @@
 <tr>
   <td><%= link_to performance.user.email.to_s, user_url(performance.user) if performance.present? %></td>
   <td><%= performance.total_attempts %></td>
-  <td><%= performance.best_attempt.score.html_safe %></td>
+  <td><%= performance.best_attempt.html_score.html_safe %></td>
   <td class="small-date"><%= (performance.best_attempt.created_at.to_s(:simple_date) + "<br>" + performance.best_attempt.created_at.to_s(:simple_time)).html_safe %>
-  <td><%= performance.worst_attempt.score.html_safe %></td>
+  <td><%= performance.worst_attempt.html_score.html_safe %></td>
   <td class="small-date"><%= (performance.worst_attempt.created_at.to_s(:simple) + "<br>" + performance.worst_attempt.created_at.to_s(:simple_time)).html_safe  %>
   <td><%= performance.average_score %></td>  
 </tr>

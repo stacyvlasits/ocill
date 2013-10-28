@@ -66,6 +66,7 @@ Ocill::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+
   config.action_mailer.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
     :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
@@ -76,5 +77,6 @@ Ocill::Application.configure do
     :domain => 'ocill.herokuapp.com', # your domain to identify your server when connecting
   }
 
-
+  # required for lms-lti gem https://github.com/instructure/ims-lti
+  OAUTH_10_SUPPORT = true
 end

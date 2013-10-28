@@ -13,7 +13,6 @@ When(/^I am on the "(.*?)" page\.$/) do |model|
 end
 
 When(/^I am on the drills page\.$/) do
-    binding.pry
     visit('/drills/' )
 
 end

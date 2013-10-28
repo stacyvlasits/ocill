@@ -1,0 +1,21 @@
+
+// $('#activity_drill_id').val('');
+$('.units-for-course').remove();
+
+
+$('#drill-selector').append('<%= j render 'shared/drill_selector', :course => @course %>');
+
+$(".drills-for-unit li").click(function() {
+	$(".drills-for-unit li").removeClass('selected');
+	$(this).addClass('selected');
+	drill_id = $(this).data('drill-id');
+	$('#activity_drill_id').val(drill_id);
+	$('.activity-submit').removeClass('disabled');
+});
+
+$('.activity-submit').addClass('disabled').click(function() {
+	if ($('#activity_drill_id').val() < 1 ) {
+		event.preventDefault();
+		toastr.error("Make sure to select both a course and a drill.");
+	}
+});

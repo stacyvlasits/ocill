@@ -6,21 +6,24 @@
   <p><%= @drill.instructions.to_s.html_safe %></p>
 </div>
 <div style="clear:both"></div>
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#performance" data-toggle="tab">Performance</a></li>
-  <li><a href="#placeholder" data-toggle="tab">Nothing here</a></li>
-</ul>
-<div class="tab-content">
-
-    <% if can? :manage, @drill %>
+  <% if current_user && current_user.is_lti? %> 
+    
+    
+  <% else %>
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#performance" data-toggle="tab">Performance</a></li>
+      <li><a href="#preview" data-toggle="tab">Drill Preview</a></li>
+    </ul>
+    <div class="tab-content">
       <div class="tab-pane active" id="performance">
-        <%= render :partial => 'shared/performance', :locals => {:performances => @performances, :is_unit => false} %>
+        <% if can? :manage, @drill %>
+          <%= render :partial => 'shared/performance', :locals => {:performances => @performances, :is_unit => false} %>
+        <% else %>
+          <p>Administrator login required</p>
+        <% end -%>
       </div>
-    <% end -%>
-
-  <% if can? :manage, @drill %>
-    <div class="tab-pane" id="placeholder">
-    </div>
+        <div class="tab-pane" id="preview">
+          <p>Under development</p>
+        </div>
+    </div>   <!-- .tab-content -->
   <% end -%>
-</div>   <!-- .tab-content -->
-

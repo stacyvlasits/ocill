@@ -3,6 +3,7 @@ class Drill < ActiveRecord::Base
 
   serialize :options, Hash
   
+  has_many :activities
   belongs_to :unit
   alias :parent :unit
   has_many :exercises, :dependent => :destroy, :autosave => true, :order => "position ASC"
@@ -61,7 +62,8 @@ class Drill < ActiveRecord::Base
   def rows
     self.exercises.size
   end
-
+  
+private
   def set_default_title
     self.title = "Default Title" if self.title.blank?
   end

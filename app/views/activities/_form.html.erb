@@ -1,0 +1,8 @@
+<%= form_for(@activity) do |f| %>
+  <fieldset id="course-selector">
+    <%= render 'shared/course_selector', f: f %>
+  </fieldset>
+  <fieldset id="drill-selector">
+    <%= f.hidden_field(:drill_id, :value => @activity.drill_id) %> 
+  </fieldset>
+<% end %>

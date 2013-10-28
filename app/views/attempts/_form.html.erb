@@ -9,7 +9,10 @@
     <% unless drill.prompt.empty? %>
        <h5><strong><%= model_class.human_attribute_name(:prompt) %>:</strong></h5>
        <p><%= drill.prompt.to_s.html_safe %></p>
-     <% end -%>
+    <% end -%>
+    <% if current_user.is_lti? && session['launch_params'] %>
+      <%= render 'lti', :f => f %> 
+    <% end -%>
     <h5><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></h5>
       <%= before_exercise_wrapper(drill).html_safe %>
       <% drill.exercises.each do |exercise| %>
@@ -19,16 +22,18 @@
     </dd>
     <% if action_name == "show" %>
       <h5><strong><%= Attempt.human_attribute_name(:score) %>:</strong></h5>
-      <p><%= @attempt.score.html_safe %></p>
+      <p><%= @attempt.html_score.html_safe %></p>
     <% end %>
   </div>
   <div style="clear:both"></div>
   <div class="form-actions">
-    <%= link_to t('.back', :default => t("helpers.links.back")),
+    <% unless current_user && current_user.is_lti? %>
+      <%= link_to t('.back', :default => t("helpers.links.back")),
                 drills_path, :class => 'btn'  %>
+    <% end -%>
     <% case action_name %>
     <% when "show" %>
-      <%= link_to "Attempt Again", new_drill_attempt_path(:drill_id => drill.id), :class => 'btn btn-primary'  %>
+    <%= link_to "Attempt Again", new_drill_attempt_path(:drill_id => drill.id), :class => 'btn btn-primary'  %>
     <% when "new" %>
       <%= f.submit "Submit Attempt", :id => 'attempt-submit', :class => 'btn btn-primary' %>
     <% when "edit" %>

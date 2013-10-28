@@ -13,11 +13,20 @@ class CoursesController < InheritedResources::Base
     end
   end
 
+  def show
+    @course = Course.find(params[:id])
+    respond_to do |format|
+      format.html 
+      format.js
+    end
+  end
+
   def update
     super do |format|
       format.html { redirect_to edit_course_url(@course) }
     end
   end
+
   def destroy
     super do |format|
       format.html { redirect_to root_path }

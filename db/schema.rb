@@ -11,16 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130912160431) do
+ActiveRecord::Schema.define(:version => 20131028134439) do
+
+  create_table "activities", :force => true do |t|
+    t.string   "lti_resource_link_id"
+    t.integer  "section_id"
+    t.integer  "drill_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "course_id"
+  end
+
+  add_index "activities", ["course_id"], :name => "index_activities_on_course_id"
 
   create_table "attempts", :force => true do |t|
     t.integer  "drill_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.integer  "user_id"
+    t.string   "lis_outcome_service_url"
+    t.string   "lis_result_sourcedid"
   end
 
   add_index "attempts", ["drill_id", "user_id"], :name => "index_attempts_on_drill_id_and_user_id"
+  add_index "attempts", ["lis_result_sourcedid"], :name => "index_attempts_on_lis_result_sourcedid"
   add_index "attempts", ["user_id", "drill_id"], :name => "index_attempts_on_user_id_and_drill_id"
 
   create_table "courses", :force => true do |t|
@@ -136,6 +150,13 @@ ActiveRecord::Schema.define(:version => 20130912160431) do
     t.integer "user_id"
   end
 
+  create_table "sections", :force => true do |t|
+    t.string   "lti_course_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "course_id"
+  end
+
   create_table "units", :force => true do |t|
     t.string   "title"
     t.integer  "position"
@@ -163,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20130912160431) do
     t.string   "role"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "lti_user_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :drills, :through => :attempts
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :role, :password, :password_confirmation, :remember_me
+  attr_accessible :first_name, :last_name, :email, :role, :password, :password_confirmation, :remember_me, :lti_user_id
   scope :none, where(:id => nil).where("id IS NOT ?", nil)
   default_scope order("email asc")
 
@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
 
   def full_name
     self.first_name.to_s + " " + self.last_name.to_s
+  end
+
+  def is_lti?
+    lti_user_id.present?
   end
 
   def is_admin?
@@ -49,7 +53,7 @@ class User < ActiveRecord::Base
     end
     user ||= User.none
   end
-
+  
   # TODO: Make it possible to autogenerate an account using just the eid
   # TODO: add more error checking
   def self.find_or_create_by_email(email, role, creator)

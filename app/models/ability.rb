@@ -36,6 +36,7 @@ class Ability
       end
       can :create, ExerciseItem      
       can :manage, Attempt  # for debugging purposes only.
+      can :manage, Activity
       can :read, Course
       can :read, Unit
       can :read, Drill

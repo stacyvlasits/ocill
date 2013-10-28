@@ -16,6 +16,10 @@ class DrillsController < InheritedResources::Base
     end
   end
 
+  def index
+        
+  end
+
   def create
     super do |format|
       format.html { render :action => "edit" }

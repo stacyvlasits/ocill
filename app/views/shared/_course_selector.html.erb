@@ -1,0 +1,8 @@
+<h3>Choose Course</h3>
+<hr>
+<% Course.order("title ASC").find_each do |c| %>
+  <%= f.radio_button :course_id, c.id.to_s, :class => "selectable-course" %>
+  <%= f.label :course_id, c.title, :value => c.id.to_s %> 
+<% end %>
+<%= link_to "Set Course", course_url(Course.first), :id => 'course-submit', :remote => true %> 
+   

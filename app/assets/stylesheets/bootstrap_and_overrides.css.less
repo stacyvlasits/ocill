@@ -319,5 +319,63 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: lighter;
 }
 
+ul.drills-for-unit {
+  list-style-type: none;
+  margin: 0;
+}
+#course-selector input[type=radio]:checked + label:after,
+ul.drills-for-unit li.selected:after {
+  content:  "\2713 ";
+  color: #ff69b4;
+}
 
+ul.drills-for-unit li.used {
+  border-bottom: solid 2px #ff69b4;
+  color: #ff69b4;
+  font-weight: bold;
+}
+
+ul.drills-for-unit li.used:after {
+  content:  "X";
+  color: #ff69b4;
+}
+
+#course-selector input[type="radio"] {
+  margin: -4px 5px 0 5px;
+}
+#course-selector span {
+  white-space: nowrap;
+}
+
+ul.drills-for-unit li,
+#course-selector input[type=radio] + label {
+  background-color: white;
+  -moz-border-radius: 5px; 
+  -webkit-border-radius: 5px;  
+  border-radius: 5px;
+  border-bottom: solid 2px transparent;
+  -moz-box-shadow: 0px 0px 4px #222;  
+  -webkit-box-shadow: 0px 0px 4px #222;  
+  box-shadow: 0px 0px 4px #222;
+  cursor: pointer; 
+  display: inline-block;
+  margin: 0 15px 10px 0;
+  padding: 5px;
+}
+
+ul.drills-for-unit li.selected,
+#course-selector input[type=radio]:checked + label {
+  border-bottom: solid 2px #ff69b4;
+  color: #ff69b4;
+  font-weight: bold;
+}
+
+#course-submit {
+  display: block;
+  width: 71px;
+}
+
+.selectable-course {
+  display: none;
+}
 

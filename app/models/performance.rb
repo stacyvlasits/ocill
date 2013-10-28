@@ -24,6 +24,7 @@ class Performance
   def total_score
     @user_attempts.inject(0) {|sum, attempt| sum + attempt.correct}
   end
+  
   def total_responses
     @user_attempts.inject(0) {|sum, attempt| sum + attempt.total}
   end

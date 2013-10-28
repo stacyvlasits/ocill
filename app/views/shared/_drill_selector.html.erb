@@ -1,0 +1,14 @@
+<div class="units-for-course units-for-course-<%= course.id %>">
+  <h3>Choose a Drill from <%= course.title %></h3> 
+  <hr>
+  <%= submit_tag "Save", :class => 'activity-submit disabled btn btn-primary' %> 
+  <% course.units.each do |u| %>
+    <h4><%= u.title %></h4>
+    <ul class="drills-for-unit">
+      <% u.drills.each do |d| %>
+        <li class="drills-in-unit" data-drill-id="<%= d.id %>"><%= d.title %> </li>
+      <% end -%>
+    </ul>
+  <% end -%>
+  <%= submit_tag "Save", :class => 'activity-submit disabled btn btn-primary' %> 
+</div>

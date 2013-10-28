@@ -57,7 +57,7 @@ module ExercisesHelper
 
   def create_fill_drill_exercise(exercise)
     inputs = exercise.exercise_items.map do |ei|
-      response = Response.create(exercise_item_id:ei.id)
+      response = Response.create(exercise_item_id:ei.id, attempt_id: @attempt.id, value:'')
       create_response_input(ei.id, response.id)
     end
     prompt = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')

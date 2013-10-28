@@ -11,7 +11,7 @@ class CoursePermissions
 
   def build!
     all_courses = Course.includes(:roles, :units => :drills)
-  	all_courses.all.each do |c|
+  	all_courses.find_each do |c|
 
 
       if highest_role = c.roles.highest(@user).first 

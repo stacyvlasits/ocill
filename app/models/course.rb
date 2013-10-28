@@ -1,5 +1,7 @@
- class Course < ActiveRecord::Base
+class Course < ActiveRecord::Base
   attr_accessible :position, :title, :units_attributes
+  
+  has_many :activities
   has_many :units, :order => "position ASC", :dependent => :destroy, :autosave => true, :autosave => true
   alias :children :units
   has_many :drills, :through => :units
@@ -13,6 +15,7 @@
   after_initialize :set_default_position
   after_commit :flush_user_navigation_caches
 
+private
   def set_default_position
     self.position ||= Course.maximum(:id).to_i + 1
   end

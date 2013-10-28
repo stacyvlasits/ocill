@@ -15,31 +15,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="container">
-  <%= render 'layouts/header' %>
+  <% unless @remove_navigation %>
+    <%= render 'layouts/header' %>
+  <% end -%>
+  <%= render 'layouts/messages' %>
   <div class="container-fluid">
     <div class="row-fluid">
+      <% unless @remove_navigation %>
       <div class="span4">
         <section id="sidebar">
           <% if current_user %>
           <ul id="nav-tree" >
-
             <%= cached_user_navigation %>
-
             <% if can? :create, Course %>
               <li>
               <%= link_to icon("plus") + " Add New Course", new_course_path %>
               </li>
             <% end %>
-          </ul>
-          <% else %>
-            <%= render partial: 'layouts/guest_sidebar' %>
-          <% end %>
-        </section>
+            </ul>
+            <% else %>
+              <%= render partial: 'layouts/guest_sidebar' %>
+            <% end %>
+          </section>
+        </div>
+      <% end -%>
+      <div class="<%= @remove_navigation ? "span12" : "span8" %>">
+        <%= yield %>
       </div>
-      <div class="span8"><%= yield %></div>
     </div>
   </div>
-    <script type="text/javascript">
+<script type="text/javascript">
 (function() {
   jQuery(function() {
     

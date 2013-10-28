@@ -13,7 +13,7 @@ class Exercise < ActiveRecord::Base
   has_many :exercise_items, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercise_items
 
-  default_scope order("position asc")
+default_scope order("position asc")
 
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
