@@ -27,12 +27,14 @@ class AttemptsController < InheritedResources::Base
 
   def update
     super do |format|
-      score = @attempt.decimal_score
-      result = @tool.post_replace_result!(score)
-      if result.success?
-        flash[:notice] = "Your score was submitted as #{score*100}%"
-      else
-        flash[:alert] = "Your score was not submitted.  Please notify OCILL support of the problem."
+      if current_user.is_lti?
+        score = @attempt.decimal_score
+        result = @tool.post_replace_result!(score)
+        if result.success?
+          flash[:notice] = "Your score was submitted as #{score*100}%"
+        else
+          flash[:alert] = "Your score was not submitted.  Please notify OCILL support of the problem."
+        end
       end
       format.html { redirect_to drill_attempt_path(@attempt)  }
     end
