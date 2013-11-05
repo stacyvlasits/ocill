@@ -6,8 +6,8 @@ class Launch
     @request = request
     @errors = []
     @tool = nil
-    @user = find_user
     authorize!
+    @user = find_user
     @section = find_section
     @activity = find_activity
   end
@@ -58,6 +58,7 @@ class Launch
   end
   
   def authorized?
+    return @errors.empty? if @tool
     authorize!
     @errors.empty?
   end
@@ -76,12 +77,6 @@ class Launch
   
   def learner_attempt_drill?
     user.role == "Learner" && self.activity.drill.present? && user.roles.create(:name => user.role, :course => self.activity.course) 
-  end
-
-
-
-  def drill
-    self.activity.drill
   end
 
   def find_user

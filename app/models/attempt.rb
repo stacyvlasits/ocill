@@ -14,6 +14,11 @@ class Attempt < ActiveRecord::Base
     (correct.to_f / total.to_f).round(2)
   end
 
+  #TODO: use or remove
+  def percent_score
+    correct / total
+  end
+  
   def correct
     correct = grade_sheet.select do |el|
       el[1].include?(el[0].to_s) if el[1].respond_to?(:include?)
@@ -35,10 +40,6 @@ class Attempt < ActiveRecord::Base
 
   def grade_sheet
     responses.each_with_index.map { |response, index| [response.value, response.answers] }
-  end
-
-  def percent
-    correct / total
   end
 
   def answers

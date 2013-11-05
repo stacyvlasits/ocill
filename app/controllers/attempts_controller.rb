@@ -3,14 +3,31 @@ class AttemptsController < InheritedResources::Base
 
   def new
     if params[:drill_id]
-      @attempt = current_user.attempts.create(:drill_id => params[:drill_id])
+      @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
       @drill = Drill.includes(:exercises => :exercise_items).find(params[:drill_id])
       new_responses = @drill.exercise_items.count || 1
-      @responses = Array.new(new_responses) { @attempt.responses.create }
+      @responses = Array.new(new_responses) { @attempt.responses.new }
+      respond_with @attempt
     else
       not_found 'There is no drill here for you attempt'
     end
-    
+  end
+
+  def create
+    if params[:drill_id]
+      @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
+      params[:attempt][:responses_attributes].each do |response| 
+        @attempt.responses.new(id: response[0], exercise_item_id: response[1][:exercise_item_id], value: response[1][:value])
+      end
+      if @attempt.save 
+        flash[:notice] = "Successfully saved your attempt."
+        respond_with @attempt
+      else
+        flash[:error] = "Failed to save your attempt."
+      end
+    else
+      not_found 'There is no drill to create an attempt for.'
+    end
   end
 
   def show
@@ -19,12 +36,9 @@ class AttemptsController < InheritedResources::Base
     @drill =  @attempt.drill || Drill.find(params[:drill_id])
   end
 
-  def create
-    super do |format|
-      format.html { redirect_to drill_attempt_path(@attempt) }
-    end
-  end
+ 
 
+  
   def update
     super do |format|
       if current_user.is_lti?
