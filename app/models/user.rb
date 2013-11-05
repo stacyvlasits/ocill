@@ -19,6 +19,16 @@ class User < ActiveRecord::Base
     :message => "\"%{value}\" is not a valid role. Select from #{Role::ROLES.join(", ")}." }
   after_commit :flush_navigation_cache, :flush_permissions_cache
 
+  def timeout_in
+    if self.is_admin?
+      1.week
+    elsif self.is_lti?
+      1.hour
+    else
+      3.days
+    end
+  end
+
   def full_name
     self.first_name.to_s + " " + self.last_name.to_s
   end
