@@ -102,7 +102,6 @@ jQuery ->
     $(this).text('')
     id = "video-" + index
     $(this).attr('id', id)
-    jwplayer(id).setup({flashplayer: "/assets/jwplayer.flash.swf", html5player: "/assets/javascripts/jwplayer.html5.js", file: source, height: 360, width: 640, analytics: { enabled: false, cookies: false }})
 
 jQuery ->
   $("form table audio").on 'ended', (event) ->

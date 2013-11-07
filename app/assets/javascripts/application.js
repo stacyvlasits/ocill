@@ -16,6 +16,4 @@
 //= require twitter/bootstrap
 //= require tinymce-jquery
 //= require toastr.min
-//= require jwplayer
-//= require jwplayer.html5
 //= require_tree .
