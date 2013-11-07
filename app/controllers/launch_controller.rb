@@ -14,7 +14,7 @@ class LaunchController < ApplicationController
       flash[:error] = @launch.errors.first
       redirect_to :root
     elsif @launch.instructor_view_drill?
-      redirect_to drill_path(@launch.drill)
+      redirect_to drill_path(@launch.activity.drill)
     elsif @launch.instructor_pick_course?
       redirect_to edit_activity_path(@launch.activity)
     elsif @launch.instructor_pick_drill?
