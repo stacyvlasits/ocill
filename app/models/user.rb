@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   end
   
   def self.flush_all_navigation_caches
-    self.all.each{|u| u.flush_navigation_cache}
+    self.find_each{|u| u.flush_navigation_cache}
   end
   
   #  TODO remove this method, I don't think it's used
