@@ -25,5 +25,6 @@ content_css: "https://s3.amazonaws.com/ocill-bucket/public/content.css"
 plugins:
   - uploadimage
   - media
+  - paste
 media_strict: false
 mode: textareas
