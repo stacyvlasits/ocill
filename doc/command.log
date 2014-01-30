@@ -161,3 +161,5 @@ rails generate model Section lti_course_id:string
 rails g migration AddCourseIDToActivity course_id:index
 
 rails g migration AddColumnsToAttempt lis_outcome_service_url:string lis_result_sourcedid:index
+
+rails g migration AddDeletedAtToExerciseItem delete_at:datetime

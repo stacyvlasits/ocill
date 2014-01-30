@@ -16,6 +16,7 @@ class Attempt < ActiveRecord::Base
 
   #TODO: use or remove
   def percent_score
+    return 0 if total == 0
     correct / total
   end
   
