@@ -7,7 +7,15 @@ class Response < ActiveRecord::Base
   before_save :strip_value
 
   def exercise_item
-    ExerciseItem.unscoped.find(self.exercise_item_id)
+    if self.exercise_item_id
+      begin 
+        ExerciseItem.unscoped.find(self.exercise_item_id)
+      rescue ActiveRecord::RecordNotFound
+        
+      end
+    else
+      nil
+    end
   end
 
   def strip_value

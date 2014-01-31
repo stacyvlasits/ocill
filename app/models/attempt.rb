@@ -11,7 +11,14 @@ class Attempt < ActiveRecord::Base
   end
 
   def matches_current_drill_state?
-    self.responses.includes(:exercise_item).select{|r| r.exercise_item.deleted_at != nil }.count == 0
+    broken_responses = self.responses.includes(:exercise_item).select do |r| 
+      if r.exercise_item == nil
+        true
+      else
+        r.exercise_item.deleted_at != nil
+      end
+    end
+    broken_responses.count == 0
   end
 
   def decimal_score
