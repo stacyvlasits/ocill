@@ -10,6 +10,10 @@ class Attempt < ActiveRecord::Base
     '<span class="score"><span class="correct">' + correct.to_s + '</span>/<span class="total">' + total.to_s + '</span></span>'.html_safe
   end
 
+  def matches_current_drill_state?
+    self.responses.includes(:exercise_item).select{|r| r.exercise_item.deleted_at != nil }.count == 0
+  end
+
   def decimal_score
     (correct.to_f / total.to_f).round(2)
   end

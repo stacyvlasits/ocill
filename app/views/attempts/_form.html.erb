@@ -13,13 +13,18 @@
     <% if current_user.is_lti? && session['launch_params'] %>
       <%= render 'lti', :f => f %> 
     <% end -%>
-    <h5><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></h5>
-      <%= before_exercise_wrapper(drill).html_safe %>
-      <% drill.exercises.each do |exercise| %>
-        <%= render :partial => nested_folder(attempt) + action_name + '_attempt_exercises', :locals => { :exercise => exercise, :attempt => @attempt } %>
-      <% end %>
-       <%= after_exercise_wrapper(drill).html_safe %>
-    </dd>
+    <% if ( action_name == "new" ) || @attempt.matches_current_drill_state? -%>  
+      <h5><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></h5>
+        <%= before_exercise_wrapper(drill).html_safe %>
+        <% drill.exercises.each do |exercise| %>
+          <%= render :partial => nested_folder(attempt) + action_name + '_attempt_exercises', :locals => { :exercise => exercise, :attempt => @attempt } %>
+        <% end %>
+         <%= after_exercise_wrapper(drill).html_safe %>
+      </dd>
+    <% else -%>
+      <h3>Notice</h3>
+      <p>The answers given on this drill do not match the current questions in the drill.  However, the score below is accurate for the state of the drill when the answers were given.  Contact an administrator via the support email given above for verification of the answers.</p>
+    <% end -%>
     <% if action_name == "show" %>
       <h5><strong><%= Attempt.human_attribute_name(:score) %>:</strong></h5>
       <p><%= @attempt.html_score.html_safe %></p>

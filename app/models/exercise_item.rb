@@ -1,7 +1,7 @@
 class ExerciseItem < ActiveRecord::Base
   attr_accessible :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video, :panda_audio_id
   # attr_accessible  :encodings  
-  attr_accessible :position, :remove_audio, :remove_image, :remove_video # TODO remove "column" from db
+  attr_accessible :position, :remove_audio, :remove_image, :remove_video, :deleted_at # TODO remove "column" from db
   mount_uploader :audio, AudioUploader
 #  mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
@@ -10,6 +10,8 @@ class ExerciseItem < ActiveRecord::Base
 
   has_many :responses
 
+  default_scope { where("deleted_at IS NULL") }
+
   belongs_to :exercise
   belongs_to :header
   validates :exercise_id, :presence => true
@@ -17,6 +19,10 @@ class ExerciseItem < ActiveRecord::Base
   after_initialize :set_default_position
   before_save :cleanup_audio
   
+  def archive
+    self.deleted_at = Time.now
+  end
+
   def panda_audio
     @panda_audio ||= Panda::Video.find(panda_audio_id)
   end

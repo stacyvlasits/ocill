@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130184131) do
+ActiveRecord::Schema.define(:version => 20140130185745) do
 
   create_table "activities", :force => true do |t|
     t.string   "lti_resource_link_id"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20140130184131) do
     t.integer  "header_id"
     t.text     "encodings"
     t.string   "panda_audio_id"
-    t.datetime "delete_at"
+    t.datetime "deleted_at"
   end
 
   add_index "exercise_items", ["exercise_id"], :name => "index_exercise_items_on_exercise_id"

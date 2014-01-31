@@ -13,12 +13,16 @@ class Exercise < ActiveRecord::Base
   has_many :exercise_items, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercise_items
 
-default_scope order("position asc")
+  default_scope order("position asc")
 
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
   after_initialize :set_default_position
   
+  # def unscoped_exercise_items
+  #   ExerciseItem.unscoped.where(:exercise_id => self.id)
+  # end
+
   def panda_audio
     @panda_audio ||= Panda::Video.find(panda_audio_id)
   end
@@ -90,7 +94,10 @@ default_scope order("position asc")
   end
 
   def fill_in_the_blank_exercise_items(blanks)
-    self.exercise_items.destroy_all
+    self.exercise_items.each do |ei|
+      ei.archive
+    end
+
     blanks.each_with_index do |blank, index|
       answers = blank.split('/')
       self.exercise_items.create(acceptable_answers: answers, position: index)

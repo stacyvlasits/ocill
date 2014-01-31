@@ -6,6 +6,10 @@ class Response < ActiveRecord::Base
   belongs_to :exercise_item
   before_save :strip_value
 
+  def exercise_item
+    ExerciseItem.unscoped.find(self.exercise_item_id)
+  end
+
   def strip_value
     self.value.strip! if self.value
   end
