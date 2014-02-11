@@ -14,8 +14,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="container">
-  <% unless @remove_navigation %>
+  <% if !@remove_navigation %>
     <%= render 'layouts/header' %>
+  <% elsif user_signed_in?  %>
+    <div class="logout">
+      <%= link_to('Logout ' + current_user.email.to_s + '(' + current_user.role.to_s + ')' , destroy_user_session_path, :method => :delete ) %>
+    </div>
   <% end -%>
   <%= render 'layouts/messages' %>
   <div class="container-fluid">
