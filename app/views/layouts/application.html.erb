@@ -16,8 +16,6 @@
 <body class="container">
   <% unless @remove_navigation %>
     <%= render 'layouts/header' %>
-  <% elsif user_signed_in?  %>
-  <%= link_to('Logout ' + current_user.email.to_s + '(' + current_user.role.to_s + ')' , destroy_user_session_path, :method => :delete ) %>
   <% end -%>
   <%= render 'layouts/messages' %>
   <div class="container-fluid">
