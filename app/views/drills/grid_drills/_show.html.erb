@@ -1,0 +1,17 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="cell cell-c0-r0"></th>
+      <% drill.headers.each do |header| %>
+        <%= render '/drills/grid_drills/show_headers', header: header %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% drill.exercises.each do |exercise| %>
+        <%= render '/drills/grid_drills/show_exercises',  :exercise => exercise %>  
+    <% end %>
+  </tbody>
+</table>
+
+      

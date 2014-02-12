@@ -21,8 +21,8 @@
           <p>Administrator login required</p>
         <% end -%>
       </div>
-        <div class="tab-pane" id="preview">
-          <p>Under development</p>
-        </div>
+      <div class="tab-pane" id="preview">
+        <%= render :partial => '/drills/' + @drill.type.underscore + 's/show', :locals => {:drill => @drill } %>
+      </div>
     </div>   <!-- .tab-content -->
   <% end -%>
