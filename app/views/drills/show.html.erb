@@ -9,20 +9,20 @@
   <% if current_user && current_user.is_lti? %> 
     <%= render :partial => 'shared/performance', :locals => {:performances => @performances, :is_unit => false} %>
   <% else %>
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#performance" data-toggle="tab">Performance</a></li>
-      <li><a href="#preview" data-toggle="tab">Drill Preview</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="performance">
-        <% if can? :manage, @drill %>
-          <%= render :partial => 'shared/performance', :locals => {:performances => @performances, :is_unit => false} %>
-        <% else %>
-          <p>Administrator login required</p>
-        <% end -%>
-      </div>
-      <div class="tab-pane" id="preview">
-        <%= render :partial => '/drills/' + @drill.type.underscore + 's/show', :locals => {:drill => @drill } %>
-      </div>
-    </div>   <!-- .tab-content -->
+    <% if can? :manage, @drill %>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#performance" data-toggle="tab">Performance</a></li>
+        <li><a href="#preview" data-toggle="tab">Drill Preview</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="performance">
+            <%= render :partial => 'shared/performance', :locals => {:performances => @performances, :is_unit => false} %>
+        </div>
+        <div class="tab-pane" id="preview">
+          <%= render :partial => '/drills/' + @drill.type.underscore + 's/show', :locals => {:drill => @drill } %>
+        </div>
+      </div>   <!-- .tab-content -->
+    <% else %>
+      <p>Administrator login required</p>
+    <% end -%>      
   <% end -%>
