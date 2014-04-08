@@ -1,6 +1,6 @@
 <td class="cell cell-c<%= f.object.header.column %>-r<%= f.object.exercise.row %>">
   <%= f.text_field :text, :class => 'text-field' %>
-  <%= link_to '<i class="icon-headphones"></i>'.html_safe , new_exercise_item_path, id: "new_link", remote: true %>
+  <%= link_to icon('headphones', 'white') , new_exercise_item_path, id: "new_link", remote: true %>
   <div id="audio-upload" class="modal hide fade in" style="display: none; ">
     <div class="modal-header">
       <a class="close" data-dismiss="modal">×</a>

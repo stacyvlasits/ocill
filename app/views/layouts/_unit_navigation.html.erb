@@ -1,8 +1,8 @@
 <%- model_class = Unit -%>
 <% if can? :read, unit %>
   <li class="nav-leaf" data-unit-id="<%= unit.id %>">
-      <%= link_to icon("expand"), "#", :class => "expand-unit" %>
-      <%= link_to icon("collapse"), "#", :class => "collapse-unit hidden" %>
+      <%= link_to icon("plus-square"), "#", :class => "expand-unit" %>
+      <%= link_to icon("minus-square"), "#", :class => "collapse-unit hidden" %>
       <%= link_to unit.title, unit_path(unit), :title => "View", :class => "text-link" %>
     <span class="nav-actions">      
       <% if can? :update, unit %>

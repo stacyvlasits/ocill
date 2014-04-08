@@ -1,4 +1,4 @@
  <th class="cell cell-c<%= f.object.column %>-r0" >
   <%= f.text_field :title, :class => 'text-field' %>
-  <span class="remove-column"><%= link_to ' <i class="icon-remove"></i> '.html_safe , controller: "drills", action: "remove_column", header_id: f.object.id %></span>
+  <span class="remove-column"><%= link_to icon('remove', 'white') , controller: "drills", action: "remove_column", header_id: f.object.id %></span>
 </th>
