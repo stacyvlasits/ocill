@@ -19,9 +19,6 @@ gem 'cancan'
 gem 'tinymce-rails', '~> 3.5'
 gem 'tinymce-rails-imageupload', '~> 3.5.6.3'
 
-# adding foreign keys
-gem 'foreigner'
-gem 'immigrant'
 
 # for file upload and storage
 gem 'carrierwave'
