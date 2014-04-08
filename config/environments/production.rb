@@ -57,7 +57,7 @@ Ocill::Application.configure do
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
-
+  
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
@@ -76,7 +76,7 @@ Ocill::Application.configure do
     :authentication => 'login', # Mandrill supports 'plain' or 'login'
     :domain => 'ocill.herokuapp.com', # your domain to identify your server when connecting
   }
-
+  
   # required for lms-lti gem https://github.com/instructure/ims-lti
   OAUTH_10_SUPPORT = true
 end
