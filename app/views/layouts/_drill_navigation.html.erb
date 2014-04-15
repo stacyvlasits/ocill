@@ -13,7 +13,7 @@
     <% end -%>
 
     <% if can? :update, drill %>
-      <%= link_to icon("remove"),
+      <%= link_to icon("times"),
             drill_path(drill),
             :title => "Remove",
             :method => :delete,

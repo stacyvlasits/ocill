@@ -13,7 +13,7 @@
     	<%= link_to icon("pencil"), edit_course_path(course), :title => "Edit" %>
     <% end -%>
     <% if can? :destroy, course %>
-    <%= link_to icon("remove"), course_path(course), :method => :delete, :title => "Remove", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Really?  This will delete *everything* in the course.')) } %>
+    <%= link_to icon("times"), course_path(course), :method => :delete, :title => "Remove", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Really?  This will delete *everything* in the course.')) } %>
     <% end -%>
   </span>
   <ul class="nav-branch units">

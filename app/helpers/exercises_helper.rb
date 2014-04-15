@@ -14,9 +14,9 @@ module ExercisesHelper
     spans = exercise.exercise_items.map do |ei|
       # TODO reduce number of sql queries
       if response = responses.where(:exercise_item_id => ei).first
-        '<span class="' + graded_class(response) + '">'  + response.value.to_s + '</span>' + " " + (response.correct? ? icon("ok") : icon("remove")) 
+        '<span class="' + graded_class(response) + '">'  + response.value.to_s + '</span>' + " " + (response.correct? ? icon("ok") : icon("times")) 
       else
-        '<span class="left-blank"></span>' + icon("remove")
+        '<span class="left-blank"></span>' + icon("times")
       end
     end
     html = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
@@ -37,7 +37,7 @@ module ExercisesHelper
     exercise.exercise_items.each do |ei|
       if ei.answers
         response = responses.where(:exercise_item_id => ei).first
-        html += "<td>" + (response.correct? ? icon("ok") : icon("remove")) + "</td>"
+        html += "<td>" + (response.correct? ? icon("ok") : icon("times")) + "</td>"
       else
         html += "<td>--</td>".html_safe
       end
