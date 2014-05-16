@@ -77,10 +77,10 @@ class User < ActiveRecord::Base
   end
 
   def self.create_and_notify(email, role, creator= "Someone")
-    password = User.reset_password_token
+    password = Devise.token_generator.generate(User, :reset_password_token)[1]
     role = ( role == "Instructor" || role == "Administrator" ) ? "Instructor" : "Learner"
     user = self.new(email: email, role: role, password: password)
-    user.reset_password_token = User.reset_password_token
+    user.reset_password_token = Devise.token_generator.generate(User, :reset_password_token)[1]
     user.reset_password_sent_at = Time.now
     user.save
     NewRegistration.welcome_email(user, role, creator).deliver if user.id

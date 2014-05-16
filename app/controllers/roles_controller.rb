@@ -43,9 +43,9 @@ class RolesController < ApplicationController
     rbuilder = RoleBuilder.new(@course, role_name, user_identifiers, current_user.email)
     rbuilder.save!
     
-    flash[:notice] = "#{icon("close", "white")}Successfully added user(s): <br> #{rbuilder.successes.join("<br>")} <br>to the #{@course.title} course as #{role_name.pluralize}" unless rbuilder.successes.empty?
+    flash[:notice] = "#{view_context.icon("folder-close", "white")}Successfully added user(s): <br> #{rbuilder.successes.join("<br>")} <br>to the #{@course.title} course as #{role_name.pluralize}" unless rbuilder.successes.empty?
     
-    flash[:alert] = "#{icon("close", "white")}Failed to add user: <br> #{rbuilder.failures.join("<br>")} <br>in the #{@course.title} course." unless rbuilder.failures.empty?
+    flash[:alert] = "#{view_context.icon("folder-close", "white")}Failed to add user: <br> #{rbuilder.failures.join("<br>")} <br>in the #{@course.title} course." unless rbuilder.failures.empty?
     
     redirect_to edit_course_url(@course)
   end
