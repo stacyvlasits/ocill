@@ -9,20 +9,16 @@
   <% if current_user && current_user.is_lti? %> 
     <%= render :partial => 'shared/performance', :locals => {:performances => @performances, :is_unit => false} %>
   <% else %>
-    <% if can? :read, @drill %>
+    <% if can? :manage, @drill %>
       <ul class="nav nav-tabs">
-        <% if can? :manage, @drill %>
         <li class="active"><a href="#performance" data-toggle="tab">Performance</a></li>
-        <% end -%> 
-        <li <%= "class=active" if cannot? :manage, @drill %> ><a href="#preview" data-toggle="tab">Drill Preview</a></li>
+        <li><a href="#preview" data-toggle="tab">Drill Preview</a></li>
       </ul>
       <div class="tab-content">
-        <% if can? :manage, @drill %>
-          <div class="tab-pane active" id="performance">
-              <%= render :partial => 'shared/performance', :locals => {:performances => @performances, :is_unit => false} %>
-          </div>
-        <% end -%> 
-        <div class="tab-pane <%= "active" if cannot? :manage, @drill %>" id="preview">
+        <div class="tab-pane active" id="performance">
+            <%= render :partial => 'shared/performance', :locals => {:performances => @performances, :is_unit => false} %>
+        </div>
+        <div class="tab-pane" id="preview">
           <%= render :partial => '/drills/' + @drill.type.underscore + 's/show', :locals => {:drill => @drill } %>
         </div>
       </div>   <!-- .tab-content -->
