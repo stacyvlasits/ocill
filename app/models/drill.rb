@@ -40,6 +40,11 @@ class Drill < ActiveRecord::Base
 
   serialized_attr_accessor :rtl, :hide_text
 
+  def direction
+    direction = self.rtl == "1" ? 'dir="rtl"' : 'dir="ltr"'
+    direction.html_safe
+  end
+
   def type_abbr
     case self.type
     when "GridDrill"
