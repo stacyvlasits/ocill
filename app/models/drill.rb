@@ -3,19 +3,21 @@ class Drill < ActiveRecord::Base
 
   serialize :options, Hash
   
-  has_many :activities
   belongs_to :unit
   alias :parent :unit
+  
   has_many :exercises, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercises
+  accepts_nested_attributes_for :exercises, allow_destroy: true
+  
+  has_many :activities
   has_many :attempts
   has_many :attempters, :through => :attempts, :uniq => true, :source => :user
   has_many :exercise_items, :through => :exercises, :autosave => true
-  has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
   has_many :images, :as => :imageable
-  accepts_nested_attributes_for :exercises, allow_destroy: true
+  has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
   accepts_nested_attributes_for :headers, allow_destroy: true
-
+  
   validates :unit_id, :presence => true
   validates :title, :presence => true
   
