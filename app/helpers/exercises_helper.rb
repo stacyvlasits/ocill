@@ -70,14 +70,13 @@ module ExercisesHelper
   end
 
   def create_grid_drill_exercises(exercise)
-    hide_text = exercise.drill.hide_text
     inputs = exercise.exercise_items.map do |ei|
       input = "<td>"
       response = Response.create(exercise_item_id:ei.id)
       input += create_response_input(ei.id, response.id, "hidden", "audio-played", "0" )
       input += audio_tag(ei.audio_urls) unless ei.audio_url.blank? || ei.audio_url.include?("fallback")
       input += image_tag(exercise.image_url(:small)) unless exercise.image.blank? || exercise.image_url.include?("fallback")
-      text = ei.text unless hide_text
+      text = ei.text unless exercise.drill.hide_text?
       input += content_tag(:p, text )
       input += "</td>"
     end
