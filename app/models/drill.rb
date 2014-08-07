@@ -58,6 +58,10 @@ class Drill < ActiveRecord::Base
     end
   end
 
+  def hide_text?
+    self.hide_text == "1"
+  end
+
   def answers
     self.exercise_items.map {|exercise_item| exercise_item.answer}.flatten
   end
