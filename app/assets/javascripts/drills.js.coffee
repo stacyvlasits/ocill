@@ -29,12 +29,18 @@ jQuery ->
   });
 
 jQuery ->
+  $(".resize-on-change").keyup(resizeInput).each(resizeInput);
+
+jQuery ->
   $("form").on 'submit', (event, ui) ->
     reSort($(this))
 
 reSort = (object) ->
   object.find('.hidden-position').each (index, element) ->
     $(element).val(index + 1)
+
+resizeInput = () ->
+    $(this).attr('size', $(this).val().length);
 
 jQuery ->
   $('form').on 'click', '.remove_fields', (event) ->

@@ -1,6 +1,7 @@
-<%= f.label :exercises, "Fill In The Blank:" %>
-<%= f.label :exercises, "Questions contain [blanks] in [brackets] and hints at the end. (no content, at the start and end)" %>
-<%= f.label :exercises, "Drag items in the list to reorder them." %>
+<%= f.label :exercises, "Fill In The Blank Instructions:" %>
+<%= f.label :exercises, "--  Questions contain [blanks] in [brackets] and hints at the end. (no content, at the start and end)" %>
+<%= f.label :exercises, "--  Use \"/\" to indicate multiple [correct/acceptable/basically ok] answers." %>
+<%= f.label :exercises, "--  Drag items in the list to reorder them." %>
 <ol id="sortable">
   <%= f.fields_for :exercises do |builder| %>
       <%= render 'exercise_fields', :f => builder %>

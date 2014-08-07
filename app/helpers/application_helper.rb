@@ -1,9 +1,13 @@
 module ApplicationHelper
-  def link_to_add_fields(name, f, association)
+  def link_to_add_fields(name, f, association, view_location=nil)
     new_object = f.object.send(association).klass.new
     id = (f.instance_variable_get("@nested_child_index").values[0] || 0).to_i
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
-      render(association.to_s.singularize + "_fields", f: builder)
+      if view_location
+        render(view_location, f: builder)
+      else 
+        render(association.to_s.singularize + "_fields", f: builder)
+      end
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
