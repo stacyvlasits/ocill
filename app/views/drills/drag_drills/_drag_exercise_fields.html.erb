@@ -1,0 +1,12 @@
+<li>
+	<fieldset>
+
+    This area needs some fields (probably hidden) to represent the Exercise itself
+		<ol id="sortable-exercise-item-" class="drag_drill_exercise" >
+		  <%= f.fields_for :exercise_items do |builder| %>
+		      <%= render '/drills/drag_drills/drag_exercise_item_fields', :f => builder %>
+		  <% end %>
+		  <%= link_to_add_fields "Add Tile", f, :exercise_items, "/drills/drag_drills/drag_exercise_item_fields" %>
+		</ol>
+	</fieldset>
+</li>
