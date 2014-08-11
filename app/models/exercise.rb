@@ -133,4 +133,22 @@ class Exercise < ActiveRecord::Base
   def unit
     self.drill.unit
   end
+
+  def as_json(options={})
+    { 
+      exercise_items: self.exercise_items,
+      id: self.id , 
+      updated_at: self.updated_at,
+      created_at: self.created_at , 
+      position: self.position , 
+      prompt: self.prompt , 
+      title: self.title , 
+      drill_id: self.drill_id , 
+      weight: self.weight,
+      audio: self.audio,
+      image: self.image,
+      video: self.video,
+      panda_audio_id: self.panda_audio_id
+     }
+  end
 end

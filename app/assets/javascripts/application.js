@@ -16,4 +16,5 @@
 //= require twitter/bootstrap
 //= require tinymce-jquery
 //= require toastr.min
+//= require angular
 //= require_tree .

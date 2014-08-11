@@ -7,6 +7,15 @@ class DrillsController < InheritedResources::Base
     @performances = @drill.attempters.map {|attempter| Performance.new(@drill, attempter)} 
   end
 
+  def read
+    @drill = Drill.includes( exercises: :exercise_items ).find(params[:drill_id])    
+    respond_to do |format|
+      format.html 
+      format.json { render json: @drill.as_json }
+     # format.json { render json: @drill.as_json }
+    end
+  end
+
   def new
     if params[:unit_id]
       @unit = Unit.find(params[:unit_id])

@@ -74,6 +74,22 @@ class Drill < ActiveRecord::Base
     self.exercises.size
   end
   
+  def as_json(options={})
+    { 
+      exercises: self.exercises,
+      created_at: self.created_at , 
+      header_row: self.header_row , 
+      id: self.id , 
+      instructions: self.instructions , 
+      options:  self.options , 
+      position: self.position , 
+      prompt: self.prompt , 
+      title: self.title , 
+      unit_id: self.unit_id , 
+      updated_at: self.updated_at
+     }
+  end
+
 private
   def set_default_title
     self.title = "Default Title" if self.title.blank?

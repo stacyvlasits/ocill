@@ -27,6 +27,7 @@ Ocill::Application.routes.draw do
   end
   
   resources :drills do
+    get 'read' => 'drills#read'
     member do
       get 'row/add' => 'drills#add_row'
       get 'column/add' => 'drills#add_column'

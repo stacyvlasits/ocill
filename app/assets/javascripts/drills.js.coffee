@@ -69,7 +69,7 @@ jQuery ->
     $(this).closest('.control-group').removeClass("error")
 
 jQuery ->
-  $('form').on 'click', '.add_fields', (event) ->
+  $('form').on 'click', '.add-fields', (event) ->
     current_position = $(this).data('id')
     if (typeof window.position == 'undefined')
       window.position = current_position + 1
@@ -80,6 +80,29 @@ jQuery ->
     $(this).before($(this).data('fields').replace(regexp, "$1" + window.position + "$2"))
     fixRTL()
     event.preventDefault()
+
+jQuery ->
+  $('form').on 'click', '.add-exercise-remote', (event) ->
+    # create new exercis
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      data: { "drill_id": $(this).data('drill_id'), "prompt": "prompt"},
+      url: '/exercises/',
+      success: (my_html) -> 
+        the_row.after(my_html);
+        the_row.siblings('table').wrap('<tr ><td colspan="6"></td></td>');
+        expand_button.addClass('hidden');
+        hide_button.removeClass('hidden');
+      },
+        error:  (jqXHR, textStatus, errorThrown)->
+        switch (jqXHR.status)
+          when "401"
+            toastr.error('You must be logged in to update interview information.  <br /> Click <a href="/staff/login?ref=offlineform" alt="Log in">here to login</a>', "error");
+          when "500"
+            toastr.error('An error prevented your interview information from being updated.', "error");
+          else
+            toastr.error('An error prevented your interview information from being updated.', "error"))
 
 # Handles RTL
 jQuery ->
@@ -93,8 +116,20 @@ fixRTL = () ->
   $('form .text-field').removeClass('rtl') unless $('.set-rtl').is(':checked')
 
 jQuery ->
+  $('form').on 'change', '.audio-upload-field', (event) ->
+    label = $(this).parent().find('.audio-upload-label')
+    if ( $(this).val() != "" )
+      url = $(this).val()
+      label.text(url.substring(url.lastIndexOf("\\") + 1);)
+      label.removeClass("hidden")
+    else
+      label.text("")
+      label.addClass("hidden")
+
+jQuery ->
   $('form').on 'click', '.add-audio-field', (event) ->
-    $(this).parent().find('.audio-upload-field').toggleClass('hidden');
+    # $(this).parent().find('.audio-upload-field').toggleClass('hidden');
+    $(this).parent().find('.audio-upload-field').click()
     event.preventDefault()
 
 jQuery ->

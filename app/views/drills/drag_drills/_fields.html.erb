@@ -1,11 +1,18 @@
-<%= f.label :exercises, "Drag and Drop Drill Instructions:" %>
-<%= f.label :exercises, "--" %>
-<%= f.label :exercises, "--" %>
-<%= f.label :exercises, "--" %>
+<div ng-app="dragDrillApp">
+  <div ng-controller="DragDrillCtrl">
 
-<ol id="sortable">
-  <%= f.fields_for :exercises do |builder| %>
-      <%= render '/drills/drag_drills/drag_exercise_fields', :f => builder %>
-  <% end %>
-  <%= link_to_add_fields "Add Exercise", f, :exercises, "/drills/drag_drills/drag_exercise_fields" %>
-</ol> <!-- #sortable -->
+    <ul>
+      {{drill.title}}
+      {{drill.id}}
+
+      <li ng-repeat="exercise in drill.exercises">
+        {{exercise.prompt}}
+        <ul>
+          <li ng-repeat="exercise_item in exercise.exercise_items">
+            {{exercise_item.}}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
