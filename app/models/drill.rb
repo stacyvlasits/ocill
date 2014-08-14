@@ -76,7 +76,6 @@ class Drill < ActiveRecord::Base
   
   def as_json(options={})
     { 
-      exercises: self.exercises,
       created_at: self.created_at , 
       header_row: self.header_row , 
       id: self.id , 
@@ -86,9 +85,11 @@ class Drill < ActiveRecord::Base
       prompt: self.prompt , 
       title: self.title , 
       unit_id: self.unit_id , 
-      updated_at: self.updated_at
+      updated_at: self.updated_at,
+      exercises: self.exercises
      }
   end
+
 
 private
   def set_default_title

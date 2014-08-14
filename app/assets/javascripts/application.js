@@ -14,7 +14,6 @@
 //= require jquery-ui.min
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require tinymce-jquery
 //= require toastr.min
-//= require angular
-//= require_tree .
+//= require tinymce-jquery
+//= require navigation

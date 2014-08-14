@@ -1,0 +1,9 @@
+<div>
+  <ul class="apps-container" ui-sortable="sortableOptions" ng-model="drill.exercises">
+    <li class="innerCont" ng-repeat="exercise in drill.exercises">
+    	{{exercise.prompt}}
+      <gen-dynamic-directive ng-model="exercise" gen-get-dynamic-view="getView">
+      </gen-dynamic-directive>
+    </li>
+  </ul>
+</div>

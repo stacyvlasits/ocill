@@ -45,5 +45,7 @@
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), unit_path(@drill.unit_id), :class => 'btn' %>
   </div>
-  <%= tinymce :default %>
+  <% content_for :more_javascripts do %>
+    <%= tinymce :default %>
+  <% end -%>
 <% end %>

@@ -1,0 +1,9 @@
+<div>
+  <ul class="apps-container" ui-sortable="sortableOptions" ng-model="ngModelItem.exercise_items">
+    <li class="innerCont" ng-repeat="exercise_item in ngModelItem.exercise_items">
+		{{exercise_item.text}}
+		<gen-dynamic-directive ng-model="exercise_item" gen-get-dynamic-view="getView">
+      </gen-dynamic-directive>
+    </li>
+  </ul>
+</div>
