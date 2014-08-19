@@ -23,6 +23,9 @@ jQuery ->
     if ($('#drill_title').val() == "")
       toastr.warning("You must give the drill a title before you create it.")
       event.preventDefault()
+    if ($('#drill_type').val() =="DragDrill")
+      toastr.warning("This drill type is suitable for Beta Testing ONLY.  Do not attempt to use it with students until this message no longer appears when you select it.  For more information about Beta Testing this feature, please click the <a href='https://devtools.la.utexas.edu/confluence/display/op/Getting+Started+With+OCILL'>Ocill Support</a> button.")
+
 
 # reveal the tiny mce Toolbar
 jQuery ->
