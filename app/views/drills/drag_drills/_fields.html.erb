@@ -1,5 +1,4 @@
 <% content_for :more_javascripts do %>
-  <%= javascript_include_tag "angular" %>  
   <%= javascript_include_tag "sortable" %>
   <%= javascript_include_tag "gen.genericDirectives" %>
   <%= javascript_include_tag "angular/controller/drag_drill" %>  
@@ -8,7 +7,6 @@
 <div ng-app="dragDrillApp" id="drag-drill-container">
   <div ng-controller="DragDrillCtrl">
     <h2>{{drill.title}}</h2>
-    <p>{{drill.id}}</p>
     <gen-dynamic-directive ng-model="drill" gen-get-dynamic-view="getView">
     </gen-dynamic-directive>
     <a class="inside" href=""></a>

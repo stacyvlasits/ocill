@@ -1,9 +1,9 @@
 <div>
-  <ul class="apps-container" ui-sortable="sortableOptions" ng-model="ngModelItem.exercise_items">
-    <li class="innerCont" ng-repeat="exercise_item in ngModelItem.exercise_items">
-		{{exercise_item.text}}
-		<gen-dynamic-directive ng-model="exercise_item" gen-get-dynamic-view="getView">
-      </gen-dynamic-directive>
+  <ol class="apps-container" ui-sortable="sortableOptions" ng-model="ngModelItem.exercise_items">
+    <li class="innerCont" ng-repeat="exercise_item in ngModelItem.exercise_items" >
+    	<input type="text" ng-model="exercise_item.text" placeholder="Sortable" >
+    	<a href="#" ng-click="delete($index, ngModelItem.position)"><i class="fa fa-times remove-item"></i></a>
     </li>
-  </ul>
+  </ol>
+  <button type="button" ng-click="add_new_exercise_item(ngModelItem)" class="btn btn-default new-exercise-item">Add New Exercise Item</button>
 </div>

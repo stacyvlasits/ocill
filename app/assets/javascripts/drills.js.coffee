@@ -12,10 +12,17 @@
 #    joined_values = input_values.join("&&&")
 #     $('#attempt_responses').val(joined_values)
 
+
 jQuery ->
-  $("select#drill_type").on 'change', ( event ) ->
-  #TODO add errorchecking for empty #drill_title
-    $("form#new_drill").submit()
+  $("select#drill_type").change ->
+    $("form#new_drill :submit").click()
+
+# validate a new drill before creating it
+jQuery ->
+  $('form#new_drill :submit').click ->
+    if ($('#drill_title').val() == "")
+      toastr.warning("You must give the drill a title before you create it.")
+      event.preventDefault()
 
 # reveal the tiny mce Toolbar
 jQuery ->

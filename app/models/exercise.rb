@@ -137,7 +137,7 @@ class Exercise < ActiveRecord::Base
   def as_json(options={})
     { 
       id: self.id , 
-      sposition: self.position , 
+      position: self.position , 
       prompt: self.prompt , 
       title: self.title , 
       drill_id: self.drill_id , 

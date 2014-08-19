@@ -20,6 +20,7 @@ class DrillsController < InheritedResources::Base
     if params[:unit_id]
       @unit = Unit.find(params[:unit_id])
       @drill = @unit.drills.build
+
     else
       @drill = Drill.new
     end
@@ -30,10 +31,19 @@ class DrillsController < InheritedResources::Base
   end
 
   def create
+    if @drill.type == "DragDrill"
+      if @drill.save
+        redirect_to edit_drill_url(@drill)
+        return
+      end
+    end
+  
     super do |format|
       format.html { render :action => "edit" }
     end
+    
   end
+
 
   def update
     super do |format|
