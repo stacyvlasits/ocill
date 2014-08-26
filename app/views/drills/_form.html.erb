@@ -32,7 +32,7 @@
     <div class="control-group">
       <%= f.label :type, :class => 'control-label' %>
       <div class="controls">
-      <%= select("drill", "type", ["GridDrill","FillDrill"], {:prompt => 'Select a Drill Type', :selected => @drill.type }) %>
+      <%= select("drill", "type", ["DragDrill","GridDrill","FillDrill"], {:prompt => 'Select a Drill Type', :selected => @drill.type }) %>
       </div>
     </div>
   <% end %>
