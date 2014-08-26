@@ -17,4 +17,10 @@
 //= require toastr.min
 //= require tinymce-jquery
 //= require navigation
+//= require angular
+//= require sortable
+//= require gen.genericDirectives
+//= require angular/controller/drag_drill
+
+
 //= require_tree .
