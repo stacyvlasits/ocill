@@ -1,6 +1,6 @@
 var dragDrillApp = angular.module('dragDrillApp', ['gen.genericDirectives', 'ui.sortable']);
 
-dragDrillApp.controller('DragDrillCtrl', function ($scope, $location, $http) {
+dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", function ($scope, $location, $http) {
   var parser = document.createElement('a');
   parser.href = document.URL 
   // e.g. /drills/457/edit
@@ -15,8 +15,6 @@ dragDrillApp.controller('DragDrillCtrl', function ($scope, $location, $http) {
   } else {
     $scope.drill = {};    
   }
-
-
 
   $scope.$watch('drill', function(drill){
     if (!drill) return;
@@ -83,4 +81,4 @@ dragDrillApp.controller('DragDrillCtrl', function ($scope, $location, $http) {
     }
     return null;
   };	
-});
+}]);
