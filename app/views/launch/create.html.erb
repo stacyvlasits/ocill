@@ -1,7 +1,6 @@
 <h1>Welcome to OCILL</h1>
 <% if @launch.user.role == "Learner" %> 
   <p>This drill needs to be enabled by an Instructor</p>
-<% end -%>
-<% unless @launch.user.role == "Learner" %> 
+<% else %> 
   <p>This drill has not been enabled by an instructor.</p>
 <% end -%>
