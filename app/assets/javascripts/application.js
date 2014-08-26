@@ -17,4 +17,5 @@
 //= require toastr.min
 //= require tinymce-jquery
 //= require navigation
+//= sortable
 //= require_tree .
