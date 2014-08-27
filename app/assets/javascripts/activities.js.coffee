@@ -8,12 +8,9 @@ jQuery ->
 jQuery ->
 	$(".selectable-course + label").on 'click', ( event ) ->
 		course_id = $(this).prev().val()
-		console.log(course_id)
 		$('#activity_drill_id').val('')
 
 		new_href = $("#course-submit").attr('href').replace(/\/\d+$/, "/" + course_id).replace(/\/undefined/, "/" + course_id)
-		console.log(new_href)
 		$("#course-submit").attr('href', new_href)
-		console.log($("#course-submit").attr('href'))
 		$('.activity-submit').addClass('disabled')
 		$('#course-submit').click()
