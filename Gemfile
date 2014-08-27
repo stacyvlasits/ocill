@@ -40,6 +40,7 @@ gem 'dynamic_form'
 # for heroku
 gem 'mandrill-api'
 gem 'newrelic_rpm'
+gem 'rails_12factor'
 
 # for LTI
 gem 'ims-lti'
