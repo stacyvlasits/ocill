@@ -100,11 +100,15 @@
 
     // resize the nav panel based on the size of the browser window
     var aoeu = window.innerHeight - $('.navbar').height() - 35;
-    document.getElementById('nav-tree').style.height = aoeu+"px";
+    var navTree = document.getElementById('nav-tree');
+    
+    if (navTree) {
+      navTree.style.height = aoeu + "px";
+    }
 
     $(window).resize(function() {
         aoeu = window.innerHeight - $('.navbar').height() - 35;
-        var navTree = document.getElementById('nav-tree')
+        
         if (navTree) {
           navTree.style.height = aoeu+"px";
         }
