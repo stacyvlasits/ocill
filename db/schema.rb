@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130185745) do
+ActiveRecord::Schema.define(:version => 20140827204104) do
 
   create_table "activities", :force => true do |t|
     t.string   "lti_resource_link_id"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20140130185745) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "course_id"
+    t.string   "export_id"
   end
 
   create_table "units", :force => true do |t|
@@ -193,15 +194,15 @@ ActiveRecord::Schema.define(:version => 20140130185745) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-  add_foreign_key "drills", "units", :name => "drills_lesson_id_fk"
-  add_foreign_key "drills", "units", :name => "drills_unit_id_fk"
+  add_foreign_key "drills", "units", name: "drills_lesson_id_fk"
+  add_foreign_key "drills", "units", name: "drills_unit_id_fk"
 
-  add_foreign_key "exercise_items", "exercises", :name => "exercise_items_exercise_id_fk"
+  add_foreign_key "exercise_items", "exercises", name: "exercise_items_exercise_id_fk"
 
-  add_foreign_key "exercises", "drills", :name => "exercises_drill_id_fk"
+  add_foreign_key "exercises", "drills", name: "exercises_drill_id_fk"
 
-  add_foreign_key "media_items", "exercise_items", :name => "media_items_exercise_item_id_fk"
+  add_foreign_key "media_items", "exercise_items", name: "media_items_exercise_item_id_fk"
 
-  add_foreign_key "units", "courses", :name => "lessons_course_id_fk"
+  add_foreign_key "units", "courses", name: "lessons_course_id_fk"
 
 end
