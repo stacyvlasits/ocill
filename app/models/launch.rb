@@ -45,7 +45,9 @@ class Launch
   def lti_roles_to_ocill_user_role(lti_roles)
     roles = lti_roles.split(',') if lti_roles
     if roles.include?("Instructor")
-      "Instructor" 
+      "Instructor"
+    elsif roles.grep(/Teaching/).any?
+      "Instructor"  
     elsif roles.include?("Learner")
       "Learner"      
     else
