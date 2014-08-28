@@ -46,7 +46,7 @@ class Launch
     roles = lti_roles.split(',') if lti_roles 
     if roles.include?("Instructor")
       "Instructor"
-    elsif roles.grep(/Teaching/).any?
+    elsif roles.grep(/TeachingAssistant/).any?
       "Instructor"  
     elsif roles.include?("Learner")
       "Learner"      
