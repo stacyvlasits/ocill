@@ -97,7 +97,7 @@ class Launch
       if the_section 
         # return because you are done
         return the_section
-      else # if s doesn't exist
+      else # if the section doesn't exist
           # try to find the parent
         parent_s = Section.find_by_lti_course_id(params['custom_parent_course_id'])
 
@@ -108,7 +108,7 @@ class Launch
            the_section = Section.create(lti_course_id: params[:conte])
            #  Loop through the parent 
            parent_s.activities.each do |activitiy|
-             the_section.activities.create(   ) # use the acticity from the parent to create a new activity
+             the_section.activities.create( drill_id: activity.drill_id, course_id: activity.course_id,lti_resource_link_id: params[:resource_link_id] ) # use the acticity from the parent to create a new activity
            end
            # return this newly createdsection cause it's now the one you want
            return the_section
