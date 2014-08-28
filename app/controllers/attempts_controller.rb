@@ -20,7 +20,17 @@ class AttemptsController < InheritedResources::Base
         @attempt.responses.new(id: response[0], exercise_item_id: response[1][:exercise_item_id], value: response[1][:value])
       end
       if @attempt.save 
-        flash[:notice] = "Successfully saved your attempt."
+        if current_user.is_lti?
+          score = @attempt.decimal_score
+          result = @tool.post_replace_result!(score)
+          if result.success?
+            flash[:notice] = "Your score was submitted as #{score*100}%"
+          else
+            flash[:alert] = "Your score was not submitted.  Please notify OCILL support of the problem."
+          end
+        else
+          flash[:notice] = "Successfully saved your attempt."
+        end
         respond_with @attempt
       else
         flash[:error] = "Failed to save your attempt."
