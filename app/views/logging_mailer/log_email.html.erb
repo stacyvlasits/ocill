@@ -1,0 +1,10 @@
+Message:
+
+<%= @message %>
+
+<% @context.each do |k, v| %>
+<%= k.to_s + ": </br> "  %>
+<%= v.to_s %>
+</br>
+</br>
+<% end %>
