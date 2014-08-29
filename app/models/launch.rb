@@ -51,7 +51,6 @@ class Launch
     elsif roles.include?("Learner")
       "Learner"      
     else
-      LoggingMailer.log_email({ tool: @tool, launch: self,}
       "Learner" 
     end 
   end
