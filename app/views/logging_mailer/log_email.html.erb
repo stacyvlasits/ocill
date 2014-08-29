@@ -2,9 +2,15 @@ Message:
 
 <%= @message %>
 
-<% @context.each do |k, v| %>
-<%= k.to_s + ": </br> "  %>
-<%= v.to_s %>
-</br>
-</br>
+<% if ( @context.respond_to? :each ) %>
+  <% @context.each do |k, v| %>
+  <%=   k.to_s + ": </br> "  %>
+  <%=   v.to_s %>
+    </br>
+    </br>
+  <% end %>
+
+<% else %>
+  <%= @context.to_s  %>
 <% end %>
+
