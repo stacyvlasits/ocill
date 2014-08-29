@@ -5,7 +5,9 @@ class LaunchController < ApplicationController
   def create
     @launch = Launch.new(request, params)
     @launch.authorize!
-    sign_out
+
+    #TODO deleted line 10 if everything still works
+    #   sign_out
     sign_in(@launch.user)
     
     session['launch_params'] = @launch.tool.to_params
