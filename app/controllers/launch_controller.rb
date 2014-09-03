@@ -10,9 +10,9 @@ class LaunchController < ApplicationController
         return
       else
         # redirect to "click to launch button"
-        self.authorize
-        redirect_to launch_create_external_path(@launch.tool.to_params)
-        return
+        # self.authorize
+        # redirect_to launch_create_external_path(@launch.tool.to_params)
+        # return
       end
 
     end
