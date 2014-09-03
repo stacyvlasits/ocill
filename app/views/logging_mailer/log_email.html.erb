@@ -1,16 +1,19 @@
-Message:
-
+<h3>Message:</h3>
+<p>
 <%= @message %>
+</p>
 
+<h3>Context</h3>
+<ul>
 <% if ( @context.respond_to? :each ) %>
   <% @context.each do |k, v| %>
-  <%=   k.to_s + ": </br> "  %>
-  <%=   v.to_s %>
-    </br>
-    </br>
+    <li><%=   k.to_s + ": "  %></li>
+    <li><%=   v.to_json %></li>
   <% end %>
 
 <% else %>
-  <%= @context.to_s  %>
+  <li>
+    <%= @context.to_s  %>
+  </li>
 <% end %>
-
+</ul>

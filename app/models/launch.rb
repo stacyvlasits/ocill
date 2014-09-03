@@ -51,6 +51,8 @@ class Launch
     elsif roles.include?("Learner")
       "Learner"      
     else
+      error_message = "The Launch model just created a new user as a Learner, even though the user was not properly identified"
+      LoggingMailer.log_email(error_message: error_message, roles: roles,  parameters: @params ).deliver
       "Learner" 
     end 
   end
