@@ -11,7 +11,6 @@ class LaunchController < ApplicationController
       else
         # redirect to "click to launch button"
         self.authorize
-        binding.pry
         redirect_to launch_create_external_path(@launch.tool.to_params)
         return
       end
