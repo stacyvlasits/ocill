@@ -1,7 +1,7 @@
 Ocill::Application.routes.draw do
 
   post "launch/create"
-  # get "launch/create_external"
+  get "launch/create_external"
   get "launch/create"
   post "panda/notifications"
 

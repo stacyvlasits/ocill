@@ -1,18 +1,18 @@
 class LaunchController < ApplicationController
   skip_before_filter :authenticate_user!
-  skip_before_filter :verify_authenticity_token, :only => [:create]
+  skip_before_filter :verify_authenticity_token, :only => [:create, :create_external]
 
   def create
     unless cookies[:work?]
       unless params[:include_cookie]
         cookies[:work?] = true
-        redirect_to launch_create_path(:include_cookie => true, :params => params)
-        return
+        return redirect_to launch_create_path(:include_cookie => true, :params => params)
+        
       else
         # redirect to "click to launch button"
-        # self.authorize
-        # redirect_to launch_create_external_path(@launch.tool.to_params)
-        # return
+        self.authorize
+        return redirect_to launch_create_external_path(@launch.tool.to_params)
+        
       end
 
     end
@@ -20,11 +20,11 @@ class LaunchController < ApplicationController
     self.redirect
   end
 
-  # def create_external
-  #   self.authorize!
-  #   @session = session
-  #   @remove_navigation = true
-  # end
+  def create_external
+    self.authorize!
+    @session = session
+    @remove_navigation = true
+  end
 
 
 protected 

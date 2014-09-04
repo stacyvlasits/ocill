@@ -1,4 +1,4 @@
-class UserPresenter < BasePresenter
+class __UserPresenter < BasePresenter
   presents :user
   
   def email
