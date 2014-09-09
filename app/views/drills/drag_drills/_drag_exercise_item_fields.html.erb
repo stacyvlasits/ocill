@@ -9,7 +9,7 @@
             <%= link_to icon("camera","white").html_safe, "#", :class => "add-image-field" %>
 
             <% if f.object.id %>
-            <%= link_to icon('remove-sign', 'white'), exercise_item_remove_audio_path(f.object), :confirm => "Are you sure you want to delete this file?", :method => :delete  unless f.object.audio.blank? %>
+            <%= link_to icon('times', 'white'), exercise_item_remove_audio_path(f.object), :confirm => "Are you sure you want to delete this file?", :method => :delete  unless f.object.audio.blank? %>
             <% end %>
 
             <%= image_tag(f.object.image_url(:small).to_s) unless f.object.image.blank? %>
