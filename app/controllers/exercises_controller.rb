@@ -22,4 +22,16 @@ class ExercisesController < InheritedResources::Base
     end
     redirect_to edit_drill_path(exercise.drill)
   end
+
+  def remove_image
+    exercise = Exercise.find(params[:exercise_id])
+    exercise.remove_image!
+    if exercise.save!
+      flash[:notice] = "Image file removed"
+    else
+      flash[:error] = "Image file not removed"
+    end
+    redirect_to edit_drill_path(exercise.drill)
+  end
+
 end

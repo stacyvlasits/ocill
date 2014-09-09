@@ -45,6 +45,7 @@ Ocill::Application.routes.draw do
   
   resources :exercises do
     delete 'remove_audio' => 'exercises#remove_audio'
+    delete 'remove_image' => 'exercises#remove_image'
     resources :audio
   end
   
