@@ -46,9 +46,11 @@ class AudioUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    if original_filename
+      downcased = original_filename.sub(/(\.\w\w\w)$/){|m| m.downcase}
+    end
+  end
 
 private
   def panda_encode(*args)

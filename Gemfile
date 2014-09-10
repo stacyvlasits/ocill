@@ -22,7 +22,7 @@ gem 'tinymce-rails-imageupload', '~> 3.5.6.3'
 
 # for file upload and storage
 gem 'carrierwave'
-gem 'rmagick'
+gem 'rmagick', :require => 'RMagick'
 gem 'fog'
 gem 'carrierwave_direct'
 gem 'sidekiq'

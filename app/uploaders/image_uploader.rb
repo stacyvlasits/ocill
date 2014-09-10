@@ -40,6 +40,12 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_limit => [150, 150]
   end
 
+  def filename
+    if original_filename
+      downcased = original_filename.sub(/(\.\w\w\w)$/){|m| m.downcase}
+    end
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

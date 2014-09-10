@@ -138,12 +138,14 @@ jQuery ->
 
 jQuery ->
   $('form').on 'click', '.add-audio-field', (event) ->
-    # $(this).parent().find('.audio-upload-field').toggleClass('hidden');
+    # $(this).css('color', 'yellow')
     $(this).parent().find('.audio-upload-field').click()
+    $(this).parent().find('.audio-upload-field').toggleClass('hidden');
     event.preventDefault()
 
 jQuery ->
   $('form').on 'click', '.add-image-field', (event) ->
+    $(this).parent().find('.image-upload-field').click();
     $(this).parent().find('.image-upload-field').toggleClass('hidden');
     event.preventDefault()
 
