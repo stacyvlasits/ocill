@@ -55,7 +55,7 @@ resizeInput = () ->
 jQuery ->
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
-    $(this).closest('fieldset').parent().hide()
+    $(this).closest('fieldset').parent().remove()
     event.preventDefault()
 
 # make sure there is a value for the prompt
