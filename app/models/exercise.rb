@@ -95,7 +95,7 @@ class Exercise < ActiveRecord::Base
 
   def fill_in_the_blank_exercise_items(blanks)
     self.exercise_items.each do |ei|
-      ei.archive
+      ei.destroy
     end
 
     blanks.each_with_index do |blank, index|

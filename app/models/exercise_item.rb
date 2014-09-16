@@ -10,7 +10,7 @@ class ExerciseItem < ActiveRecord::Base
 
   has_many :responses
 
-  default_scope { where("deleted_at IS NULL") }
+  # default_scope { where("deleted_at IS NULL") }
 
   belongs_to :exercise
   belongs_to :header
@@ -18,10 +18,6 @@ class ExerciseItem < ActiveRecord::Base
 
   after_initialize :set_default_position
   before_save :cleanup_audio
-  
-  def archive
-    self.deleted_at = Time.now
-  end
 
   def panda_audio
     @panda_audio ||= Panda::Video.find(panda_audio_id)
