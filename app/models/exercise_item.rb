@@ -1,7 +1,7 @@
 class ExerciseItem < ActiveRecord::Base
   attr_accessible :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video, :panda_audio_id
   # attr_accessible  :encodings  
-  attr_accessible :position, :remove_audio, :remove_image, :remove_video, :deleted_at # TODO remove "column" from db
+  attr_accessible :position, :remove_audio, :remove_image, :remove_video # TODO remove "column" and "deleted_at" from db
   mount_uploader :audio, AudioUploader
 #  mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
@@ -9,8 +9,6 @@ class ExerciseItem < ActiveRecord::Base
   serialize :encodings, Hash
 
   has_many :responses
-
-  # default_scope { where("deleted_at IS NULL") }
 
   belongs_to :exercise
   belongs_to :header
