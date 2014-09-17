@@ -12,13 +12,9 @@ class Attempt < ActiveRecord::Base
 
   def matches_current_drill_state?
     broken_responses = self.responses.includes(:exercise_item).select do |r| 
-      if r.exercise_item == nil
-        true
-      else
-        r.exercise_item.deleted_at != nil
-      end
+      r.exercise_item == nil
     end
-    broken_responses.count == 0
+    broken_responses.empty?
   end
 
   def decimal_score
