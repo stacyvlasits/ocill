@@ -32,6 +32,7 @@ class DrillsController < InheritedResources::Base
 
   def create
     if @drill.type == "DragDrill"
+      
       if @drill.save
         redirect_to edit_drill_url(@drill)
         return

@@ -1,3 +1,13 @@
+jQuery( document ).ready(function( $ ) {
+  $('.form-actions .submit-drill').click(function(){
+    var the_drill = window.ocill_drill_variable
+    console.log(the_drill);
+    
+    event.preventDefault();
+  });
+});
+
+
 var dragDrillApp = angular.module('dragDrillApp', ['gen.genericDirectives', 'ui.sortable']);
 
 dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", function ($scope, $location, $http) {
@@ -27,13 +37,11 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
       exercise_item.position = index;
     });
    });
+   window.ocill_drill_variable = drill;
   }, true );
 
-  $scope.drill_to_store = {};
+  $scope.drill_to_store = function(drill){};
 
-  $scope.add_new_exercise_item = function(exercise){
-    exercise.exercise_items.push({});
-  }
 
   $scope.delete = function(index, parent_index){
     if (parent_index != -1) {
@@ -41,6 +49,10 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
     } else {
       $scope.drill.exercises.splice(index, 1);
     }
+  }
+
+  $scope.add_new_exercise_item = function(exercise){
+    exercise.exercise_items.push({});
   }
 
   $scope.add_new_exercise = function(drill){
