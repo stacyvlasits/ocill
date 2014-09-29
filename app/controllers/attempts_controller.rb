@@ -5,8 +5,19 @@ class AttemptsController < InheritedResources::Base
     if params[:drill_id]
       @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
       @drill = Drill.includes(:exercises => :exercise_items).find(params[:drill_id])
-      new_responses = @drill.exercise_items.count || 1
-      @responses = Array.new(new_responses) { @attempt.responses.new }
+      old_responses = []
+      
+      if @drill.retain_correct? 
+        attempts_on_this_drill = current_user.attempts.where(:drill_id => params[:drill_id]).order("created_at DESC")
+        if attempts_on_this_drill.count > 0
+          latest = attempts_on_this_drill.first
+          old_responses = latest.correct_responses
+        end
+      end
+
+      new_responses_needed = @drill.exercise_items.count - old_responses.count || 1
+      new_responses = Array.new(new_responses_needed) { @attempt.responses.new }
+      @attempt.responses += old_responses
       respond_with @attempt
     else
       not_found 'There is no drill here for you attempt'
@@ -41,7 +52,8 @@ class AttemptsController < InheritedResources::Base
   end
 
   def show
-    @attempt = Attempt.includes([:drill, {:responses => :exercise_item}] ).find(params[:id])
+    @attempt = Attempt.includes([:drill, {:responses => :exercise_item}, :exercise_items] ).find(params[:id])
+    @exercise_items = @attempt.exercise_items
     @responses = @attempt.responses
     @drill =  @attempt.drill || Drill.find(params[:drill_id])
   end

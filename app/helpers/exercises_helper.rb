@@ -1,15 +1,4 @@
 module ExercisesHelper
-  # TODO  Why is this not being used?
-  def attempt_fill_drill_exercises(exercise)
-    initial_prompt = exercise.prompt
-    hint = '<span class="hint">' + initial_prompt[/\(.+?\)/] + '</span>'
-    hintless_prompt = initial_prompt.gsub(/\(.+?\)/, '')
-    pre_prompt = '<span class="prompt-section">'
-    final_prompt = hintless_prompt.gsub(/\[.+?\]/, '</span><input class="the_blank" /><span class="prompt-section">')
-    post_prompt = '</span>'
-    pre_prompt + final_prompt + post_prompt + hint
-  end
-
   def graded_fill_drill_exercise(exercise, responses)
     spans = exercise.exercise_items.map do |ei|
       # TODO reduce number of sql queries
@@ -55,10 +44,14 @@ module ExercisesHelper
     prompt
   end
 
-  def create_fill_drill_exercise(exercise)
+  def attempt_fill_drill_exercise(exercise, responses)
     inputs = exercise.exercise_items.map do |ei|
-      response = Response.create(exercise_item_id:ei.id, attempt_id: @attempt.id, value:'')
-      create_response_input(ei.id, response.id)
+      if response = responses.select {|r| r.exercise_item_id == ei.id}.first
+        create_response_input(ei.id, response.id, "text", "correct", response.value)
+      else
+        response = Response.create(exercise_item_id:ei.id, attempt_id: @attempt.id, value:'')
+        create_response_input(ei.id, response.id)
+      end
     end
     prompt = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
     inputs.each {|input| prompt.sub!(/\{\{.+?\}\}/, input) }
@@ -69,16 +62,22 @@ module ExercisesHelper
     '<input id="attempt_responses_attributes_' + response_id.to_s + '_exercise_item_id" name="attempt[responses_attributes][' + response_id.to_s + '][exercise_item_id]" type="hidden" value="' + exercise_item_id.to_s + ' "/><input class="' + css_class + '" id="attempt_responses_attributes_' + response_id.to_s + '_value" name="attempt[responses_attributes][' + response_id.to_s + '][value]" type="' + type + '" value="' + value + '"/>'
   end
 
-  def create_grid_drill_exercises(exercise)
+  def create_grid_drill_exercises(exercise, responses)
+
     inputs = exercise.exercise_items.map do |ei|
-      input = "<td>"
-      response = Response.create(exercise_item_id:ei.id)
-      input += create_response_input(ei.id, response.id, "hidden", "audio-played", "0" )
-      input += audio_tag(ei.audio_urls) unless ei.audio_url.blank? || ei.audio_url.include?("fallback")
-      input += image_tag(exercise.image_url(:small)) unless exercise.image.blank? || exercise.image_url.include?("fallback")
-      text = ei.text unless exercise.drill.hide_text?
-      input += content_tag(:p, text )
-      input += "</td>"
+      if response = responses.select {|r| r.exercise_item_id == ei.id}.first
+        input = "<td class=\"finished-playing\">"
+        input += create_response_input(ei.id, response.id, "hidden", "audio-played", response.value)
+      else
+        input= "<td>"
+        response = Response.create(exercise_item_id:ei.id)
+        input += create_response_input(ei.id, response.id, "hidden", "audio-played", "0" )
+      end
+        input += audio_tag(ei.audio_urls) unless ei.audio_url.blank? || ei.audio_url.include?("fallback")
+        input += image_tag(exercise.image_url(:small)) unless exercise.image.blank? || exercise.image_url.include?("fallback")
+        text = ei.text unless exercise.drill.hide_text?
+        input += content_tag(:p, text )
+        input += "</td>"
     end
     inputs.join('')
   end

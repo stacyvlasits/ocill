@@ -40,7 +40,7 @@ class Drill < ActiveRecord::Base
     end
   end
 
-  serialized_attr_accessor :rtl, :hide_text
+  serialized_attr_accessor :rtl, :hide_text, :retain_correct
 
   def direction
     direction = self.rtl == "1" ? 'dir="rtl"' : 'dir="ltr"'
@@ -56,6 +56,10 @@ class Drill < ActiveRecord::Base
     else
       ""
     end
+  end
+
+  def retain_correct? 
+    self.retain_correct == "1"
   end
 
   def hide_text?

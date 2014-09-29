@@ -1,4 +1,4 @@
 <tr>
   <td><%= exercise.prompt %></td>
-  <%= create_grid_drill_exercises(exercise).html_safe %>
+  <%= create_grid_drill_exercises(exercise, @attempt.responses).html_safe %>
 </tr>

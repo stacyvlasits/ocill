@@ -5,6 +5,7 @@ class Response < ActiveRecord::Base
   belongs_to :attempt
   belongs_to :exercise_item
   before_save :strip_value
+  default_scope :include => :exercise_item 
 
   def exercise_item
     if self.exercise_item_id

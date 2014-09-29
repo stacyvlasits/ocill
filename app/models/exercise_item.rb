@@ -8,7 +8,9 @@ class ExerciseItem < ActiveRecord::Base
   serialize :acceptable_answers
   serialize :encodings, Hash
 
-  default_scope where("deleted_at IS NULL")
+  # default_scope where("deleted_at IS NULL")
+
+  # scope :deleted, -> { unscoped.where("deleted_at IS NOT NULL") }
 
   has_many :responses
 

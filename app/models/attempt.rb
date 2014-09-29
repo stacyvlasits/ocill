@@ -1,9 +1,11 @@
 class Attempt < ActiveRecord::Base
   attr_accessible :drill_id, :user_id, :responses_attributes, :lis_outcome_service_url, :lis_result_sourcedid
-  has_many :responses, :dependent => :destroy, :autosave => true
+  has_many :responses, :dependent => :destroy, :autosave => true, :include => :exercise_item
+  has_many :exercise_items, :through => :responses
   belongs_to :drill
   belongs_to :user
   accepts_nested_attributes_for :responses, allow_destroy: true
+  default_scope :include => :exercise_items, :include => :responses
 
   # TODO move the presentation of the score out of the model and into a view helper
   def html_score
@@ -27,11 +29,22 @@ class Attempt < ActiveRecord::Base
     correct / total
   end
   
-  def correct
+  def correct_ones
     correct = grade_sheet.select do |el|
       el[1].include?(el[0].to_s) if el[1].respond_to?(:include?)
     end
-    correct.count
+  end
+
+  def correct_ids
+    correct_ones.map {|array| array[2] }
+  end
+
+  def correct_responses
+    r = responses.select {|response| correct_ids.include?(response.id)}
+  end
+
+  def correct
+    correct_ones.count
   end
 
   def course
@@ -47,11 +60,13 @@ class Attempt < ActiveRecord::Base
   end
 
   def grade_sheet
-    responses.each_with_index.map { |response, index| [response.value, response.answers] }
+    responses.each_with_index.map do |response, index| 
+      answers = response.exercise_item ? response.exercise_item.answers : []
+      [response.value, answers , response.id] 
+    end
   end
 
   def answers
-    # pretty sure this method is worthless.  wrote it anyway
-    responses.map{|r| r.answers}.flatten
+    responses.map{ |r| r.exercise_item.answers}.flatten
   end
 end

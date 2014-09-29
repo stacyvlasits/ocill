@@ -26,6 +26,8 @@
       <%= f.check_box :rtl, :class => 'set-rtl' %>
       <%= f.label :hide_text, :class => 'control-label' %>
       <%= f.check_box :hide_text, :class => 'set-show-text' %>
+      <%= f.label :retain_correct, :class => 'control-label' %>
+      <%= f.check_box :retain_correct, :class => 'set-retain-correct' %>
     </div>
   </div>
   <% if @drill.exercises.empty? %>
