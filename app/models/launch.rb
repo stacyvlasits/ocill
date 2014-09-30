@@ -2,7 +2,7 @@ class Launch
   require 'oauth/request_proxy/rack_request'
   attr_reader :params, :errors, :tool, :user, :activity, :section, :session
 	def initialize(request, params)
-    @params = params
+    @params = params['launch_params'] || params
     @request = request
     @errors = []
     @tool = nil
