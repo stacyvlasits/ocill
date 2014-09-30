@@ -47,8 +47,10 @@ class DrillsController < InheritedResources::Base
 
 
   def update
+    binding.pry
     super do |format|
       format.html { render :action => "edit" }
+      format.json { render json: @drill.as_json }
     end
   end
 

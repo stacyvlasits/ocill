@@ -2,7 +2,20 @@ jQuery( document ).ready(function( $ ) {
   $('.form-actions .submit-drill').click(function(){
     var the_drill = window.ocill_drill_variable
     console.log(the_drill);
-    
+
+    $.ajax({
+      type: "PUT",
+      dataType: "json",
+      data: the_drill,
+      url: '/drills/' + the_drill.id 
+    }).done(function(got_sum) {
+      toastr.success("That DID go as planned!");
+
+      console.log(got_sum);
+    }).fail(function(){
+      toastr.error("That didn't go as planned!");
+    });
+
     event.preventDefault();
   });
 });
@@ -59,32 +72,32 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
     drill.exercises.push({exercise_items: []});
   }
 
-	// Save the revised drill object
+  // Save the revised drill object
 
-	$scope.submit = function() {
-		//  change the placeholder element of each exercises
-		//  and exercise_item so it holds the index value
-		// It *might* be best to do this serverside.
-		console.log("Oh Noes!  I don't do anything yet!!");
-	}
+  $scope.submit = function() {
+    //  change the placeholder element of each exercises
+    //  and exercise_item so it holds the index value
+    // It *might* be best to do this serverside.
+    console.log("Oh Noes!  I don't do anything yet!!");
+  }
 
    $scope.sortableOptions = {
     update: function(e, ui) {
      var output = ui.item;
      console.log(output);
-			// console.log("****changes");
-			// console.log(e);
-			// console.log("****more changes");
-			// console.log(ui);
+      // console.log("****changes");
+      // console.log(e);
+      // console.log("****more changes");
+      // console.log(ui);
     }
   };
 
   $scope.getView = function (item) {
-	  /*
-	    you can return a different url
-	    to load a different template dynamically
-	    based on the provided item 
-	    */
+    /*
+      you can return a different url
+      to load a different template dynamically
+      based on the provided item 
+      */
 
      if (item && item.exercises) {
        return '/ng-templates/nested_exercises.html';
@@ -92,5 +105,5 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
       return '/ng-templates/nested_exercise_items.html';
     }
     return null;
-  };	
+  };  
 }]);
