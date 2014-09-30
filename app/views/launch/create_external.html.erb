@@ -2,4 +2,8 @@
   <p>This drill needs to be enabled by an Instructor</p>
 <% else %> 
   <p>This drill has not been enabled by an instructor.</p>
+
+
 <% end -%>
+
+<%= link_to "Launch External", launch_create_path(@session), target: "_blank" %>
