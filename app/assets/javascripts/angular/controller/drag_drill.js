@@ -1,6 +1,6 @@
 jQuery( document ).ready(function( $ ) {
   $('.form-actions .submit-drill').click(function(){
-    var the_drill = window.ocill_drill_variable
+    var the_drill = window.ocill_drill_variable;
     console.log(the_drill);
 
     $.ajax({
@@ -30,7 +30,9 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
   drill_id = parser.pathname.split('/')[2]
 
   if (drill_id){
-    $http.get('/drills/' + drill_id + '/read.json').success(function(data){
+    $http.get('/drills/' + drill_id + '/read.json?type=simple').success(function(data){
+      delete data.action;
+      delete data.controller;
       $scope.drill = data;
     }).error(function(data, status, headers, config) {
       $scope.drill = {};
@@ -43,14 +45,15 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
     if (!drill) return;
     if (!drill.exercises) return;
     drill.exercises.forEach(function(exercise, index){
-     if (!exercise) return;
-     exercise.position = index;
-     if (!exercise.exercise_items) return;
-     exercise.exercise_items.forEach(function(exercise_item, index){
+    if (!exercise) return;
+    exercise.position = index;
+    if (!exercise.exercise_items) return;
+    exercise.exercise_items.forEach(function(exercise_item, index){
       exercise_item.position = index;
+      exercise_item.acceptable_answers = [ index ];
     });
-   });
-   window.ocill_drill_variable = drill;
+  });
+   window.ocill_drill_variable = angular.copy(drill);
   }, true );
 
   $scope.drill_to_store = function(drill){};
@@ -58,9 +61,11 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
 
   $scope.delete = function(index, parent_index){
     if (parent_index != -1) {
-      $scope.drill.exercises[parent_index].exercise_items.splice(index, 1);
+      // $scope.drill.exercises[parent_index].exercise_items.splice(index, 1);
+      $scope.drill.exercises[parent_index].exercise_items[index].destroy=true;
     } else {
-      $scope.drill.exercises.splice(index, 1);
+      // $scope.drill.exercises.splice(index, 1);
+      $scope.drill.exercises[index].destroy=true;
     }
   }
 

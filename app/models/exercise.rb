@@ -135,20 +135,32 @@ class Exercise < ActiveRecord::Base
   end
 
   def as_json(options={})
-    { 
-      id: self.id , 
-      position: self.position , 
-      prompt: self.prompt , 
-      title: self.title , 
-      drill_id: self.drill_id , 
-      weight: self.weight,
-      audio: self.audio,
-      image: self.image,
-      video: self.video,
-      panda_audio_id: self.panda_audio_id,
-      updated_at: self.updated_at,
-      created_at: self.created_at , 
-      exercise_items: self.exercise_items
-     }
+    if ( options[:type] == :DragDrill)
+      { 
+        id: self.id , 
+        position: self.position , 
+        prompt: self.prompt , 
+        title: self.title , 
+        drill_id: self.drill_id , 
+        weight: self.weight,
+        exercise_items: self.exercise_items.as_json({type: :DragDrill})
+      }
+    else
+      { 
+        id: self.id , 
+        position: self.position , 
+        prompt: self.prompt , 
+        title: self.title , 
+        drill_id: self.drill_id , 
+        weight: self.weight,
+        audio: self.audio,
+        image: self.image,
+        video: self.video,
+        panda_audio_id: self.panda_audio_id,
+        updated_at: self.updated_at,
+        created_at: self.created_at , 
+        exercise_items: self.exercise_items
+      }
+    end
   end
 end

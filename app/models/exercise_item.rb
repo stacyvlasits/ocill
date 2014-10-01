@@ -90,18 +90,28 @@ class ExerciseItem < ActiveRecord::Base
   end
 
   def as_json(options={})
-    { 
-      id: self.id , 
-      updated_at: self.updated_at,
-      created_at: self.created_at , 
-      position: self.position , 
-      text: self.text,
-      graded: self.graded,
-      audio: self.audio,
-      image: self.image,
-      video: self.video,
-      panda_audio_id: self.panda_audio_id,
-      acceptable_answers: self.acceptable_answers
-     }
+    if options[:type] == :DragDrill
+      { 
+        id: self.id , 
+        position: self.position , 
+        text: self.text,
+        graded: self.graded,
+        acceptable_answers: self.acceptable_answers
+      }
+    else
+      { 
+        id: self.id , 
+        updated_at: self.updated_at,
+        created_at: self.created_at , 
+        position: self.position , 
+        text: self.text,
+        graded: self.graded,
+        audio: self.audio,
+        image: self.image,
+        video: self.video,
+        panda_audio_id: self.panda_audio_id,
+        acceptable_answers: self.acceptable_answers
+       }
+    end
   end
 end

@@ -90,7 +90,7 @@ class Drill < ActiveRecord::Base
       title: self.title , 
       unit_id: self.unit_id , 
       updated_at: self.updated_at,
-      exercises: self.exercises
+      exercises: self.exercises.as_json
      }
   end
 

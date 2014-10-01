@@ -1,6 +1,6 @@
 <div>
   <ol class="apps-container" ui-sortable="sortableOptions" ng-model="drill.exercises">
-    <li class="innerCont" ng-repeat="exercise in drill.exercises">
+    <li class="innerCont" ng-repeat="exercise in drill.exercises" ng-hide="exercise.destroy" >
 	  <input type="text" ng-model="exercise.prompt" placeholder="Exercise prompt" >
       <gen-dynamic-directive ng-model="exercise" gen-get-dynamic-view="getView">
       </gen-dynamic-directive>
