@@ -17,30 +17,17 @@ jQuery( document ).ready(function( $ ) {
   $('.form-actions .submit-drill').click(function(){
     var the_drill = window.ocill_drill_variable;
     var the_drill_id = the_drill.drill.id;
-    console.log("CHANGE THIS ONE:")
-    console.log(the_drill);
 
     the_drill = prepare_for_ajax(the_drill);
-    console.log("IS THIS BETTER:")
-    console.log(the_drill);
     $.ajax({
       type: "PUT",
       dataType: "json",
       data: the_drill,
       url: '/drills/' + the_drill_id 
     }).done(function(got_sum) {
-      toastr.success("That DID go as planned!");
-      console.log("THE ONE THAT CAME BACK:")
-      console.log(got_sum);
-      // if ( angular.equals( got_sum, the_drill ) ) {
-      //   console.log("SAME:  Angular thinks the object sent to the server and the one retrieved from it are the same");
-      // } else {
-      //   console.log("DIFFERENT:  Angular thinks the object sent to the server and the one retrieved from it are the same")
-      // }
+      $('form').submit();
     }).fail(function(jqXHR, textStatus, errorThrown){
-      console.log("THE AJAX ERROR");
-      console.log(jqXHR);
-      toastr.error("That didn't go as planned!");
+      toastr.error("Ocill did not successfully save your work.  Please contact the Ocill administrator.");
     });
 
     event.preventDefault();
@@ -58,12 +45,8 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
 
   if (drill_id){
     $http.get('/drills/' + drill_id + '/read.json?type=simple').success(function(data){
-      // delete data.action;
-      // delete data.controller;
       $scope.drill = {};
       $scope.drill.drill = data;
-      console.log("Here's the DRILL!!!!");
-      console.log($scope.drill);
     }).error(function(data, status, headers, config) {
       $scope.drill = {};
     });
@@ -89,13 +72,18 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
 
   $scope.drill_to_store = function(drill){};
 
+  $scope.sortableOptionsOuter = {
+      handle: '.handle'
+    };
+
+  $scope.sortableOptionsInner = {
+      handle: '.handle'
+    };
 
   $scope.delete = function(index, parent_index){
     if (parent_index != -1) {
-      // $scope.drill.exercises[parent_index].exercise_items.splice(index, 1);
       $scope.drill.drill.exercises[parent_index].exercise_items[index]._destroy=true;
     } else {
-      // $scope.drill.exercises.splice(index, 1);
       $scope.drill.drill.exercises[index]._destroy=true;
     }
   }
@@ -105,26 +93,12 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
   }
 
   $scope.add_new_exercise = function(drill){
-    drill.exercises.push({exercise_items: [], id: ""});
-  }
-
-  // Save the revised drill object
-
-  $scope.submit = function() {
-    //  change the placeholder element of each exercises
-    //  and exercise_item so it holds the index value
-    // It *might* be best to do this serverside.
-    console.log("Oh Noes!  I don't do anything yet!!");
+    drill.exercises.push({exercise_items: [], id: "", drill_id: drill.id });
   }
 
    $scope.sortableOptions = {
     update: function(e, ui) {
      var output = ui.item;
-     console.log(output);
-      // console.log("****changes");
-      // console.log(e);
-      // console.log("****more changes");
-      // console.log(ui);
     }
   };
 

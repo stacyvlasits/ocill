@@ -1,6 +1,7 @@
 <div>
-  <ol class="apps-container" ui-sortable="sortableOptions" ng-model="ngModelItem.exercise_items">
+  <ol class="apps-container" ui-sortable="sortableOptionsOuter" ng-model="ngModelItem.exercise_items">
     <li class="innerCont" ng-repeat="exercise_item in ngModelItem.exercise_items" ng-hide="exercise_item._destroy">
+	  <span class="handle"><i class="fa fa-bars"></i></span>
     	<input type="text" ng-model="exercise_item.text" placeholder="Sortable" >
     	<a href="#" ng-click="delete($index, ngModelItem.position)"><i class="fa fa-times remove-item"></i></a>
     </li>

@@ -18,10 +18,6 @@ class Exercise < ActiveRecord::Base
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
   after_initialize :set_default_position
-  
-  # def unscoped_exercise_items
-  #   ExerciseItem.unscoped.where(:exercise_id => self.id)
-  # end
 
   def panda_audio
     @panda_audio ||= Panda::Video.find(panda_audio_id)
@@ -109,6 +105,11 @@ class Exercise < ActiveRecord::Base
   end
   # end METHODS for fill_drills
 
+  # start METHODS for drag_drills
+
+
+
+  # end METHODS for drag_drills
 
   def siblings
     self.drill.exercises.sort

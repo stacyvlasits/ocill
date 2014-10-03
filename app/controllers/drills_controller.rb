@@ -51,7 +51,6 @@ class DrillsController < InheritedResources::Base
 
 
   def update
-     binding.pry
     @drill = Drill.find(params[:id])
 
     if @drill.update_attributes(params[:drill])
@@ -156,5 +155,4 @@ class DrillsController < InheritedResources::Base
       end
     end
   end
-
 end

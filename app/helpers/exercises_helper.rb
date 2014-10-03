@@ -44,6 +44,15 @@ module ExercisesHelper
     prompt
   end
 
+  def attempt_drag_drill_exercise(exercise,responses )
+    inputs = exercise.exericise_items.map do |ei|
+      if response = responses.select {|r| r.exercise_item_id == ei.id}.first
+        create_response_input(ei.id, response.id, "text", "correct", response.value)
+      end
+    end
+    "<h1>Hi!</h1>"
+  end
+
   def attempt_fill_drill_exercise(exercise, responses)
     inputs = exercise.exercise_items.map do |ei|
       if response = responses.select {|r| r.exercise_item_id == ei.id}.first
