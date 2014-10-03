@@ -31,7 +31,7 @@ class AttemptsController < InheritedResources::Base
         @attempt.responses.new(id: response[0], exercise_item_id: response[1][:exercise_item_id], value: response[1][:value])
       end
       if @attempt.save 
-        if current_user.is_lti?
+        if current_user.is_lti? && @tool
           score = @attempt.decimal_score
           result = @tool.post_replace_result!(score)
           if result.success?
@@ -63,7 +63,7 @@ class AttemptsController < InheritedResources::Base
   
   def update
     super do |format|
-      if current_user.is_lti?
+      if current_user.is_lti? && @tool
         score = @attempt.decimal_score
         result = @tool.post_replace_result!(score)
         if result.success?
