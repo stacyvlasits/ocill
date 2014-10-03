@@ -51,61 +51,14 @@ class DrillsController < InheritedResources::Base
 
 
   def update
-    if @drill.type == "DragDrill"
-      params['exercises'].each do |e|
-        # dig into the hash to find the exercise
-        e = e[1]
+     binding.pry
+    @drill = Drill.find(params[:id])
 
-        # if it's a new exercise that isn't marked for destruction ...
-        if e['id'].blank? && !e['destroy']
-          exercise = @drill.exercises.create(e.except('id', 'exercise_items'))
-        
-        # if it already exists ...
-        else
-          #  find it
-          e_id = e['id'].to_i
-          exercise = Exercise.find(e_id)
-          
-          #  if you find it and it's marked for destruction... destroy it
-          if e['destroy'] && exercise
-            exercise.destroy
-          
-          # if you find it, update it
-          else
-            exercise.update_attributes(e.except('id', 'exercise_items'))
-          end
-        end
-
-        # if it isnt marked for destruction, look through it's exercise items
-
-        unless e['destroy']
-          e['exercise_items'].each do |ei|
-            ei = ei[1]
-            # if it doesn't exist yet and it's not marked for destruction...
-            if ei['id'].blank?
-    
-              exercise.exercise_items.create(ei.except('id')) unless ei['destroy']
-            
-            # if it exists already...
-            else
-              # find it
-              ei_id = ei['id'].to_i
-              exercise_item = ExerciseItem.find(ei_id)
-
-              # if it's marked for destruction and it exists, destroy it
-              if ei['destroy'] && exercise_item
-                exercise_item.destroy
-              # if it isn't marked for destruction, update is
-              else
-                exercise_item.update_attributes(ei.except('id'))
-              end
-            end
-          end
-        end
-      end
+    if @drill.update_attributes(params[:drill])
+      flash[:notice] = "Successfully updated the drill."
     end
 
-    super do |format|
+    respond_with(@drill) do |format|
       format.html { render :action => "edit" }
       format.json { render json: @drill.as_json }
     end

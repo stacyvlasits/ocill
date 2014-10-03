@@ -1,7 +1,7 @@
 <div ng-app="dragDrillApp" id="drag-drill-container">
   <div ng-controller="DragDrillCtrl">
-    <h2>{{drill.title}}</h2>
-    <gen-dynamic-directive ng-model="drill" gen-get-dynamic-view="getView">
+    <h2>{{drill.drill.title}}</h2>
+    <gen-dynamic-directive ng-model="drill.drill" gen-get-dynamic-view="getView">
     </gen-dynamic-directive>
     <a class="inside" href=""></a>
   </div>

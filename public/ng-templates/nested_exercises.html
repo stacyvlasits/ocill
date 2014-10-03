@@ -1,11 +1,11 @@
 <div>
-  <ol class="apps-container" ui-sortable="sortableOptions" ng-model="drill.exercises">
-    <li class="innerCont" ng-repeat="exercise in drill.exercises" ng-hide="exercise.destroy" >
+  <ol class="apps-container" ui-sortable="sortableOptions" ng-model="drill.drill.exercises">
+    <li class="innerCont" ng-repeat="exercise in drill.drill.exercises" ng-hide="exercise._destroy" >
 	  <input type="text" ng-model="exercise.prompt" placeholder="Exercise prompt" >
       <gen-dynamic-directive ng-model="exercise" gen-get-dynamic-view="getView">
       </gen-dynamic-directive>
     	<a href="#" ng-click="delete($index, -1)"><i class="fa fa-times remove-item"></i></a>
     </li>
   </ol>
-  <button type="button" ng-click="add_new_exercise(drill)" class="btn btn-default new-exercise">Add New Exercise</button>
+  <button type="button" ng-click="add_new_exercise(drill.drill)" class="btn btn-default new-exercise">Add New Exercise</button>
 </div>

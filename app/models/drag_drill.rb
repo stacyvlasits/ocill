@@ -6,7 +6,8 @@ class DragDrill < Drill
   def as_json(options={})
     if options[:type] == :simple
       { 
-        id: self.id , 
+        id: self.id,
+        unit_id: self.unit_id ,         
         exercises: self.exercises.as_json({ type: :DragDrill })
       }      
     else
