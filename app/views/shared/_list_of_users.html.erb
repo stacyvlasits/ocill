@@ -1,9 +1,9 @@
 <li>
-  <% if can? :read, role.user %>
-  	<%= content_tag :span, role.user.email %>
+  <% if can? :read, user %>
+  	<%= content_tag :span, user.email %>
 	<% end %>
 	<% if can? :update, @course %>
-		<%= link_to "User Page", user_url(role.user) if role.user.present? %>
+		<%= link_to "User Page", user_url(user) if user.present? %>
 	<% end -%> 
 	
 	<% if can? :manage, @course %> 

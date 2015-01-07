@@ -80,7 +80,7 @@ class Launch
   end
   
   def learner_attempt_drill?
-    user.role == "Learner" && self.activity.drill.present? && user.roles.create(:name => user.role, :course => self.activity.course) 
+    user.role == "Learner" && self.activity.drill.present? && Role.find_or_create_by_user_id_and_course_id_and_name(user.id, self.activity.course, user.role)
   end
 
   def find_user
