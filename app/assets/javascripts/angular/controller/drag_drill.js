@@ -103,11 +103,6 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
   };
 
   $scope.getView = function (item) {
-    /*
-      you can return a different url
-      to load a different template dynamically
-      based on the provided item 
-      */
 
      if (item && item.exercises) {
        return '/ng-templates/nested_exercises.html';
