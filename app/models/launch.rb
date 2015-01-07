@@ -94,7 +94,7 @@ class Launch
 
     if params['custom_parent_course_id']
       # look for a section that matches the actual course id of this course
-      the_section = Section.find_by_lti_course_id(lti_course_id: params[:context_id])
+      the_section = Section.find_by_lti_course_id(params[:context_id])
       # if there is one, then this course has already been created and populated, so just go ahead and continue
       if the_section 
         # return because you are done
@@ -107,12 +107,13 @@ class Launch
           #throw an error because they are trying to copy from a section that doesn;t exist
         else
           # if there is a real course to copy from create a new section 
-           the_section = Section.create(lti_course_id: params[:conte])
+           the_section = Section.create(lti_course_id: params[:context_id])
            #  Loop through the parent 
            parent_s.activities.each do |activitiy|
-             the_section.activities.create( drill_id: activity.drill_id, course_id: activity.course_id,lti_resource_link_id: params[:resource_link_id] ) # use the acticity from the parent to create a new activity
+             the_section.activities.create( drill_id: activity.drill_id, course_id: activity.course_id,lti_resource_link_id: params[:resource_link_id] ) 
+             # use the activity from the parent to create a new activity
            end
-           # return this newly createdsection cause it's now the one you want
+           # return this newly created section cause it's now the one you want
            return the_section
         end
       end
