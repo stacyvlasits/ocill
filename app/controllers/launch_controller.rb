@@ -13,7 +13,6 @@ class LaunchController < ApplicationController
       unless params[:include_cookie]
         #  Ok, we haven't really tested cookies yet
         #  Now let's add a cookie to the session and then start over
-
         cookies[:work?] = true
         return redirect_to launch_create_path(:include_cookie => true, :params => params)
       else

@@ -90,7 +90,10 @@ class Launch
     u = User.find_or_create_by_lti_user_id(lti_user_id: params[:user_id], role: role, email: email, password: password)
   end
 
-  def find_section 
+  def find_section
+    
+
+
 
     if params['custom_parent_course_id']
       # look for a section that matches the actual course id of this course
@@ -103,9 +106,7 @@ class Launch
           # try to find the parent
         parent_s = Section.find_by_lti_course_id(params['custom_parent_course_id'])
 
-        unless parent_s
-          #throw an error because they are trying to copy from a section that doesn;t exist
-        else
+        if parent_s
           # if there is a real course to copy from create a new section 
            the_section = Section.create(lti_course_id: params[:context_id])
            #  Loop through the parent 
@@ -115,6 +116,9 @@ class Launch
            end
            # return this newly created section cause it's now the one you want
            return the_section
+         else
+          # throw an error because they are trying to copy from a section that doesn;t exist
+          # Tell the user that the custom parent course id that is set isn't correct.  Refer them to the site administrator
         end
       end
     else

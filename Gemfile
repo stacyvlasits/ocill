@@ -52,6 +52,13 @@ gem 'dalli'
 # for profiling Must be after pg gem
 gem 'rack-mini-profiler'
 
+#jammin' console
+gem 'pry'
+gem 'pry-nav'
+gem 'pry-doc'
+gem 'pry-rails'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :development do
@@ -82,10 +89,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'pry'
-  gem 'pry-nav'
-  gem 'pry-doc'
-  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rb-fsevent', '~> 0.9.1'
 end
