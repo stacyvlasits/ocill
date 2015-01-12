@@ -1,7 +1,8 @@
 class Launch
   require 'oauth/request_proxy/rack_request'
-  attr_reader :params, :errors, :tool, :user, :activity, :section, :session
+  attr_reader :params, :errors, :tool, :user, :activity, :section, :session, :parent_section
 	def initialize(request, params)
+    binding.pry
     @params = params['launch_params'] || params
     @request = request
     @errors = []
@@ -90,6 +91,14 @@ class Launch
     u = User.find_or_create_by_lti_user_id(lti_user_id: params[:user_id], role: role, email: email, password: password)
   end
 
+  def referrer_course_id
+    referrer_uri = URI.parse(request.referrer)
+    path_parts = referrer_uri.path.split("/")
+    course_id_index = path_parts.find_index("courses") + 1
+    course_id = path_parts[course_id_index]
+  end
+
+
   def find_section
     if params['custom_parent_course_id']
       # look for a section that matches the actual course id of this course
@@ -100,15 +109,17 @@ class Launch
         return the_section
       else # if the section doesn't exist
           # try to find the parent
-        parent_s = Section.find_by_lti_course_id(params['custom_parent_course_id'])
+        self.parent_section = Section.find_by_lti_course_id(params['custom_parent_course_id'])
 
-        if parent_s
-          # if there is a real course to copy from create a duplicate section 
-           the_section = parent_s.duplicate(lti_course_id: params[:context_id])
-          
-           # return this newly created section cause it's now the one you want
-           return the_section
-         else
+        if self.parent_section
+          # if there is a real course to copy from create a new section 
+            the_section = Section.create(lti_course_id: params[:context_id])
+           
+            the_section.build_activities_from_parent(self.parent_section, referrer_course_id )
+
+            # return this newly created section 'cause it's now the one you want
+          return the_section
+        else
           # throw an error because they are trying to copy from a section that doesn;t exist
           # Tell the user that the custom parent course id that is set isn't correct.  Refer them to the site administrator
         end
@@ -120,8 +131,20 @@ class Launch
   end
   
   def find_activity
-    section_id = section.id
-    Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section_id)
+    the_activity = Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
+    
+    if params['custom_parent_course_id']
+      the_activity = Activity.find_by_lti_resource_link_id(params[:resource_link_id])
+      if the_activity
+        return the_activity
+      else
+
+        #nothing
+      end
+    else
+      
+    end
+    the_activity
   end
 
 private

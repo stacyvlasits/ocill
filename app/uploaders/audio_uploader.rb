@@ -10,7 +10,6 @@ class AudioUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
   #  include CarrierWaveDirect::Uploader
-  # include CarrierWave::AudioProcessor
   # Choose what kind of storage to use for this uploader:
 
   include CarrierWave::MimeTypes

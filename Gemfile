@@ -46,13 +46,14 @@ gem 'rails_12factor'
 gem 'ims-lti'
 
 # for caching
+gem 'canvas-api'
 gem 'memcachier'
 gem 'dalli'
 
 # for profiling Must be after pg gem
 gem 'rack-mini-profiler'
 
-#jammin' console
+# for a jammin' console
 gem 'pry'
 gem 'pry-nav'
 gem 'pry-doc'

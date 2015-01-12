@@ -41,7 +41,6 @@ class LaunchController < ApplicationController
 protected 
   
   def authorize
-
     @launch = Launch.new(request, params)
     @launch.authorize!
 
