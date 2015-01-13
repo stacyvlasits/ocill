@@ -2,7 +2,6 @@ class Launch
   require 'oauth/request_proxy/rack_request'
   attr_reader :params, :errors, :tool, :user, :activity, :section, :session, :parent_section
 	def initialize(request, params)
-    binding.pry
     @params = params['launch_params'] || params
     @request = request
     @errors = []
@@ -125,7 +124,10 @@ class Launch
         end
       end
     else
-      the_section = Section.find_or_create_by_lti_course_id_and_canvas_course_id(lti_course_id: params[:context_id], canvas_course_id: referrer_course_id)
+      the_section = Section.find_or_create_by(lti_course_id: params[:context_id] ) do |section|
+        section.lti_course_id = params[:context_id]
+        section.canvas_course_id = referrer_course_id
+      end
     end
     the_section
   end
