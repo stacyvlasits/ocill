@@ -125,7 +125,7 @@ class Launch
         end
       end
     else
-      the_section = Section.find_or_create_by_lti_course_id(lti_course_id: params[:context_id])
+      the_section = Section.find_or_create_by_lti_course_id_and_canvas_course_id(lti_course_id: params[:context_id], canvas_course_id: referrer_course_id)
     end
     the_section
   end
