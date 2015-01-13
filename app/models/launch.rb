@@ -124,7 +124,7 @@ class Launch
         end
       end
     else
-      the_section = Section.find_or_create_by(lti_course_id: params[:context_id] ) do |section|
+      the_section = Section.where(lti_course_id: params[:context_id]).first_or_create do |section|
         section.lti_course_id = params[:context_id]
         section.canvas_course_id = referrer_course_id
       end
