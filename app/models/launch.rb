@@ -129,6 +129,11 @@ class Launch
         section.canvas_course_id = referrer_course_id
       end
     end
+
+    if the_section.canvas_course_id != referrer_course_id
+      the_section.canvas_course_id = referrer_course_id
+      the_section.save!       
+    end
     the_section
   end
   
@@ -144,7 +149,7 @@ class Launch
         #nothing
       end
     else
-      
+      #nothing
     end
     the_activity
   end
