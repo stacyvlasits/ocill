@@ -99,7 +99,7 @@ class Launch
 
 
   def find_section
-    if params['custom_parent_course_id']
+    if params['custom_canvas_course_id']
       # look for a section that matches the actual course id of this course
       the_section = Section.find_by_lti_course_id(params[:context_id])
       # if there is one, then this course has already been created and populated, so just go ahead and continue
@@ -107,8 +107,9 @@ class Launch
         # return because you are done
         return the_section
       else # if the section doesn't exist
-          # try to find the parent
-        parent_section = Section.find_by_lti_course_id(params['custom_parent_course_id'])
+          # try to find the parent 
+
+        parent_section = Section.find_by_canvas_course_id(params['custom_canvas_course_id'])
 
         if parent_section
           # if there is a real course to copy from create a new section 
@@ -139,19 +140,6 @@ class Launch
   
   def find_activity
     the_activity = Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
-    
-    if params['custom_parent_course_id']
-      the_activity = Activity.find_by_lti_resource_link_id(params[:resource_link_id])
-      if the_activity
-        return the_activity
-      else
-
-        #nothing
-      end
-    else
-      #nothing
-    end
-    the_activity
   end
 
 private
