@@ -54,8 +54,8 @@ class Section < ActiveRecord::Base
 
         self.activities.create(
           :lti_resource_link_id  =>  resource_link_id,
-          :drill_id              =>  drill.id,
-          :course_id             =>  drill.course.id
+          :drill_id              =>  activity.drill_id,
+          :course_id             =>  activity.course_id
         )
 
       end
