@@ -63,7 +63,7 @@ module Ocill
     # Enable the asset pipeline
     config.assets.enabled = true
     # Comment out the following line when assets change
-    config.assets.precompile = []
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     #autoload the lib folder
