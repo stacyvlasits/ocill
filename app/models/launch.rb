@@ -114,8 +114,11 @@ class Launch
         if parent_section
           # if there is a real course to copy from create a new section 
             the_section = Section.create(lti_course_id: params[:context_id])
-           
-            the_section.build_activities_from_parent(parent_section, referrer_course_id )
+            
+            Thread.new do
+              the_section.build_activities_from_parent(parent_section, referrer_course_id )
+              ActiveRecord::Base.connection.close
+            end
 
             # return this newly created section 'cause it's now the one you want
           return the_section
