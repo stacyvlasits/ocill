@@ -91,7 +91,7 @@ class Launch
   end
 
   def referrer_course_id
-    referrer_uri = URI.parse(request.referrer)
+    referrer_uri = URI.parse(@request.referrer)
     path_parts = referrer_uri.path.split("/")
     course_id_index = path_parts.find_index("courses") + 1
     course_id = path_parts[course_id_index]
