@@ -143,7 +143,11 @@ class Launch
   end
   
   def find_activity
-    the_activity = Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
+    if section
+      return Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
+    else 
+      return nil
+    end
   end
 
 private
