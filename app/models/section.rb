@@ -3,11 +3,11 @@ class Section < ActiveRecord::Base
   has_many :activities, :dependent => :destroy
   # TODO:  use or remove course_id
   
-  def build_activities_from_parent(parent, referrer_course_id)
+  def build_activities_from_parent(parent, canvas_course_id)
     canvas = Canvas::API.new(:host => "https://utexas.instructure.com", :token => ENV["UT_CANVAS_TOKEN"])
     
     # get all canvas assignments from the new course
-    child_assignments = canvas.get("/api/v1/courses/#{referrer_course_id}/assignments", {'per_page' => '1000'})
+    child_assignments = canvas.get("/api/v1/courses/#{canvas_course_id}/assignments", {'per_page' => '1000'})
     
     while child_assignments.more?
       child_assignments.next_page!

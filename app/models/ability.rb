@@ -11,6 +11,7 @@ class Ability
     when "Administrator"
       can :manage, :all
     when "Instructor"
+      can :create, Section      
       can :manage, Course do |course|
         role = permissions.courses[course.id]
         role == "Instructor" || role == "Administrator"

@@ -5,6 +5,8 @@ Ocill::Application.routes.draw do
   get "launch/create"
   post "panda/notifications"
 
+  get 'sections/new'
+
   get "home/show"
 
   devise_for :users
