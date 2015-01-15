@@ -3,10 +3,10 @@ class SectionsController < ApplicationController
   respond_to :html
 
   def new
-    parent_section_id        = params[:duplicate_session_data][:parent_section_id]
-    canvas_course_id        = params[:duplicate_session_data][:canvas_course_id]
-    lti_course_id           = params[:duplicate_session_data][:lti_course_id]
-    parent_canvas_course_id = params[:duplicate_session_data][:parent_canvas_course_id]
+    parent_section_id        = params[:parent_section_id]
+    canvas_course_id        = params[:canvas_course_id]
+    lti_course_id           = params[:lti_course_id]
+    parent_canvas_course_id = params[:parent_canvas_course_id]
     
     @section = Section.new
 
@@ -14,7 +14,7 @@ class SectionsController < ApplicationController
   end
 
   def create
-    
+    #
   end
 
 
