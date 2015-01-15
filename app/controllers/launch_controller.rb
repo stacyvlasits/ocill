@@ -54,7 +54,7 @@ protected
       flash[:error] = @launch.errors.first
       redirect_to :root
     elsif @launch.section.nil?
-      redirect_to duplicate_section_path(@launch.duplicate_session_data)
+      redirect_to new_section_path(@launch.duplicate_session_data)
     elsif @launch.instructor_view_drill?
       redirect_to drill_path(@launch.activity.drill)
     elsif @launch.instructor_pick_course?
