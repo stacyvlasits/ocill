@@ -119,7 +119,7 @@ class Launch
               parent_section_id:       parent_section.id,
               canvas_course_id:   canvas_course_id, # this is the current course
               lti_course_id:        params[:context_id],
-              parent_canvas_course_id:    parent_section.parent.canvas_course_id
+              parent_canvas_course_id:    parent_section.canvas_course_id
             }
             # return nil
           return the_section = nil
