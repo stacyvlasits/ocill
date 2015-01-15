@@ -1,6 +1,6 @@
 class Launch
   require 'oauth/request_proxy/rack_request'
-  attr_reader :params, :errors, :tool, :user, :activity, :section, :session, :parent_section
+  attr_reader :params, :errors, :tool, :user, :activity, :section, :session, :parent_section, :duplicate_session_data
 	def initialize(request, params)
     @params = params['launch_params'] || params
     @request = request
@@ -8,7 +8,7 @@ class Launch
     @tool = nil
     authorize!
     @user = find_user
-    @duplicate_section_data = {} 
+    @duplicate_session_data = {} 
     @section = find_section
     @activity = find_activity
   end
@@ -115,7 +115,7 @@ class Launch
         if parent_section
           # if there is a real course to copy, store it in @duplicate_section_data and return nil
             
-            @duplicate_section_data = { 
+            @duplicate_session_data = { 
               parent_section_id:       parent_section.id,
               canvas_course_id:   canvas_course_id, # this is the current course
               lti_course_id:        params[:context_id],
