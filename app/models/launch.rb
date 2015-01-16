@@ -7,10 +7,14 @@ class Launch
     @errors = []
     @tool = nil
     authorize!
+    @to_be_duplicated = false
     @user = find_user
-    @duplicate_session_data = {} 
     @section = find_section
     @activity = find_activity
+  end
+
+  def to_be_duplicated?
+    return @to_be_duplicated
   end
 
   def authorize!
@@ -113,16 +117,15 @@ class Launch
         parent_section = Section.find_by_canvas_course_id(params['custom_canvas_course_id'])
 
         if parent_section
-          # if there is a real course to copy, store it in @duplicate_section_data and return nil
-            
-            @duplicate_session_data = { 
-              parent_section_id:       parent_section.id,
-              canvas_course_id:   canvas_course_id, # this is the current course
-              lti_course_id:        params[:context_id],
-              parent_canvas_course_id:    parent_section.canvas_course_id
-            }
-            # return nil
-          return the_section = nil
+          # if there is a real course to copy create the Section, save it and return it
+            duplicate_section = Section.create()
+            duplicate_section.canvas_course_id = canvas_course_id
+            duplicate_section.lti_course_id = params[:context_id]
+            duplicate_section.parent_id = parent_section.id
+            duplicate_section.save!
+            @to_be_duplicated = true
+
+          return the_section = duplicate_section
         else
           # throw an error because they are trying to copy from a section that doesn;t exist
           # Tell the user that the custom parent course id that is set isn't correct.  Refer them to the site administrator
@@ -143,7 +146,7 @@ class Launch
   end
   
   def find_activity
-    if section
+    if section.parent_id 
       return Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
     else 
       return nil

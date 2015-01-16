@@ -1,20 +1,22 @@
 class SectionsController < ApplicationController
-  load_and_authorize_resource
-  respond_to :html
-
-  def new
-    @parent_section_id       = params["parent_section_id"]
-    @canvas_course_id        = params["canvas_course_id"]
-    @lti_course_id           = params["lti_course_id"]
-    @parent_canvas_course_id = params["parent_canvas_course_id"]
-    
-    @section = Section.new
-
-    respond_with(@section, @parent_section_id, @canvas_course_id, @lti_course_id, @parent_canvas_course_id)
+  respond_to :html, :json
+  
+  def edit    
+    @section = Section.find(params[:id])
+    respond_with @section
   end
 
-  def create
-    #
+  def duplicate_parent_activities
+    @section = Section.find(params[:id])
+    @section.duplicate_activities_from_parent
+    render json: "Success!"
+  end
+
+  def duplication_status
+    @section = Section.find(params[:id])
+    @section.duplication_status
+
+    render json: @section.duplication_status
   end
 
 end

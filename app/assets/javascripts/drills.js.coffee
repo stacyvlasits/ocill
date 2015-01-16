@@ -93,7 +93,7 @@ jQuery ->
 
 jQuery ->
   $('form').on 'click', '.add-exercise-remote', (event) ->
-    # create new exercis
+    # create new exercise
     $.ajax({
       type: "POST",
       dataType: "json",

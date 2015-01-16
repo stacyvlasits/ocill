@@ -21,11 +21,10 @@ class LaunchController < ApplicationController
         # Let's redirect to "Click to launch button"
         self.authorize
         return redirect_to launch_create_external_path(@launch.tool.to_params)
-        
       end
 
     else
-      # Yay!  Cookies work!  Let's do the happy path
+      # Yay!  Cookies work!  We can use the happy path
       self.authorize
       self.redirect
     end
@@ -53,8 +52,8 @@ protected
     if @launch.unauthorized? 
       flash[:error] = @launch.errors.first
       redirect_to :root
-    elsif @launch.section.nil?
-      redirect_to sections_new_path(@launch.duplicate_session_data)
+    elsif @launch.to_be_duplicated?
+      redirect_to edit_section_path(@launch.section)
     elsif @launch.instructor_view_drill?
       redirect_to drill_path(@launch.activity.drill)
     elsif @launch.instructor_pick_course?

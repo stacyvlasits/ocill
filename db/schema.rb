@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150113200330) do
+ActiveRecord::Schema.define(:version => 20150116181014) do
 
   create_table "activities", :force => true do |t|
     t.string   "lti_resource_link_id"
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(:version => 20150113200330) do
     t.datetime "updated_at",       :null => false
     t.integer  "canvas_course_id"
     t.string   "export_id"
+    t.integer  "parent_id"
   end
 
   create_table "units", :force => true do |t|

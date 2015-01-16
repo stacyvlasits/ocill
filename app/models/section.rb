@@ -1,9 +1,19 @@
 class Section < ActiveRecord::Base
-  attr_accessible :lti_course_id
+  attr_accessible :lti_course_id, :canvas_course_id
   has_many :activities, :dependent => :destroy
+  has_one :children, :class_name => 'Section', :foreign_key => :parent_id
+  belongs_to :parent, :class_name => 'Section'
   # TODO:  use or remove course_id
   
-  def build_activities_from_parent(parent, canvas_course_id)
+  def duplication_status
+    return 0 if parent_id.nil?
+    activities_count = activities.count
+    return 0 if activities_count == 0
+    return activities_count.to_f / parent.activities.count.to_f
+  end
+
+
+  def duplicate_activities_from_parent()
     canvas = Canvas::API.new(:host => "https://utexas.instructure.com", :token => ENV["UT_CANVAS_TOKEN"])
     
     # get all canvas assignments from the new course
