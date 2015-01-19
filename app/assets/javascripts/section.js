@@ -33,24 +33,24 @@ jQuery( document ).ready(function( $ ) {
 			}
 		});
 	}
-	function checkStatus(id){
-		$.ajax({
-			type: "GET",
-			dataType: "json",
-			url: '/sections/' + id + '/duplication_status.json',
-			success: function(json){
-				toastr.success('Status: ' + json);
-			},
-			error: function(jqXHR, textStatus, errorThrown){
-				switch (jqXHR.status) {
-					case 401:
-						toastr.error('You must be logged in to update interview information.  <br /> Click <a href="/staff/login?ref=offlineform" alt="Log in">here to login</a>', "error");
-					case 500:
-						toastr.error('An error prevented your interview information from being updated.', "error");
-					default:
-						toastr.error('An error prevented your interview information from being updated.', "error");
-				}
-			}
-		});
-	}
+	// function checkStatus(id){
+	// 	$.ajax({
+	// 		type: "GET",
+	// 		dataType: "json",
+	// 		url: '/sections/' + id + '/duplication_status.json',
+	// 		success: function(json){
+	// 			toastr.success('Status: ' + json);
+	// 		},
+	// 		error: function(jqXHR, textStatus, errorThrown){
+	// 			switch (jqXHR.status) {
+	// 				case 401:
+	// 					toastr.error('You must be logged in to update interview information.  <br /> Click <a href="/staff/login?ref=offlineform" alt="Log in">here to login</a>', "error");
+	// 				case 500:
+	// 					toastr.error('An error prevented your interview information from being updated.', "error");
+	// 				default:
+	// 					toastr.error('An error prevented your interview information from being updated.', "error");
+	// 			}
+	// 		}
+	// 	});
+	// }
 });

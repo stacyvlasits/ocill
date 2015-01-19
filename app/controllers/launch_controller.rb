@@ -52,8 +52,10 @@ protected
     if @launch.unauthorized? 
       flash[:error] = @launch.errors.first
       redirect_to :root
-    elsif @launch.to_be_duplicated?
+    elsif @launch.instructor_to_be_duplicated?
       redirect_to edit_section_path(@launch.section)
+    elsif @launch.learner_to_be_duplicated?
+      redirect_to section_path(@launch.section)
     elsif @launch.instructor_view_drill?
       redirect_to drill_path(@launch.activity.drill)
     elsif @launch.instructor_pick_course?

@@ -19,4 +19,10 @@ class SectionsController < ApplicationController
     render json: @section.duplication_status
   end
 
+  def show
+    @section = Section.find(params[:id])
+    respond_with @section
+  end
+
+
 end

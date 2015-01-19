@@ -84,6 +84,14 @@ class Launch
     user.role == "Instructor" && self.activity.present? && self.activity.drill.present?
   end
   
+  def instructor_to_be_duplicated?
+    user.role == "Instructor" && @to_be_duplicated
+  end
+
+  def learner_to_be_duplicated?
+    user.role == "Learner" && @to_be_duplicated
+  end
+
   def learner_attempt_drill?
     user.role == "Learner" && self.activity.drill.present? && Role.find_or_create_by_user_id_and_course_id_and_name(user.id, self.activity.course, user.role)
   end

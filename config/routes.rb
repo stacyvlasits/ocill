@@ -19,7 +19,7 @@ Ocill::Application.routes.draw do
     resources :units
   end
 
-  resources :sections, only: [:edit, :update]
+  resources :sections, only: [:show, :edit, :update]
 
   get 'sections/:id/duplicate_parent_activities' => 'sections#duplicate_parent_activities'
   get 'sections/:id/duplication_status' => 'sections#duplication_status'
