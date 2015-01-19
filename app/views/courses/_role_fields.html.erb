@@ -6,7 +6,8 @@
     </h5>
     <ul>
       <% @course.users.where(:role => role).uniq.each do |user| %>
-        <%= render partial: 'shared/list_of_users', locals: { user: user, :role => role } -%>
+        <% current_role = Role.find_by_course_id_and_user_id(@course.id, user.id) %>      
+        <%= render partial: 'shared/list_of_users', locals: { user: user, :role => current_role } -%>
       <% end -%>
     </ul>
     <div class="add-user-role">
