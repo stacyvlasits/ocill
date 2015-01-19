@@ -48,6 +48,7 @@ class Launch
   end
 
   def lti_roles_to_ocill_user_role(lti_roles)
+
     roles = lti_roles.split(',') if lti_roles 
     if roles.include?("Instructor")
       "Instructor"
@@ -154,10 +155,11 @@ class Launch
   end
   
   def find_activity
-    if section.parent_id 
+    if section.parent_id  
       return Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
     else 
-      return nil
+      section_id = section.id
+    Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section_id)
     end
   end
 
