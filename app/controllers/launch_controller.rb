@@ -49,7 +49,7 @@ protected
   end
 
   def redirect
-    if @launch.unauthorized? 
+    if @launch.unauthorized? || @launch.section == nil
       flash[:error] = @launch.errors.first
       redirect_to :root
     elsif @launch.instructor_to_be_duplicated?

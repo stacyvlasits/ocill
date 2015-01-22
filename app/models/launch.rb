@@ -54,8 +54,8 @@ class Launch
       "Instructor"
     elsif roles.grep(/TeachingAssistant/).any?
       "Instructor"  
-    elsif roles.include?("Learner")
-      "Learner"      
+    elsif roles.include?("Learner") || roles.include?("learner")
+      "Learner"
     else
       error_message = "The Launch model just created a new user as a Learner, even though the user was not properly identified"
       LoggingMailer.log_email(error_message: error_message, roles: roles,  parameters: @params ).deliver
@@ -111,35 +111,29 @@ class Launch
     course_id = path_parts[course_id_index]
   end
 
+  def find_or_create_child_section(context_id, custom_canvas_course_id)
+    if the_section = Section.find_by_lti_course_id(context_id)
+      return the_section
+    else 
+      if parent_section = Section.find_by_canvas_course_id(custom_canvas_course_id)
+        # if there is a real course to copy create the Section, save it and return it
+        @to_be_duplicated = true
+          
+        return Section.create(
+            canvas_course_id:   canvas_course_id,
+            lti_course_id:      context_id,
+            parent_id:          parent_section.id
+            )
+      else
+        self.errors.push('"' + custom_canvas_course_id + '" does not match an existing course on your Learning Management System\'s server.  Please check the number in your Ocill External Tool configuration and try again.')
+        return nil
+      end
+    end
+  end
 
   def find_section
-    if params['custom_canvas_course_id']
-      # look for a section that matches the actual course id of this course
-      the_section = Section.find_by_lti_course_id(params[:context_id])
-      # if there is one, then this course has already been created and populated, so just go ahead and continue
-      if the_section 
-        # return because you are done
-        return the_section
-      else # if the section doesn't exist
-          # try to find the parent 
-
-        parent_section = Section.find_by_canvas_course_id(params['custom_canvas_course_id'])
-
-        if parent_section
-          # if there is a real course to copy create the Section, save it and return it
-            duplicate_section = Section.create()
-            duplicate_section.canvas_course_id = canvas_course_id
-            duplicate_section.lti_course_id = params[:context_id]
-            duplicate_section.parent_id = parent_section.id
-            duplicate_section.save!
-            @to_be_duplicated = true
-
-          return the_section = duplicate_section
-        else
-          # throw an error because they are trying to copy from a section that doesn;t exist
-          # Tell the user that the custom parent course id that is set isn't correct.  Refer them to the site administrator
-        end
-      end
+    if params[:custom_canvas_course_id]
+      the_section = find_or_create_child_section(params[:context_id], params[:custom_canvas_course_id])
     else
       the_section = Section.where(lti_course_id: params[:context_id]).first_or_create do |section|
         section.lti_course_id = params[:context_id]
@@ -147,7 +141,7 @@ class Launch
       end
     end
 
-    if the_section.canvas_course_id != canvas_course_id
+    if the_section && the_section.canvas_course_id != canvas_course_id
       the_section.canvas_course_id = canvas_course_id
       the_section.save!       
     end
@@ -155,11 +149,12 @@ class Launch
   end
   
   def find_activity
-    if section.parent_id  
-      return nil
+    return nil unless section
+    if section.parent_id
+      activity = Activity.where(lti_resource_link_id: params[:resource_link_id]).first
+      return activity || Activity.new()
     else 
-      section_id = section.id
-    Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section_id)
+      Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
     end
   end
 
