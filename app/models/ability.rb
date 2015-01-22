@@ -63,7 +63,7 @@ class Ability
         role = permissions.drills[attempt.drill_id]
         role == "Learner" || role == "Instructor" || role == "Administrator"
       end
-      can :manager, Attempt
+      can :manage, Attempt #for debugging only
       can :create, Attempt
       can :create, Response do |response|
         response.attempt.users.include? user
