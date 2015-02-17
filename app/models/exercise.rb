@@ -74,12 +74,8 @@ class Exercise < ActiveRecord::Base
 # end METHODS for grid_drills
 
 # start METHODS for fill_drills
-  def hint
-    self.prompt[/\(.+?\)/]
-  end
-
-  def hintless_prompt
-    self.prompt.gsub(/\(.+?\)/, '')
+  def prompt_with_hints
+    self.prompt.gsub(/(\(.+?\))/, '<span class="hint">\1</span>')
   end
 
   def fill_in_the_blank

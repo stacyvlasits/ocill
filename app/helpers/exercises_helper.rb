@@ -8,7 +8,7 @@ module ExercisesHelper
         '<span class="left-blank"></span>' + icon("times")
       end
     end
-    html = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
+    html = exercise.prompt_with_hints.gsub(/\[/,'{{').gsub(/\]/,'}}')
     spans.each {|span| html.sub!(/\{\{.+?\}\}/, span) }
     html
   end
@@ -18,7 +18,6 @@ module ExercisesHelper
     graded_class = "correct" if response.correct? 
     graded_class = "left-blank" if response.value.blank?
     graded_class
-    # binding.pry
   end
 
   def graded_grid_drill_exercise(exercise, responses)
@@ -39,7 +38,7 @@ module ExercisesHelper
       response = responses.where(:exercise_item_id => ei)
       create_response_input(ei.id, response.first.id)
     end
-    prompt = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
+    prompt = exercise.prompt_with_hints.gsub(/\[/,'{{').gsub(/\]/,'}}')
     inputs.each {|input| prompt.sub!(/\{\{.+?\}\}/, input) }
     prompt
   end
@@ -53,7 +52,7 @@ module ExercisesHelper
         create_response_input(ei.id, response.id)
       end
     end
-    prompt = exercise.hintless_prompt.gsub(/\[/,'{{').gsub(/\]/,'}}')
+    prompt = exercise.prompt_with_hints.gsub(/\[/,'{{').gsub(/\]/,'}}')
     inputs.each {|input| prompt.sub!(/\{\{.+?\}\}/, input) }
     prompt
   end

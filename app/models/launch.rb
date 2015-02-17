@@ -1,7 +1,8 @@
 class Launch
   require 'oauth/request_proxy/rack_request'
   attr_reader :params, :errors, :tool, :user, :activity, :section, :session, :parent_section, :duplicate_session_data
-	def initialize(request, params)
+	
+  def initialize(request, params)
     @params = params['launch_params'] || params
     @request = request
     @errors = []
@@ -48,7 +49,6 @@ class Launch
   end
 
   def lti_roles_to_ocill_user_role(lti_roles)
-
     roles = lti_roles.split(',') if lti_roles 
     if roles.include?("Instructor")
       "Instructor"
@@ -104,13 +104,6 @@ class Launch
     u = User.find_or_create_by_lti_user_id(lti_user_id: params[:user_id], role: role, email: email, password: password)
   end
 
-  def canvas_course_id
-    referrer_uri = URI.parse(@request.referrer)
-    path_parts = referrer_uri.path.split("/")
-    course_id_index = path_parts.find_index("courses") + 1
-    course_id = path_parts[course_id_index]
-  end
-
   def find_or_create_child_section(context_id, custom_canvas_course_id)
     if the_section = Section.find_by_lti_course_id(context_id)
       return the_section
@@ -158,6 +151,13 @@ class Launch
     end
   end
 
+  def canvas_course_id
+    referrer_uri = URI.parse(@request.referrer)
+    path_parts = referrer_uri.path.split("/")
+    course_id_index = path_parts.find_index("courses") + 1
+    course_id = path_parts[course_id_index]
+  end
+  
 private
   def oauth_shared_secrets
     secrets = {}
