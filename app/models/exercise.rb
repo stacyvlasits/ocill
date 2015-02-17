@@ -75,7 +75,7 @@ class Exercise < ActiveRecord::Base
 
 # start METHODS for fill_drills
   def prompt_with_hints
-    self.prompt.gsub(/(\(.+?\))/, '<span class="hint">\1</span>')
+    self.prompt.gsub(/(\(.+?\))/, '<span title="Hint" class="hint">\1</span>')
   end
 
   def fill_in_the_blank
