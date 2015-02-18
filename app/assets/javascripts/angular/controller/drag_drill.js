@@ -16,21 +16,27 @@ jQuery( document ).ready(function( $ ) {
 
   $('.form-actions .submit-drill').click(function(){
     var the_drill = window.ocill_drill_variable;
-    var the_drill_id = the_drill.drill.id;
 
-    the_drill = prepare_for_ajax(the_drill);
-    $.ajax({
-      type: "PUT",
-      dataType: "json",
-      data: the_drill,
-      url: '/drills/' + the_drill_id 
-    }).done(function(got_sum) {
-      $('form').submit();
-    }).fail(function(jqXHR, textStatus, errorThrown){
-      toastr.error("Ocill did not successfully save your work.  Please contact the Ocill administrator.");
-    });
+    if ( the_drill ) {    
+
+      var the_drill_id = the_drill.drill.id;
+
+      the_drill = prepare_for_ajax(the_drill);
+
+      $.ajax({
+        type: "PUT",
+        dataType: "json",
+        data: the_drill,
+        url: '/drills/' + the_drill_id 
+      }).done(function(got_sum) {
+        $('form').submit();
+      }).fail(function(jqXHR, textStatus, errorThrown){
+        toastr.error("Ocill did not successfully save your work.  Please contact the Ocill administrator.");
+      });
+    }
 
     event.preventDefault();
+  
   });
 });
 
