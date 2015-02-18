@@ -33,10 +33,15 @@ module ApplicationHelper
     options[:error]  ||= "Your browser does not support the audio formats used by this application."    
     options[:preload] ||= "auto"
     
-    audio = "<audio preload=\"#{options[:preload]}\" controls>" 
+    audio = '<div class="audio-controls">'
+    audio += "<audio preload=\"#{options[:preload]}\" controls>" 
     srcs.each {|src| audio += audio_source_tag(src)}    
     audio += "  #{options[:error]}"
-    audio += "</audio>".html_safe 
+    audio += "</audio>".html_safe
+    audio += icon( "minus", 'white', ['audio-decelerate'] )
+    audio += ' Speed: <span class="playback-speed">1.00</span>x'
+    audio += icon( "plus", 'white', ['audio-accelerate'] )
+    audio += '</div>'
     audio.html_safe
   end
 
@@ -94,10 +99,10 @@ module ApplicationHelper
     html += "</ul>"
   end
 
-  def icon(type, color='')
+  def icon(type, color='', classes=[])
     color = ' ' + color unless color.empty?
     if icons.include?("icon-" + type.to_s)
-      icon = '<i class="fa fa-' + type.to_s + color + '"></i>'
+      icon = '<i class="fa fa-' + type.to_s + color + ' ' + classes.join(" ") + '"></i>'
     else
       icon = type.to_s
     end

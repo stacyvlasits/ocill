@@ -71,16 +71,6 @@ dd {
   margin-top: 15px;
 }
 
-audio {
-  display: block;
-  margin: 10px 0px;
-  width: 300px;
-}
-
-td audio {
-  width: 200px;
-}
-
 .errorExplanation {
   border: solid red;
   background: lightgrey;
@@ -206,10 +196,6 @@ h5 strong {
 
 .finished-playing {
   background-color: #51a351;
-}
-
-audio {
-  margin: 10px 0px;
 }
 
 #drag-drill-container .contents-draggable {
@@ -391,9 +377,44 @@ ul.drills-for-unit li.selected,
   color: #FA6900;
 }
 
+.fill-drill-exercise {
+  line-height: 25px;
+}
+
 .fill-drill-exercise input {
   padding: 0px;
-  margin-bottom: 5px;
+  margin: 0px 3px;
+}
+
+.audio-controls {
+  background-color: #1c1c1c;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px 0px;
+  text-align: center;
+  width: 300px;
+}
+
+.playback-speed {
+  width: 25px;
+}
+
+td .audio-controls {
+  width: 200px;
+}
+
+.audio-controls i {
+  margin: 0px 5px;
+}
+
+audio {
+  display: block;
+  margin: 0px;
+  width: 300px;
+}
+
+td audio {
+  width: 200px;
 }
 
 @media (max-width: 1199px) {
