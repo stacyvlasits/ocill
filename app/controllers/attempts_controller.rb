@@ -57,9 +57,6 @@ class AttemptsController < InheritedResources::Base
     @responses = @attempt.responses
     @drill =  @attempt.drill || Drill.find(params[:drill_id])
   end
-
- 
-
   
   def update
     super do |format|

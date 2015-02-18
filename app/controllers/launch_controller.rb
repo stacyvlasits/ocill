@@ -13,7 +13,6 @@ class LaunchController < ApplicationController
       unless params[:include_cookie]
         #  Ok, we haven't really tested cookies yet
         #  Now let's add a cookie to the session and then start over
-
         cookies[:work?] = true
         return redirect_to launch_create_path(:include_cookie => true, :params => params)
       else
@@ -22,11 +21,10 @@ class LaunchController < ApplicationController
         # Let's redirect to "Click to launch button"
         self.authorize
         return redirect_to launch_create_external_path(@launch.tool.to_params)
-        
       end
 
     else
-      # Yay!  Cookies work!  Let's do the happy path
+      # Yay!  Cookies work!  We can use the happy path
       self.authorize
       self.redirect
     end
@@ -38,11 +36,9 @@ class LaunchController < ApplicationController
     @remove_navigation = true
   end
 
-
 protected 
   
   def authorize
-
     @launch = Launch.new(request, params)
     @launch.authorize!
 
@@ -53,9 +49,13 @@ protected
   end
 
   def redirect
-    if @launch.unauthorized? 
+    if @launch.unauthorized? || @launch.section == nil
       flash[:error] = @launch.errors.first
       redirect_to :root
+    elsif @launch.instructor_to_be_duplicated?
+      redirect_to edit_section_path(@launch.section)
+    elsif @launch.learner_to_be_duplicated?
+      redirect_to section_path(@launch.section)
     elsif @launch.instructor_view_drill?
       redirect_to drill_path(@launch.activity.drill)
     elsif @launch.instructor_pick_course?

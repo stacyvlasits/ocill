@@ -1,15 +1,21 @@
 class Launch
   require 'oauth/request_proxy/rack_request'
-  attr_reader :params, :errors, :tool, :user, :activity, :section, :session
-	def initialize(request, params)
+  attr_reader :params, :errors, :tool, :user, :activity, :section, :session, :parent_section, :duplicate_session_data
+	
+  def initialize(request, params)
     @params = params['launch_params'] || params
     @request = request
     @errors = []
     @tool = nil
     authorize!
+    @to_be_duplicated = false
     @user = find_user
     @section = find_section
     @activity = find_activity
+  end
+
+  def to_be_duplicated?
+    return @to_be_duplicated
   end
 
   def authorize!
@@ -48,8 +54,8 @@ class Launch
       "Instructor"
     elsif roles.grep(/TeachingAssistant/).any?
       "Instructor"  
-    elsif roles.include?("Learner")
-      "Learner"      
+    elsif roles.include?("Learner") || roles.include?("learner")
+      "Learner"
     else
       error_message = "The Launch model just created a new user as a Learner, even though the user was not properly identified"
       LoggingMailer.log_email(error_message: error_message, roles: roles,  parameters: @params ).deliver
@@ -79,8 +85,16 @@ class Launch
     user.role == "Instructor" && self.activity.present? && self.activity.drill.present?
   end
   
+  def instructor_to_be_duplicated?
+    user.role == "Instructor" && @to_be_duplicated
+  end
+
+  def learner_to_be_duplicated?
+    user.role == "Learner" && @to_be_duplicated
+  end
+
   def learner_attempt_drill?
-    user.role == "Learner" && self.activity.drill.present? && user.roles.create(:name => user.role, :course => self.activity.course) 
+    user.role == "Learner" && self.activity.drill.present? && Role.find_or_create_by_user_id_and_course_id_and_name(user.id, self.activity.course, user.role)
   end
 
   def find_user
@@ -90,43 +104,60 @@ class Launch
     u = User.find_or_create_by_lti_user_id(lti_user_id: params[:user_id], role: role, email: email, password: password)
   end
 
-  def find_section 
-
-    if params['custom_parent_course_id']
-      # look for a section that matches the actual course id of this course
-      the_section = Section.find_by_lti_course_id(lti_course_id: params[:context_id])
-      # if there is one, then this course has already been created and populated, so just go ahead and continue
-      if the_section 
-        # return because you are done
-        return the_section
-      else # if the section doesn't exist
-          # try to find the parent
-        parent_s = Section.find_by_lti_course_id(params['custom_parent_course_id'])
-
-        unless parent_s
-          #throw an error because they are trying to copy from a section that doesn;t exist
-        else
-          # if there is a real course to copy from create a new section 
-           the_section = Section.create(lti_course_id: params[:conte])
-           #  Loop through the parent 
-           parent_s.activities.each do |activitiy|
-             the_section.activities.create( drill_id: activity.drill_id, course_id: activity.course_id,lti_resource_link_id: params[:resource_link_id] ) # use the acticity from the parent to create a new activity
-           end
-           # return this newly createdsection cause it's now the one you want
-           return the_section
-        end
+  def find_or_create_child_section(context_id, custom_canvas_course_id)
+    if the_section = Section.find_by_lti_course_id(context_id)
+      return the_section
+    else 
+      if parent_section = Section.find_by_canvas_course_id(custom_canvas_course_id)
+        # if there is a real course to copy create the Section, save it and return it
+        @to_be_duplicated = true
+          
+        return Section.create(
+            canvas_course_id:   canvas_course_id,
+            lti_course_id:      context_id,
+            parent_id:          parent_section.id
+            )
+      else
+        self.errors.push('"' + custom_canvas_course_id + '" does not match an existing course on your Learning Management System\'s server.  Please check the number in your Ocill External Tool configuration and try again.')
+        return nil
       end
+    end
+  end
+
+  def find_section
+    if params[:custom_canvas_course_id]
+      the_section = find_or_create_child_section(params[:context_id], params[:custom_canvas_course_id])
     else
-      the_section = Section.find_or_create_by_lti_course_id(lti_course_id: params[:context_id])
+      the_section = Section.where(lti_course_id: params[:context_id]).first_or_create do |section|
+        section.lti_course_id = params[:context_id]
+        section.canvas_course_id = canvas_course_id
+      end
+    end
+
+    if the_section && the_section.canvas_course_id != canvas_course_id
+      the_section.canvas_course_id = canvas_course_id
+      the_section.save!       
     end
     the_section
   end
   
   def find_activity
-    section_id = section.id
-    Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section_id)
+    return nil unless section
+    if section.parent_id
+      activity = Activity.where(lti_resource_link_id: params[:resource_link_id]).first
+      return activity || Activity.new()
+    else 
+      Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
+    end
   end
 
+  def canvas_course_id
+    referrer_uri = URI.parse(@request.referrer)
+    path_parts = referrer_uri.path.split("/")
+    course_id_index = path_parts.find_index("courses") + 1
+    course_id = path_parts[course_id_index]
+  end
+  
 private
   def oauth_shared_secrets
     secrets = {}

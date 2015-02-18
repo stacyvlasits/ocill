@@ -26,10 +26,9 @@
 Gemfile
 Gemfile.lock
 /config/database.yml
-/config/application.yml
 /config/newrelic.yml
 public/uploads/*
 junk/*
 public/assets/*
 node_modules/*
-latest.dump
+Steps for Copying a Course with Ocill Assignements

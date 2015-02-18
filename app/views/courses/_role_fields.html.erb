@@ -5,8 +5,9 @@
       <strong><%= role.pluralize %></strong>
     </h5>
     <ul>
-      <% @course.roles.where(:name => role).each do |user_role| %>
-        <%= render partial: 'shared/list_of_users', locals: { role: user_role } -%>
+      <% @course.users.where(:role => role).uniq.each do |user| %>
+        <% current_role = Role.find_by_course_id_and_user_id(@course.id, user.id) %>      
+        <%= render partial: 'shared/list_of_users', locals: { user: user, :role => current_role } -%>
       <% end -%>
     </ul>
     <div class="add-user-role">

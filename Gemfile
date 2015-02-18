@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '3.2.19'
+gem 'rails', '3.2.21'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -46,11 +46,19 @@ gem 'rails_12factor'
 gem 'ims-lti'
 
 # for caching
+gem 'canvas-api'
 gem 'memcachier'
 gem 'dalli'
 
 # for profiling Must be after pg gem
 gem 'rack-mini-profiler'
+
+# for a jammin' console
+gem 'pry'
+gem 'pry-nav'
+gem 'pry-doc'
+gem 'pry-rails'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -82,10 +90,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'pry'
-  gem 'pry-nav'
-  gem 'pry-doc'
-  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rb-fsevent', '~> 0.9.1'
 end

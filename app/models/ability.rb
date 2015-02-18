@@ -11,6 +11,7 @@ class Ability
     when "Administrator"
       can :manage, :all
     when "Instructor"
+      can :create, Section      
       can :manage, Course do |course|
         role = permissions.courses[course.id]
         role == "Instructor" || role == "Administrator"
@@ -58,10 +59,11 @@ class Ability
         role = permissions.drills[drill.id]
         role == "Learner" || role == "Instructor" || role == "Administrator"
       end
-      can :manage, Attempt do |attempt|
-        role = permissions.drills[attempt.drill_id]
-        role == "Learner" || role == "Instructor" || role == "Administrator"
-      end
+      # can :manage, Attempt do |attempt|
+        # role = permissions.drills[attempt.drill_id]
+        # role == "Learner" || role == "Instructor" || role == "Administrator"
+      # end      
+      can :manage, Attempt #for debugging only
       can :create, Attempt
       can :create, Response do |response|
         response.attempt.users.include? user

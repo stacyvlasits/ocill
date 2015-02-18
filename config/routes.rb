@@ -1,11 +1,11 @@
 Ocill::Application.routes.draw do
 
-  post "launch/create"
-  get "launch/create_external"
-  get "launch/create"
-  post "panda/notifications"
+  post 'launch/create'
+  get 'launch/create_external'
+  get 'launch/create'
+  post 'panda/notifications'
 
-  get "home/show"
+  get 'home/show'
 
   devise_for :users
 
@@ -18,6 +18,11 @@ Ocill::Application.routes.draw do
     post 'create_many_roles' => 'roles#create_many_roles'
     resources :units
   end
+
+  resources :sections, only: [:show, :edit, :update]
+
+  get 'sections/:id/duplicate_parent_activities' => 'sections#duplicate_parent_activities'
+  get 'sections/:id/duplication_status' => 'sections#duplication_status'
 
   resources :users, only: [:index, :show] 
 
@@ -54,6 +59,6 @@ Ocill::Application.routes.draw do
     resources :audio
   end
 
-  root :to => "home#show"
+  root :to => 'home#show'
 
 end

@@ -93,7 +93,7 @@ jQuery ->
 
 jQuery ->
   $('form').on 'click', '.add-exercise-remote', (event) ->
-    # create new exercis
+    # create new exercise
     $.ajax({
       type: "POST",
       dataType: "json",
@@ -160,6 +160,44 @@ jQuery ->
   $("form table audio").on 'ended', (event) ->
     playCounter = $(this).closest('td').addClass('finished-playing').find('.audio-played')
     playCounter.val(1)
+
+displaySpeed = (icon, speed) ->
+  console.log("display speed attempted")
+  console.log( icon )
+  console.log(speed)
+  $(icon).siblings('.playback-speed').text(speed.toFixed(2))
+
+jQuery ->
+  $(".audio-accelerate").each (index, element) ->
+    $(this).on 'click', (event) ->
+      icon = $(this)
+      audio = icon.siblings('audio')[0]
+      console.log(audio)
+      if audio.playbackRate < 3
+        console.log("Accelerate attempted")
+        audio.playbackRate = audio.playbackRate + .25
+        console.log("playback rate= " + audio.playbackRate)
+      else
+        icon.css("color", "red")
+        callback = -> icon.css("color", "white")
+        setTimeout callback, 1500
+      displaySpeed(icon, audio.playbackRate)
+
+jQuery ->
+  $(".audio-decelerate").each (index, element) ->
+    $(this).on 'click', (event) ->
+      icon = $(this)
+      audio = icon.siblings('audio')[0]
+      console.log(audio)
+      if audio.playbackRate > .5
+        console.log("Deccelerate attempted")      
+        audio.playbackRate = audio.playbackRate - .25
+        console.log("playback rate= " + audio.playbackRate)        
+      else
+        icon.css("color", "red")
+        callback = -> icon.css("color", "white")
+        setTimeout callback, 1500
+      displaySpeed(icon, audio.playbackRate)
 
 replaceWordChars = (text) ->
     s = text

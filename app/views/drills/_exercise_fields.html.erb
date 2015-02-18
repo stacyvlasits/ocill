@@ -20,7 +20,7 @@
 
 			<%= f.file_field :audio, :class => "hidden audio-upload-field upload-field" %>
 			<%= f.file_field :image, :class => "hidden image-upload-field upload-field" %>
-			<%= f.text_field(:fill_in_the_blank, class: "fill-in-the-blank-field text-field") %>
+			<%= f.text_area(:fill_in_the_blank, class: "fill-in-the-blank-field text-field", rows: "2") %>
 			<%= f.hidden_field :_destroy %>
 			<%= link_to icon("times", "white"), '#', class: "remove_fields" %>
 		</div>
