@@ -4,13 +4,14 @@ class DragDrill < Drill
   end
 
   def as_json(options={})
-    if options[:type] == :simple
+      if options[:type] == :shuffle || options[:type] == :simple
       { 
         id: self.id,
         unit_id: self.unit_id ,         
-        exercises: self.exercises.as_json({ type: :DragDrill })
-      }      
-    else
+        exercises: self.exercises.as_json(options),
+        title: self.title
+      }
+      else
       { 
         id: self.id , 
         instructions: self.instructions , 
@@ -19,7 +20,7 @@ class DragDrill < Drill
         options:  self.options , 
         title: self.title , 
         unit_id: self.unit_id , 
-        exercises: self.exercises.as_json({ type: :DragDrill })
+        exercises: self.exercises.as_json(options)
        }
     end
   end

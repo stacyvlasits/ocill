@@ -12,8 +12,8 @@ class DrillsController < InheritedResources::Base
     respond_to do |format|
       format.html 
       if params[:type]
-        format.json { render json: @drill.as_json({ type: params[:type].to_sym}) }        
-      else  
+        format.json { render json: @drill.as_json({ type: params[:type].to_sym }) }
+      else 
         format.json { render json: @drill.as_json }
       end
      # format.json { render json: @drill.as_json }

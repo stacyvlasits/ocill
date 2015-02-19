@@ -6,7 +6,7 @@
 #  the form is submitted
 
 # jQuery ->
-#  $("#attempt-submit").on 'click', ( event ) ->
+#  $("#submit-attempt").on 'click', ( event ) ->
 #    input_values = $("input.the_blank").map( ->
 #     return $(this).val() ).get()
 #    joined_values = input_values.join("&&&")

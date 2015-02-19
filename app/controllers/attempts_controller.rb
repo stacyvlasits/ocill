@@ -25,10 +25,19 @@ class AttemptsController < InheritedResources::Base
   end
 
   def create
+    binding.pry   
+    
     if params[:drill_id]
-      @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
-      params[:attempt][:responses_attributes].each do |response| 
-        @attempt.responses.new(id: response[0], exercise_item_id: response[1][:exercise_item_id], value: response[1][:value])
+       @attempt =current_user.attempts.new(:drill_id => params[:drill_id])
+      if params[:json] == "true"
+       params[:attempt][:responses_attributes].each do |response| 
+          @attempt.responses.new( exercise_item_id: response[:exercise_item_id], value: response[:value])
+        end
+
+      else
+        params[:attempt][:responses_attributes].each do |response| 
+          @attempt.responses.new(id: response[0], exercise_item_id: response[1][:exercise_item_id], value: response[1][:value])
+        end
       end
       if @attempt.save 
         if current_user.is_lti? && @tool && @tool.outcome_service?

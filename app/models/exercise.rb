@@ -132,16 +132,26 @@ class Exercise < ActiveRecord::Base
   end
 
   def as_json(options={})
-    if ( options[:type] == :DragDrill)
+    if options[:type] == :shuffle
       { 
         id: self.id , 
         position: self.position , 
-        prompt: self.prompt , 
+        prompt: self.prompt, 
         title: self.title , 
         drill_id: self.drill_id , 
         weight: self.weight,
-        exercise_items: self.exercise_items.as_json({type: :DragDrill})
+        exercise_items: self.exercise_items.shuffle.as_json(options)
       }
+    elsif options[:type] == :simple
+    { 
+        id: self.id , 
+        position: self.position , 
+        prompt: self.prompt, 
+        title: self.title , 
+        drill_id: self.drill_id , 
+        weight: self.weight,
+        exercise_items: self.exercise_items.as_json(options)
+    }            
     else
       { 
         id: self.id , 
@@ -156,7 +166,7 @@ class Exercise < ActiveRecord::Base
         panda_audio_id: self.panda_audio_id,
         updated_at: self.updated_at,
         created_at: self.created_at , 
-        exercise_items: self.exercise_items
+        exercise_items: self.exercise_items.as_json(options)
       }
     end
   end

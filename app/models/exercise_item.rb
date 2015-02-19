@@ -21,6 +21,8 @@ class ExerciseItem < ActiveRecord::Base
   after_initialize :set_default_position
   before_save :cleanup_audio
 
+  alias :parent :exercise
+
   def panda_audio
     @panda_audio ||= Panda::Video.find(panda_audio_id)
   end
@@ -76,8 +78,6 @@ class ExerciseItem < ActiveRecord::Base
   def set_default_position
     self.position ||= 999999
   end
-
-  alias :parent :exercise
   
   def drill
     self.exercise.drill
@@ -90,7 +90,7 @@ class ExerciseItem < ActiveRecord::Base
   end
 
   def as_json(options={})
-    if options[:type] == :DragDrill
+    if options[:type] == :simple || options[:type] == :shuffle
       { 
         id: self.id , 
         position: self.position , 

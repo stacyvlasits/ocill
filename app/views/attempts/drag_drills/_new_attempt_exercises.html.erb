@@ -1,3 +1,7 @@
-<li class="drag-drill-exercise">
-  <%= attempt_drag_drill_exercise(exercise, @attempt.responses).html_safe %>
-</li>
+<div ng-app="dragDrillAttemptApp" id="drag-drill-attempt-container">
+  <div ng-controller="DragDrillAttemptCtrl">
+    <gen-dynamic-directive ng-model="drill.drill" gen-get-dynamic-view="getView">
+    </gen-dynamic-directive>
+    <a class="inside" href=""></a>
+  </div>
+</div>

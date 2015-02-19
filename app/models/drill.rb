@@ -78,7 +78,8 @@ class Drill < ActiveRecord::Base
     self.exercises.size
   end
   
-  def as_json(options={})
+  def as_json(thingers={})
+    return thingers
     { 
       created_at: self.created_at , 
       header_row: self.header_row , 
@@ -90,7 +91,7 @@ class Drill < ActiveRecord::Base
       title: self.title , 
       unit_id: self.unit_id , 
       updated_at: self.updated_at,
-      exercises: self.exercises.as_json
+      exercises: self.exercises.as_json(thingers)
      }
   end
 

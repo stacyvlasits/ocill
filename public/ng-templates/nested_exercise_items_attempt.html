@@ -1,0 +1,8 @@
+<div>
+  <ol class="apps-container" ui-sortable="sortableOptionsOuter" ng-model="ngModelItem.exercise_items">
+    <li class="innerCont" ng-repeat="exercise_item in ngModelItem.exercise_items" ng-hide="exercise_item._destroy">
+	  <span class="handle"><i class="fa fa-bars"></i></span>
+    	<span>{{exercise_item.text}}</span>
+    </li>
+  </ol>
+</div>
