@@ -14,7 +14,7 @@ jQuery( document ).ready(function( $ ) {
   };
 
 
-  $('.form-actions .submit-drill').click(function(){
+  $('.drag-drill .submit-drill').click(function(){
     var the_drill = window.ocill_drill_variable;
 
     if ( the_drill ) {    
