@@ -1,4 +1,4 @@
-<%= form_for [@drill, @attempt] do |f| %>
+<%= form_for [@drill, @attempt], :html => { class: @drill.type.underscore.dasherize } do |f| %>
   <% drill = @attempt.drill %>
   <%- model_class = Drill -%>
   <div>
@@ -38,7 +38,7 @@
     <% end -%>
     <% case action_name %>
     <% when "show" %>
-    <%= link_to "Attempt Again", new_drill_attempt_path(:drill_id => drill.id), :class => 'btn btn-primary'  %>
+    <%= link_to "Attempt Again", new_drill_attempt_path(:drill_id => drill.id), :class => 'btn btn-primary ' + drill.type.underscore.dasherize %>
     <% when "new" %>
       <%= f.submit "Submit Attempt", :id => 'submit-attempt', :class => 'btn btn-primary' %>
     <% when "edit" %>

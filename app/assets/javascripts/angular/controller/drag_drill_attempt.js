@@ -1,19 +1,7 @@
 jQuery( document ).ready(function( $ ) {
 
-  // prepare_for_ajax = function(attempt){
-  //   drill.drill.exercises.forEach(function(exercise){
-  //     exercise.exercise_items_attributes = exercise.exercise_items;
-  //     delete exercise.exercise_items;
-  //   });
 
-  //   drill.drill.exercises_attributes = drill.drill.exercises;
-  //   delete drill.drill.exercises;
-  //   delete drill.drill.id;
-  //   return drill;
-  // };
-
-
-  $('.form-actions #submit-attempt').click(function(){
+  $('.drag-drill #submit-attempt').click(function(){
     console.log("I got clicked!!!!")
     var the_attempt = window.ocill_attempt_variable;
     if ( the_attempt ) {    
@@ -21,17 +9,16 @@ jQuery( document ).ready(function( $ ) {
       console.log(attempt_json);
       var the_drill_id = the_attempt.drill_id;
 
-      console.log('/drills/' + the_drill_id + '/attempts')
-      // the_attempt = prepare_for_ajax(the_attempt);
 
       $.ajax({
         type: "POST",
         dataType: "json",
         data: attempt_json,
-        url: '/drills/' + the_drill_id + '/attempts',
-      }).done(function(got_sum) {
+        url: '/drills/' + the_drill_id + '/attempts.json',
+      }).done(function(attempt) {
         console.log("i submitted the attempt and it worked");
-        $('form').submit();
+        console.log(attempt);
+        window.location.href = '/drills/' + the_drill_id + '/attempts/' + attempt.id;
       }).fail(function(jqXHR, textStatus, errorThrown){
         toastr.error("Ocill did not successfully save your work.  Please contact the Ocill administrator.");
         console.log(jqXHR);
@@ -71,15 +58,18 @@ dragDrillAttemptApp.controller('DragDrillAttemptCtrl', [ "$scope", "$location", 
     if (!drill) return;
     if (!drill.drill) return;
     if (!drill.drill.exercises) return;
+    var response_count = 0;
+    $scope.attempt.responses_attributes = [];
     drill.drill.exercises.forEach(function(exercise, index){
       if (!exercise) return;
-        $scope.attempt.responses_attributes = [];
+
         if (!exercise.exercise_items) return;
         
         exercise.exercise_items.forEach(function(exercise_item, index){
-        $scope.attempt.responses_attributes[index] = {};
-        $scope.attempt.responses_attributes[index]["exercise_item_id"] = exercise_item.id;
-        $scope.attempt.responses_attributes[index]["value"] = index;
+          $scope.attempt.responses_attributes[response_count] = {};
+          $scope.attempt.responses_attributes[response_count]["exercise_item_id"] = exercise_item.id;
+          $scope.attempt.responses_attributes[response_count]["value"] = index;
+          response_count++;
       });
     });
    window.ocill_drill_variable = angular.copy(drill);

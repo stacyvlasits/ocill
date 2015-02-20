@@ -13,6 +13,10 @@ module ExercisesHelper
     html
   end
 
+  def graded_drag_drill_exercise(exercise, responses)
+
+  end
+
   def graded_class(response)
     graded_class = "incorrect"
     graded_class = "correct" if response.correct? 
