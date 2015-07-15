@@ -15,7 +15,8 @@
 
 jQuery ->
   $("select#drill_type").change ->
-    $("form#new_drill :submit").click()
+    $("form#new_drill :submit").attr("disabled", true)
+    $("form#new_drill").submit()
 
 # validate a new drill before creating it
 jQuery ->
@@ -69,9 +70,9 @@ jQuery ->
         blanks = true
         toastr.error("Fill In The Blank fields cannot be left empty.")
       else
-        $(this).val(replaceWordChars($(this).val())) 
-    event.preventDefault() if blanks 
-    return false if blanks 
+        $(this).val(replaceWordChars($(this).val()))
+    event.preventDefault() if blanks
+    return false if blanks
 
 # clear the error message for empty fill in the blank
 jQuery ->
@@ -99,7 +100,7 @@ jQuery ->
       dataType: "json",
       data: { "drill_id": $(this).data('drill_id'), "prompt": "prompt"},
       url: '/exercises/',
-      success: (my_html) -> 
+      success: (my_html) ->
         the_row.after(my_html);
         the_row.siblings('table').wrap('<tr ><td colspan="6"></td></td>');
         expand_button.addClass('hidden');
@@ -190,9 +191,9 @@ jQuery ->
       audio = icon.siblings('audio')[0]
       console.log(audio)
       if audio.playbackRate > .5
-        console.log("Deccelerate attempted")      
+        console.log("Deccelerate attempted")
         audio.playbackRate = audio.playbackRate - .25
-        console.log("playback rate= " + audio.playbackRate)        
+        console.log("playback rate= " + audio.playbackRate)
       else
         icon.css("color", "red")
         callback = -> icon.css("color", "white")
