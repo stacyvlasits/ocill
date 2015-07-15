@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150116181014) do
+ActiveRecord::Schema.define(:version => 20150715193638) do
 
   create_table "activities", :force => true do |t|
     t.string   "lti_resource_link_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20150116181014) do
     t.integer  "user_id"
     t.string   "lis_outcome_service_url"
     t.string   "lis_result_sourcedid"
+    t.text     "response"
   end
 
   add_index "attempts", ["drill_id", "user_id"], :name => "index_attempts_on_drill_id_and_user_id"
@@ -141,11 +142,9 @@ ActiveRecord::Schema.define(:version => 20150116181014) do
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
     t.integer  "course_id"
-    t.integer  "section_id"
   end
 
   add_index "roles", ["course_id"], :name => "index_roles_on_course_id"
-  add_index "roles", ["section_id"], :name => "index_roles_on_section_id"
   add_index "roles", ["user_id"], :name => "index_roles_on_user_id"
 
   create_table "roles_users", :id => false, :force => true do |t|
