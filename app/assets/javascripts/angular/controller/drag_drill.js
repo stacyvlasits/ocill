@@ -1,7 +1,7 @@
 jQuery( document ).ready(function( $ ) {
 
   prepare_for_ajax = function(drill){
- 
+
     drill.drill.exercises.forEach(function(exercise){
       exercise.exercise_items_attributes = exercise.exercise_items;
       delete exercise.exercise_items;
@@ -14,10 +14,10 @@ jQuery( document ).ready(function( $ ) {
   };
 
 
-  $('.drag-drill .submit-drill').click(function(){
+  $('.drag-drill .submit-drill').click(function(event){
     var the_drill = window.ocill_drill_variable;
 
-    if ( the_drill ) {    
+    if ( the_drill ) {
 
       var the_drill_id = the_drill.drill.id;
 
@@ -27,7 +27,7 @@ jQuery( document ).ready(function( $ ) {
         type: "PUT",
         dataType: "json",
         data: the_drill,
-        url: '/drills/' + the_drill_id 
+        url: '/drills/' + the_drill_id
       }).done(function(got_sum) {
         $('form').submit();
       }).fail(function(jqXHR, textStatus, errorThrown){
@@ -36,7 +36,7 @@ jQuery( document ).ready(function( $ ) {
     }
 
     event.preventDefault();
-  
+
   });
 });
 
@@ -45,7 +45,7 @@ var dragDrillApp = angular.module('dragDrillApp', ['gen.genericDirectives', 'ui.
 
 dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", function ($scope, $location, $http) {
   var parser = document.createElement('a');
-  parser.href = document.URL 
+  parser.href = document.URL
   // e.g. /drills/457/edit
   drill_id = parser.pathname.split('/')[2]
 
@@ -57,7 +57,7 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
       $scope.drill = {};
     });
   } else {
-    $scope.drill = {};    
+    $scope.drill = {};
   }
 
   $scope.$watch('drill', function(drill){
@@ -116,5 +116,5 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
       return '/ng-templates/nested_exercise_items.html';
     }
     return null;
-  };  
+  };
 }]);

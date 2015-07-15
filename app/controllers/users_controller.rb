@@ -10,8 +10,8 @@ class UsersController < ApplicationController
   end
 
   def index
-  	@users = Users.all
+  	@users = User.all
   	respond_with @users
   end
-  
+
 end
