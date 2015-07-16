@@ -1,21 +1,21 @@
 class Attempt < ActiveRecord::Base
-  attr_accessible :drill_id, :user_id, :lis_outcome_service_url, :lis_result_sourcedid, :response
-  # has_many :responses, :dependent => :destroy, :autosave => true, :include => :exercise_item
+  attr_accessible :drill_id, :user_id, :responses_attributes, :lis_outcome_service_url, :lis_result_sourcedid
+  has_many :responses, :dependent => :destroy, :autosave => true, :include => :exercise_item
   has_many :exercise_items, :through => :drill
   belongs_to :drill
   belongs_to :user
-  # accepts_nested_attributes_for :responses, allow_destroy: true
-  default_scope :include => :exercise_items #, :include => :responses
-  serialize :response, JSON
+  accepts_nested_attributes_for :responses, allow_destroy: true
+  default_scope :include => :exercise_items, :include => :responses
+  # serialize :response, JSON
   # TODO move the presentation of the score out of the model and into a view helper
   def html_score
     '<span class="score"><span class="correct">' + correct.to_s + '</span>/<span class="total">' + total.to_s + '</span></span>'.html_safe
   end
 
-  def responses
-    # aliasing this for now so I can write the code I want
-    response
-  end
+  # def responses
+  #   # aliasing this for now so I can write the code I want
+  #   response
+  # end
 
   def exercise_item_ids
     self.exercise_items.map { |ei| ei['id']  }
