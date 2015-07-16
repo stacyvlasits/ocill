@@ -1,11 +1,11 @@
 class Attempt < ActiveRecord::Base
   attr_accessible :drill_id, :user_id, :lis_outcome_service_url, :lis_result_sourcedid, :response
   # has_many :responses, :dependent => :destroy, :autosave => true, :include => :exercise_item
-  # has_many :exercise_items, :through => :responses
+  has_many :exercise_items, :through => :drill
   belongs_to :drill
   belongs_to :user
   # accepts_nested_attributes_for :responses, allow_destroy: true
-  # default_scope :include => :exercise_items, :include => :responses
+  default_scope :include => :exercise_items
   serialize :response, JSON
 
   # TODO move the presentation of the score out of the model and into a view helper
@@ -66,7 +66,8 @@ class Attempt < ActiveRecord::Base
 
   def grade_sheet
     responses.each_with_index.map do |response, index|
-      answers = response['exercise_item_id'] ? response.exercise_item.answers : []
+
+      answers = response['exercise_item_id'] ? response.answers : []
       [response.value, answers , response.id]
     end
   end
