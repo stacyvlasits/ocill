@@ -1,25 +1,20 @@
 class Attempt < ActiveRecord::Base
-  attr_accessible :drill_id, :user_id, :lis_outcome_service_url, :lis_result_sourcedid, :response
-  # has_many :responses, :dependent => :destroy, :autosave => true, :include => :exercise_item
-  has_many :exercise_items, :through => :drill
+  attr_accessible :drill_id, :user_id, :responses_attributes, :lis_outcome_service_url, :lis_result_sourcedid, :response
+  has_many :responses, :dependent => :destroy, :autosave => true, :include => :exercise_item
+  has_many :exercise_items, :through => :responses
   belongs_to :drill
   belongs_to :user
-  # accepts_nested_attributes_for :responses, allow_destroy: true
-  default_scope :include => :exercise_items
+  accepts_nested_attributes_for :responses, allow_destroy: true
+  default_scope :include => :exercise_items, :include => :responses
   serialize :response, JSON
-
   # TODO move the presentation of the score out of the model and into a view helper
   def html_score
     '<span class="score"><span class="correct">' + correct.to_s + '</span>/<span class="total">' + total.to_s + '</span></span>'.html_safe
   end
 
-  def responses
-    JSON.parse(self.response)
-  end
-
   def matches_current_drill_state?
-    broken_responses = self.responses.select do |r|
-      r['exercise_item_id'] == nil
+    broken_responses = self.responses.includes(:exercise_item).select do |r|
+      r.exercise_item == nil
     end
     broken_responses.empty?
   end
@@ -66,8 +61,7 @@ class Attempt < ActiveRecord::Base
 
   def grade_sheet
     responses.each_with_index.map do |response, index|
-
-      answers = response['exercise_item_id'] ? response.answers : []
+      answers = response.exercise_item ? response.exercise_item.answers : []
       [response.value, answers , response.id]
     end
   end
