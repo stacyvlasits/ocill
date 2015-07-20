@@ -1,6 +1,6 @@
 class ExerciseItem < ActiveRecord::Base
   attr_accessible :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video, :panda_audio_id
-  # attr_accessible  :encodings  
+  # attr_accessible  :encodings
   attr_accessible :position, :remove_audio, :remove_image, :remove_video # TODO remove "column" and "deleted_at" from db
   mount_uploader :audio, AudioUploader
 #  mount_uploader :video, VideoUploader
@@ -11,8 +11,6 @@ class ExerciseItem < ActiveRecord::Base
   # default_scope where("deleted_at IS NULL")
 
   # scope :deleted, -> { unscoped.where("deleted_at IS NOT NULL") }
-
-  has_many :responses
 
   belongs_to :exercise
   belongs_to :header
@@ -26,7 +24,7 @@ class ExerciseItem < ActiveRecord::Base
   def panda_audio
     @panda_audio ||= Panda::Video.find(panda_audio_id)
   end
-  
+
   def audio_urls
     urls = []
     urls << self.audio_url
@@ -48,10 +46,10 @@ class ExerciseItem < ActiveRecord::Base
         attr_accessible :#{method_name}
       "
     end
-  end  
+  end
 
-  serialized_attr_accessor :mp3, :ogg  
-  
+  serialized_attr_accessor :mp3, :ogg
+
   def cleanup_audio
     if remove_audio
       self.remove_audio!
@@ -78,7 +76,7 @@ class ExerciseItem < ActiveRecord::Base
   def set_default_position
     self.position ||= 999999
   end
-  
+
   def drill
     self.exercise.drill
   end
@@ -91,19 +89,19 @@ class ExerciseItem < ActiveRecord::Base
 
   def as_json(options={})
     if options[:type] == :simple || options[:type] == :shuffle
-      { 
-        id: self.id , 
-        position: self.position , 
+      {
+        id: self.id ,
+        position: self.position ,
         text: self.text,
         graded: self.graded,
         acceptable_answers: self.acceptable_answers
       }
     else
-      { 
-        id: self.id , 
+      {
+        id: self.id ,
         updated_at: self.updated_at,
-        created_at: self.created_at , 
-        position: self.position , 
+        created_at: self.created_at ,
+        position: self.position ,
         text: self.text,
         graded: self.graded,
         audio: self.audio,

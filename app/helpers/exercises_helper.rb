@@ -2,8 +2,8 @@ module ExercisesHelper
   def graded_fill_drill_exercise(exercise, responses)
     spans = exercise.exercise_items.map do |ei|
       # TODO reduce number of sql queries
-      if response = responses.where(:exercise_item_id => ei).first
-        '<span class="' + graded_class(response) + '">'  + response.value.to_s + '</span>' + " " + (response.correct? ? icon("ok") : icon("times")) 
+      if response = responses.find {|r| r.exercise_item_id.to_i == ei.id }
+        '<span class="' + graded_class(response) + '">'  + response.value.to_s + '</span>' + " " + (response.correct? ? icon("ok") : icon("times"))
       else
         '<span class="left-blank"></span>' + icon("times")
       end
@@ -19,7 +19,7 @@ module ExercisesHelper
 
   def graded_class(response)
     graded_class = "incorrect"
-    graded_class = "correct" if response.correct? 
+    graded_class = "correct" if response.correct?
     graded_class = "left-blank" if response.value.blank?
     graded_class
   end
@@ -28,7 +28,7 @@ module ExercisesHelper
     html = ""
     exercise.exercise_items.each do |ei|
       if ei.answers
-        response = responses.where(:exercise_item_id => ei).first
+        response = responses.find {|r| r.exercise_item_id.to_i == ei.id }
         html += "<td>" + (response.correct? ? icon("ok") : icon("times")) + "</td>"
       else
         html += "<td>--</td>".html_safe
@@ -37,33 +37,33 @@ module ExercisesHelper
     html.html_safe
   end
 
-  def edit_fill_drill_exercise(exercise, responses)
+  def edit_fill_drill_exercise(exercise, responses, attempt_id)
     inputs = exercise.exercise_items.map do |ei|
-      response = responses.where(:exercise_item_id => ei)
-      create_response_input(ei.id, response.first.id)
+      response = responses.find {|r| r.exercise_item_id.to_i == ei.id }
+      create_response_input(ei.id, attempt_id)
     end
     prompt = exercise.prompt_with_hints.gsub(/\[/,'{{').gsub(/\]/,'}}')
     inputs.each {|input| prompt.sub!(/\{\{.+?\}\}/, input) }
     prompt
   end
 
-  def attempt_drag_drill_exercise(exercise,responses )
-    
+  def attempt_drag_drill_exercise(exercise, responses, attempt_id )
+
     inputs = exercise.exercise_items.map do |ei|
-      if response = responses.select {|r| r.exercise_item_id == ei.id}.first
-        create_response_input(ei.id, response.id, "text", "correct", response.value)
+      if response = responses.find {|r| r.exercise_item_id.to_i == ei.id }
+        create_response_input(ei.id, attempt_id, "text", "correct", response.value)
       end
     end
-    "<h1>Hi!</h1>"
   end
 
-  def attempt_fill_drill_exercise(exercise, responses)
+  def attempt_fill_drill_exercise(exercise, responses, attempt_id)
     inputs = exercise.exercise_items.map do |ei|
-      if response = responses.select {|r| r.exercise_item_id == ei.id}.first
-        create_response_input(ei.id, response.id, "text", "correct", response.value)
+      if response = responses.find {|r| r.exercise_item_id.to_i == ei.id }
+        create_response_input(ei.id, attempt_id, "text", "correct", response.value)
       else
-        response = Response.create(exercise_item_id:ei.id, attempt_id: @attempt.id, value:'')
-        create_response_input(ei.id, response.id)
+        response = Response.new( {exercise_item_id:ei.id, attempt_id: @attempt.id, value:''} )
+        @attempt.responses += [response]
+        create_response_input(ei.id, attempt_id)
       end
     end
     prompt = exercise.prompt_with_hints.gsub(/\[/,'{{').gsub(/\]/,'}}')
@@ -71,8 +71,13 @@ module ExercisesHelper
     prompt
   end
 
-  def create_response_input(exercise_item_id, response_id, type="text", css_class="the_blank", value="" )
-    '<input id="attempt_responses_attributes_' + response_id.to_s + '_exercise_item_id" name="attempt[responses_attributes][' + response_id.to_s + '][exercise_item_id]" type="hidden" value="' + exercise_item_id.to_s + ' "/><input class="' + css_class + '" id="attempt_responses_attributes_' + response_id.to_s + '_value" name="attempt[responses_attributes][' + response_id.to_s + '][value]" type="' + type + '" value="' + value + '"/>'
+  def create_response_input(exercise_item_id, attempt_id, type="text", css_class="the_blank", value="" )
+    i = rand(1...999999999)
+    '
+      <input id="attempt_responses_exercise_item_id" name="attempt[responses][' + i.to_s + '][exercise_item_id]" type="hidden" value="' + exercise_item_id.to_s + ' "/>
+
+      <input class="' + css_class + '" id="attempt_responses_value" name="attempt[responses][' + i.to_s + '][value]" type="' + type + '" value="' + value + '"/>
+    '
   end
 
   def create_grid_drill_exercises(exercise, responses)
@@ -96,6 +101,3 @@ module ExercisesHelper
   end
 
 end
-
-
-

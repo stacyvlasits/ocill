@@ -1,5 +1,5 @@
 <li class="fill-drill-exercise">
   <%= audio_tag(exercise.audio_urls) unless exercise.audio_url.blank? || exercise.audio_url.include?("fallback")%>
   <%= image_tag(exercise.image_url(:small)) unless exercise.image_url.include?("fallback") %>
-  <%= attempt_fill_drill_exercise(exercise, @attempt.responses).html_safe %>
+  <%= attempt_fill_drill_exercise(exercise, @attempt.responses, @attempt.id).html_safe %>
 </li>

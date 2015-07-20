@@ -1,26 +1,34 @@
-class Response < ActiveRecord::Base
-  attr_accessible :attempt_id, :exercise_item_id, :value
-  validates_uniqueness_of :id, :scope => [:exercise_item_id, :attempt_id]
+class Response < Hash
+  attr_accessor :exercise_item_id, :attempt_id, :value, :cached_exercise_item
 
-  belongs_to :attempt
-  belongs_to :exercise_item
-  before_save :strip_value
-  default_scope :include => :exercise_item 
+  def initialize(response=nil)
+    self.exercise_item_id = self["exercise_item_id"] = response ? response["exercise_item_id"] : nil
+    self.value = self["value"] =  response ? response["value"] : nil
+  end
 
-  def exercise_item
-    if self.exercise_item_id
-      begin 
-        ExerciseItem.unscoped.find(self.exercise_item_id)
+  def attempt
+    if self.attempt_id
+      begin
+        Attempt.unscoped.find(self.attempt_id)
       rescue ActiveRecord::RecordNotFound
-        
+        #TODO:  Do nothing?
       end
     else
       nil
     end
   end
 
-  def strip_value
-    self.value.strip! if self.value
+  def exercise_item
+    if @cached_exercise_item
+      @cached_exercise_item
+    elsif self.exercise_item_id
+      begin
+        @cached_exercise_item = ExerciseItem.unscoped.find(self.exercise_item_id)
+      rescue ActiveRecord::RecordNotFound
+      end
+    else
+      nil
+    end
   end
 
   def answers
