@@ -1,12 +1,14 @@
 class ExerciseItem < ActiveRecord::Base
-  attr_accessible :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video, :panda_audio_id
-  # attr_accessible  :encodings
-  attr_accessible :position, :remove_audio, :remove_image, :remove_video # TODO remove "column" and "deleted_at" from db
+  attr_accessible :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video, :panda_audio_id, :options
+  # attr_accessible  :options
+  attr_accessible :position, :remove_audio, :remove_image, :remove_video
+
+  # TODO remove "column" and "deleted_at" from db
   mount_uploader :audio, AudioUploader
 #  mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
   serialize :acceptable_answers
-  serialize :encodings, Hash
+  serialize :options, Hash
 
   # default_scope where("deleted_at IS NULL")
 
@@ -37,18 +39,18 @@ class ExerciseItem < ActiveRecord::Base
     args.each do |method_name|
       eval "
         def #{method_name}
-          (self.encodings || {})[:#{method_name}]
+          (self.options || {})[:#{method_name}]
         end
         def #{method_name}=(value)
-          self.encodings ||= {}
-          self.encodings[:#{method_name}] = value
+          self.options ||= {}
+          self.options[:#{method_name}] = value
         end
         attr_accessible :#{method_name}
       "
     end
   end
 
-  serialized_attr_accessor :mp3, :ogg
+  serialized_attr_accessor :mp3, :ogg, :horizontal
 
   def cleanup_audio
     if remove_audio

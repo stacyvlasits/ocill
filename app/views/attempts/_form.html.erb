@@ -11,9 +11,9 @@
        <p><%= drill.prompt.to_s.html_safe %></p>
     <% end -%>
     <% if current_user.is_lti? && session['launch_params'] %>
-      <%= render 'lti', :f => f %> 
+      <%= render 'lti', :f => f %>
     <% end -%>
-    <% if ( action_name == "new" ) || @attempt.matches_current_drill_state? -%>  
+    <% if ( action_name == "new" ) || @attempt.matches_current_drill_state? -%>
       <h5><strong><%= model_class.human_attribute_name(:exercises) %>:</strong></h5>
         <%= before_exercise_wrapper(drill).html_safe %>
         <% drill.exercises.each do |exercise| %>
@@ -38,7 +38,7 @@
     <% end -%>
     <% case action_name %>
     <% when "show" %>
-    <%= link_to "Attempt Again", new_drill_attempt_path(:drill_id => drill.id), :class => 'btn btn-primary ' + drill.type.underscore.dasherize %>
+    <%= link_to "Attempt Again", new_drill_attempt_path(:drill_id => drill.id), :id => 'submit-attempt', :class => 'btn btn-primary ' + drill.type.underscore.dasherize %>
     <% when "new" %>
       <%= f.submit "Submit Attempt", :id => 'submit-attempt', :class => 'btn btn-primary' %>
     <% when "edit" %>

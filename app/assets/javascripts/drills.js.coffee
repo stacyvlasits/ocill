@@ -115,6 +115,13 @@ jQuery ->
           else
             toastr.error('An error prevented your interview information from being updated.', "error"))
 
+# Handles horizontal
+# jQuery ->
+#   $('form').on 'change', '.set-horizontal', (event) ->
+#     $('form .text-field').addClass('rtl') if $('.set-horizontal').is(':checked')
+#     $('form .text-field').addClass('rtl') unless $('.set-horizontal').is(':checked')
+#     event.preventDefault()
+
 # Handles RTL
 jQuery ->
   fixRTL()

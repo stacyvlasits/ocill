@@ -2,8 +2,10 @@
   <ol class="apps-container" ui-sortable="sortableOptionsInner" ng-model="drill.drill.exercises">
     <li class="innerCont" ng-repeat="exercise in drill.drill.exercises" ng-hide="exercise._destroy" >
 	  <span class="exercise-prompt">{{exercise.prompt}}</span>
-      <gen-dynamic-directive ng-model="exercise" gen-get-dynamic-view="getView">
-      </gen-dynamic-directive>
+      <div ng-class="exercise.horizontal=='true' ? 'drag-horizontal' : 'drag-vertical'">
+        <gen-dynamic-directive ng-model="exercise" gen-get-dynamic-view="getView">
+        </gen-dynamic-directive>
+      </div>
     </li>
   </ol>
 </div>

@@ -38,11 +38,11 @@
       </div>
     </div>
   <% end %>
-  
+
   <div id="exercises" class="controls">
     <%= render nested_folder(@drill) + 'fields', :f => f unless @drill.type.nil? || @drill.type.empty? %>
   </div>
-      
+
   <div class="form-actions">
     <%= f.submit nil, :class => 'submit-drill btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), unit_path(@drill.unit_id), :class => 'btn' %>

@@ -12,6 +12,4 @@ class Responses < Array
       super
     end
   end
-  
-
 end

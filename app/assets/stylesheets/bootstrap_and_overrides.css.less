@@ -116,7 +116,7 @@ input.hidden,
 }
 
 .user-group {
-  margin-left: 0px;  
+  margin-left: 0px;
 }
 
 .add-user-role {
@@ -168,7 +168,7 @@ tbody>tr:nth-child(odd) {background-color:#fff;}
 /* Keep sidebar on top, might have to edit later */
 
 #nav-tree {
-  overflow-y: auto; 
+  overflow-y: auto;
   position: fixed;
   height: 100%;
 }
@@ -217,20 +217,31 @@ audio {
 
 }
 
-.drag-drill .ui-sortable li {
+.drag-horizontal li {
+  float: left;
+  display: inline-block;
+}
+
+#drag-drill-container .drag-horizontal ol input {
+  width: 69%
+}
+
+.horizontal-checkbox {
+  width: inherit;
+  margin: 0px;
+}
+
+.drag-vertical li {
 
 }
 
 #drag-drill-attempt-container .ui-sortable li .ui-sortable li,
 #drag-drill-container .ui-sortable li .ui-sortable li {
   background-color: #bbb;
-  width: 210px;
-  float: left;
-  display: inline-block;
   margin-right: 10px;
   border-radius: 5px;
-
 }
+
 #drag-drill-attempt-container .btn,
 #drag-drill-container .btn {
   clear: both;
@@ -247,7 +258,6 @@ audio {
 #drag-drill-container ol ol input {
   margin-bottom: 0;
   margin-top: 0;
-  width: 150px;
 }
 
 #drag-drill-attempt-container .contents-draggable,
@@ -274,7 +284,7 @@ audio {
 
 #drag-drill-attempt-container .handle:hover,
 #drag-drill-container .handle:hover {
-  
+
 }
 
 #drag-drill-attempt-container .exercise-item-text,
@@ -311,7 +321,7 @@ gen-dynamic-directive {
 .course-report>tbody td:not(:first-child) {text-align: center;}
 .course-report td:not(:last-child), .table-striped td:not(:last-child){ border-right:1px solid #fff;}
 .course-report th:not(:last-child), .table-striped th:not(:last-child){ border-right:1px solid #fff;}
-.course-report th, .course-report td { 
+.course-report th, .course-report td {
   padding-left:8px;
   padding-right:8px;
 }
@@ -356,11 +366,11 @@ li.nav-leaf.drill:not(:last-child) {border-bottom:1px #999 dotted;}
   border-left:1px solid #ddd;
   border-right:1px solid #ddd;
   border-bottom:1px solid #ddd;
-  
+
   border-top-left-radius: 3px;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
-    
+
   padding:10px;
   margin-bottom:15px;
 }
@@ -413,14 +423,14 @@ ul.drills-for-unit li.used:after {
 ul.drills-for-unit li,
 #course-selector input[type=radio] + label {
   background-color: white;
-  -moz-border-radius: 5px; 
-  -webkit-border-radius: 5px;  
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius: 5px;
   border-bottom: solid 2px transparent;
-  -moz-box-shadow: 0px 0px 4px #222;  
-  -webkit-box-shadow: 0px 0px 4px #222;  
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
   box-shadow: 0px 0px 4px #222;
-  cursor: pointer; 
+  cursor: pointer;
   display: inline-block;
   margin: 0 15px 10px 0;
   padding: 5px;
@@ -460,7 +470,7 @@ ul.drills-for-unit li.selected,
   background-color: #1c1c1c;
   border-radius: 5px;
   color: #fff;
-  margin-top: 5px;
+  margin: 5px 0px;
   padding: 5px 0px;
   text-align: center;
   width: 300px;
@@ -518,5 +528,3 @@ td audio {
         width:auto;
     }
 }
-
-

@@ -1,19 +1,19 @@
 class DrillsController < InheritedResources::Base
   load_and_authorize_resource
   respond_to :json
-  
+
   def show
     @drill = Drill.find(params[:id])
-    @performances = @drill.attempters.map {|attempter| Performance.new(@drill, attempter)} 
+    @performances = @drill.attempters.map {|attempter| Performance.new(@drill, attempter)}
   end
 
   def read
-    @drill = Drill.includes( exercises: :exercise_items ).find(params[:drill_id])    
+    @drill = Drill.includes( exercises: :exercise_items ).find(params[:drill_id])
     respond_to do |format|
-      format.html 
+      format.html
       if params[:type]
         format.json { render json: @drill.as_json({ type: params[:type].to_sym }) }
-      else 
+      else
         format.json { render json: @drill.as_json }
       end
      # format.json { render json: @drill.as_json }
@@ -31,32 +31,31 @@ class DrillsController < InheritedResources::Base
   end
 
   def index
-        
+
   end
 
   def create
     if @drill.type == "DragDrill"
-      
+
       if @drill.save
         redirect_to edit_drill_url(@drill)
         return
       end
     end
-  
+
     super do |format|
       format.html { render :action => "edit" }
     end
-    
+
   end
 
 
   def update
     @drill = Drill.find(params[:id])
-
     if @drill.update_attributes(params[:drill])
+
       flash[:notice] = "Successfully updated the drill."
     end
-
     respond_with(@drill) do |format|
       format.html { render :action => "edit" }
       format.json { render json: @drill.as_json }
@@ -70,8 +69,8 @@ class DrillsController < InheritedResources::Base
     super do |format|
       format.html { redirect_to unit_url(unit) }
     end
-  end  
-  
+  end
+
   def add_column
     @drill = Drill.find(params[:id])
     if @drill.update_attributes(params[:drill])

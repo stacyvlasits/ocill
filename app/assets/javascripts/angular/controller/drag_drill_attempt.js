@@ -1,41 +1,30 @@
 jQuery( document ).ready(function( $ ) {
 
-
   $('.drag-drill #submit-attempt').click(function(){
-    console.log("I got clicked!!!!")
     var the_attempt = window.ocill_attempt_variable;
-    if ( the_attempt ) {    
+    if ( the_attempt ) {
       var attempt_json = { "attempt": the_attempt, "json": true };
-      console.log(attempt_json);
       var the_drill_id = the_attempt.drill_id;
-
-
       $.ajax({
         type: "POST",
         dataType: "json",
         data: attempt_json,
         url: '/drills/' + the_drill_id + '/attempts.json',
       }).done(function(attempt) {
-        console.log("i submitted the attempt and it worked");
-        console.log(attempt);
         window.location.href = '/drills/' + the_drill_id + '/attempts/' + attempt.id;
       }).fail(function(jqXHR, textStatus, errorThrown){
         toastr.error("Ocill did not successfully save your work.  Please contact the Ocill administrator.");
-        console.log(jqXHR);
       });
     }
-
     event.preventDefault();
-  
   });
 });
-
 
 var dragDrillAttemptApp = angular.module('dragDrillAttemptApp', ['gen.genericDirectives', 'ui.sortable']);
 
 dragDrillAttemptApp.controller('DragDrillAttemptCtrl', [ "$scope", "$location", "$http", function ($scope, $location, $http) {
   var parser = document.createElement('a');
-  parser.href = document.URL 
+  parser.href = document.URL
   // e.g. /drills/457/edit
   drill_id = parser.pathname.split('/')[2]
 
@@ -47,10 +36,10 @@ dragDrillAttemptApp.controller('DragDrillAttemptCtrl', [ "$scope", "$location", 
       $scope.drill = {};
     });
   } else {
-    $scope.drill = {};    
+    $scope.drill = {};
   }
 
-  $scope.attempt = { 
+  $scope.attempt = {
     drill_id: drill_id
    };
 
@@ -59,16 +48,16 @@ dragDrillAttemptApp.controller('DragDrillAttemptCtrl', [ "$scope", "$location", 
     if (!drill.drill) return;
     if (!drill.drill.exercises) return;
     var response_count = 0;
-    $scope.attempt.responses_attributes = [];
+    $scope.attempt.responses = [];
     drill.drill.exercises.forEach(function(exercise, index){
       if (!exercise) return;
 
         if (!exercise.exercise_items) return;
-        
+
         exercise.exercise_items.forEach(function(exercise_item, index){
-          $scope.attempt.responses_attributes[response_count] = {};
-          $scope.attempt.responses_attributes[response_count]["exercise_item_id"] = exercise_item.id;
-          $scope.attempt.responses_attributes[response_count]["value"] = index;
+          $scope.attempt.responses[response_count] = {};
+          $scope.attempt.responses[response_count]["exercise_item_id"] = exercise_item.id;
+          $scope.attempt.responses[response_count]["value"] = index;
           response_count++;
       });
     });

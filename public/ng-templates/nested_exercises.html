@@ -1,11 +1,19 @@
 <div>
   <ol class="apps-container" ui-sortable="sortableOptionsInner" ng-model="drill.drill.exercises">
     <li class="innerCont" ng-repeat="exercise in drill.drill.exercises" ng-hide="exercise._destroy" >
-	  <span class="handle"><i class="fa fa-bars"></i></span>
+	  <span class="handle">
+      <i class="fa fa-bars"></i>
+    </span>
 	  Prompt
+    <span class="exercise-horizontal">
+      Horizontal?
+      <input type="checkbox" class="horizontal-checkbox" ng-model="exercise.horizontal" name="exercise-horizontal" ng-true-value="true" ng-false-value="false">
+    </span>
 	  <textarea ng-model="exercise.prompt"></textarea>
-      <gen-dynamic-directive ng-model="exercise" gen-get-dynamic-view="getView">
-      </gen-dynamic-directive>
+      <div ng-class="exercise.horizontal=='true' ? 'drag-horizontal' : 'drag-vertical'">
+        <gen-dynamic-directive ng-model="exercise" gen-get-dynamic-view="getView" >
+        </gen-dynamic-directive>
+      </div>
     	<a href="#"  tabindex="-1" ng-click="delete($index, -1)"><i class="fa fa-times remove-item"></i></a>
     </li>
   </ol>

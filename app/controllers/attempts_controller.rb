@@ -8,7 +8,6 @@ class AttemptsController < InheritedResources::Base
       old_responses = []
 
       if @drill.retain_correct?
-        binding.pry
         attempts_on_this_drill = current_user.attempts.where(:drill_id => params[:drill_id]).order("created_at DESC")
         if attempts_on_this_drill.count > 0
           latest = attempts_on_this_drill.first

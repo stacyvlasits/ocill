@@ -1,15 +1,15 @@
 class Exercise < ActiveRecord::Base
   include Comparable
   mount_uploader :audio, AudioUploader
-  # mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
-  attr_accessible :prompt, :title, :fill_in_the_blank, :position, :drill_id, :weight, :exercise_items_attributes, :audio, :image, :video, :remove_audio, :remove_image, :remove_video, :panda_audio_id
-  # attr_accessible  :encodings
+  attr_accessible :prompt, :title, :fill_in_the_blank, :position, :drill_id, :weight, :exercise_items_attributes, :audio, :image, :video, :remove_audio, :remove_image, :remove_video, :panda_audio_id, :horizontal
+  attr_accessible  :options
 
-  serialize :encodings, Hash
+  serialize :options, Hash
 
   belongs_to :drill
   alias :parent :drill
+
   has_many :exercise_items, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercise_items
 
@@ -35,18 +35,18 @@ class Exercise < ActiveRecord::Base
     args.each do |method_name|
       eval "
         def #{method_name}
-          (self.encodings || {})[:#{method_name}]
+          (self.options || {})[:#{method_name}]
         end
         def #{method_name}=(value)
-          self.encodings ||= {}
-          self.encodings[:#{method_name}] = value
+          self.options ||= {}
+          self.options[:#{method_name}] = value
         end
         attr_accessible :#{method_name}
       "
     end
   end
 
-  serialized_attr_accessor :mp3, :ogg
+  serialized_attr_accessor :mp3, :ogg, :horizontal
 
   def answers
     self.exercise_items.map { |exercise_item| exercise_item.answer}
@@ -63,7 +63,7 @@ class Exercise < ActiveRecord::Base
       self.exercise_items.create(:header_id => header_id)
     end
   end
-  
+
   def row
     smaller_siblings.size + 1
   end
@@ -95,7 +95,7 @@ class Exercise < ActiveRecord::Base
       self.exercise_items.create(acceptable_answers: answers, position: index)
     end
   end
-  
+
   def audio_name
      File.basename(audio.path || audio.filename ) unless audio.to_s.empty?
   end
@@ -114,7 +114,7 @@ class Exercise < ActiveRecord::Base
   def smaller_siblings
     siblings.select {|sib| sib < self }
   end
-  
+
   def myself
     self
   end
@@ -122,7 +122,7 @@ class Exercise < ActiveRecord::Base
   def bigger_siblings
     siblings.select {|sib| sib > self }
   end
-    
+
   def biggest_sibling
     siblings.max
   end
@@ -133,39 +133,42 @@ class Exercise < ActiveRecord::Base
 
   def as_json(options={})
     if options[:type] == :shuffle
-      { 
-        id: self.id , 
-        position: self.position , 
-        prompt: self.prompt, 
-        title: self.title , 
-        drill_id: self.drill_id , 
+      {
+        id: self.id ,
+        position: self.position ,
+        prompt: self.prompt,
+        title: self.title ,
+        drill_id: self.drill_id ,
         weight: self.weight,
+        horizontal: self.horizontal,
         exercise_items: self.exercise_items.shuffle.as_json(options)
       }
     elsif options[:type] == :simple
-    { 
-        id: self.id , 
-        position: self.position , 
-        prompt: self.prompt, 
-        title: self.title , 
-        drill_id: self.drill_id , 
-        weight: self.weight,
-        exercise_items: self.exercise_items.as_json(options)
-    }            
+      {
+          id: self.id ,
+          position: self.position ,
+          prompt: self.prompt,
+          title: self.title ,
+          drill_id: self.drill_id ,
+          weight: self.weight,
+          horizontal: self.horizontal,
+          exercise_items: self.exercise_items.as_json(options)
+      }
     else
-      { 
-        id: self.id , 
-        position: self.position , 
-        prompt: self.prompt , 
-        title: self.title , 
-        drill_id: self.drill_id , 
+      {
+        id: self.id ,
+        position: self.position ,
+        prompt: self.prompt ,
+        title: self.title ,
+        drill_id: self.drill_id ,
         weight: self.weight,
         audio: self.audio,
         image: self.image,
         video: self.video,
+        horizontal: self.horizontal,
         panda_audio_id: self.panda_audio_id,
         updated_at: self.updated_at,
-        created_at: self.created_at , 
+        created_at: self.created_at ,
         exercise_items: self.exercise_items.as_json(options)
       }
     end

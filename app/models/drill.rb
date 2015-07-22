@@ -1,15 +1,15 @@
 class Drill < ActiveRecord::Base
-  attr_accessible :instructions, :unit_id, :position, :prompt, :title, :exercises_attributes, :type, :headers_attributes, :options
+  attr_accessible :instructions, :unit_id, :position, :prompt, :title, :exercises_attributes, :type, :headers_attributes
 
   serialize :options, Hash
-  
+
   belongs_to :unit
   alias :parent :unit
-  
+
   has_many :exercises, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercises
   accepts_nested_attributes_for :exercises, allow_destroy: true
-  
+
   has_many :activities
   has_many :attempts
   has_many :attempters, :through => :attempts, :uniq => true, :source => :user
@@ -17,14 +17,14 @@ class Drill < ActiveRecord::Base
   has_many :images, :as => :imageable
   has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
   accepts_nested_attributes_for :headers, allow_destroy: true
-  
+
   validates :unit_id, :presence => true
   validates :title, :presence => true
-  
+
   before_save :set_default_title
   before_save :set_default_position
   after_commit :flush_user_navigation_caches
-  
+
   def self.serialized_attr_accessor(*args)
     args.each do |method_name|
       eval "
@@ -40,7 +40,7 @@ class Drill < ActiveRecord::Base
     end
   end
 
-  serialized_attr_accessor :rtl, :hide_text, :retain_correct
+  serialized_attr_accessor :rtl, :hide_text, :retain_correct, :horizontal
 
   def direction
     direction = self.rtl == "1" ? 'dir="rtl"' : 'dir="ltr"'
@@ -58,12 +58,16 @@ class Drill < ActiveRecord::Base
     end
   end
 
-  def retain_correct? 
+  def retain_correct?
     self.retain_correct == "1"
   end
 
   def hide_text?
     self.hide_text == "1"
+  end
+
+  def horizontal?
+    self.horizontal == "1"
   end
 
   def answers
@@ -73,23 +77,22 @@ class Drill < ActiveRecord::Base
   def course
     self.unit.course unless self.unit.nil?
   end
-    
+
   def rows
     self.exercises.size
   end
-  
-  def as_json(thingers={})
-    return thingers
-    { 
-      created_at: self.created_at , 
-      header_row: self.header_row , 
-      id: self.id , 
-      instructions: self.instructions , 
-      options:  self.options , 
-      position: self.position , 
-      prompt: self.prompt , 
-      title: self.title , 
-      unit_id: self.unit_id , 
+
+  def as_json(options={})
+    {
+      created_at: self.created_at ,
+      header_row: self.header_row ,
+      id: self.id ,
+      instructions: self.instructions ,
+      options:  self.options ,
+      position: self.position ,
+      prompt: self.prompt ,
+      title: self.title ,
+      unit_id: self.unit_id ,
       updated_at: self.updated_at,
       exercises: self.exercises.as_json(thingers)
      }
@@ -107,6 +110,6 @@ private
 
 private
   def flush_user_navigation_caches
-    User.flush_all_navigation_caches    
+    User.flush_all_navigation_caches
   end
 end

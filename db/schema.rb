@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150715193638) do
+ActiveRecord::Schema.define(:version => 20150721165555) do
 
   create_table "activities", :force => true do |t|
     t.string   "lti_resource_link_id"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20150715193638) do
     t.string   "audio"
     t.string   "video"
     t.integer  "header_id"
-    t.text     "encodings"
+    t.text     "options"
     t.string   "panda_audio_id"
     t.datetime "deleted_at"
   end
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20150715193638) do
     t.string   "audio"
     t.string   "video"
     t.string   "image"
-    t.text     "encodings"
+    t.text     "options"
     t.string   "panda_audio_id"
   end
 
