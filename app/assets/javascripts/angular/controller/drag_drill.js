@@ -11,7 +11,6 @@ jQuery( document ).ready(function( $ ) {
        delete exercise.exercise_items;
        delete exercise.$$hashKey;
      });
-
      drill.drill.exercises_attributes = drill.drill.exercises;
      delete drill.drill.exercises;
      delete drill.drill.id;
@@ -21,17 +20,19 @@ jQuery( document ).ready(function( $ ) {
   $('.drag-drill .submit-drill').click(function(event){
     var angular_scope = angular.element($("#drag-drill-controller")[0]).scope();
     var the_drill = angular_scope.drill;
+     console.log(the_drill);
     if ( the_drill ) {
       var the_drill_id = the_drill.drill.id;
       var final_drill = prepare_for_ajax(the_drill);
-      console.log(final_drill);
+
       $.ajax({
         type: "PUT",
         dataType: "json",
         data: final_drill,
         url: '/drills/' + the_drill_id
       }).done(function(json) {
-         window.location.href = '/drills/' + the_drill_id  + '/edit';
+        $('form').submit();
+        //  window.location.href = '/drills/' + the_drill_id  + '/edit';
       }).fail(function(jqXHR, textStatus, errorThrown){
         toastr.error("Ocill did not successfully save your work.  Please take a screenshot and send it to Ocill support.");
       });

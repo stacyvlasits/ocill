@@ -20,15 +20,7 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :options %>
-    <div class="checkbox-controls">
-      <%= f.label :rtl, :class => 'control-label' %>
-      <%= f.check_box :rtl, :class => 'set-rtl' %>
-      <%= f.label :hide_text, :class => 'control-label' %>
-      <%= f.check_box :hide_text, :class => 'set-show-text' %>
-      <%= f.label :retain_correct, :class => 'control-label' %>
-      <%= f.check_box :retain_correct, :class => 'set-retain-correct' %>
-    </div>
+    <%= render nested_folder(@drill) + 'options', :f => f unless @drill.type.nil? || @drill.type.empty? %> 
   </div>
   <% if @drill.exercises.empty? %>
     <div class="control-group">

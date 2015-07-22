@@ -1,5 +1,5 @@
 class Drill < ActiveRecord::Base
-  attr_accessible :instructions, :unit_id, :position, :prompt, :title, :exercises_attributes, :type, :headers_attributes
+  attr_accessible :instructions, :unit_id, :position, :prompt, :title, :exercises_attributes, :type, :headers_attributes, :options
 
   serialize :options, Hash
 

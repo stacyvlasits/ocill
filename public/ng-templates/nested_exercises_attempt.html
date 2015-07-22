@@ -1,4 +1,4 @@
-<div>
+<div ng-class="drill.drill.options.rtl =='1' ? 'rtl' : ''">
   <ol class="apps-container" ui-sortable="sortableOptionsInner" ng-model="drill.drill.exercises">
     <li class="innerCont" ng-repeat="exercise in drill.drill.exercises" ng-hide="exercise._destroy" >
 	  <span class="exercise-prompt">{{exercise.prompt}}</span>
