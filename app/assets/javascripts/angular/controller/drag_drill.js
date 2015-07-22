@@ -11,6 +11,7 @@ jQuery( document ).ready(function( $ ) {
        delete exercise.exercise_items;
        delete exercise.$$hashKey;
      });
+
      drill.drill.exercises_attributes = drill.drill.exercises;
      delete drill.drill.exercises;
      delete drill.drill.id;
@@ -18,8 +19,8 @@ jQuery( document ).ready(function( $ ) {
   };
 
   $('.drag-drill .submit-drill').click(function(event){
-    var the_scope = angular.element($("#drag-drill-controller")[0]).scope();
-    var the_drill = the_scope.drill;
+    var angular_scope = angular.element($("#drag-drill-controller")[0]).scope();
+    var the_drill = angular_scope.drill;
     if ( the_drill ) {
       var the_drill_id = the_drill.drill.id;
       var final_drill = prepare_for_ajax(the_drill);
@@ -60,24 +61,6 @@ dragDrillApp.controller('DragDrillCtrl', [ "$scope", "$location", "$http", funct
   } else {
     $scope.drill = {};
   }
-
-  // $scope.$watch('drill', function(drill){
-  //   if (!drill) return;
-  //   if (!drill.drill) return;
-  //   if (!drill.drill.exercises) return;
-  //   drill.drill.exercises.forEach(function(exercise, index){
-  //     if (!exercise) return;
-  //     exercise.position = index;
-  //     if (!exercise.exercise_items) return;
-  //     exercise.exercise_items.forEach(function(exercise_item, index){
-  //       exercise_item.position = index;
-  //       exercise_item.acceptable_answers = [ index ];
-  //     });
-  //   });
-  //  window.ocill_drill_variable = angular.copy(drill);
-  // }, true );
-
-  $scope.drill_to_store = function(drill){};
 
   $scope.sortableOptionsOuter = {
       handle: '.handle'
