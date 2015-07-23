@@ -26,7 +26,7 @@ jQuery( document ).ready(function( $ ) {
       var final_drill = prepare_for_ajax(the_drill);
 
       $.ajax({
-        type: "PUT",
+        type: "PATCH",
         dataType: "json",
         data: final_drill,
         url: '/drills/' + the_drill_id
