@@ -1,15 +1,15 @@
 function moveScroller() {
     var move = function() {
-    	var win = $(window);
+      var win = $(window);
         var st = win.scrollTop();
         var sa = $("#scroller-anchor")
         var ot = sa.offset().top;
         var s = $("#scroller");
         if ( s.height() > ( win.height() / 2) ) {
-        	s.css({ 
-        		"height": win.height()/2,
-        		"overflow": "scroll"
-        	});
+          s.css({ 
+            "height": win.height()/2,
+            "overflow": "scroll"
+          });
         }
         if(st > ot) {
             s.css({
@@ -35,6 +35,6 @@ function moveScroller() {
 
 jQuery( document ).ready(function( $ ) {
   if ( $("#scroller").length ){
-  	moveScroller();
+    moveScroller();
   }
 });
