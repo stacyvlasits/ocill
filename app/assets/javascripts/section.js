@@ -1,6 +1,6 @@
 jQuery( document ).ready(function( $ ) {
 	$(".duplicate-canvas-course").click(function(){
-		console.log("HI!!");
+
 		var id = $(this).data('section-id');
 		checkStatus(id);
 		startProcess(id);

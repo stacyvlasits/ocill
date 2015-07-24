@@ -1,14 +1,19 @@
 <%= form_for [@drill, @attempt], :html => { class: @drill.type.underscore.dasherize } do |f| %>
   <% drill = @attempt.drill %>
   <%- model_class = Drill -%>
-  <div>
+  <div class="attempt">
     <h5><strong><%= model_class.human_attribute_name(:unit) %>:</strong>  <%= drill.unit.title %></h5>
     <h5><strong><%= model_class.human_attribute_name(:title) %>:</strong>  <%= drill.title %></h5>
     <h5><strong><%= model_class.human_attribute_name(:instructions) %>:</strong></h5>
     <p><%= drill.instructions.to_s.html_safe %></p>
     <% unless drill.prompt.empty? %>
-       <h5><strong><%= model_class.human_attribute_name(:prompt) %>:</strong></h5>
-       <p><%= drill.prompt.to_s.html_safe %></p>
+      <div id="scroller-anchor"></div>
+      <div class="drill-prompt" id="scroller">
+        <h5>
+          <strong><%= model_class.human_attribute_name(:prompt) %>:</strong>
+        </h5>
+        <p><%= drill.prompt.to_s.html_safe %></p>
+      </div>
     <% end -%>
     <% if current_user.is_lti? && session['launch_params'] %>
       <%= render 'lti', :f => f %>
@@ -46,3 +51,9 @@
     <% end %>
   </div>
 <% end %>
+
+<script type="text/javascript"> 
+  $(function() {
+    moveScroller();
+  });
+</script> 
