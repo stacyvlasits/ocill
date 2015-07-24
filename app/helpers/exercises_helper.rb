@@ -88,8 +88,8 @@ module ExercisesHelper
         input += create_response_input(ei.id, response.id, "hidden", "audio-played", response.value)
       else
         input= "<td>"
-        response = Response.create(exercise_item_id:ei.id)
-        input += create_response_input(ei.id, response.id, "hidden", "audio-played", "0" )
+        response = Response.new({"exercise_item_id" => ei.id})
+        input += create_response_input(ei.id, 80085, "hidden", "audio-played", "0" )
       end
         input += audio_tag(ei.audio_urls) unless ei.audio_url.blank? || ei.audio_url.include?("fallback")
         input += image_tag(exercise.image_url(:small)) unless exercise.image.blank? || exercise.image_url.include?("fallback")
