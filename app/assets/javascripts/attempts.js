@@ -34,5 +34,7 @@ function moveScroller() {
 }
 
 jQuery( document ).ready(function( $ ) {
-  moveScroller();
+  if ( $("#scroller").length ){
+  	moveScroller();
+  }
 });
