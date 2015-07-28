@@ -1,0 +1,5 @@
+<ol  <%= drill.direction %> >
+  <% drill.exercises.each do |exercise| %>
+      <%= render '/drills/drag_drills/show_exercises',  :exercise => exercise %>  
+  <% end %> 
+</ol>
