@@ -5,6 +5,7 @@ ruby '2.0.0'
 gem 'rails', '4.0'
 # enables use of rails 3.0 style attr_accessible in rails
 gem 'protected_attributes'
+gem 'activeresource'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -94,14 +94,18 @@ class Launch
   end
 
   def learner_attempt_drill?
-    user.role == "Learner" && self.activity.drill.present? && Role.find_or_create_by_user_id_and_course_id_and_name(user.id, self.activity.course, user.role)
+    user.role == "Learner" && self.activity.drill.present? && Role.where(user_id: user.id, course_id: self.activity.course, name: user.role).first_or_create
   end
 
   def find_user
     role = lti_roles_to_ocill_user_role(params[:roles])
     email = "user#{rand(10000..999999999999).to_s}@example.com"
     password = "pass#{rand(10000..999999999999).to_s}"
-    u = User.find_or_create_by_lti_user_id(lti_user_id: params[:user_id], role: role, email: email, password: password)
+    u = User.where(lti_user_id: params[:user_id]).first_or_create
+    u.role= role
+    u.email= email
+    u.password= password
+    u.save!
   end
 
   def find_or_create_child_section(context_id, custom_canvas_course_id)
@@ -147,7 +151,9 @@ class Launch
       activity = Activity.where(lti_resource_link_id: params[:resource_link_id]).first
       return activity || Activity.new()
     else 
-      Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
+      a=Activity.where(lti_resource_link_id: params[:resource_link_id]).first_or_create 
+      a.section_id=section.id
+      a.save!
     end
   end
 

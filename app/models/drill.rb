@@ -6,16 +6,16 @@ class Drill < ActiveRecord::Base
   belongs_to :unit
   alias :parent :unit
 
-  has_many :exercises, :dependent => :destroy, :autosave => true, :order => "position ASC"
+  has_many :exercises, -> { order 'position ASC' }, dependent: :destroy, autosave: true
   alias :children :exercises
   accepts_nested_attributes_for :exercises, allow_destroy: true
 
   has_many :activities
   has_many :attempts
-  has_many :attempters, :through => :attempts, :uniq => true, :source => :user
+  has_many :attempters, -> { uniq }, :through => :attempts,  :source => :user
   has_many :exercise_items, :through => :exercises, :autosave => true
   has_many :images, :as => :imageable
-  has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
+  has_many :headers, -> {order 'position ASC' }, :dependent => :destroy, :autosave => true
   accepts_nested_attributes_for :headers, allow_destroy: true
 
   validates :unit_id, :presence => true
@@ -53,6 +53,8 @@ class Drill < ActiveRecord::Base
       "Grid"
     when "FillDrill"
       "FITB"
+    when "DragDrill"
+      "Drag"
     else
       ""
     end

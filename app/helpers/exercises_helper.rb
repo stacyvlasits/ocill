@@ -14,7 +14,7 @@ module ExercisesHelper
   end
 
   def graded_drag_drill_exercise(exercise, responses)
-
+    
   end
 
   def graded_class(response)

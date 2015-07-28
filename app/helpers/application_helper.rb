@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def nested_folder(model, sub_folder=nil)
-    folder = model.class.model_name.downcase.pluralize
+    folder = model.class.model_name.name.downcase.pluralize
     sub_folder ||= model.respond_to?(:type) ? model.type.to_s.underscore.pluralize : model.drill.type.to_s.underscore.pluralize
     '/' + folder + '/' + sub_folder + '/'
   end

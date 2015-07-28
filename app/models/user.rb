@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :role, :password, :password_confirmation, :remember_me, :lti_user_id
-  scope :none, where(:id => nil).where("id IS NOT ?", nil)
-  default_scope order("email asc")
+  scope :none, -> { where(:id => nil).where("id IS NOT ?", nil) }
+  default_scope { order('email asc') }
 
   validates :role, :inclusion => { :in => Role::ROLES,
     :message => "\"%{value}\" is not a valid role. Select from #{Role::ROLES.join(", ")}." }

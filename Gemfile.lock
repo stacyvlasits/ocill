@@ -20,6 +20,10 @@ GEM
       activesupport (= 4.0.0)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.4)
+    activeresource (4.0.0)
+      activemodel (~> 4.0)
+      activesupport (~> 4.0)
+      rails-observers (~> 0.1.1)
     activesupport (4.0.0)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -182,7 +186,7 @@ GEM
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
-    fog-profitbricks (0.0.3)
+    fog-profitbricks (0.0.5)
       fog-core
       fog-xml
       nokogiri
@@ -348,6 +352,8 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -479,6 +485,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activeresource
   awesome_print
   bcrypt-ruby (~> 3.0.0)
   better_errors

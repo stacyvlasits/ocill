@@ -7,8 +7,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 #  include CarrierWaveDirect::Uploader
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
-  include Sprockets::Helpers::RailsHelper
-  include Sprockets::Helpers::IsolatedHelper
+  # include Sprockets::Helpers::RailsHelper
+  # include Sprockets::Helpers::IsolatedHelper
+  include Sprockets::Rails::Helper  
+
   include CarrierWave::MimeTypes
   process :set_content_type
   # Choose what kind of storage to use for this uploader:

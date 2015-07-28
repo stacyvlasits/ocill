@@ -2,6 +2,15 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+#  Rails 4.0 upgrade caused duplicate logging.  This hack is meant to prevent that.
+ActiveSupport::Logger.class_eval do 
+  #monkey patching here so there aren't duplicate lines in console/server
+  def self.broadcast(logger) 
+    Module.new do
+    end
+  end
+end
+
 if defined?(Bundler)
     # Require the gems listed in Gemfile, including any gems
     # you've limited to :test, :development, or :production.
@@ -71,5 +80,8 @@ module Ocill
     # config.autoload_paths += %W(#{config.root}/lib/modules)
     # Autoload lib/ folder including all subdirectories
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    
+
   end
 end

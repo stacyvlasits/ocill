@@ -1,7 +1,6 @@
 class Ability
   include CanCan::Ability
 
-
   def initialize(user)
     user ||= User.new
     permissions = user.course_permissions
