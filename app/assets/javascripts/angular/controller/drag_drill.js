@@ -20,7 +20,6 @@ jQuery( document ).ready(function( $ ) {
   $('.drag-drill .submit-drill').click(function(event){
     var angular_scope = angular.element($("#drag-drill-controller")[0]).scope();
     var the_drill = angular_scope.drill;
-     console.log(the_drill);
     if ( the_drill ) {
       var the_drill_id = the_drill.drill.id;
       var final_drill = prepare_for_ajax(the_drill);

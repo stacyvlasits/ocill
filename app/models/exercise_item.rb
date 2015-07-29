@@ -12,7 +12,7 @@ class ExerciseItem < ActiveRecord::Base
   belongs_to :header
 
   after_initialize :set_default_position
-  before_save :cleanup_audio
+  before_save :clean_up_audio
 
   alias :parent :exercise
 
@@ -45,7 +45,7 @@ class ExerciseItem < ActiveRecord::Base
 
   serialized_attr_accessor :mp3, :ogg, :horizontal
 
-  def cleanup_audio
+  def clean_up_audio
     if remove_audio
       self.remove_audio!
     end
