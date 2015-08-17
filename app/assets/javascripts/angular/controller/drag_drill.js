@@ -23,7 +23,7 @@ jQuery( document ).ready(function( $ ) {
     if ( the_drill ) {
       var the_drill_id = the_drill.drill.id;
       var final_drill = prepare_for_ajax(the_drill);
-
+     console.log(JSON.stringify(final_drill));      
       $.ajax({
         type: "PUT",
         dataType: "json",

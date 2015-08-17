@@ -9,6 +9,7 @@
       Horizontal?
       <input type="checkbox" class="horizontal-checkbox text-field" ng-model="exercise.horizontal" name="exercise-horizontal" ng-true-value="true" ng-false-value="false">
     </span>
+    <input type="text" ng-model="exercise.position" value={{$index}}>
 	  <textarea ng-model="exercise.prompt" class="text-field"></textarea>
       <div ng-class="exercise.horizontal=='true' ? 'drag-horizontal' : 'drag-vertical'">
         <gen-dynamic-directive ng-model="exercise" gen-get-dynamic-view="getView" >
