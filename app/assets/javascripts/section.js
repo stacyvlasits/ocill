@@ -13,8 +13,9 @@ jQuery( document ).ready(function( $ ) {
 	})
 	function startProcess(id){
 		$.ajax({
-			type: "GET",
+			type: "POST",
 			dataType: "json",
+			data: { "id": id },
 			url: '/sections/' + id + '/duplicate_parent_activities',
 			success: function(json){
 				toastr.success('Good going!!');
@@ -25,10 +26,10 @@ jQuery( document ).ready(function( $ ) {
 						toastr.error('You must be logged in to update interview information.  <br /> Click <a href="/staff/login?ref=offlineform" alt="Log in">here to login</a>', "error");
 						break;
 					case 500:
-						toastr.error('An error prevented your interview information from being updated.', "error");
+						toastr.error('An error prevented your interview information from being updated.  Error: ' + jqXHR.status , "error");
 						break;
 					default:
-						toastr.error('An error prevented your interview information from being updated.', "error");
+						toastr.error('An error prevented your interview information from being updated.  Error: ' + jqXHR.status , "error");
 						break;
 				}
 			}

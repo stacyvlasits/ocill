@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
   respond_to :html, :json
   
-  def edit    
+  def edit
     @section = Section.find(params[:id])
     respond_with @section
   end
