@@ -78,7 +78,7 @@ class Launch
   end
 
   def instructor_pick_course?
-    user.role == "Instructor" && self.activity.present? && self.activity.id && self.section.present?
+    user.role == "Instructor" && self.activity.present? && self.section.present?
   end  
   
   def instructor_pick_drill?
