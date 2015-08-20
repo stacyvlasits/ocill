@@ -12,44 +12,6 @@ class Section < ActiveRecord::Base
     return activities_count.to_f / parent.activities.count.to_f
   end
 
-  def duplicate_modules_from_parent
-    # canvas = Canvas::API.new(:host => "https://utexas.instructure.com", :token => ENV["UT_CANVAS_TOKEN"])
-
-    # # get all canvas assignments from the new course
-    # child_modules = canvas.get("/api/v1/courses/#{canvas_course_id}/modules", {'per_page' => '1000'})
-    
-    # while child_modules.more?
-    #   child_modules.next_page!
-    # end
-
-
-    # # create a hash of the assignments
-    # #  - filter out non-ocill assignments
-    # #  - Key:   Assignment name
-    # #  - Value: Resource Link Id
-    # ocill_child_assignments = {}
-
-    # child_modules.each do |child_module|
-    #   items_url = child_module["items_url"]
-    #   url = items_url.sub 'https://utexas.instructure.com', ''
-    #   items = canvas.get(url, {'per_page' => '1000'})
-
-    #   while items.more?
-    #     items.next_page!
-    #   end
-
-    #   items.each do |item|
-    #     if item["external_url"] == "https://ocill.herokuapp.com/launch/create" 
-
-    #       ocill_child_assignments[item["name"]] = item["external_tool_tag_attributes"]["resource_link_id"]
-    #     end
-    #   end
-    # end
-
-
-  end
-
-
   def duplicate_activities_from_parent
     canvas = Canvas::API.new(:host => "https://utexas.instructure.com", :token => ENV["UT_CANVAS_TOKEN"])
     
