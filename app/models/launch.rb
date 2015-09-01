@@ -1,6 +1,6 @@
 class Launch
   require 'oauth/request_proxy/rack_request'
-  attr_reader :params, :errors, :tool, :user, :activity, :section, :session, :parent_section, :duplicate_session_data, :request
+  attr_reader :params, :errors, :tool, :user, :activity, :section, :session, :parent_section, :duplicate_session_data
 	
   def initialize(request, params)
     @params = params['launch_params'] || params
@@ -12,7 +12,6 @@ class Launch
     @user = find_user
     @section = find_section
     @activity = find_activity
-
   end
 
   def to_be_duplicated?
@@ -50,12 +49,12 @@ class Launch
   end
 
   def lti_roles_to_ocill_user_role(lti_roles)
-    roles = lti_roles.split(',') if lti_roles
-    if roles.grep(/Instructor/).any?
+    roles = lti_roles.split(',') if lti_roles 
+    if roles.include?("Instructor")
       "Instructor"
     elsif roles.grep(/TeachingAssistant/).any?
       "Instructor"  
-    elsif roles.grep(/[lL]earner/).any?
+    elsif roles.include?("Learner") || roles.include?("learner")
       "Learner"
     else
       error_message = "The Launch model just created a new user as a Learner, even though the user was not properly identified"
@@ -99,12 +98,10 @@ class Launch
   end
 
   def find_user
-    user_id = params[:user_id] || params["user_id"]
-    roles = params[:roles] || params["ext_roles"]
-    role = lti_roles_to_ocill_user_role(roles)
+    role = lti_roles_to_ocill_user_role(params[:roles])
     email = "user#{rand(10000..999999999999).to_s}@example.com"
     password = "pass#{rand(10000..999999999999).to_s}"
-    u = User.find_or_create_by_lti_user_id(lti_user_id: user_id, role: role, email: email, password: password)
+    u = User.find_or_create_by_lti_user_id(lti_user_id: params[:user_id], role: role, email: email, password: password)
   end
 
   def find_or_create_child_section(context_id, custom_canvas_course_id)
@@ -155,15 +152,10 @@ class Launch
   end
 
   def canvas_course_id
-
     referrer_uri = URI.parse(@request.referrer)
     path_parts = referrer_uri.path.split("/")
-    course_id_index = path_parts.find_index("courses")
-    if course_id_index
-      course_id = path_parts[course_id_index + 1]
-    else 
-      course_id = @request.params["course_id"]
-    end
+    course_id_index = path_parts.find_index("courses") + 1
+    course_id = path_parts[course_id_index]
   end
   
 private
