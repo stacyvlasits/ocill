@@ -1,15 +1,17 @@
 class Launch
   require 'oauth/request_proxy/rack_request'
-  attr_reader :params, :errors, :tool, :user, :activity, :section, :session, :parent_section, :duplicate_session_data, :request
+  attr_reader :params, :errors, :tool, :user, :activity, :section, :parent_section, :duplicate_session_data, :request, :session
 	
-  def initialize(request, params)
+  def initialize(request, params, session)
+    @session = session
     @params = params['launch_params'] || params
     @request = request
     @errors = []
     @tool = nil
+    @user = find_user
+    session[:launch_tool_cache_key] = @user.lti_user_id
     authorize!
     @to_be_duplicated = false
-    @user = find_user
     @section = find_section
     @activity = find_activity
 
@@ -20,13 +22,14 @@ class Launch
   end
 
   def authorize!
-    return self if @tool
-    if key = @params['oauth_consumer_key']
+     if key = @params['oauth_consumer_key']
       if secret = oauth_shared_secrets[key]
-        @tool = IMS::LTI::ToolProvider.new(key, secret, @params)
+        @tool = Rails.cache.fetch(session[:launch_tool_cache_key], expires_in: 12.hours) do
+          IMS::LTI::ToolProvider.new(key, secret, @params)
+        end
       else
-        @tool = IMS::LTI::ToolProvider.new(nil, nil, @params)
-        @tool.lti_msg = "Your consumer didn't use a recognized key."
+        @tool = session[:launch_tool_cache_key] = IMS::LTI::ToolProvider.new(nil, nil, @params)
+        @tool.lti_msg = "The consumer didn't use a recognized key."
         @tool.lti_errorlog = "You did it wrong!"
         @errors << "Consumer key wasn't recognized"
         return self

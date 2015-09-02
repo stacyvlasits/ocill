@@ -15,7 +15,7 @@
         <p><%= drill.prompt.to_s.html_safe %></p>
       </div>
     <% end -%>
-    <% if current_user.is_lti? && session['launch_params'] %>
+    <% if current_user.is_lti? && session[:tool] %>
       <%= render 'lti', :f => f %>
     <% end -%>
     <% if ( action_name == "new" ) || @attempt.matches_current_drill_state? -%>
