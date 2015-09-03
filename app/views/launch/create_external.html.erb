@@ -1,7 +1,7 @@
 <p>
   Your browser requires you to open this exercise in a different window.  Click the link below to launch.
 </p>
-<%= link_to "Launch External", launch_create_path(:external => "true", :params_cache_key => params[:params_cache_key], :canvas_course_id => params[:canvas_course_id] ), target: "_blank" 
+<%= link_to "Launch External", launch_create_path(:external => "true", :cache_key => params[:cache_key], :canvas_course_id => params[:canvas_course_id] ), target: "_blank" 
 %>
 <p class="note">
   Note: This link will expire in about four minutes...

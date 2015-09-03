@@ -31,19 +31,13 @@ class AttemptsController < InheritedResources::Base
           @attempt.responses+= [ Response.new(response) ]
         end
       if @attempt.save
-        if current_user.is_lti?
-          # If there is no active tool, get it out of the session
-          @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
-          if @tool && @tool.outcome_service?
-            score = @attempt.decimal_score
-            result = @tool.post_replace_result!(score)
-            if result.success?
-              flash[:notice] = "Your score was submitted as #{score*100}%"
-            else
-              flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
-            end
+        if current_user.is_lti? && @tool && @tool.outcome_service?
+          score = @attempt.decimal_score
+          result = @tool.post_replace_result!(score)
+          if result.success?
+            flash[:notice] = "Your score was submitted as #{score*100}%"
           else
-             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
+            flash[:alert] = "Your score was not submitted.  Please notify OCILL support of the problem."
           end
         else
           flash[:notice] = "Successfully saved your attempt."
@@ -73,23 +67,15 @@ class AttemptsController < InheritedResources::Base
 
   def update
     super do |format|
-        if current_user.is_lti?
-          # If there is no active tool, get it out of the session
-          @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
-          if @tool && @tool.outcome_service?
-            score = @attempt.decimal_score
-            result = @tool.post_replace_result!(score)
-            if result.success?
-              flash[:notice] = "Your score was submitted as #{score*100}%"
-            else
-              flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
-            end
-          else
-             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
-          end
+      if current_user.is_lti? && @tool && @tool.outcome_service?
+        score = @attempt.decimal_score
+        result = @tool.post_replace_result!(score)
+        if result.success?
+          flash[:notice] = "Your score was submitted as #{score*100}%"
         else
-          flash[:notice] = "Successfully saved your attempt."
+          flash[:alert] = "Your score was not submitted.  Please notify OCILL support of the problem."
         end
+      end
       format.html { redirect_to drill_attempt_path(@attempt)  }
     end
 
