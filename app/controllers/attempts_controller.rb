@@ -25,6 +25,7 @@ class AttemptsController < InheritedResources::Base
   end
 
   def create
+    
     if params[:drill_id]
        @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
         params[:attempt][:responses].each do |id, response|
@@ -72,6 +73,7 @@ class AttemptsController < InheritedResources::Base
   end
 
   def update
+    
     super do |format|
         if current_user.is_lti?
           # If there is no active tool, get it out of the session

@@ -9,7 +9,7 @@ class Launch
     @errors = []
     @tool = nil
     @user = find_user
-    session[:launch_tool_cache_key] = @user.lti_user_id
+    session[:launch_tool_cache_key] = @user.lti_user_id.to_s + rand(10000..999999).to_s
     authorize!
     @to_be_duplicated = false
     @section = find_section
