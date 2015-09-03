@@ -4,6 +4,7 @@ class DrillsController < InheritedResources::Base
 
   def show
     @drill = Drill.find(params[:id])
+    @performances = @drill.attempters.map {|attempter| Performance.new(@drill, attempter)}
   end
 
   def read
