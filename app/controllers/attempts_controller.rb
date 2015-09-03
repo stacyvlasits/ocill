@@ -40,10 +40,10 @@ class AttemptsController < InheritedResources::Base
             if result.success?
               flash[:notice] = "Your score was submitted as #{score*100}%"
             else
-              flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
+              flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 1)'
             end
           else
-             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
+             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 2)'
           end
         else
           flash[:notice] = "Successfully saved your attempt."
