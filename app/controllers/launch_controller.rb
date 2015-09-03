@@ -3,6 +3,7 @@ class LaunchController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:create, :create_external]
 
   def create
+
     # In some cases, the params variable isn't populated so get the params from the request object
     params = params || request.params
 
@@ -20,7 +21,7 @@ class LaunchController < ApplicationController
       # unless true || params[:include_cookie]
       unless params[:include_cookie]
         #  Ok, we haven't really tested cookies yet
-        #  Now let's add a cookie to the session and then start over
+        #  Now let's add a cookie to the session and then start over        
         cookies[:work?] = true
         return redirect_to launch_create_path(:include_cookie => true, :params => params)
       else
@@ -30,11 +31,10 @@ class LaunchController < ApplicationController
      
         self.authorize(request, params || request.params)
 
-        cache_key = rand(10000..9999999).to_s
+        params_cache_key = rand(10000..9999999).to_s
 
-        Rails.cache.fetch( cache_key, expires_in: 5.minutes ) {|a| @launch.params }
-
-        return redirect_to launch_create_external_path(cache_key: cache_key, canvas_course_id: @launch.canvas_course_id)
+        Rails.cache.fetch( params_cache_key, expires_in: 5.minutes ) {|a| @launch.params }
+        return redirect_to launch_create_external_path(params_cache_key: params_cache_key, canvas_course_id: @launch.canvas_course_id)
       end
 
     else
@@ -46,36 +46,37 @@ class LaunchController < ApplicationController
 
   def create_external
     @canvas_course_id = params[:canvas_course_id]
-    @cache_key = params[:cache_key]
+    @params_cache_key = params[:params_cache_key]
     @remove_navigation = true
   end
 
 protected
   
   def launch_from_cache(params)
-    cached_params = Rails.cache.fetch(params[:cache_key])
+    cached_params = Rails.cache.fetch(params[:params_cache_key])
     if cached_params
-      @launch = Launch.new(request, cached_params)
+      @launch = Launch.new(request, cached_params, session)
 
       if cached_params["roles"] == "Instructor"
         redirect_to drill_path(@launch.activity.drill) and return
       elsif cached_params["roles"] == "Learner"
+
+        @tool = @launch.tool        
         redirect_to new_drill_attempt_path(@launch.activity.drill) and return
       else
-        flash[:error] = "Permissions Error:  Please take a screenshot of this page and email it to your instructor and the Ocill support staff."
+        flash[:error] = 'Permissions Error:  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
         redirect_to :root and return
       end
     end 
   end
 
   def external?(params)
-    (params && params[:external] && params[:cache_key])
+    (params && params[:external] && params[:params_cache_key])
   end
 
   def authorize(request, params)
-    @launch = Launch.new(request, params)
+    @launch = Launch.new(request, params, session)
     @launch.authorize!
-
     # sign_out
     sign_in(@launch.user)
 

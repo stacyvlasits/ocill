@@ -1,19 +1,19 @@
 (function() {
   jQuery(function() {
     
-    
-   $('.drills').hide();
-   $('ul.nav-branch.units').hide();
+    $('.drills').hide();
 
+    $('ul.nav-branch.units').hide();
 
     $('.units > li a[title="View Drills"]').click(function () {
       $(this).parent().find('ul').toggle(100);
     });
+
     $('#nav-tree .expand-course').click(function () {
       $(this).next().toggleClass('hidden');
        $(this).parent().children('ul').toggle(100);
       $(this).toggleClass('hidden');
-     });
+    });
  
     $('#nav-tree .collapse-course').click(function () {
       $(this).prev().toggleClass('hidden');
@@ -21,18 +21,20 @@
       $(this).parent().children('ul').toggle(100);
       $(this).toggleClass('hidden');
     });
+
     $('#nav-tree .expand-unit').click(function () {
       $(this).next().toggleClass('hidden');
       $(this).parent().find('ul').toggle(100);
       $(this).toggleClass('hidden');
     });
+
     $('#nav-tree .collapse-unit').click(function () {
       $(this).prev().toggleClass('hidden');
       $(this).parent().find('ul').toggle(100);
       $(this).toggleClass('hidden');
     });
 
-     // Read URL to get the item type (drills, units)
+    // Read URL to get the item type (drills, units)
     var readURL = window.location.pathname.split('/');
     var whichItem = readURL[2]; // gives you id of unit/drill 
     if(readURL[1]=="drills") {
@@ -55,8 +57,6 @@
       $('.nav-leaf[data-unit-id="'+whichItem+'"]').children('.drills').show();
     }
 
-
-
     // Removes the 'Successfully created unit/course' notification. 
     var noticeText = $('.notice').text();
     var errorText = $('.error').text();
@@ -66,23 +66,52 @@
     var tempError = errorText.substring(0,13);
     var tempNotice = noticeText.substring(0,18);
     var tempAlert = alertText.substring(0,13);
-    if(tempNotice == "Successfully added" || tempError=="Failed to add" || tempAlert=="Failed to add") {
+    if (tempNotice == "Successfully added" || tempError=="Failed to add" || tempAlert=="Failed to add") {
       toastr.options = {
         "onclick":null,
         "timeOut":null,
         "extendedTimeOut": null
       }
-    }
-    else {
+    } else {
       toastr.options = {
         "timeOut": 10000,
         "extendedTimeOut": 3000,
         "closeButton": true
       } 
     }
-    if(noticeText!="") { toastr.success(noticeText); } 
-    if(errorText!="") { toastr.error(errorText); }
-    else if(alertText!="") { toastr.error(alertText); } 
+
+    if(alertText!="") {
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": 0,
+        "extendedTimeOut": 0,
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+        "tapToDismiss": true
+      }
+      // weirdly the <br /> seems necessary to keep the toast from disappearing without user interaction
+      toastr.error(alertText + '<br />'); 
+    } else {
+      if(noticeText!="") { 
+        toastr.success(noticeText); 
+      } 
+    }
+
+    if(errorText!="") { 
+      toastr.error(errorText);
+    }
+
+
     
     // adds <td> to each row as it needs it to fill
     var numCourses = $('#courses').children('.course-report').length;
