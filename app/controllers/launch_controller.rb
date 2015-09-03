@@ -23,6 +23,7 @@ class LaunchController < ApplicationController
         #  Ok, we haven't really tested cookies yet
         #  Now let's add a cookie to the session and then start over        
         cookies[:work?] = true
+        
         return redirect_to launch_create_path(:include_cookie => true, :params => params)
       else
         # Ok, we tried to set a cookie, but it failed.
@@ -34,6 +35,7 @@ class LaunchController < ApplicationController
         params_cache_key = rand(10000..9999999).to_s
 
         Rails.cache.fetch( params_cache_key, expires_in: 5.minutes ) {|a| @launch.params }
+        
         return redirect_to launch_create_external_path(params_cache_key: params_cache_key, canvas_course_id: @launch.canvas_course_id)
       end
 

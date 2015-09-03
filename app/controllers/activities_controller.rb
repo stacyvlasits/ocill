@@ -13,7 +13,7 @@ class ActivitiesController < InheritedResources::Base
       if params[:activity][:drill_id].present?
         @drill = Drill.find(params[:activity][:drill_id])
         redirect_to drill_path(@drill)
-        flash[:notice] = "Drill chosen successfully, check back here for student progress reports."
+        flash[:notice] = "Drill chosen successfully."
       end
     else
       flash[:error] = "Updating this Activity Failed."
