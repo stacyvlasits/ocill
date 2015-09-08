@@ -27,9 +27,13 @@ class AttemptsController < InheritedResources::Base
   def create
     
     if params[:drill_id]
-       @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
-        params[:attempt][:responses].each do |id, response|
-          @attempt.responses+= [ Response.new(response) ]
+      @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
+        if params[:attempt] && params[:attempt][:responses]
+          params[:attempt][:responses].each do |id, response|
+            @attempt.responses+= [ Response.new(response) ]
+          end
+        else 
+          flash[:alert] =  'This drill does not report a grade Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 1)'
         end
       if @attempt.save
         if current_user.is_lti?
@@ -41,10 +45,10 @@ class AttemptsController < InheritedResources::Base
             if result.success?
               flash[:notice] = "Your score was submitted as #{score*100}%"
             else
-              flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 1)'
+              flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 1)'
             end
           else
-             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 2)'
+             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 2)'
           end
         else
           flash[:notice] = "Successfully saved your attempt."
@@ -84,10 +88,10 @@ class AttemptsController < InheritedResources::Base
             if result.success?
               flash[:notice] = "Your score was submitted as #{score*100}%"
             else
-              flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
+              flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
             end
           else
-             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto://' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
+             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>.'
           end
         else
           flash[:notice] = "Successfully saved your attempt."

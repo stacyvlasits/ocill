@@ -149,12 +149,7 @@ class Launch
   
   def find_activity
     return nil unless section
-    if section.parent_id
-      activity = Activity.where(lti_resource_link_id: params[:resource_link_id]).first
-      return activity || Activity.create(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
-    else 
-      Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
-    end
+    Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
   end
 
   def canvas_course_id
