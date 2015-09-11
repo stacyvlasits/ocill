@@ -43,7 +43,23 @@ function moveScroller() {
 }
 
 jQuery( document ).ready(function( $ ) {
-  if ( $("#scroller").length ){
-    moveScroller();
-  }
+    console.log("hi");
+
+    var scroller = $("#scroller");
+    $("<a/>", {
+        "class": "hider btn",
+        text: "Hide Prompt",
+        click: function(){
+            scroller.toggleClass("Hide Prompt");
+            if ( $( this ).text() == "Hide Prompt" ){
+               $( this ).text("Show Prompt");
+            } else {
+                $( this ).text("Hide Prompt");
+            }
+        }
+    }).insertBefore(scroller);
+
+    if ( $("#scroller").length ){
+        moveScroller();
+    }    
 });
