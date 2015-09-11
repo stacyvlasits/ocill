@@ -47,10 +47,10 @@ jQuery( document ).ready(function( $ ) {
 
     var scroller = $("#scroller");
     $("<a/>", {
-        "class": "hider btn",
+        "class": "hider",
         text: "Hide Prompt",
         click: function(){
-            scroller.toggleClass("Hide Prompt");
+            scroller.toggleClass("hide");
             if ( $( this ).text() == "Hide Prompt" ){
                $( this ).text("Show Prompt");
             } else {
