@@ -16,7 +16,7 @@ function moveScroller() {
             if(st > ot) {
                 s.css({
                     "position": "fixed",
-                    "top": "0px",
+                    "top": "40px",
                     "z-index": 5
                 });
                 sa.css({"height": s.css("height")});
@@ -24,7 +24,7 @@ function moveScroller() {
                 if(st <= ot) {
                     s.css({
                         "position": "relative",
-                        "top": "",
+                        "top": "0px",
                         "z-index": 1
                     });
                 sa.css({"height": 0 });
@@ -43,21 +43,19 @@ function moveScroller() {
 }
 
 jQuery( document ).ready(function( $ ) {
-    console.log("hi");
-
     var scroller = $("#scroller");
     $("<a/>", {
         "class": "hider",
         text: "Hide Prompt",
         click: function(){
-            scroller.toggleClass("hide");
+            scroller.toggleClass("see-thru");
             if ( $( this ).text() == "Hide Prompt" ){
                $( this ).text("Show Prompt");
             } else {
                 $( this ).text("Hide Prompt");
             }
         }
-    }).insertBefore(scroller);
+    }).prependTo(scroller);
 
     if ( $("#scroller").length ){
         moveScroller();
