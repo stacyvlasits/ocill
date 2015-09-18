@@ -103,7 +103,7 @@ class Launch
 
   def find_user
     user_id = params[:user_id] || params["user_id"]
-    roles = params[:roles] || params["ext_roles"]
+    roles = params[:roles] || params["roles"] ||params["ext_roles"]
     role = lti_roles_to_ocill_user_role(roles)
     email = "user#{rand(10000..999999999999).to_s}@example.com"
     password = "pass#{rand(10000..999999999999).to_s}"
