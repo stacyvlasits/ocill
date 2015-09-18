@@ -45,9 +45,17 @@
     <% when "show" %>
     <%= link_to "Attempt Again", new_drill_attempt_path(:drill_id => drill.id), :id => 'submit-attempt', :class => 'btn btn-primary ' + drill.type.underscore.dasherize %>
     <% when "new" %>
-      <%= f.submit "Submit Attempt", :id => 'submit-attempt', :class => 'btn btn-primary' %>
+      <%  if drill.exercise_items.count > 0 %>
+        <%= f.submit "Submit Attempt", :id => 'submit-attempt', :class => 'btn btn-primary' %>
+      <% else %>
+        <span>See the instructions section for directions on submitting your work.</span>
+      <% end %>
     <% when "edit" %>
-      <%= f.submit "Submit Attempt", :id => 'submit-attempt', :class => 'btn btn-primary' %>
+      <%  if drill.exercise_items.count > 0 %>
+        <%= f.submit "Submit Attempt", :id => 'submit-attempt', :class => 'btn btn-primary' %>
+      <% else %>
+        <span>See the instructions section for directions on submitting your work.</span>
+      <% end -%>  
     <% end %>
   </div>
 <% end %>
