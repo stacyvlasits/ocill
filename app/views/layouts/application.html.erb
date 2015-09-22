@@ -20,16 +20,16 @@
   <% elsif user_signed_in?  %>
     <div class="logout">
       <%= link_to('Logout?' , destroy_user_session_path, :method => :delete ) %>
-      <%= link_to('Having a problem?', "#" ,{class: "help", title: "Having a problem?", data: { html: "true", toggle: "popover", content: '
-        <p>If you are experiencing difficulty in using OCILL, please contact technical support at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a></p>
+      <%= link_to('Having trouble?', "#" ,{class: "help", title: "What is your problem?", data: { html: "true", toggle: "popover", content: '
+        <p>If you experience difficulty using OCILL, please contact technical support at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a></p>
         <p>In your message please include:
           <ol>
             <li>Screenshot(s) <a href="http://www.take-a-screenshot.org/" target="_blank">How do I take a screenshot?</a></li>
             <li>Describe:
               <ul>
-                <li>what you did. </li>
-                <li>what you expected to happen.</li>
-                <li>what <strong>actually</strong> happened.</li>
+                <li>what you did</li>
+                <li>what you expected to happen</li>
+                <li>what <em>actually</em> happened</li>
               </ul>
             </li>
             <li>Browser (Firefox, Chrome). Type of device (laptop, desktop, phone, tablet).  Operating system (Windows, Mac/Apple, Linux)</li>
