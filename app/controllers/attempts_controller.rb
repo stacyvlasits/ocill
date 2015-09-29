@@ -39,16 +39,18 @@ class AttemptsController < InheritedResources::Base
         if current_user.is_lti?
           # If there is no active tool, get it out of the session
           @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
+          score = @attempt.decimal_score
           if @tool && @tool.outcome_service?
-            score = @attempt.decimal_score
             result = @tool.post_replace_result!(score)
             if result.success?
               flash[:notice] = "Your score was submitted as #{score*100}%"
             else
               flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 1)'
             end
+          elsif @tool
+             flash[:notice] = "You scored #{score*100}%.  That score was *not* sent to your gradebook.  If that is not what you expected to happen, you probably have a another browser tab open.  Please "
           else
-             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 2)'
+            flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 3)'
           end
         else
           flash[:notice] = "Successfully saved your attempt."
