@@ -48,7 +48,7 @@ class AttemptsController < InheritedResources::Base
               flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 1)'
             end
           elsif @tool
-             flash[:notice] = "You scored #{score*100}%.  That score was *not* sent to your gradebook.  If that is not what you expected to happen, you probably have a another browser tab open.  Please "
+             flash[:notice] = "You scored #{score*100}%.  That score was *not* sent to your gradebook.  If that is not what you expected to happen, you probably also have another exercise open in another browser tab.  Please close that tab and try submitting your exercise again."
           else
             flash[:alert] = 'Your score was not submitted.  Please notify OCILL support of the problem at <a href="mailto:' + ENV["SUPPORT_EMAIL"] + '">' + ENV["SUPPORT_EMAIL"] + '</a>. (type 3)'
           end
