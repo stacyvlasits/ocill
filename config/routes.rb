@@ -9,6 +9,7 @@ Ocill::Application.routes.draw do
 
   devise_for :users
 
+  get '/assets/tinymce' => 'tinymce_assets#show'
   post '/tinymce_assets' => 'tinymce_assets#create'
  
   resources :roles
