@@ -9,4 +9,7 @@ class TinymceAssetsController < ApplicationController
       }
     }, content_type: "text/html"
   end
+  def show
+    binding.pry
+  end
 end

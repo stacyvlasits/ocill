@@ -81,6 +81,10 @@ dd {
   width: 675px !important;
 }
 
+.logout .help {
+  float: right;
+}
+
 #drill_instructions_tbl,
 #drill_prompt_tbl {
   margin-top: 15px;
@@ -116,6 +120,17 @@ input.hidden,
 .form-horizontal .hidden {
   display: none;
 }
+.see-thru {
+  height: 30px;
+}
+
+.see-thru * {
+  opacity: 0.0;
+}
+
+.drill-prompt .hider {
+  opacity: 1.0;
+}
 
 .user-group {
   margin-left: 0px;
@@ -149,23 +164,49 @@ input.hidden,
   width: 95%;
 }
 
-body, .drill-prompt {background-color: #f5f5f5;}
+body, .drill-prompt {
+  background-color: #f5f5f5;
+}
 
-.nav-branch .fa-star{ color:#51a351; }
-.nav-branch .fa-pencil { color:#0088cc; }
-.nav-branch .fa-remove {color:red;}
+.nav-branch .fa-star{ 
+  color:#51a351; 
+}
 
-.fa-expand, .fa-collapse {color:#333;}
-.units a { color:#545454; }
+.nav-branch .fa-pencil { 
+  color:#0088cc; 
+}
 
-.drills a { color:#333; }
+.nav-branch .fa-remove {
+  color:red;
+}
 
-.crumb { margin-right: 10px; }
+.fa-expand, .fa-collapse {
+  color:#333;
+}
 
-thead {background-color:#ccc;}
+.units a { 
+  color:#545454; 
+}
 
-tbody>tr:nth-child(even) {background-color:#eee;}
-tbody>tr:nth-child(odd) {background-color:#fff;}
+.drills a { 
+  color:#333; 
+}
+
+.crumb { 
+  margin-right: 10px; 
+}
+
+thead {
+  background-color:#ccc;
+}
+
+tbody>tr:nth-child(even) {
+  background-color:#eee;
+}
+
+tbody>tr:nth-child(odd) {
+  background-color:#fff;
+}
 
 /* Keep sidebar on top, might have to edit later */
 
@@ -186,19 +227,24 @@ tbody>tr:nth-child(odd) {background-color:#fff;}
 .nav-actions {
   float: right;
 }
+
 .course .nav-actions {
   padding-right: 22px;
 }
+
 .units .nav-actions {
   padding-right: 10px;
 }
+
 .drills .nav-actions {
   padding-right: 0px;
 }
+
 .text-link {
   width: 75%;
   display: inline-block;
 }
+
 h5 strong {
   display: inline-block;
   width: 60px;
@@ -475,6 +521,7 @@ ul.drills-for-unit li.selected,
 .fill-drill-exercise {
   line-height: 25px;
   margin-bottom: 10px;
+  clear: both;
 }
 
 .fill-drill-exercise input {

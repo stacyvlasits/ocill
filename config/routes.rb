@@ -9,6 +9,7 @@ Ocill::Application.routes.draw do
 
   devise_for :users
 
+  get '/assets/tinymce' => 'tinymce_assets#show'
   post '/tinymce_assets' => 'tinymce_assets#create'
  
   resources :roles
@@ -21,7 +22,7 @@ Ocill::Application.routes.draw do
 
   resources :sections, only: [:show, :edit, :update]
 
-  get 'sections/:id/duplicate_parent_activities' => 'sections#duplicate_parent_activities'
+  post 'sections/:id/duplicate_parent_activities' => 'sections#duplicate_parent_activities'
   get 'sections/:id/duplication_status' => 'sections#duplication_status'
 
   resources :users, only: [:index, :show] 

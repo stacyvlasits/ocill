@@ -12,8 +12,7 @@ class Section < ActiveRecord::Base
     return activities_count.to_f / parent.activities.count.to_f
   end
 
-
-  def duplicate_activities_from_parent()
+  def duplicate_activities_from_parent
     canvas = Canvas::API.new(:host => "https://utexas.instructure.com", :token => ENV["UT_CANVAS_TOKEN"])
     
     # get all canvas assignments from the new course
