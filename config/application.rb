@@ -15,7 +15,7 @@ if defined?(Bundler)
     # Require the gems listed in Gemfile, including any gems
     # you've limited to :test, :development, or :production.
     Bundler.require(*Rails.groups)
-    # If you want your assets lazily compiled in production, use this line
+    # If you want your assets lazily compiled in production, use this lineplugin
     # Bundler.require(:default, :assets, Rails.env)
 end
 

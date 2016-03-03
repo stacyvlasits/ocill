@@ -1,14 +1,12 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-# gem 'rails', '3.2.21'
+
 gem 'rails', '4.0'
 # enables use of rails 3.0 style attr_accessible in rails
 gem 'protected_attributes'
 gem 'activeresource'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #postgresql
 gem 'pg'
@@ -63,22 +61,18 @@ gem 'pry-nav'
 gem 'pry-doc'
 gem 'pry-rails'
 
-# group :assets do
-  # until the lastest version of the sass gem gets fixed...
-  # gem 'sass', '3.2.13'  
-  # gem 'sass-rails',   '3.2.3'
-  
-  gem 'sass'
-  gem 'sass-rails'
-  
-  gem 'coffee-rails'
-  gem 'twitter-bootstrap-rails'
-  gem 'less-rails'
-  gem 'font-awesome-rails'
-  gem 'therubyracer', :platforms => :ruby
-  gem 'uglifier', '>= 1.0.3'
-  gem 'toastr-rails'
-# end of group :assets
+gem 'sass'
+gem 'sass-rails'
+
+
+gem 'coffee-rails'
+gem 'twitter-bootstrap-rails'
+gem 'less-rails'
+gem 'font-awesome-rails'
+gem 'therubyracer', :platforms => :ruby
+gem 'uglifier', '>= 1.0.3'
+gem 'toastr-rails'
+
 
 group :development do
   gem 'awesome_print'
@@ -86,7 +80,7 @@ group :development do
   gem 'rails_best_practices'
   gem 'foreigner'
   gem 'immigrant'
-  gem 'debugger'
+  # gem 'debugger'  removed during upgrade to 4.0 due to incompatability
   gem 'hirb'
   gem 'jist'
   gem 'better_errors'
@@ -111,4 +105,3 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rb-fsevent', '~> 0.9.1'
 end
-

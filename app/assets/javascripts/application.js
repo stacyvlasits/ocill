@@ -21,6 +21,6 @@
 //= require sortable
 //= require gen.genericDirectives
 //= require angular/controller/drag_drill
-
+//= require bootstrap.js
 
 //= require_tree .
