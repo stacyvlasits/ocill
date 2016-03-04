@@ -69,7 +69,7 @@ gem 'font-awesome-rails'
 gem 'therubyracer', :platforms => :ruby
 gem 'uglifier', '>= 1.0.3'
 gem 'toastr-rails'
-
+gem 'yui-compressor'
 
 group :development do
   gem 'awesome_print'
