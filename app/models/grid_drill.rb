@@ -11,7 +11,7 @@ class GridDrill < Drill
       self.exercises.create(:title => "Title", :prompt => "Prompt")
     end
     self.exercises.each do |exercise|
-      exercise_item = exercise.exercise_items.create(:header_id => header.id)
+      exercise.exercise_items.create(:header_id => header.id)
     end
   end
 

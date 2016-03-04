@@ -112,7 +112,7 @@ class Launch
     u.email= email
     u.password= password
     u.save!
-    return u
+    u
   end
 
   def find_or_create_child_section(context_id, custom_canvas_course_id)
@@ -161,6 +161,7 @@ class Launch
       a=Activity.where(lti_resource_link_id: params[:resource_link_id]).first_or_create 
       a.section_id=section.id
       a.save!
+      a
     end
   end
 
