@@ -1,13 +1,14 @@
-skin: default
-toolbar_location: top
-toolbar_align: left
-statusbar_location: bottom
-buttons1: "bold,italic,strikethrough,underline,|,bullist,numlist,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,styleselect,|,pastetext,pasteword,|,forecolor,backcolor,|,outdent,indent,|,undo,redo,|,link,unlink,|,code,uploadimage"
-toolbar_location: "external"
-resizing: true
+# toolbar_location: top
+# toolbar_align: left
+# statusbar_location: bottom
+# buttons1: "bold,italic,strikethrough,underline,|,bullist,numlist,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,styleselect,|,pastetext,pasteword,|,forecolor,backcolor,|,outdent,indent,|,undo,redo,|,link,unlink,|,code,uploadimage"
+toolbar: ['bold italic strikethrough underline | bullist numlist | alignleft aligncenter alignright |  outdent indent ', 'formatselect styleselect | forecolor backcolor | link  | code uploadimage ']
+# toolbar_location: "external"
+# resizing: true
 # path: true
 # resize_horizontal: false
 # resize_vertical: true
+menubar: false
 resizing_use_cookie: true
 uploadimage_default_img_class: mce-upload-image
 extended_valid_elements:
@@ -23,5 +24,8 @@ style_formats:
 content_css: "https://s3.amazonaws.com/ocill-bucket/public/content.css"
 plugins:
   - textcolor
+  - uploadimage
+  - link
+  - code
 media_strict: false
 mode: textareas

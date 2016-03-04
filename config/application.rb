@@ -82,7 +82,7 @@ module Ocill
     # Autoload lib/ folder including all subdirectories
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
-    
+    config.tinymce.install = :copy
 
   end
 end

@@ -16,10 +16,8 @@ gem 'thin'
 #authorization/authentication
 gem 'devise'
 gem 'cancan'
-
-# WYSIWYG provided by tinymce DON'T UPDATE css will be lost.
-gem 'tinymce-rails', '~> 3.5'
-gem 'tinymce-rails-imageupload', '~> 3.5.6.3'
+gem 'tinymce-rails', '4.1.6'
+gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 
 
 # for file upload and storage
@@ -64,9 +62,8 @@ gem 'pry-rails'
 gem 'sass'
 gem 'sass-rails'
 
-
 gem 'coffee-rails'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', '2.2.8'
 gem 'less-rails'
 gem 'font-awesome-rails'
 gem 'therubyracer', :platforms => :ruby
