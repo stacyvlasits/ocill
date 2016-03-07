@@ -102,4 +102,11 @@ class AttemptsController < InheritedResources::Base
     end
 
   end
+
+  private
+
+  def attempts_params
+    params.require(:attempt).permit(:drill_id, :user_id, :lis_outcome_service_url, :lis_result_sourcedid, :response, :responses
+    )
+  end
 end
