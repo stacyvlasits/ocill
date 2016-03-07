@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :role, :password, :password_confirmation, :remember_me, :lti_user_id
-  scope :none, -> { where(:id => nil).where("id IS NOT ?", nil) }
+  scope :does_not_exist, -> { where(:id => nil).where("id IS NOT ?", nil) }
   default_scope { order('email asc') }
 
   validates :role, :inclusion => { :in => Role::ROLES,
@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     elsif info.match(/[a-z0-9\+\.]+\@[a-z0-9\+\.]+\.[a-z]{1,5}/) 
       user = User.where("email = ?", info)
     end
-    user ||= User.none
+    user ||= User.does_not_exist
   end
   
   # TODO: Make it possible to autogenerate an account using just the eid
@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
       new_user = User.create_and_notify(email, role, creator) if user.empty?
       user ||= new_user
     end 
-    user ||= User.none
+    user ||= User.does_not_exist
   end
 
   def self.create_and_notify(email, role, creator= "Someone")

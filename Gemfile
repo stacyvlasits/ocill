@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.3.0'
 
 
-gem 'rails', '4.0'
+gem 'rails', '4.1.9'
 # enables use of rails 3.0 style attr_accessible in rails
 gem 'protected_attributes'
 gem 'activeresource'
@@ -59,9 +59,9 @@ gem 'pry-nav'
 gem 'pry-doc'
 gem 'pry-rails'
 
+# for kick-ass assets
 gem 'sass'
 gem 'sass-rails'
-
 gem 'coffee-rails'
 gem 'twitter-bootstrap-rails', '2.2.8'
 gem 'less-rails'
@@ -72,6 +72,7 @@ gem 'toastr-rails'
 gem 'yui-compressor'
 
 group :development do
+  gem "spring"
   gem 'awesome_print'
   gem 'ruby-prof'
   gem 'rails_best_practices'
