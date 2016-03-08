@@ -1,5 +1,5 @@
 class Unit < ActiveRecord::Base
-  attr_accessible :position, :title, :drills_attributes, :course_id
+ # attr_accessible :position, :title, :drills_attributes, :course_id
   belongs_to :course, :touch => true
   alias :parent :course
   has_many :drills, -> {order 'position ASC' }, :dependent => :destroy, :autosave => true, :autosave => true

@@ -2,7 +2,7 @@ class CoursesController < InheritedResources::Base
   load_and_authorize_resource
 
   def create
-    @course = Course.new(params[:course])
+    @course = Course.new(course_params)
     if @course.save
       @course.roles.create(:name => "Administrator", :user => current_user)
       flash[:notice] = "Successfully created course."
@@ -31,5 +31,13 @@ class CoursesController < InheritedResources::Base
     super do |format|
       format.html { redirect_to root_path }
     end
-  end  
+  end
+
+  private
+
+    def course_params
+      params.require(:course).permit(:position, :title, units_attributes: [:position, :title, :course_id])
+    end
+
+
 end
