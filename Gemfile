@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 
 
-gem 'rails', '4.1.9'
+gem 'rails', '4.2.6'
 # enables use of rails 3.0 style attr_accessible in rails
 gem 'protected_attributes'
 gem 'activeresource'
-
+gem 'responders'
 
 #postgresql
 gem 'pg'
@@ -72,13 +72,12 @@ gem 'toastr-rails'
 gem 'yui-compressor'
 
 group :development do
+  gem 'web-console', '~>2.0'
   gem "spring"
   gem 'awesome_print'
   gem 'ruby-prof'
   gem 'rails_best_practices'
-  gem 'foreigner'
   gem 'immigrant'
-  # gem 'debugger'  removed during upgrade to 4.0 due to incompatability
   gem 'hirb'
   gem 'jist'
   gem 'better_errors'
@@ -86,20 +85,7 @@ group :development do
   gem 'meta_request'
 end
 
-group :test do
-  gem "factory_girl_rails", "~> 4.0"
-# adding 2.0.3 declaration may fix capybara-webkit issues
-# per: http://stackoverflow.com/questions/15996969/capybara-webkit-page-should-have-content-not-implemented
-  gem "capybara", "2.0.3"
- # gem "capybara-webkit"
-  gem "guard-rspec"
-  gem "launchy"
-  gem 'cucumber-rails', :require => false
-  gem "database_cleaner"
-  gem 'guard-cucumber'
-end
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'rb-fsevent', '~> 0.9.1'
 end
