@@ -15,6 +15,9 @@ Ocill::Application.configure do
   config.assets.css_compressor = :yui
   config.assets.js_compressor = :uglifier
 
+  # Preparing for Rails 5
+  config.log_level = :info
+
   # Don't fallback to assets pipeline if a precompiled asset is missed
   # config.assets.compile = false
 
