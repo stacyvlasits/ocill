@@ -10,7 +10,6 @@ class UnitsController < InheritedResources::Base
 
   def show
     @unit = Unit.find(params[:id])
-
   end
 
   def create

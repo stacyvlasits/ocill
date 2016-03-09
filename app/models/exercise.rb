@@ -2,7 +2,6 @@ class Exercise < ActiveRecord::Base
   include Comparable
   mount_uploader :audio, AudioUploader
   mount_uploader :image, ImageUploader
-  # attr_accessible :prompt, :title, :fill_in_the_blank, :position, :drill_id, :weight, :exercise_items_attributes, :audio, :image, :video, :remove_audio, :remove_image, :remove_video, :panda_audio_id, :horizontal, :options
 
   serialize :options, Hash
 

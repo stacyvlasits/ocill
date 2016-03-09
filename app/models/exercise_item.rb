@@ -1,6 +1,4 @@
 class ExerciseItem < ActiveRecord::Base
-  # attr_accessible :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video, :panda_audio_id, :options, :position, :remove_audio, :remove_image, :remove_video
-
   # TODO remove "column" and "deleted_at" from db
   mount_uploader :audio, AudioUploader
   mount_uploader :image, ImageUploader

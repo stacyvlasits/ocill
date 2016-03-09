@@ -1,7 +1,4 @@
 class Attempt < ActiveRecord::Base
-  # TODO Remove this line once protected_attributes process is finished
-  # attr_accessible :drill_id, :user_id, :lis_outcome_service_url, :lis_result_sourcedid, :response, :responses
-
   has_many :exercise_items, :through => :drill
   belongs_to :drill
   belongs_to :user
