@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :position, :title, :units_attributes
+  # attr_accessible :position, :title, :units_attributes
   
   has_many :activities 
   has_many :units, -> {order 'position ASC' }, :dependent => :destroy, :autosave => true

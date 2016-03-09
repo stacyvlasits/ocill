@@ -25,7 +25,6 @@ class AttemptsController < InheritedResources::Base
   end
 
   def create
-    
     if params[:drill_id]
       @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
         if params[:attempt] && params[:attempt][:responses]
@@ -79,7 +78,6 @@ class AttemptsController < InheritedResources::Base
   end
 
   def update
-    
     super do |format|
         if current_user.is_lti?
           # If there is no active tool, get it out of the session
@@ -104,9 +102,8 @@ class AttemptsController < InheritedResources::Base
   end
 
   private
-
-  def attempts_params
-    params.require(:attempt).permit(:drill_id, :user_id, :lis_outcome_service_url, :lis_result_sourcedid, :response, :responses
-    )
-  end
+    def attempt_params
+      params.require(:attempt).permit(:id, :drill_id, :user_id, :lis_outcome_service_url, :lis_result_sourcedid, :response, :responses
+      )
+    end
 end

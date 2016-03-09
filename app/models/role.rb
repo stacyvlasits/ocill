@@ -1,5 +1,4 @@
 class Role < ActiveRecord::Base
-  attr_accessible :name, :user, :course
   belongs_to :user, :touch => true
   belongs_to :course
 

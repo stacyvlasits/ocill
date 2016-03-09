@@ -24,5 +24,9 @@ class SectionsController < ApplicationController
     respond_with @section
   end
 
+  private
 
+    def sections_params
+      params.require(:section).permit(:id, :lti_course_id, :canvas_course_id, :parent_id)
+    end
 end

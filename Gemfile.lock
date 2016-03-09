@@ -53,7 +53,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
     callsite (0.0.11)
-    cancan (1.6.10)
+    cancancan (1.13.1)
     canvas-api (1.1.1)
       json
       typhoeus
@@ -275,8 +275,6 @@ GEM
       multi_json (>= 1.3.2)
       ruby-hmac (>= 0.3.2)
     pg (0.18.4)
-    protected_attributes (1.1.3)
-      activemodel (>= 4.0.1, < 5.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -422,7 +420,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   better_errors
   binding_of_caller
-  cancan
+  cancancan
   canvas-api
   carrierwave
   carrierwave_direct
@@ -445,7 +443,6 @@ DEPENDENCIES
   newrelic_rpm
   panda (~> 1.6.0)
   pg
-  protected_attributes
   pry
   pry-doc
   pry-nav

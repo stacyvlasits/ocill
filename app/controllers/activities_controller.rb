@@ -22,9 +22,8 @@ class ActivitiesController < InheritedResources::Base
   end
 
   private
-
     def activities_params
-      params.require(:activity).permit(:drill_id, :lti_resource_link_id, :section_id, :course_id)
+      params.require(:activity).permit(:drill_id, :id, :lti_resource_link_id, :section_id, :course_id)
     end
 
 end

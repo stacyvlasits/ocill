@@ -43,6 +43,6 @@ class UnitsController < InheritedResources::Base
 
   private
     def unit_params
-      params.require(:unit).permit(:position, :title, :course_id, drills_attributes: [:instructions, :unit_id, :position, :prompt, :title, :type, :options])
+      params.require(:unit).permit(:id, :position, :title, :course_id, drills_attributes: [:id, :instructions, :unit_id, :position, :prompt, :title, :type, :options ])
     end
 end

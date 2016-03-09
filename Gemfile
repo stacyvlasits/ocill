@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
 
-
 gem 'rails', '4.2.6'
 # enables use of rails 3.0 style attr_accessible in rails
-gem 'protected_attributes'
+# gem 'protected_attributes'
 gem 'activeresource'
 gem 'responders'
 
@@ -15,7 +14,7 @@ gem 'thin'
 
 #authorization/authentication
 gem 'devise'
-gem 'cancan'
+gem 'cancancan'
 gem 'tinymce-rails', '4.1.6'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 

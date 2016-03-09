@@ -58,7 +58,13 @@ module Ocill
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
-    
+
+
+    # Currently, Active Record suppresses errors raised within `after_rollback`/`after_commit` callbacks
+    # and only print them to the logs. In the next version, these errors will no longer be suppressed.
+    # Instead, the errors will propagate normally just like in other Active Record callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
+
     config.force_ssl = true
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,

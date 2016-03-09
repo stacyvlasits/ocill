@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :drills, :through => :attempts
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :role, :password, :password_confirmation, :remember_me, :lti_user_id
+
   scope :does_not_exist, -> { where(:id => nil).where("id IS NOT ?", nil) }
   default_scope { order('email asc') }
 

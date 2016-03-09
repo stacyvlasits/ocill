@@ -14,4 +14,9 @@ class UsersController < ApplicationController
   	respond_with @users
   end
 
+  private
+    def users_params
+      params.require(:user).permit(:first_name, :last_name, :email, :role, :password, :password_confirmation, :remember_me, :lti_user_id, :id)
+    end
+
 end

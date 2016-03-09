@@ -1,7 +1,7 @@
 class Header < ActiveRecord::Base
   include Comparable
 
-  attr_accessible :drill_id, :position, :title
+  # attr_accessible :drill_id, :position, :title
   belongs_to :drill
   has_many :exercise_items
   after_initialize :set_default_position

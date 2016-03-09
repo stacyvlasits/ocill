@@ -36,7 +36,7 @@ class CoursesController < InheritedResources::Base
   private
 
     def course_params
-      params.require(:course).permit(:position, :title, units_attributes: [:position, :title, :course_id])
+      params.require(:course).permit(:id, :position, :title, units_attributes: [:id, :position, :title, :course_id])
     end
 
 

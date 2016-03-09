@@ -1,5 +1,5 @@
 class Drill < ActiveRecord::Base
-  attr_accessible :instructions, :unit_id, :position, :prompt, :title, :exercises_attributes, :type, :headers_attributes, :options
+  # attr_accessible :instructions, :unit_id, :position, :prompt, :title, :exercises_attributes, :type, :headers_attributes, :options
 
   serialize :options, Hash
 
@@ -35,7 +35,6 @@ class Drill < ActiveRecord::Base
           self.options ||= {}
           self.options[:#{method_name}] = value
         end
-        attr_accessible :#{method_name}
       "
     end
   end

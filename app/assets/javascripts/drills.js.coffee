@@ -64,6 +64,7 @@ jQuery ->
 jQuery ->
   $('form.fill-drill').on 'submit', (event, ui) ->
     blanks = false
+
     $('.fill-in-the-blank-field').each (index, element) ->
       if ($(this).val() == "")
         $(this).closest('.control-group').addClass("error")
