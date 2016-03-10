@@ -4,7 +4,6 @@ class LaunchController < ApplicationController
 
   def create
     # In some cases, the params variable isn't populated so get the params from the request object
-    binding.pry
     params = params || request.params
     #if this request is coming from an external source referrer
     if self.external?(params)
