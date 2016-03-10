@@ -17,17 +17,6 @@ class Launch
 
   end
 
-  def dump
-    [session:   @session.to_s,
-     params:  @params.to_s,
-     request:   @request.to_s,
-     errors:  @errors.to_s,
-     user:  @user.to_s,
-     section:   @section.to_s,
-     activity:  @activity.to_s
-    ].to_yaml
-  end
-
   def to_be_duplicated?
     return @to_be_duplicated
   end
@@ -36,11 +25,13 @@ class Launch
     Rails.logger.info "**LAUNCH#autthorize!** [starting] "
      if key = @params['oauth_consumer_key']
       if secret = oauth_shared_secrets[key]
+        Rails.logger.info "**LAUNCH#autthorize!** [stored session] #{session[:launch_tool_cache_key]}"
         @tool = Rails.cache.fetch(session[:launch_tool_cache_key], expires_in: 12.hours) do
           IMS::LTI::ToolProvider.new(key, secret, @params)
         end
         Rails.logger.info "**LAUNCH#autthorize!** [tool built]"
       else
+        Rails.logger.info "**LAUNCH#autthorize!** [stored session] #{session[:launch_tool_cache_key]}"
         @tool = session[:launch_tool_cache_key] = IMS::LTI::ToolProvider.new(nil, nil, @params)
         @tool.lti_msg = "The consumer didn't use a recognized key."
         @tool.lti_errorlog = "You did it wrong!"
