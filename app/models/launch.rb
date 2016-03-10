@@ -17,6 +17,10 @@ class Launch
 
   end
 
+  def dump
+    [session: @session, params: @params, request: @request, errors: @errors, user: @user, section: @section, activity: @activity ].to_yaml
+  end
+
   def to_be_duplicated?
     return @to_be_duplicated
   end

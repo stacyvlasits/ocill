@@ -63,7 +63,7 @@ protected
     logger.info "**LAUNCHController** [news] Launching from the cache using cached_parans #{cached_params}"
     if cached_params
       @launch = Launch.new(request, cached_params, session)
-      logger.info "**LAUNCHController** [news] Launching using this launch: {@launch.to_yaml}"
+      logger.info "**LAUNCHController** [news] Launching using this launch: {@launchdumpl}"
       if cached_params["roles"] == "Instructor"
         redirect_to drill_path(@launch.activity.drill) and return
       elsif cached_params["roles"] == "Learner"
@@ -83,9 +83,9 @@ protected
 
   def authorize(request, params)
     @launch = Launch.new(request, params, session)
-    logger.info "**LAUNCHController#authorize** [authorize:before authorization] Launching using this launch: #{@launch.to_yaml}"
+    logger.info "**LAUNCHController#authorize** [authorize:before authorization] Launching using this launch: #{@launch.dump}"
     @launch.authorize!
-    logger.info "**LAUNCHController#authorize** [authorize: after authorization] Launching using this launch: #{@launch.to_yaml}"
+    logger.info "**LAUNCHController#authorize** [authorize: after authorization] Launching using this launch: #{@launch.dump}"
     logger.info "**LAUNCHController#authorize** [authorize: before signed out] #{current_user.email}"
     sign_out
     logger.info "**LAUNCHController#authorize** [authorize: signed out] #{current_user.email}"
