@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :p3p_headers
-  # before_filter :lti_tool
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :build_current_user_permissions
   before_filter :authorize_mini_profiler
   before_filter :navigation?
+  after_filter :allow_iframe
 
   def p3p_headers
     response.headers["P3P"] = 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"'
@@ -47,5 +47,9 @@ class ApplicationController < ActionController::Base
     else
       @remove_navigation = false
     end
+  end
+
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
   end
 end
