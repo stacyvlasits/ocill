@@ -96,18 +96,25 @@ protected
   def redirect
     if @launch.unauthorized? || @launch.section == nil
       flash[:error] = @launch.errors.first
+      logger.info "**LAUNCHController#redirect** [Unauthorized]"
       redirect_to :root
     elsif @launch.instructor_to_be_duplicated?
+      logger.info "**LAUNCHController#redirect** [instructor_to_be_duplicated?]"
       return redirect_to edit_section_path(@launch.section)
     elsif @launch.learner_to_be_duplicated?
+      logger.info "**LAUNCHController#redirect** [learner_to_be_duplicated??]"
       return redirect_to section_path(@launch.section)
     elsif @launch.instructor_view_drill?
+      logger.info "**LAUNCHController#redirect** [instructor_view_drill??]"
       return redirect_to drill_path(@launch.activity.drill)
     elsif @launch.instructor_pick_course?
+      logger.info "**LAUNCHController#redirect** [instructor_pick_course??]"
       return redirect_to edit_activity_path(@launch.activity)
     elsif @launch.instructor_pick_drill?
+      logger.info "**LAUNCHController#redirect** [instructor_pick_drill??]"
       return redirect_to edit_activity_path(@launch.activity)
     elsif @launch.learner_attempt_drill?
+      logger.info "**LAUNCHController#redirect** [learner_attempt_drill??]"
       return redirect_to new_drill_attempt_path(@launch.activity.drill)
     end 
   end
