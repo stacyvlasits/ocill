@@ -83,14 +83,14 @@ protected
 
   def authorize(request, params)
     @launch = Launch.new(request, params, session)
-    logger.info "**LAUNCHController** [authorize:before authorization] Launching using this launch: {@launch.to_yaml}"
+    logger.info "**LAUNCHController#authorize** [authorize:before authorization] Launching using this launch: #{@launch.to_yaml}"
     @launch.authorize!
-    logger.info "**LAUNCHController** [authorize:after authorization] Launching using this launch: {@launch.to_yaml}"
-    logger.info "**LAUNCHController** [authorize: before signed out] #{current_user.to_yaml}"
+    logger.info "**LAUNCHController#authorize** [authorize: after authorization] Launching using this launch: #{@launch.to_yaml}"
+    logger.info "**LAUNCHController#authorize** [authorize: before signed out] #{current_user.email}"
     sign_out
-    logger.info "**LAUNCHController** [authorize: signed out] #{current_user.to_yaml}"
+    logger.info "**LAUNCHController#authorize** [authorize: signed out] #{current_user.email}"
     sign_in(@launch.user)
-    logger.info "**LAUNCHController** [authorize: signed in] #{current_user.to_yaml}"
+    logger.info "**LAUNCHController#authorize** [authorize: signed in] #{current_user.email}"
   end
 
   def redirect
