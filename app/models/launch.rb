@@ -28,13 +28,13 @@ class Launch
         @tool = Rails.cache.fetch(session[:launch_tool_cache_key], expires_in: 12.hours) do
           IMS::LTI::ToolProvider.new(key, secret, @params)
         end
-        Rails.logger.debug "**LAUNCH#autthorize!** [tool built]  #{@tool.to_yaml} "
+        Rails.logger.debug "**LAUNCH#autthorize!** [tool built]"
       else
         @tool = session[:launch_tool_cache_key] = IMS::LTI::ToolProvider.new(nil, nil, @params)
         @tool.lti_msg = "The consumer didn't use a recognized key."
         @tool.lti_errorlog = "You did it wrong!"
         @errors << "Consumer key wasn't recognized"
-        Rails.logger.debug "**LAUNCH#autthorize!** [tool from session]  #{@tool.to_yaml} "
+        Rails.logger.debug "**LAUNCH#autthorize!** [tool from session]  "
         return self
       end
     else
