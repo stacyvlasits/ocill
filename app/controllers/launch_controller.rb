@@ -5,17 +5,25 @@ class LaunchController < ApplicationController
   def create
     # In some cases, the params variable isn't populated so get the params from the request object
     params = params || request.params
+
+    logger.info "**LAUNCH** [params] {params.to_yaml}"
+
     #if this request is coming from an external source referrer
     if self.external?(params)
+      logger.info "**LAUNCH** [news] This shit is external"
+
       self.launch_from_cache(params); return if performed?
     end
     # If they're using a browser that doesn't allow 3rd party cookies, this is gonna get ugly
     # Check to see if 3rd partycookies work
-    unless cookies[:work?] # && false
+    unless cookies[:work?]
+      logger.info "**LAUNCH** [news] Cookies don't work"
+
       # Hmmm... we're not sure if they work or not.
       # Check to see if we've started the cookie test
       # unless true || params[:include_cookie]
       unless params[:include_cookie]
+        logger.info "**LAUNCH** [news] There's no cookie in the params"
         #  Ok, we haven't really tested cookies yet
         #  Now let's add a cookie to the session and then start over        
         cookies[:work?] = true
@@ -24,10 +32,11 @@ class LaunchController < ApplicationController
         # Ok, we tried to set a cookie, but it failed.
         # That means this browser's going to demand that we click-to-launch
         # Let's redirect to "Click to launch button"
-     
+
         self.authorize(request, params || request.params)
         params_cache_key = rand(10000..9999999).to_s
         Rails.cache.fetch( params_cache_key, expires_in: 5.minutes ) {|a| @launch.params }
+        logger.info "**LAUNCH** [parmas_cache_key] We're going External using cache {params_cache_key}"
         return redirect_to launch_create_external_path(params_cache_key: params_cache_key, canvas_course_id: @launch.canvas_course_id)
       end
 
@@ -47,10 +56,12 @@ class LaunchController < ApplicationController
 protected
   
   def launch_from_cache(params)
+
     cached_params = Rails.cache.fetch(params[:params_cache_key])
+    logger.info "**LAUNCH** [news] Launching from the cache using cached_parans {cached_params}"
     if cached_params
       @launch = Launch.new(request, cached_params, session)
-
+      logger.info "**LAUNCH** [news] Launching using this launch: {@launch.to_yaml}"
       if cached_params["roles"] == "Instructor"
         redirect_to drill_path(@launch.activity.drill) and return
       elsif cached_params["roles"] == "Learner"
