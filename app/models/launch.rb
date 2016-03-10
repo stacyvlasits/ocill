@@ -22,16 +22,19 @@ class Launch
   end
 
   def authorize!
+    logger.info "**LAUNCH#autthorize!** [starting] "
      if key = @params['oauth_consumer_key']
       if secret = oauth_shared_secrets[key]
         @tool = Rails.cache.fetch(session[:launch_tool_cache_key], expires_in: 12.hours) do
           IMS::LTI::ToolProvider.new(key, secret, @params)
         end
+        logger.info "**LAUNCH#autthorize!** [tool built]  #{@tool.to_yaml} "
       else
         @tool = session[:launch_tool_cache_key] = IMS::LTI::ToolProvider.new(nil, nil, @params)
         @tool.lti_msg = "The consumer didn't use a recognized key."
         @tool.lti_errorlog = "You did it wrong!"
         @errors << "Consumer key wasn't recognized"
+        logger.info "**LAUNCH#autthorize!** [tool from session]  #{@tool.to_yaml} "
         return self
       end
     else
@@ -41,10 +44,12 @@ class Launch
 
     if !@tool.valid_request?(@request)
       @errors << "The OAuth signature was invalid"
+      logger.info "**LAUNCH#autthorize!** [Signature invalid]"
       return self
     end
     unless Rails.env == "development"
       if Time.now.utc.to_i - @tool.request_oauth_timestamp.to_i > 4.hours
+        logger.info "**LAUNCH#autthorize!** [request too old]"
         @errors << "Your request is too old."
         return self
       end
