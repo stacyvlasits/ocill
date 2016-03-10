@@ -88,7 +88,7 @@ protected
     logger.info "**LAUNCHController#authorize** [authorize: after authorization] Launching using this launch: #{@launch.dump}"
     logger.info "**LAUNCHController#authorize** [authorize: before signed out] #{current_user.email}"
     sign_out
-    logger.info "**LAUNCHController#authorize** [authorize: signed out] #{current_user.email}"
+    logger.info "**LAUNCHController#authorize** [authorize: signed out] #{ current_user.email if current_user}"
     sign_in(@launch.user)
     logger.info "**LAUNCHController#authorize** [authorize: signed in] #{current_user.email}"
   end
