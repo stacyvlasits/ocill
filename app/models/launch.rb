@@ -18,7 +18,14 @@ class Launch
   end
 
   def dump
-    [session: @session, params: @params, request: @request, errors: @errors, user: @user, section: @section, activity: @activity ].to_yaml
+    [session:   @session.to_s,
+     params:  @params.to_s,
+     request:   @request.to_s,
+     errors:  @errors.to_s,
+     user:  @user.to_s,
+     section:   @section.to_s,
+     activity:  @activity.to_s
+    ].to_yaml
   end
 
   def to_be_duplicated?
