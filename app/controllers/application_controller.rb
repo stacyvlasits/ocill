@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    logger.debug "**APPLICATIONCONTROLLER#rescue_from CANCAN** The Exception was:  #{exception}"
+    logger.info "**APPLICATIONCONTROLLER#rescue_from CANCAN** The Exception was:  #{exception}"
     flash[:error] = "Access denied!"
     redirect_to :root
   end
