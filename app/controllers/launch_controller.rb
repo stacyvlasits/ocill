@@ -6,14 +6,15 @@ class LaunchController < ApplicationController
     # In some cases, the params variable isn't populated so get the params from the request object
     params = params || request.params
 
-    logger.info "**LAUNCHController** [params]"
+    logger.info "**LAUNCHController** [create]"
 
     #if this request is coming from an external source referrer
     if self.external?(params)
-      logger.info "**LAUNCHController** [news] This shit is external"
+      logger.info "**LAUNCHController** [create] This shit is external"
 
       self.launch_from_cache(params); return if performed?
     end
+
     # If they're using a browser that doesn't allow 3rd party cookies, this is gonna get ugly
     # Check to see if 3rd partycookies work
     unless cookies[:work?]
@@ -41,6 +42,7 @@ class LaunchController < ApplicationController
       end
 
     else
+      logger.info "**LAUNCHController** [create] Yay!  Cookies work!  We can use the happy path"
       # Yay!  Cookies work!  We can use the happy path
       self.authorize(request, params)
       self.redirect
@@ -81,10 +83,14 @@ protected
 
   def authorize(request, params)
     @launch = Launch.new(request, params, session)
+    logger.info "**LAUNCHController** [authorize:before authorization] Launching using this launch: {@launch.to_yaml}"
     @launch.authorize!
-    # sign_out
+    logger.info "**LAUNCHController** [authorize:after authorization] Launching using this launch: {@launch.to_yaml}"
+    logger.info "**LAUNCHController** [authorize: before signed out] #{current_user.to_yaml}"
+    sign_out
+    logger.info "**LAUNCHController** [authorize: signed out] #{current_user.to_yaml}"
     sign_in(@launch.user)
-
+    logger.info "**LAUNCHController** [authorize: signed in] #{current_user.to_yaml}"
   end
 
   def redirect
