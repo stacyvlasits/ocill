@@ -25,12 +25,14 @@ class Launch
     Rails.logger.info "**LAUNCH#autthorize!** [starting] "
      if key = @params['oauth_consumer_key']
       if secret = oauth_shared_secrets[key]
+        Rails.logger.info "**LAUNCH#autthorize!** [oath shared secrets key EXISTS]"
         Rails.logger.info "**LAUNCH#autthorize!** [stored session] #{session[:launch_tool_cache_key]}"
         @tool = Rails.cache.fetch(session[:launch_tool_cache_key], expires_in: 12.hours) do
           IMS::LTI::ToolProvider.new(key, secret, @params)
         end
         Rails.logger.info "**LAUNCH#autthorize!** [tool built]"
       else
+        Rails.logger.info "**LAUNCH#autthorize!** [oath shared secrets key FAILED]"
         Rails.logger.info "**LAUNCH#autthorize!** [stored session] #{session[:launch_tool_cache_key]}"
         @tool = session[:launch_tool_cache_key] = IMS::LTI::ToolProvider.new(nil, nil, @params)
         @tool.lti_msg = "The consumer didn't use a recognized key."

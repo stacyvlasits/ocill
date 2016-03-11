@@ -16,7 +16,7 @@ class LaunchController < ApplicationController
     end
 
     # If they're using a browser that doesn't allow 3rd party cookies, this is gonna get ugly
-    # Check to see if 3rd partycookies work
+    # Check to see if 3rd party cookies work
     unless cookies[:work?]
       logger.info "**LAUNCHController** [news] Cookies don't work"
 
@@ -58,12 +58,11 @@ class LaunchController < ApplicationController
 protected
   
   def launch_from_cache(params)
-
     cached_params = Rails.cache.fetch(params[:params_cache_key])
-    logger.info "**LAUNCHController** [news] Launching from the cache using cached_parans #{cached_params}"
+    logger.info "**LAUNCHController** [news] Launching from the cache using cached_params: #{cached_params}"
     if cached_params
       @launch = Launch.new(request, cached_params, session)
-      logger.info "**LAUNCHController** [news] Launching using this launch: {@launchdumpl}"
+      logger.info "**LAUNCHController** [news] Launching using this launch: "
       if cached_params["roles"] == "Instructor"
         redirect_to drill_path(@launch.activity.drill) and return
       elsif cached_params["roles"] == "Learner"
