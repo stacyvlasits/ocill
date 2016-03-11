@@ -37,8 +37,7 @@ class AttemptsController < InheritedResources::Base
       if @attempt.save
         if current_user.is_lti?
           # If there is no active tool, get it out of the session
-          Rails.logger.info "**AttemptsController#create** [session] #{session[:launch_tool_cache_key]}"
-          Rails.logger.info "**AttemptsController#create** [session launch_tool_cache_key)] #{session[:launch_tool_cache_key]}"
+          Rails.logger.info "**AttemptsController#create** [session] #{session.inspect}"
           @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
           score = @attempt.decimal_score
           if @tool && @tool.outcome_service?
