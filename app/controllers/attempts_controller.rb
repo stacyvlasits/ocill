@@ -38,7 +38,7 @@ class AttemptsController < InheritedResources::Base
         if current_user.is_lti?
           # If there is no active tool, get it out of the session
           if !session.key?(:launch_tool_cache_key)
-            Rails.logger.info "**AttemptsController#create** [session] params cashe key params #{[:params_cache_key]}"
+            Rails.logger.info "**AttemptsController#create** [session] params cashe key  #{params[:params_cache_key]}"
           end
           Rails.logger.info "**AttemptsController#create** [session] The cache should have tool in it, maybe}"
           @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
