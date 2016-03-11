@@ -38,7 +38,6 @@ class AttemptsController < InheritedResources::Base
         if current_user.is_lti?
           # If there is no active tool, get it out of the session
           Rails.logger.info "**AttemptsController#create** [session] #{session.to_yaml}"
-          }"
           Rails.logger.info "**AttemptsController#create** [session launch_tool_cache_key)] #{session[:launch_tool_cache_key]}"
           @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
           score = @attempt.decimal_score
