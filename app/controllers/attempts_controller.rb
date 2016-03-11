@@ -39,9 +39,13 @@ class AttemptsController < InheritedResources::Base
           # If there is no active tool, get it out of the session
           if !session.key?(:launch_tool_cache_key)
             Rails.logger.info "**AttemptsController#create** [session] params cashe key  #{params[:params_cache_key]}"
+            @launch = Launch.new(request, params, session)
+
+            @tool = @launch.tool
+          else
+            Rails.logger.info "**AttemptsController#create** [session] The cache should have tool in it, maybe}"
+            @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
           end
-          Rails.logger.info "**AttemptsController#create** [session] The cache should have tool in it, maybe}"
-          @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
           score = @attempt.decimal_score
           if @tool && @tool.outcome_service?
             result = @tool.post_replace_result!(score)
