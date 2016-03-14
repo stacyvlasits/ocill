@@ -1,11 +1,11 @@
 class AttemptsController < InheritedResources::Base
   load_and_authorize_resource
-  around_action :print_session
+  before_action :print_session
+  after_action :print_session
 
   def print_session
     # Rails.logger.info "***ATTEMPTS FILTER*** Action name #{controller.action_name}"
     Rails.logger.info "***ATTEMPTS FILTER*** session cache key  #{session[:launch_tool_cache_key]}"
-    yield
   end
 
   def new
