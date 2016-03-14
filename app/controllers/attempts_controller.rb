@@ -6,8 +6,7 @@ class AttemptsController < InheritedResources::Base
 
   def print_session
     Rails.logger.info "***ATTEMPTS FILTER*** session cache key  #{session[:launch_tool_cache_key]}"
-    Rails.logger.info "***ATTEMPTS FILTER*** form authenticity token  #{form_authenticity_token}"
-    Rails.logger.info "***ATTEMPTS FILTER*** form authenticity token  #{form_authenticity_token}"
+
   end
 
   def new
