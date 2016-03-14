@@ -2,7 +2,8 @@ class AttemptsController < InheritedResources::Base
   load_and_authorize_resource
   before_action :print_session
   after_action :print_session
-
+  skip_before_filter :verify_authenticity_token
+  
   def print_session
     # Rails.logger.info "***ATTEMPTS FILTER*** Action name #{controller.action_name}"
     Rails.logger.info "***ATTEMPTS FILTER*** session cache key  #{session[:launch_tool_cache_key]}"
