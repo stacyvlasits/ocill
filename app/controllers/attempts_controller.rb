@@ -5,7 +5,6 @@ class AttemptsController < InheritedResources::Base
   skip_before_filter :verify_authenticity_token
 
   def print_session
-    Rails.logger.info "***ATTEMPTS FILTER*** Action name #{AttemptsController.action_name}"
     Rails.logger.info "***ATTEMPTS FILTER*** session cache key  #{session[:launch_tool_cache_key]}"
   end
 
