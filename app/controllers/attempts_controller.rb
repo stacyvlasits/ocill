@@ -25,7 +25,6 @@ class AttemptsController < InheritedResources::Base
   end
 
   def create
-    Rails.logger.info "**AttemptsController#create** PARAMS:  #{params}"
     if params[:drill_id]
       @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
         if params[:attempt] && params[:attempt][:responses]
@@ -39,7 +38,7 @@ class AttemptsController < InheritedResources::Base
         if current_user.is_lti?
           # If there is no active tool, get it out of the session
           Rails.logger.info "**AttemptsController#create** [session] The cache should have tool in it, maybe}"
-          @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
+          @tool = @tool # || Rails.cache.fetch(session[:launch_tool_cache_key])
           score = @attempt.decimal_score
           if @tool && @tool.outcome_service?
             result = @tool.post_replace_result!(score)
