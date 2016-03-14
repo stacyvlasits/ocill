@@ -177,14 +177,13 @@ class Launch
   end
 
   def canvas_course_id
-
     referrer_uri = URI.parse(@request.referrer)
-    path_parts = referrer_uri.path.split("/")
+    pth_parts = referrer_uri.path.split("/")
     course_id_index = path_parts.find_index("courses")
     if course_id_index
-      course_id = path_parts[course_id_index + 1]
-    else 
-      course_id = @request.params["course_id"]
+      path_parts[course_id_index + 1]
+    else
+      @request.params["course_id"]
     end
   end
   
