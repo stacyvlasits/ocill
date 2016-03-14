@@ -4,7 +4,7 @@ class AttemptsController < InheritedResources::Base
 
   def print_session
     # Rails.logger.info "***ATTEMPTS FILTER*** Action name #{controller.action_name}"
-    Rails.logger.info "***ATTEMPTS FILTER*** session info  #{session.inspect}"
+    Rails.logger.info "***ATTEMPTS FILTER*** session cache key  #{session[:launch_tool_cache_key]}"
     yield
   end
 
