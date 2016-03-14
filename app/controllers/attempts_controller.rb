@@ -3,7 +3,7 @@ class AttemptsController < InheritedResources::Base
   around_action :print_session
 
   def print_session
-    Rails.logger.info "***ATTEMPTS FILTER*** Action name #{controller.action_name}"
+    # Rails.logger.info "***ATTEMPTS FILTER*** Action name #{controller.action_name}"
     Rails.logger.info "***ATTEMPTS FILTER*** session info  #{session.inspect}"
   end
 
