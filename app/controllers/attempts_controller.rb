@@ -1,6 +1,11 @@
 class AttemptsController < InheritedResources::Base
   load_and_authorize_resource
+  around_action :print_session
 
+  def print_session
+    Rails.logger.info "***ATTEMPTS FILTER*** Action name #{controller.action_name}"
+    Rails.logger.info "***ATTEMPTS FILTER*** session info  #{session.inspect}"
+  end
 
   def new
     if params[:drill_id]
