@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery
-  before_filter :p3p_headers
-  before_filter :authenticate_user!, except: [:index, :show]
+  # before_filter :p3p_headers
+  # before_filter :authenticate_user!, except: [:index, :show]
   before_filter :build_current_user_permissions
   before_filter :authorize_mini_profiler
   before_filter :navigation?
