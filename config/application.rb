@@ -2,21 +2,11 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-#  Rails 4.0 upgrade caused duplicate logging.  This hack is meant to prevent that.
-ActiveSupport::Logger.class_eval do 
-  #monkey patching here so there aren't duplicate lines in console/server
-  def self.broadcast(logger) 
-    Module.new do
-    end
-  end
-end
-
 if defined?(Bundler)
-    # Require the gems listed in Gemfile, including any gems
-    # you've limited to :test, :development, or :production.
-    Bundler.require(*Rails.groups)
-    # If you want your assets lazily compiled in production, use this lineplugin
-    # Bundler.require(:default, :assets, Rails.env)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
 end
 
 config = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
@@ -58,13 +48,7 @@ module Ocill
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
-
-
-    # Currently, Active Record suppresses errors raised within `after_rollback`/`after_commit` callbacks
-    # and only print them to the logs. In the next version, these errors will no longer be suppressed.
-    # Instead, the errors will propagate normally just like in other Active Record callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-
+    
     config.force_ssl = true
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -75,7 +59,7 @@ module Ocill
     # This will create an empty whitelist of attributes available for mass-assignment for all models
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
-    # config.active_record.whitelist_attributes = true
+    config.active_record.whitelist_attributes = true
 
     # Enable the asset pipeline
     config.assets.enabled = true
@@ -87,8 +71,5 @@ module Ocill
     # config.autoload_paths += %W(#{config.root}/lib/modules)
     # Autoload lib/ folder including all subdirectories
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
-
-    config.tinymce.install = :copy
-
   end
 end

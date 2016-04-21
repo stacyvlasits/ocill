@@ -5,6 +5,13 @@
 #  When a user sets the drill type on a new drill
 #  the form is submitted
 
+# jQuery ->
+#  $("#submit-attempt").on 'click', ( event ) ->
+#    input_values = $("input.the_blank").map( ->
+#     return $(this).val() ).get()
+#    joined_values = input_values.join("&&&")
+#     $('#attempt_responses').val(joined_values)
+
 
 jQuery ->
   $("select#drill_type").change ->
@@ -57,7 +64,6 @@ jQuery ->
 jQuery ->
   $('form.fill-drill').on 'submit', (event, ui) ->
     blanks = false
-
     $('.fill-in-the-blank-field').each (index, element) ->
       if ($(this).val() == "")
         $(this).closest('.control-group').addClass("error")
@@ -107,8 +113,8 @@ jQuery ->
           when "500"
             toastr.error('An error prevented your interview information from being updated.', "error");
           else
-            toastr.error('An error prevented your interview information from being updated.', "error");
-      )
+            toastr.error('An error prevented your interview information from being updated.', "error"))
+
 # Handles horizontal
 # jQuery ->
 #   $('form').on 'change', '.set-horizontal', (event) ->
@@ -132,7 +138,7 @@ jQuery ->
     label = $(this).parent().find('.audio-upload-label')
     if ( $(this).val() != "" )
       url = $(this).val()
-      label.text(url.substring(url.lastIndexOf("\\") + 1))
+      label.text(url.substring(url.lastIndexOf("\\") + 1);)
       label.removeClass("hidden")
     else
       label.text("")
@@ -142,14 +148,14 @@ jQuery ->
   $('form').on 'click', '.add-audio-field', (event) ->
     # $(this).css('color', 'yellow')
     $(this).parent().find('.audio-upload-field').click()
-    $(this).parent().find('.audio-upload-field').toggleClass('hidden')
+    $(this).parent().find('.audio-upload-field').toggleClass('hidden');
     event.preventDefault()
 
 jQuery ->
   $('form').on 'click', '.add-image-field', (event) ->
     $(this).parent().find('.image-upload-field').click();
     $(this).parent().find('.image-upload-field').toggleClass('hidden');
-    event.preventDefault();
+    event.preventDefault()
 
 jQuery ->
   $('.video-player').each (index, element) ->

@@ -1,19 +1,21 @@
 class Drill < ActiveRecord::Base
+  attr_accessible :instructions, :unit_id, :position, :prompt, :title, :exercises_attributes, :type, :headers_attributes, :options
+
   serialize :options, Hash
 
   belongs_to :unit
   alias :parent :unit
 
-  has_many :exercises, -> { order 'position ASC' }, dependent: :destroy, autosave: true
+  has_many :exercises, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercises
   accepts_nested_attributes_for :exercises, allow_destroy: true
 
   has_many :activities
   has_many :attempts
-  has_many :attempters, -> { uniq }, :through => :attempts,  :source => :user
+  has_many :attempters, :through => :attempts, :uniq => true, :source => :user
   has_many :exercise_items, :through => :exercises, :autosave => true
   has_many :images, :as => :imageable
-  has_many :headers, -> {order 'position ASC' }, :dependent => :destroy, :autosave => true
+  has_many :headers, :order => "position ASC", :dependent => :destroy, :autosave => true
   accepts_nested_attributes_for :headers, allow_destroy: true
 
   validates :unit_id, :presence => true
@@ -33,6 +35,7 @@ class Drill < ActiveRecord::Base
           self.options ||= {}
           self.options[:#{method_name}] = value
         end
+        attr_accessible :#{method_name}
       "
     end
   end
@@ -50,8 +53,6 @@ class Drill < ActiveRecord::Base
       "Grid"
     when "FillDrill"
       "FITB"
-    when "DragDrill"
-      "Drag"
     else
       ""
     end

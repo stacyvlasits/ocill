@@ -1,15 +1,25 @@
 class ExerciseItem < ActiveRecord::Base
+  attr_accessible :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video, :panda_audio_id, :options
+  # attr_accessible  :options
+  attr_accessible :position, :remove_audio, :remove_image, :remove_video
+
   # TODO remove "column" and "deleted_at" from db
   mount_uploader :audio, AudioUploader
+#  mount_uploader :video, VideoUploader
   mount_uploader :image, ImageUploader
   serialize :acceptable_answers
   serialize :options, Hash
 
+  # default_scope where("deleted_at IS NULL")
+
+  # scope :deleted, -> { unscoped.where("deleted_at IS NOT NULL") }
+
   belongs_to :exercise
   belongs_to :header
+  # validates :exercise_id, :presence => true
 
   after_initialize :set_default_position
-  before_save :clean_up_audio
+  before_save :cleanup_audio
 
   alias :parent :exercise
 
@@ -35,13 +45,14 @@ class ExerciseItem < ActiveRecord::Base
           self.options ||= {}
           self.options[:#{method_name}] = value
         end
+        attr_accessible :#{method_name}
       "
     end
   end
 
   serialized_attr_accessor :mp3, :ogg, :horizontal
 
-  def clean_up_audio
+  def cleanup_audio
     if remove_audio
       self.remove_audio!
     end

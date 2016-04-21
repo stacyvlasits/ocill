@@ -1,13 +1,5 @@
 class AttemptsController < InheritedResources::Base
   load_and_authorize_resource
-  before_action :print_session
-  after_action :print_session
-
-
-  def print_session
-    Rails.logger.info "***ATTEMPTS FILTER*** session cache key  #{session[:launch_tool_cache_key]}"
-
-  end
 
   def new
     if params[:drill_id]
@@ -33,6 +25,7 @@ class AttemptsController < InheritedResources::Base
   end
 
   def create
+    
     if params[:drill_id]
       @attempt = current_user.attempts.new(:drill_id => params[:drill_id])
         if params[:attempt] && params[:attempt][:responses]
@@ -45,8 +38,7 @@ class AttemptsController < InheritedResources::Base
       if @attempt.save
         if current_user.is_lti?
           # If there is no active tool, get it out of the session
-          Rails.logger.info "**AttemptsController#create** [session] The cache should have tool in it, maybe} #{session[:launch_tool_cache_key]}"
-          @tool = @tool  || Rails.cache.fetch(session[:launch_tool_cache_key])
+          @tool = @tool || Rails.cache.fetch(session[:launch_tool_cache_key])
           score = @attempt.decimal_score
           if @tool && @tool.outcome_service?
             result = @tool.post_replace_result!(score)
@@ -87,6 +79,7 @@ class AttemptsController < InheritedResources::Base
   end
 
   def update
+    
     super do |format|
         if current_user.is_lti?
           # If there is no active tool, get it out of the session
@@ -109,10 +102,4 @@ class AttemptsController < InheritedResources::Base
     end
 
   end
-
-  private
-    def attempt_params
-      params.require(:attempt).permit(:id, :drill_id, :user_id, :lis_outcome_service_url, :lis_result_sourcedid, :response, :responses
-      )
-    end
 end

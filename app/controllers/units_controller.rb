@@ -6,10 +6,14 @@ class UnitsController < InheritedResources::Base
     @course = Course.find(params[:course_id])
     @unit = @course.units.build
     respond_with @unit
+
   end
 
   def show
     @unit = Unit.find(params[:id])
+  #  @unit = Unit.includes(:drills => [{ :attempters => :attempts }, :unit] ).find(params[:id])
+ #   @drills = @unit.drills
+ #   @drill_performances = @drills.map {|d| d.attempters.map {|attempter| Performance.new(d, attempter)}} 
   end
 
   def create
@@ -23,7 +27,7 @@ class UnitsController < InheritedResources::Base
 
   def update
     @unit = Unit.find(params[:id])
-    if @unit.update_attributes(unit_params)
+    if @unit.update_attributes(params[:unit])
       flash[:notice] = "Successfully updated unit."
       redirect_to unit_path(@unit)
     else
@@ -39,9 +43,4 @@ class UnitsController < InheritedResources::Base
     flash[:notice] = "Successfully deleted unit: " + title.to_s
     redirect_to course_url(course)
   end
-
-  private
-    def unit_params
-      params.require(:unit).permit(:id, :position, :title, :course_id, drills_attributes: [:id, :instructions, :unit_id, :position, :prompt, :title, :type, :options ])
-    end
 end

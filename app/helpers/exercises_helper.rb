@@ -14,7 +14,7 @@ module ExercisesHelper
   end
 
   def graded_drag_drill_exercise(exercise, responses)
-    
+
   end
 
   def graded_class(response)
@@ -39,6 +39,7 @@ module ExercisesHelper
 
   def edit_fill_drill_exercise(exercise, responses, attempt_id)
     inputs = exercise.exercise_items.map do |ei|
+      response = responses.find {|r| r.exercise_item_id.to_i == ei.id }
       create_response_input(ei.id, attempt_id)
     end
     prompt = exercise.prompt_with_hints.gsub(/\[/,'{{').gsub(/\]/,'}}')
@@ -46,7 +47,6 @@ module ExercisesHelper
     prompt
   end
 
-#TODO  FINISH THIS OR DELETE IT
   def attempt_drag_drill_exercise(exercise, responses, attempt_id )
 
     inputs = exercise.exercise_items.map do |ei|

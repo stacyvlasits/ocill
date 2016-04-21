@@ -13,7 +13,6 @@
  *= require font-awesome
  *= require toastr.min 
  *= require toastr-responsive
- *= require bootstrap_and_overrides
  */
 
  body {

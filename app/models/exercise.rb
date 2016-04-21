@@ -2,16 +2,18 @@ class Exercise < ActiveRecord::Base
   include Comparable
   mount_uploader :audio, AudioUploader
   mount_uploader :image, ImageUploader
+  attr_accessible :prompt, :title, :fill_in_the_blank, :position, :drill_id, :weight, :exercise_items_attributes, :audio, :image, :video, :remove_audio, :remove_image, :remove_video, :panda_audio_id, :horizontal
+  attr_accessible  :options
 
   serialize :options, Hash
 
   belongs_to :drill
   alias :parent :drill
 
-  has_many :exercise_items, -> {order 'position ASC' }, :dependent => :destroy, :autosave => true
+  has_many :exercise_items, :dependent => :destroy, :autosave => true, :order => "position ASC"
   alias :children :exercise_items
 
-  default_scope { order('position ASC') }
+  default_scope order("position asc")
 
   accepts_nested_attributes_for :exercise_items, allow_destroy: true
   validates :prompt, :presence => true
@@ -39,6 +41,7 @@ class Exercise < ActiveRecord::Base
           self.options ||= {}
           self.options[:#{method_name}] = value
         end
+        attr_accessible :#{method_name}
       "
     end
   end

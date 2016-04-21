@@ -1,4 +1,5 @@
 class Role < ActiveRecord::Base
+  attr_accessible :name, :user, :course
   belongs_to :user, :touch => true
   belongs_to :course
 
@@ -23,7 +24,6 @@ class Role < ActiveRecord::Base
       if self.user.senior_role(self.course) == "Administrator" || self.user.senior_role(self.course) == "Instructor"
         self.user.role = "Instructor"
         self.user.save!
-        self.user
       end
     end
   end  

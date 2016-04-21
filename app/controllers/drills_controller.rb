@@ -51,7 +51,7 @@ class DrillsController < InheritedResources::Base
 
   def update
     @drill = Drill.find(params[:id])
-    if @drill.update_attributes(drill_params)
+    if @drill.update_attributes(params[:drill])
 
       flash[:notice] = "Successfully updated the drill."
     end
@@ -72,11 +72,37 @@ class DrillsController < InheritedResources::Base
 
   def add_column
     @drill = Drill.find(params[:id])
-    if @drill.add_column
+    if @drill.update_attributes(params[:drill])
       flash[:notice] = "Drill Updated."
-      respond_to do |format|
-        format.html { redirect_to(:action => 'edit') }
-        format.js
+      if @drill.add_column
+        respond_to do |format|
+          format.html { redirect_to(:action => 'edit') }
+          format.js
+        end
+      else
+        flash[:error] = "Drill Was Not Updated."
+        respond_to do |format|
+          format.html { redirect_to(:action => 'edit') }
+        end
+      end
+    else
+      flash[:error] = "Drill Update Failed."
+    end
+
+  end
+
+  def add_row
+    @drill = Drill.find(params[:id])
+    if @drill.update_attributes(params[:drill])
+      if @row = @drill.add_row
+        respond_to do |format|
+          format.html { redirect_to(:action => 'edit') }
+          format.js
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to(:action => 'edit') }
+        end
       end
     else
       flash[:error] = "Drill Was Not Updated."
@@ -86,28 +112,21 @@ class DrillsController < InheritedResources::Base
     end
   end
 
-  def add_row
-    @drill = Drill.find(params[:id])
-    if @row = @drill.add_row
-      respond_to do |format|
-        format.html { redirect_to(:action => 'edit') }
-        format.js
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to(:action => 'edit') }
-      end
-    end
-  end
-
   def remove_row
     @drill = Drill.find(params[:id])
-    if @row = @drill.remove_row(params[:exercise_id])
-      respond_to do |format|
-        format.html { redirect_to(:action => 'edit') }
-        format.js
+    if @drill.update_attributes(params[:drill])
+      if @row = @drill.remove_row(params[:exercise_id])
+        respond_to do |format|
+          format.html { redirect_to(:action => 'edit') }
+          format.js
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to(:action => 'edit') }
+        end
       end
     else
+      flash[:error] = "Drill Was Not Updated."
       respond_to do |format|
         format.html { redirect_to(:action => 'edit') }
       end
@@ -116,20 +135,22 @@ class DrillsController < InheritedResources::Base
 
   def remove_column
     @drill = Drill.find(params[:id])
-    if @drill.remove_column(params[:header_id])
-      respond_to do |format|
-        format.html { redirect_to(:action => 'edit') }
-        format.js
+    if @drill.update_attributes(params[:drill])
+      if @drill.remove_column(params[:header_id])
+        respond_to do |format|
+          format.html { redirect_to(:action => 'edit') }
+          format.js
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to(:action => 'edit') }
+        end
       end
     else
+      flash[:error] = "Drill Was Not Updated."
       respond_to do |format|
         format.html { redirect_to(:action => 'edit') }
       end
     end
   end
-
-  private
-    def drill_params
-      params.require(:drill).permit(:id, :instructions, :unit_id, :position, :prompt, :title, :type, :options, :rtl, :hide_text, :retain_correct, headers_attributes:[:id, :drill_id, :position, :title], exercises_attributes: [ :prompt, :title, :_destroy, :fill_in_the_blank, :position, :drill_id, :weight, :audio, :image, :video, :remove_audio, :remove_image, :remove_video, :panda_audio_id, :horizontal, :options, :id, exercise_items_attributes: [:id, :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video, :panda_audio_id, :options, :position, :remove_audio, :remove_image, :remove_video] ])
-    end
 end

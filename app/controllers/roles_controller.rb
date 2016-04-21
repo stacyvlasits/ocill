@@ -49,8 +49,4 @@ class RolesController < ApplicationController
     
     redirect_to edit_course_url(@course)
   end
-  private
-    def roles_params
-      params.require(:role).permit(:id, :name, :user, :course)
-    end
 end

@@ -3,8 +3,8 @@ class PandaController < ApplicationController
 
   def notifications
     if params[:event] == 'video-encoded'
-      model = Exercise.where(panda_audio_id: params[:video_id]).first
-      model ||= ExerciseItem.where(panda_audio_id: params[:video_id]).first
+      model = Exercise.find_by_panda_audio_id(params[:video_id])
+      model ||= ExerciseItem.find_by_panda_audio_id(params[:video_id]) 
       
       if model
         if model.panda_audio.status == 'success'

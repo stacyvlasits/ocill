@@ -34,8 +34,4 @@ class ExercisesController < InheritedResources::Base
     redirect_to edit_drill_path(exercise.drill)
   end
 
-  private
-    def exercise_params
-      params.require(:exercise).permit(:id, :prompt, :title, :fill_in_the_blank, :position, :drill_id, :weight, :audio, :image, :video, :remove_audio, :remove_image, :remove_video, :panda_audio_id, :horizontal, :options, exercise_items_attributes: [ :graded, :header_id, :exercise_item_type, :acceptable_answers, :text, :type, :image, :audio, :video, :panda_audio_id, :options, :position, :remove_audio, :remove_image, :remove_video, :id ])
-    end
 end

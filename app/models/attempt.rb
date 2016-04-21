@@ -1,8 +1,10 @@
 class Attempt < ActiveRecord::Base
+  attr_accessible :drill_id, :user_id, :lis_outcome_service_url, :lis_result_sourcedid, :response, :responses
+
   has_many :exercise_items, :through => :drill
   belongs_to :drill
   belongs_to :user
-  default_scope { includes(:exercise_items) }
+  default_scope :include => :exercise_items
   serialize :response, JSON
 
   # TODO move the presentation of the score out of the model and into a view helper

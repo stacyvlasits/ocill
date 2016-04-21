@@ -22,23 +22,16 @@ class Launch
   end
 
   def authorize!
-    Rails.logger.info "**LAUNCH#autthorize!** [starting] "
      if key = @params['oauth_consumer_key']
       if secret = oauth_shared_secrets[key]
-        Rails.logger.info "**LAUNCH#autthorize!** [oath shared secrets key EXISTS]"
-        Rails.logger.info "**LAUNCH#autthorize!** [stored session] #{session[:launch_tool_cache_key]}"
         @tool = Rails.cache.fetch(session[:launch_tool_cache_key], expires_in: 12.hours) do
           IMS::LTI::ToolProvider.new(key, secret, @params)
         end
-        Rails.logger.info "**LAUNCH#autthorize!** [tool built]"
       else
-        Rails.logger.info "**LAUNCH#autthorize!** [oath shared secrets key FAILED]"
-        Rails.logger.info "**LAUNCH#autthorize!** [stored session] #{session[:launch_tool_cache_key]}"
         @tool = session[:launch_tool_cache_key] = IMS::LTI::ToolProvider.new(nil, nil, @params)
         @tool.lti_msg = "The consumer didn't use a recognized key."
         @tool.lti_errorlog = "You did it wrong!"
         @errors << "Consumer key wasn't recognized"
-        Rails.logger.info "**LAUNCH#autthorize!** [tool from session]  "
         return self
       end
     else
@@ -48,12 +41,10 @@ class Launch
 
     if !@tool.valid_request?(@request)
       @errors << "The OAuth signature was invalid"
-      Rails.logger.info "**LAUNCH#autthorize!** [Signature invalid]"
       return self
     end
     unless Rails.env == "development"
       if Time.now.utc.to_i - @tool.request_oauth_timestamp.to_i > 4.hours
-        Rails.logger.info "**LAUNCH#autthorize!** [request too old]"
         @errors << "Your request is too old."
         return self
       end
@@ -64,8 +55,6 @@ class Launch
   def lti_roles_to_ocill_user_role(lti_roles)
     roles = lti_roles.split(',') if lti_roles
     if roles.grep(/Instructor/).any?
-      "Instructor"
-    elsif roles.grep(/Administrator/).any?
       "Instructor"
     elsif roles.grep(/TeachingAssistant/).any?
       "Instructor"  
@@ -109,7 +98,7 @@ class Launch
   end
 
   def learner_attempt_drill?
-    user.role == "Learner" && self.activity.drill.present? && Role.where(user_id: user.id, course_id: self.activity.course, name: user.role).first_or_create
+    user.role == "Learner" && self.activity.drill.present? && Role.find_or_create_by_user_id_and_course_id_and_name(user.id, self.activity.course, user.role)
   end
 
   def find_user
@@ -118,12 +107,7 @@ class Launch
     role = lti_roles_to_ocill_user_role(roles)
     email = "user#{rand(10000..999999999999).to_s}@example.com"
     password = "pass#{rand(10000..999999999999).to_s}"
-    u = User.where(lti_user_id: user_id).first_or_create
-    u.role= role
-    u.email= email
-    u.password= password
-    u.save!
-    u
+    u = User.find_or_create_by_lti_user_id(lti_user_id: user_id, role: role, email: email, password: password)
   end
 
   def find_or_create_child_section(context_id, custom_canvas_course_id)
@@ -165,15 +149,7 @@ class Launch
   
   def find_activity
     return nil unless section
-    if section.parent_id
-      activity = Activity.where(lti_resource_link_id: params[:resource_link_id]).first
-      return activity || Activity.new()
-    else 
-      a=Activity.where(lti_resource_link_id: params[:resource_link_id]).first_or_create 
-      a.section_id=section.id
-      a.save!
-      a
-    end
+    Activity.find_or_create_by_lti_resource_link_id(lti_resource_link_id: params[:resource_link_id], section_id: section.id)
   end
 
   def canvas_course_id
@@ -183,7 +159,7 @@ class Launch
     course_id_index = path_parts.find_index("courses")
     if course_id_index
       course_id = path_parts[course_id_index + 1]
-    else
+    else 
       course_id = @request.params["course_id"]
     end
   end

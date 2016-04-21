@@ -7,11 +7,8 @@ class AudioUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
-  # include Sprockets::Helpers::RailsHelper
-  # include Sprockets::Helpers::IsolatedHelper
-
-  
-  include Sprockets::Rails::Helper
+  include Sprockets::Helpers::RailsHelper
+  include Sprockets::Helpers::IsolatedHelper
   #  include CarrierWaveDirect::Uploader
   # Choose what kind of storage to use for this uploader:
 
@@ -59,7 +56,6 @@ private
     audio=Panda::Video.create!(:source_url => url, :path_format => "#{store_dir}/#{remove_audio_ext(filename)}", :profiles => "mp3,ogg")
     model.panda_audio_id = audio.id
     model.save!
-    model
   end
 
   def remove_audio_ext(path_and_file)

@@ -1,6 +1,8 @@
 class Course < ActiveRecord::Base
+  attr_accessible :position, :title, :units_attributes
+  
   has_many :activities
-  has_many :units, -> {order 'position ASC' }, :dependent => :destroy, :autosave => true
+  has_many :units, :order => "position ASC", :dependent => :destroy, :autosave => true, :autosave => true
   alias :children :units
   has_many :drills, :through => :units
   accepts_nested_attributes_for :units, allow_destroy: true
@@ -12,7 +14,7 @@ class Course < ActiveRecord::Base
 
   after_initialize :set_default_position
   after_commit :flush_user_navigation_caches
-  default_scope { order('title ASC') }
+  default_scope order('title ASC')
 
 private
   def set_default_position
@@ -30,6 +32,6 @@ private
 
 private
   def flush_user_navigation_caches
-    User.flush_all_navigation_caches
+    User.flush_all_navigation_caches    
   end
 end
