@@ -18,12 +18,9 @@ class Course < ActiveRecord::Base
 
 
   def duplicate
-    puts "Starting to duplicate a course..."
-    
     copy = self.dup
+    copy.title = "Copy of " + copy.title
     copy.save
-    
-    puts "Course: " + (copy.title || "")
 
     self.units.each do |unit|
       unit.duplicate_for(copy)

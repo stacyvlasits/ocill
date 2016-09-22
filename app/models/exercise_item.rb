@@ -24,13 +24,10 @@ class ExerciseItem < ActiveRecord::Base
   alias :parent :exercise
 
   def duplicate_for(exercise)
-    puts "-------- Starting to duplicate an exercise item..."
-    
     copy = self.dup
     copy.exercise_id = exercise.id
     copy.save
-    
-    puts "-------- ExerciseItem: " + (copy.text || "")
+
   end
 
   def panda_audio
