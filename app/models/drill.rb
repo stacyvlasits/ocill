@@ -25,6 +25,21 @@ class Drill < ActiveRecord::Base
   before_save :set_default_position
   after_commit :flush_user_navigation_caches
 
+  def duplicate_for(unit)
+    puts "---- Starting to duplicate a drill..."
+    
+    copy = self.dup
+    copy.unit_id = unit.id
+    copy.save
+    
+    puts "---- DRILL: " + (copy.title || "")
+
+    self.exercises.each do |exercise|
+      exercise.duplicate_for(copy)
+    end
+  end
+
+
   def self.serialized_attr_accessor(*args)
     args.each do |method_name|
       eval "

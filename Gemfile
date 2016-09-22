@@ -68,7 +68,7 @@ group :development do
   gem 'rails_best_practices'
   gem 'foreigner'
   gem 'immigrant'
-  gem 'debugger'
+  # gem 'debugger'  wasn't working with ruby 2.0.0-p647
   gem 'hirb'
   gem 'jist'
   gem 'better_errors'

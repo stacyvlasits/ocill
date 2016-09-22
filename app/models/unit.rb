@@ -16,7 +16,22 @@ class Unit < ActiveRecord::Base
   validates :title, :presence => true
   validates :position, :numericality => { :only_integer => true }
 
+def duplicate_for(course)
+    puts "-- Starting to duplicate a unit..."
+    
+    copy = self.dup
+    copy.course_id = course.id
+    copy.save
+    
+    puts "-- UNIT: " + (copy.title || "")
+
+    self.drills.each do |drill|
+      drill.duplicate_for(copy)
+    end
+end
+
 private
+  
   def set_default_position
     self.position ||= Unit.maximum(:id).to_i + 1
   end

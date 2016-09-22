@@ -19,6 +19,20 @@ class Exercise < ActiveRecord::Base
   validates :prompt, :presence => true
   after_initialize :set_default_position
 
+  def duplicate_for(drill)
+    puts "------ Starting to duplicate an exercise..."
+    
+    copy = self.dup
+    copy.drill_id = drill.id
+    copy.save
+    
+    puts "------ EXERCISE: "  + (copy.title || "")
+
+    self.exercise_items.each do |exercise_item|
+      exercise_item.duplicate_for(copy)
+    end
+  end
+
   def panda_audio
     @panda_audio ||= Panda::Video.find(panda_audio_id)
   end

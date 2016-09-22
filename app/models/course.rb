@@ -16,6 +16,21 @@ class Course < ActiveRecord::Base
   after_commit :flush_user_navigation_caches
   default_scope order('title ASC')
 
+
+  def duplicate
+    puts "Starting to duplicate a course..."
+    
+    copy = self.dup
+    copy.save
+    
+    puts "Course: " + (copy.title || "")
+
+    self.units.each do |unit|
+      unit.duplicate_for(copy)
+    end
+  
+  end
+
 private
   def set_default_position
     self.position ||= Course.maximum(:id).to_i + 1
@@ -30,7 +45,6 @@ private
     end
   end
 
-private
   def flush_user_navigation_caches
     User.flush_all_navigation_caches    
   end
