@@ -25,6 +25,7 @@
 .gitignore
 Gemfile
 Gemfile.lock
+/config/application.yml
 /config/database.yml
 /config/newrelic.yml
 public/uploads/*
