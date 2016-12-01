@@ -5,4 +5,7 @@ MANDRILL_KEY:
 SECRET_TOKEN:
 SUPPORT_EMAIL:
 OAUTH_CANVAS_CONSUMER_KEY:
+# HACK alert:  Since Env variables must be strings, I've invented a way to encode a hash in a string.  Launch::oath_shared_secrets decodes it.
+# elements in the hash are separated by commas and key-value pairs are indicated using a hashrocket =>
+# EG:  OAUTH_SHARED_SECRETS: "ocill-key=>not my real password,fake-key=>not real secret"
 OAUTH_SHARED_SECRETS:
